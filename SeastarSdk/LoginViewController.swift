@@ -18,7 +18,6 @@ class LoginViewController: UIViewController {
         let mainBundle: Bundle = Bundle(for: self.classForCoder)
         let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: mainBundle)
         let vc: UIViewController = storyboard.instantiateInitialViewController()!
-        storyboard.instantiateViewController(withIdentifier: <#T##String#>)
         self.present(vc, animated: true, completion: nil)
     }
 
