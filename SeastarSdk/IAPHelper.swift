@@ -13,16 +13,18 @@ import StoreKit
 
 class IAPHelper : NSObject {
     
+    static let current = IAPHelper()
+    
     typealias ProductIdentifier = String
     typealias PurchasedCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
     typealias RequestProductCompletionHandler = (_ success: Bool) -> ()
     typealias RestoreCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
     
-    var productsRequest: SKProductsRequest? = nil
-    var products: Dictionary<ProductIdentifier, SKProduct> = Dictionary<ProductIdentifier, SKProduct>()
-    var purchasedCompletionHandler: PurchasedCompletionHandler? = nil
-    var requestProductCompletionHandler: RequestProductCompletionHandler? = nil
-    var restoreCompletionHandler: RestoreCompletionHandler? = nil
+    fileprivate var productsRequest: SKProductsRequest? = nil
+    fileprivate var products: Dictionary<ProductIdentifier, SKProduct> = Dictionary<ProductIdentifier, SKProduct>()
+    fileprivate var purchasedCompletionHandler: PurchasedCompletionHandler? = nil
+    fileprivate var requestProductCompletionHandler: RequestProductCompletionHandler? = nil
+    fileprivate var restoreCompletionHandler: RestoreCompletionHandler? = nil
     
     func requestProducts(productIdentifiers: Set<ProductIdentifier>, completionHandler: @escaping RequestProductCompletionHandler)  {
         if !productIdentifiers.isEmpty {
@@ -70,7 +72,7 @@ class IAPHelper : NSObject {
 }
 
 extension IAPHelper : SKProductsRequestDelegate {
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    internal func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         productsRequest = nil
         
         if response.products.count > 0 {
@@ -87,7 +89,7 @@ extension IAPHelper : SKProductsRequestDelegate {
 }
 
 extension IAPHelper : SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    internal func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
@@ -105,7 +107,7 @@ extension IAPHelper : SKPaymentTransactionObserver {
     }
     
     // 有可能返回的是之前购买的product，所以这里不能使用purchase传入的productidentifier
-    func complete(transaction: SKPaymentTransaction) {
+    private func complete(transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
         
         if let trans = transaction.original {
@@ -121,7 +123,7 @@ extension IAPHelper : SKPaymentTransactionObserver {
         purchasedCompletionHandler = nil
     }
     
-    func restore(transaction: SKPaymentTransaction) {
+    private func restore(transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
         
         if let trans = transaction.original {
@@ -137,7 +139,7 @@ extension IAPHelper : SKPaymentTransactionObserver {
         restoreCompletionHandler = nil
     }
     
-    func fail(transaction: SKPaymentTransaction) {
+    private func fail(transaction: SKPaymentTransaction) {
         if let transactionError = transaction.error as? NSError {
             if transactionError.code != SKError.paymentCancelled.rawValue {
                 print("Transaction Error: \(transaction.error?.localizedDescription)")

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10223DEC1DB4CF2D004006EF /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */; };
+		104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104DE73F1DB8B38E00D7F736 /* seastar.storyboard */; };
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
 		104FB6C31D9B6DA1004E22EF /* SeastarSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */; };
 		104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftHTTP.framework; path = ../../../Users/osx/Downloads/SwiftHTTP.framework; sourceTree = "<group>"; };
+		104DE73F1DB8B38E00D7F736 /* seastar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = seastar.storyboard; sourceTree = "<group>"; };
 		104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SeastarSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeastarSdk.h; sourceTree = "<group>"; };
 		104FB6B81D9B6DA1004E22EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		104FB6E11D9B6E18004E22EF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				104DE73F1DB8B38E00D7F736 /* seastar.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */,
 				104FB6FE1D9B6FEA004E22EF /* FacebookSDKStrings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

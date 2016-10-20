@@ -32,6 +32,18 @@ public class SeastarSdk {
         Facebook.current.applicationDidBecomeActive(application)
     }
     
+    // 如果失败，需要连续请求几次
+    func requestSku(productIdentifiers: Set<IAPHelper.ProductIdentifier>) {
+        IAPHelper.current.requestProducts(productIdentifiers: productIdentifiers) {
+            success in
+            
+            if success {
+                // 添加交易监听
+                IAPHelper.current.addPaymentListener()
+            }
+        }
+    }
+    
     func login() {
         let (success, _) = UserModel.loadCurrentUser()
         if success {
