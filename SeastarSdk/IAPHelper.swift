@@ -11,12 +11,13 @@
 import Foundation
 import StoreKit
 
-typealias ProductIdentifier = String
-typealias PurchasedCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
-typealias RequestProductCompletionHandler = (_ success: Bool) -> ()
-typealias RestoreCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
-
 class IAPHelper : NSObject {
+    
+    typealias ProductIdentifier = String
+    typealias PurchasedCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
+    typealias RequestProductCompletionHandler = (_ success: Bool) -> ()
+    typealias RestoreCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
+    
     var productsRequest: SKProductsRequest? = nil
     var products: Dictionary<ProductIdentifier, SKProduct> = Dictionary<ProductIdentifier, SKProduct>()
     var purchasedCompletionHandler: PurchasedCompletionHandler? = nil
@@ -24,12 +25,16 @@ class IAPHelper : NSObject {
     var restoreCompletionHandler: RestoreCompletionHandler? = nil
     
     func requestProducts(productIdentifiers: Set<ProductIdentifier>, completionHandler: @escaping RequestProductCompletionHandler)  {
-        requestProductCompletionHandler = completionHandler
-        
-        productsRequest?.cancel()
-        productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
-        productsRequest!.delegate = self
-        productsRequest!.start()
+        if !productIdentifiers.isEmpty {
+            requestProductCompletionHandler = completionHandler
+            
+            productsRequest?.cancel()
+            productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+            productsRequest!.delegate = self
+            productsRequest!.start()
+        } else {
+            completionHandler(true)
+        }
     }
     
     func purchase(productIdentifier: ProductIdentifier, completionHandler: @escaping PurchasedCompletionHandler) {

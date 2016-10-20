@@ -8,8 +8,38 @@
 
 import Foundation
 
-struct AppModel {
-    var appId: Int?
-    var appKey: String?
-    var serverUrl: String?
+class AppModel {
+    var appId: Int = 0
+    var appKey: String = ""
+    var serverUrl: String = ""
+    
+    func load() -> Bool {
+        if let content = Bundle.main.path(forResource: "Info", ofType: "plist") {
+            if let rootDictionary = NSMutableDictionary(contentsOfFile: content) {
+                let appDictionary: NSMutableDictionary? = rootDictionary.object(forKey: "AppConfig") as? NSMutableDictionary
+                
+                if let dict = appDictionary {
+                    if dict.object(forKey: "AppId") == nil {
+                        return false
+                    }
+                    
+                    if dict.object(forKey: "AppKey") == nil {
+                        return false
+                    }
+                    
+                    if dict.object(forKey: "ServerUrl") == nil {
+                        return false
+                    }
+                    
+                    appId  = dict.object(forKey: "AppId") as! Int
+                    appKey = dict.object(forKey: "AppKey") as! String
+                    serverUrl = dict.object(forKey: "ServerUrl") as! String
+                    
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
 }

@@ -17,7 +17,23 @@ enum LoginType: Int {
     case FACEBOOK = 4
 }
 
-enum OPType: Int {
+enum PayType: Int {
+    case GOOGLE = 0
+    case APPLE = 1
+    case MYCARD = 2
+}
+
+enum LoginOPType: Int {
     case REGISTER = 1
     case Login = 0
+}
+
+enum UserStatus : Int {
+    case DENY = 0
+    case ALLOW = 1
+}
+
+enum UserNewOrOld : Int {
+    case NEW = 1
+    case OLD = 0
 }

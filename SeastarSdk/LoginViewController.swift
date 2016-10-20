@@ -14,11 +14,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //因为在frame里面其bundle实frame不是工程文件所以这边bundle要按一下写
-        let mainBundle: Bundle = Bundle(for: self.classForCoder)
-        let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: mainBundle)
-        let vc: UIViewController = storyboard.instantiateInitialViewController()!
-        self.present(vc, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

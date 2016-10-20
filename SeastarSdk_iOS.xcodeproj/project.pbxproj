@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10223DE41DB4BA15004006EF /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10223DE31DB4BA15004006EF /* XCGLogger.framework */; };
 		10223DEC1DB4CF2D004006EF /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */; };
-		10223DEE1DB4DD57004006EF /* NetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10223DED1DB4DD57004006EF /* NetHandler.swift */; };
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
 		104FB6C31D9B6DA1004E22EF /* SeastarSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */; };
 		104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		104FB6CF1D9B6DE9004E22EF /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6CE1D9B6DE9004E22EF /* SwiftyJSON.swift */; };
 		104FB6D91D9B6E03004E22EF /* CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D11D9B6E03004E22EF /* CommonCrypto.h */; };
 		104FB6DA1D9B6E03004E22EF /* CommonCryptoError.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D21D9B6E03004E22EF /* CommonCryptoError.h */; };
 		104FB6DB1D9B6E03004E22EF /* CommonCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D31D9B6E03004E22EF /* CommonCryptor.h */; };
@@ -51,16 +48,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10223DE31DB4BA15004006EF /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XCGLogger.framework; sourceTree = "<group>"; };
 		10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftHTTP.framework; path = ../../../Users/osx/Downloads/SwiftHTTP.framework; sourceTree = "<group>"; };
-		10223DED1DB4DD57004006EF /* NetHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetHandler.swift; sourceTree = "<group>"; };
 		104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SeastarSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeastarSdk.h; sourceTree = "<group>"; };
 		104FB6B81D9B6DA1004E22EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		104FB6BD1D9B6DA1004E22EF /* SeastarSdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeastarSdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeastarSdkTests.swift; sourceTree = "<group>"; };
 		104FB6C41D9B6DA1004E22EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		104FB6CE1D9B6DE9004E22EF /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = 3rd/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		104FB6D11D9B6E03004E22EF /* CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCrypto.h; path = 3rd/CommonCrypto/CommonCrypto.h; sourceTree = "<group>"; };
 		104FB6D21D9B6E03004E22EF /* CommonCryptoError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCryptoError.h; path = 3rd/CommonCrypto/CommonCryptoError.h; sourceTree = "<group>"; };
 		104FB6D31D9B6E03004E22EF /* CommonCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCryptor.h; path = 3rd/CommonCrypto/CommonCryptor.h; sourceTree = "<group>"; };
@@ -98,7 +92,6 @@
 				104FB6FD1D9B6FEA004E22EF /* Bolts.framework in Frameworks */,
 				104FB6FF1D9B6FEA004E22EF /* FBSDKCoreKit.framework in Frameworks */,
 				104FB7001D9B6FEA004E22EF /* FBSDKLoginKit.framework in Frameworks */,
-				10223DE41DB4BA15004006EF /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,20 +156,10 @@
 		104FB6CC1D9B6DD1004E22EF /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
-				1071A3781DAB7EB1004A04B0 /* XCGLogger */,
 				104FB6F71D9B6FD5004E22EF /* Facebook */,
 				104FB6D01D9B6DF2004E22EF /* CommonCrypto */,
-				104FB6CD1D9B6DD7004E22EF /* SwiftyJSON */,
 			);
 			name = 3rd;
-			sourceTree = "<group>";
-		};
-		104FB6CD1D9B6DD7004E22EF /* SwiftyJSON */ = {
-			isa = PBXGroup;
-			children = (
-				104FB6CE1D9B6DE9004E22EF /* SwiftyJSON.swift */,
-			);
-			name = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		104FB6D01D9B6DF2004E22EF /* CommonCrypto */ = {
@@ -241,7 +224,6 @@
 				104FB6F31D9B6E99004E22EF /* Network.swift */,
 				104FB73E1D9B9877004E22EF /* Facebook.swift */,
 				1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */,
-				10223DED1DB4DD57004006EF /* NetHandler.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -256,14 +238,6 @@
 				104FB6FC1D9B6FEA004E22EF /* FBSDKShareKit.framework */,
 			);
 			name = Facebook;
-			sourceTree = "<group>";
-		};
-		1071A3781DAB7EB1004A04B0 /* XCGLogger */ = {
-			isa = PBXGroup;
-			children = (
-				10223DE31DB4BA15004006EF /* XCGLogger.framework */,
-			);
-			name = XCGLogger;
 			sourceTree = "<group>";
 		};
 		1083D6F51DAE2F4B0062BC92 /* Frameworks */ = {
@@ -396,9 +370,7 @@
 			files = (
 				104FB6E91D9B6E5F004E22EF /* LoginViewController.swift in Sources */,
 				104FB7031D9B7380004E22EF /* SeastarSdk.swift in Sources */,
-				104FB6CF1D9B6DE9004E22EF /* SwiftyJSON.swift in Sources */,
 				104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */,
-				10223DEE1DB4DD57004006EF /* NetHandler.swift in Sources */,
 				104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */,
 				104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */,
 				104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */,

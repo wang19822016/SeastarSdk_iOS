@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import XCGLogger
 
 /*
 Login权限：
@@ -109,15 +108,17 @@ extra:
  </array>
  
  */
+
 class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate, FBSDKAppInviteDialogDelegate {
+  
+    typealias FBCB = (Bool)->Void
     
-    var shareCaller: ((Bool)->Void)? = nil
-    var gameRequestCaller: ((Bool)->Void)? = nil
-    var inviteCaller: ((Bool)->Void)? = nil
+    var shareCaller: FBCB? = nil
+    var gameRequestCaller: FBCB? = nil
+    var inviteCaller: FBCB? = nil
     var nextFriendInfoPage: String? = nil
     var prevFriendInfoPage: String? = nil
     
-    let log = XCGLogger.default
 
     static let current = Facebook()
     
@@ -128,19 +129,21 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     func login(viewController: UIViewController, success:@escaping (String, String)->(), failure:@escaping ()->()) {
         if FBSDKAccessToken.current() != nil {
             // 已经登录状态，不需要再登录
-            log.debug("FB Login has token")
+            Log("FB Login has token")
             success(FBSDKAccessToken.current().userID, FBSDKAccessToken.current().tokenString)
         } else {
-            getReadPermissions(viewController: viewController, success: {()->Void in
+            
+            
+            getReadPermissions(viewController: viewController, success: { () in
                 success(FBSDKAccessToken.current().userID, FBSDKAccessToken.current().tokenString)
-                }, failure: {()->Void in
+                }, failure: { () in
                 failure()
             })
         }
     }
     
     func logout() {
-        log.debug("FB Logout")
+        Log("FB Logout")
         if FBSDKAccessToken.current() != nil {
             loginManager.logOut()
             FBSDKAccessToken.setCurrent(nil)
@@ -162,7 +165,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
                         if let urlComponents = URLComponents(url: targetUrl, resolvingAgainstBaseURL: false) {
                             if let queryItems: [URLQueryItem] = urlComponents.queryItems {
                                 for item : URLQueryItem in queryItems {
-                                    log.debug("FB Invite link query item: \(item.name) \(item.value)")
+                                    Log("FB Invite link query item: \(item.name) \(item.value)")
                                 }
                             }
                         }
@@ -187,7 +190,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     // contentDescription内容描述
     // 注意：如果分享的是iTunes或GooglePlay商店链接，不会发布分享中指定的任何图片和说明，而是通过网络爬虫直接从商店爬到的应用信息。
     func share(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
-               imageURL image: String, contentDescription description: String, caller:@escaping (Bool)->Void) {
+               imageURL image: String, contentDescription description: String, caller:@escaping FBCB) {
         
         let contentURL = URL(string: url)
         let imageURL = URL(string: image)
@@ -210,13 +213,13 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
             }
         }
         
-        log.debug("FB Share Link fail, no url or no permissions")
+        Log("FB Share Link fail, no url or no permissions")
         caller(false)
     }
     
     // 照片大小必须小于 12MB
     // 用户需要安装版本 7.0 或以上的原生 iOS 版 Facebook 应用
-    func share(viewController controller: UIViewController, imageURL url: String, imageCaption caption: String, caller: @escaping (Bool)->Void) {
+    func share(viewController controller: UIViewController, imageURL url: String, imageCaption caption: String, caller: @escaping FBCB) {
         // userGenerated指定图片是应用产生的
         let photo: FBSDKSharePhoto = FBSDKSharePhoto(imageURL: URL(string: url), userGenerated: true)
         photo.caption = caption
@@ -234,13 +237,13 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
             dialog.show()
         } else {
             
-            log.debug("FB Share Photo fail, no permissions")
+            Log("FB Share Photo fail, no permissions")
             caller(false)
         }
     }
     
     // 使用 iOS SDK 提供的好友选择工具启动请求对话框
-    func doGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping (Bool)->Void) {
+    func doGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping FBCB) {
         let gameRequestContent:FBSDKGameRequestContent = FBSDKGameRequestContent();
         gameRequestContent.message = message
         gameRequestContent.title = title
@@ -254,7 +257,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
             gameRequestCaller = caller
         } else {
             
-            log.debug("FB Game Request fail, no permissions")
+            Log("FB Game Request fail, no permissions")
             caller(false)
         }
     }
@@ -285,36 +288,29 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     */
     // 读取接收方所有请求
     func deleteGameRequest() {
+        
         if FBSDKAccessToken.current() != nil {
             let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me/apprequests?access_token=\(FBSDKAccessToken.current())", parameters:[:])
-            graphRequest.start {(connection: FBSDKGraphRequestConnection?, data: Any?, error: Error?) -> Void in
-                
-                if let rawData = data as? Data {
-                    var json = JSON(data: rawData)
-                    if json != nil {
-                        json = json["data"]
-                        if json != nil {
-                            for (_, subJson):(String, JSON) in json {
-                                
-                                if subJson["id"] != nil && subJson["application"]["id"] != nil {
-                                    let requestObjectId = subJson["id"]
-                                    let appId = subJson["application"]["id"].stringValue
-                                    
-                                    // 删除请求id
-                                    if appId == FBSDKAccessToken.current().appID {
-                                        let removeRequest = FBSDKGraphRequest(graphPath: "\(requestObjectId)_\(FBSDKAccessToken.current().userID)?access_token=\(FBSDKAccessToken.current().tokenString)", parameters: [:], httpMethod: "DELETE")!
-                                        removeRequest.start(completionHandler: nil)
+            graphRequest.start { connection, data, error in
+                if let result = data as? Data {
+                    if let json = try? JSONSerialization.jsonObject(with: result, options: .allowFragments) {
+                        if let rootDict = json as? [String : Any] {
+                            if let invites = rootDict["data"] as? [[String : Any]] {
+                                for invite in invites {
+                                    if let appInfo = invite["application"] as? [String : Any] {
+                                        if let inviteId = invite["id"] as? String, let appId = appInfo["id"] as? String,
+                                            appId == FBSDKAccessToken.current().appID {
+                                            // 删除请求id
+                                            //DELETE https://graph.facebook.com/[{REQUEST_OBJECT_ID}_{USER_ID}]?access_token=[USER or APP ACCESS TOKEN]
+                                            let removeRequest = FBSDKGraphRequest(graphPath: "\(inviteId)_\(FBSDKAccessToken.current().userID)?access_token=\(FBSDKAccessToken.current().tokenString)", parameters: [:], httpMethod: "DELETE")!
+                                            removeRequest.start(completionHandler: nil)
+                                        }
                                     }
                                 }
                             }
-
                         }
                     }
                 }
-                
-                //DELETE https://graph.facebook.com/[{REQUEST_OBJECT_ID}_{USER_ID}]?
-                //access_token=[USER or APP ACCESS TOKEN]
-                // 此处可以提取发送方id，然后给予奖励
             }
         }
     }
@@ -344,49 +340,43 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     func getMeInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         if FBSDKAccessToken.current() != nil {
             let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": ["id", "name", "picture"]])
-            graphRequest.start(completionHandler: {(connection: FBSDKGraphRequestConnection?, result: Any?, error: Error?) -> Void in
-                
-                if error != nil {
-                    failure()
+            graphRequest.start { connection, result, error in
+                if let data = result as? Data, JSONSerialization.isValidJSONObject(data) {
+                    let meInfo = String(data: data, encoding: .utf8)
+                    Log("FB get me info: \(meInfo).")
+                    success(meInfo!)
                 } else {
-                    let json:JSON = JSON(result)
-                    if json != nil {
-                        self.log.debug("FB get me info: \(json.rawString()).")
-                        success(json.rawString()!)
-                    } else {
-                        self.log.debug("FB get me info fail, result is not json.")
-                        failure()
-                    }
+                    Log("FB get me info fail.")
+                    failure()
                 }
-                
-            })
+            }
         } else {
-            self.log.debug("FB not login")
+            Log("FB not login")
             failure()
         }
     }
     
     func getFriendInfo(height:Int, width:Int, limit:Int, success:@escaping (String)->Void, failure:@escaping ()->Void) {
         if FBSDKAccessToken.current() != nil {
-            let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me/taggable_friends", parameters: ["fields": ["id", "name", "picture.height(\(height)).width(\(width))"], "limit": "\(limit)"])
-            graphRequest.start(completionHandler: {(connection: FBSDKGraphRequestConnection?, result: Any?, error: Error?) -> Void in
-                if error != nil {
-                    failure()
-                } else {
-                    let json:JSON = JSON(result)
-                    if json != nil {
-                        self.log.debug("FB get friend info: \(json.rawString()).")
-                        success(json.rawString()!)
-                        
-                        self.nextFriendInfoPage = json["paging"]["next"].stringValue
-                        self.prevFriendInfoPage = json["paging"]["previous"].stringValue
-                    } else {
-                        self.log.debug("FB get friend info fail, result is not json.")
-                        failure()
-                    }
+            let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me/taggable_friends",
+                                    parameters: ["fields": ["id", "name", "picture.height(\(height)).width(\(width))"], "limit": "\(limit)"])
+            graphRequest.start {connection, result, error in
+                
+                if let data = result as? Data,
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                    let rootDict = json as? [String : Any] {
+                        success(String(data: data, encoding: .utf8)!)
+                            
+                        if let paging = rootDict["paging"] as? [String : String] {
+                            self.nextFriendInfoPage = paging["next"]
+                            self.prevFriendInfoPage = paging["previous"]
+                        }
+                            
+                    return
                 }
-            })
-
+                
+                failure()
+            }
         }
     }
     
@@ -394,18 +384,20 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         if nextFriendInfoPage == nil {
             failure()
         } else {
-            Network.get(url: nextFriendInfoPage!, params: [:], success: { (result: String) in
-                let json:JSON = JSON(data: result.data(using: String.Encoding.utf8)!)
-                if json != nil {
-                    self.log.debug("FB get friend info: \(json.rawString()).")
-                    success(json.rawString()!)
-                    
-                    self.nextFriendInfoPage = json["paging"]["next"].stringValue
-                    self.prevFriendInfoPage = json["paging"]["previous"].stringValue
-                } else {
-                    self.log.debug("FB get friend info fail, result is not json.")
-                    failure()
+            Network.get(url: nextFriendInfoPage!, params: [:], success: { result in
+                
+                if let json = try? JSONSerialization.jsonObject(with: result.data(using: .utf8)!, options: .allowFragments),
+                    let rootDict = json as? [String : Any] {
+                        success(result)
+                        
+                        if let paging = rootDict["paging"] as? [String : String] {
+                            self.nextFriendInfoPage = paging["next"]
+                            self.prevFriendInfoPage = paging["previous"]
+                        }
+                        
+                        return
                 }
+                failure()
                 }, failure: { () in
                     failure()
             })
@@ -416,18 +408,20 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         if prevFriendInfoPage == nil {
             failure()
         } else {
-            Network.get(url: prevFriendInfoPage!, params: [:], success: { (result: String) in
-                let json:JSON = JSON(data: result.data(using: String.Encoding.utf8)!)
-                if json != nil {
-                    self.log.debug("FB get friend info: \(json.rawString()).")
-                    success(json.rawString()!)
-                    
-                    self.nextFriendInfoPage = json["paging"]["next"].stringValue
-                    self.prevFriendInfoPage = json["paging"]["previous"].stringValue
-                } else {
-                    self.log.debug("FB get friend info fail, result is not json.")
-                    failure()
-                }
+            Network.get(url: prevFriendInfoPage!, params: [:], success: { result in
+                if let json = try? JSONSerialization.jsonObject(with: result.data(using: .utf8)!, options: .allowFragments),
+                    let rootDict = json as? [String : Any] {
+                        success(result)
+                        
+                        if let paging = rootDict["paging"] as? [String : String] {
+                            self.nextFriendInfoPage = paging["next"]
+                            self.prevFriendInfoPage = paging["previous"]
+                        }
+                        
+                        return
+                    }
+                
+                failure()
                 }, failure: { () in
                     failure()
             })
@@ -458,7 +452,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     }
     
     func gameRequestDialog(_ gameRequestDialog: FBSDKGameRequestDialog!, didCompleteWithResults results: [AnyHashable : Any]!) {
-        log.debug("FB GameRequest success.")
+        Log("FB GameRequest success.")
         if gameRequestCaller != nil {
             gameRequestCaller!(true)
             gameRequestCaller = nil
@@ -466,7 +460,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     }
     
     func gameRequestDialog(_ gameRequestDialog: FBSDKGameRequestDialog!, didFailWithError error: Error!) {
-        log.debug("FB GameRequest fail: \(error)")
+        Log("FB GameRequest fail: \(error)")
         if gameRequestCaller != nil {
             gameRequestCaller!(false)
             gameRequestCaller = nil
@@ -474,7 +468,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     }
     
     func gameRequestDialogDidCancel(_ gameRequestDialog: FBSDKGameRequestDialog!) {
-        log.debug("FB GameRequest fail: cancel.")
+        Log("FB GameRequest fail: cancel.")
         if gameRequestCaller != nil {
             gameRequestCaller!(false)
             gameRequestCaller = nil
@@ -482,7 +476,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     }
     
     func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [AnyHashable : Any]!) {
-        log.debug("FB Invate success.")
+        Log("FB Invate success.")
         if inviteCaller != nil {
             inviteCaller!(true)
             inviteCaller = nil
@@ -490,7 +484,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     }
     
     func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: Error!) {
-        log.debug("FB Invite fail")
+        Log("FB Invite fail")
         if inviteCaller != nil {
             inviteCaller!(false)
             inviteCaller = nil
@@ -499,56 +493,54 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
 
     
     // 请求免审核权限
-    func getReadPermissions(viewController controller: UIViewController, success: @escaping ()->(), failure: @escaping ()->()) {
-        loginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: controller,
-                           handler: {(result: FBSDKLoginManagerLoginResult?, error: Error?) -> Void in
+    func getReadPermissions(viewController controller: UIViewController, success: @escaping ()->Void, failure: @escaping ()->Void) {
+        loginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: controller) { result, error in
                                 if error != nil {
-                                    self.log.debug("FB read permission login fail: \(error).")
+                                    Log("FB read permission login fail: \(error).")
                                     failure()
                                 } else {
                                     if let rs = result {
                                         if rs.isCancelled {
-                                            self.log.debug("FB read permission login cancel.")
+                                            Log("FB read permission login cancel.")
                                             failure()
                                         } else {
-                                            self.log.debug("FB read permission login success.")
+                                            Log("FB read permission login success.")
                                             success()
                                         }
                                     } else {
-                                        self.log.debug("FB read permission login fail, result is nil")
+                                        Log("FB read permission login fail, result is nil")
                                         failure()
                                     }
                             }
-                })
+                }
     }
     
     // 请求需要审核的权限
-    func getPublishPermissions(viewController controller: UIViewController, success: @escaping ()->(), failure: @escaping ()->()) {
+    func getPublishPermissions(viewController controller: UIViewController, success: @escaping ()->Void, failure: @escaping ()->Void) {
         if FBSDKAccessToken.current() != nil && FBSDKAccessToken.current()!.hasGranted("publish_actions") {
             success()
             return
         }
         
-        loginManager.logIn(withPublishPermissions: ["publish_actions", "public_profile", "email", "user_friends"], from: controller,
-                           handler: {(result: FBSDKLoginManagerLoginResult?, error: Error?) -> Void in
+        loginManager.logIn(withPublishPermissions: ["publish_actions", "public_profile", "email", "user_friends"], from: controller) { result, error in
                             if error != nil {
-                                self.log.debug("FB publish permission login fail: \(error).")
+                                Log("FB publish permission login fail: \(error).")
                                 failure()
                             } else {
                                 if let rs = result {
                                     if rs.isCancelled {
-                                        self.log.debug("FB publish permission login cancel.")
+                                        Log("FB publish permission login cancel.")
                                         failure()
                                     } else {
-                                        self.log.debug("FB publish permission login success.")
+                                        Log("FB publish permission login success.")
                                         success()
                                     }
                                 } else {
-                                    self.log.debug("FB publish permission login fail, result is nil")
+                                    Log("FB publish permission login fail, result is nil")
                                     failure()
                                 }
                             }
-                        })
+                        }
     }
     
 }
