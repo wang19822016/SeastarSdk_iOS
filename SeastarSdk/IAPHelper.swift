@@ -16,7 +16,7 @@ class IAPHelper : NSObject {
     static let current = IAPHelper()
     
     typealias ProductIdentifier = String
-    typealias PurchasedCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
+    typealias PurchasedCompletionHandler = (_ success: Bool, _ product: SKProduct?) -> ()
     typealias RequestProductCompletionHandler = (_ success: Bool) -> ()
     typealias RestoreCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
     
