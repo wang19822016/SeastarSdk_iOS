@@ -37,6 +37,27 @@
 		104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB73E1D9B9877004E22EF /* Facebook.swift */; };
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
+		EE6FA5411DBDF4AF006FE3DD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52D1DBDF4AF006FE3DD /* back.png */; };
+		EE6FA5421DBDF4AF006FE3DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52E1DBDF4AF006FE3DD /* background.png */; };
+		EE6FA5431DBDF4AF006FE3DD /* button_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52F1DBDF4AF006FE3DD /* button_highlighted.png */; };
+		EE6FA5441DBDF4AF006FE3DD /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5301DBDF4AF006FE3DD /* button.png */; };
+		EE6FA5451DBDF4AF006FE3DD /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5311DBDF4AF006FE3DD /* cancel.png */; };
+		EE6FA5461DBDF4AF006FE3DD /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5321DBDF4AF006FE3DD /* down.png */; };
+		EE6FA5471DBDF4AF006FE3DD /* facebook_big.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5331DBDF4AF006FE3DD /* facebook_big.png */; };
+		EE6FA5481DBDF4AF006FE3DD /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5341DBDF4AF006FE3DD /* facebook.png */; };
+		EE6FA5491DBDF4AF006FE3DD /* fenge.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5351DBDF4AF006FE3DD /* fenge.png */; };
+		EE6FA54A1DBDF4AF006FE3DD /* guest_big.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5361DBDF4AF006FE3DD /* guest_big.png */; };
+		EE6FA54B1DBDF4AF006FE3DD /* guest.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5371DBDF4AF006FE3DD /* guest.png */; };
+		EE6FA54C1DBDF4AF006FE3DD /* kuang_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5381DBDF4AF006FE3DD /* kuang_highlighted.png */; };
+		EE6FA54D1DBDF4AF006FE3DD /* kuang.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5391DBDF4AF006FE3DD /* kuang.png */; };
+		EE6FA54E1DBDF4AF006FE3DD /* logo_Horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53A1DBDF4AF006FE3DD /* logo_Horizontal.png */; };
+		EE6FA54F1DBDF4AF006FE3DD /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53B1DBDF4AF006FE3DD /* logo.png */; };
+		EE6FA5501DBDF4AF006FE3DD /* notice.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53C1DBDF4AF006FE3DD /* notice.png */; };
+		EE6FA5511DBDF4AF006FE3DD /* seastar_big.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53D1DBDF4AF006FE3DD /* seastar_big.png */; };
+		EE6FA5521DBDF4AF006FE3DD /* seastar.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53E1DBDF4AF006FE3DD /* seastar.png */; };
+		EE6FA5531DBDF4AF006FE3DD /* yellowbutton_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */; };
+		EE6FA5541DBDF4AF006FE3DD /* yellowbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */; };
+		EE6FA5581DBDF6E1006FE3DD /* seastarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6FA5571DBDF6E1006FE3DD /* seastarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +105,27 @@
 		104FB73E1D9B9877004E22EF /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		EE6FA52D1DBDF4AF006FE3DD /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		EE6FA52E1DBDF4AF006FE3DD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		EE6FA52F1DBDF4AF006FE3DD /* button_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_highlighted.png; sourceTree = "<group>"; };
+		EE6FA5301DBDF4AF006FE3DD /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		EE6FA5311DBDF4AF006FE3DD /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		EE6FA5321DBDF4AF006FE3DD /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		EE6FA5331DBDF4AF006FE3DD /* facebook_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_big.png; sourceTree = "<group>"; };
+		EE6FA5341DBDF4AF006FE3DD /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		EE6FA5351DBDF4AF006FE3DD /* fenge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fenge.png; sourceTree = "<group>"; };
+		EE6FA5361DBDF4AF006FE3DD /* guest_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guest_big.png; sourceTree = "<group>"; };
+		EE6FA5371DBDF4AF006FE3DD /* guest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guest.png; sourceTree = "<group>"; };
+		EE6FA5381DBDF4AF006FE3DD /* kuang_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kuang_highlighted.png; sourceTree = "<group>"; };
+		EE6FA5391DBDF4AF006FE3DD /* kuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kuang.png; sourceTree = "<group>"; };
+		EE6FA53A1DBDF4AF006FE3DD /* logo_Horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_Horizontal.png; sourceTree = "<group>"; };
+		EE6FA53B1DBDF4AF006FE3DD /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		EE6FA53C1DBDF4AF006FE3DD /* notice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notice.png; sourceTree = "<group>"; };
+		EE6FA53D1DBDF4AF006FE3DD /* seastar_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seastar_big.png; sourceTree = "<group>"; };
+		EE6FA53E1DBDF4AF006FE3DD /* seastar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seastar.png; sourceTree = "<group>"; };
+		EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton_highlighted.png; sourceTree = "<group>"; };
+		EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton.png; sourceTree = "<group>"; };
+		EE6FA5571DBDF6E1006FE3DD /* seastarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = seastarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +175,7 @@
 		104FB6B61D9B6DA1004E22EF /* SeastarSdk */ = {
 			isa = PBXGroup;
 			children = (
+				EE6FA52C1DBDF498006FE3DD /* Resource */,
 				104FB6F21D9B6E91004E22EF /* Utils */,
 				104FB6EF1D9B6E7E004E22EF /* Config */,
 				104FB6E51D9B6E46004E22EF /* Model */,
@@ -201,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
+				EE6FA5571DBDF6E1006FE3DD /* seastarViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -253,6 +297,33 @@
 				1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE6FA52C1DBDF498006FE3DD /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				EE6FA52D1DBDF4AF006FE3DD /* back.png */,
+				EE6FA52E1DBDF4AF006FE3DD /* background.png */,
+				EE6FA52F1DBDF4AF006FE3DD /* button_highlighted.png */,
+				EE6FA5301DBDF4AF006FE3DD /* button.png */,
+				EE6FA5311DBDF4AF006FE3DD /* cancel.png */,
+				EE6FA5321DBDF4AF006FE3DD /* down.png */,
+				EE6FA5331DBDF4AF006FE3DD /* facebook_big.png */,
+				EE6FA5341DBDF4AF006FE3DD /* facebook.png */,
+				EE6FA5351DBDF4AF006FE3DD /* fenge.png */,
+				EE6FA5361DBDF4AF006FE3DD /* guest_big.png */,
+				EE6FA5371DBDF4AF006FE3DD /* guest.png */,
+				EE6FA5381DBDF4AF006FE3DD /* kuang_highlighted.png */,
+				EE6FA5391DBDF4AF006FE3DD /* kuang.png */,
+				EE6FA53A1DBDF4AF006FE3DD /* logo_Horizontal.png */,
+				EE6FA53B1DBDF4AF006FE3DD /* logo.png */,
+				EE6FA53C1DBDF4AF006FE3DD /* notice.png */,
+				EE6FA53D1DBDF4AF006FE3DD /* seastar_big.png */,
+				EE6FA53E1DBDF4AF006FE3DD /* seastar.png */,
+				EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */,
+				EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,8 +427,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE6FA54E1DBDF4AF006FE3DD /* logo_Horizontal.png in Resources */,
 				104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */,
+				EE6FA54A1DBDF4AF006FE3DD /* guest_big.png in Resources */,
+				EE6FA54C1DBDF4AF006FE3DD /* kuang_highlighted.png in Resources */,
+				EE6FA54D1DBDF4AF006FE3DD /* kuang.png in Resources */,
+				EE6FA5521DBDF4AF006FE3DD /* seastar.png in Resources */,
+				EE6FA54F1DBDF4AF006FE3DD /* logo.png in Resources */,
+				EE6FA5441DBDF4AF006FE3DD /* button.png in Resources */,
+				EE6FA5451DBDF4AF006FE3DD /* cancel.png in Resources */,
+				EE6FA5461DBDF4AF006FE3DD /* down.png in Resources */,
+				EE6FA5421DBDF4AF006FE3DD /* background.png in Resources */,
+				EE6FA5541DBDF4AF006FE3DD /* yellowbutton.png in Resources */,
+				EE6FA5431DBDF4AF006FE3DD /* button_highlighted.png in Resources */,
+				EE6FA5531DBDF4AF006FE3DD /* yellowbutton_highlighted.png in Resources */,
+				EE6FA5471DBDF4AF006FE3DD /* facebook_big.png in Resources */,
+				EE6FA54B1DBDF4AF006FE3DD /* guest.png in Resources */,
+				EE6FA5491DBDF4AF006FE3DD /* fenge.png in Resources */,
+				EE6FA5481DBDF4AF006FE3DD /* facebook.png in Resources */,
+				EE6FA5501DBDF4AF006FE3DD /* notice.png in Resources */,
+				EE6FA5511DBDF4AF006FE3DD /* seastar_big.png in Resources */,
 				104FB6FE1D9B6FEA004E22EF /* FacebookSDKStrings.bundle in Resources */,
+				EE6FA5411DBDF4AF006FE3DD /* back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +470,7 @@
 				104FB7031D9B7380004E22EF /* SeastarSdk.swift in Sources */,
 				104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */,
 				104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */,
+				EE6FA5581DBDF6E1006FE3DD /* seastarViewController.swift in Sources */,
 				104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */,
 				104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */,
 				104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */,
