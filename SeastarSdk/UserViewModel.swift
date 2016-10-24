@@ -10,6 +10,8 @@ import Foundation
 
 class UserViewModel {
     
+    static let current = UserViewModel()
+    
     func doGuestLogin(success: @escaping (UserModel)->Void, failure: @escaping ()->Void) {
         let app = AppModel()
         if !app.load() {

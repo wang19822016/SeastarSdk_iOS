@@ -11,6 +11,7 @@
 import Foundation
 
 public class SeastarSdk {
+    
     var viewController: UIViewController? = nil
     
     func initialize(viewController: UIViewController) {
@@ -44,14 +45,11 @@ public class SeastarSdk {
         }
     }
     
-    func login() {
+    func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
         let (success, _) = UserModel.loadCurrentUser()
         if success {
-            let viewModel = UserViewModel()
-            viewModel.doSessionLogin(success: {
-                userModel in
-                
-                }, failure: {})
+            UserViewModel.current.doSessionLogin(success: {
+                userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { loginFailure() })
         } else {
             //因为在frame里面其bundle实frame不是工程文件所以这边bundle要按一下写
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle.main)
@@ -61,11 +59,10 @@ public class SeastarSdk {
     }
     
     func logout() {
-        let viewModel = UserViewModel()
-        viewModel.doLogout()
+        UserViewModel.current.doLogout()
     }
     
-    func purchase() {
+    func purchase(productId: String, extra: String) {
         IAPHelper.current.purchase(productIdentifier: "") {
             success, product in
             
