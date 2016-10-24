@@ -63,6 +63,8 @@ public class SeastarSdk {
     }
     
     func purchase(productId: String, extra: String) {
+        let (success, user) = UserModel.loadCurrentUser()
+        
         IAPHelper.current.purchase(productIdentifier: "") {
             success, product in
             
