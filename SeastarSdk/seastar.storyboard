@@ -6,23 +6,100 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Seastar View Controller-->
         <scene sceneID="qbH-KS-9v8">
             <objects>
-                <viewController id="XOX-Ai-lCx" sceneMemberID="viewController">
+                <viewController id="XOX-Ai-lCx" customClass="seastarViewController" customModule="SeastarSdk" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pf9-9h-HVX"/>
                         <viewControllerLayoutGuide type="bottom" id="hRj-q0-pv5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Pfv-Ql-BH2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9a-iA-x2J">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-GM-aib"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_Horizontal.png" translatesAutoresizingMaskIntoConstraints="NO" id="SS0-5h-STi">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="122" id="AaQ-b9-6rk"/>
+                                            <constraint firstAttribute="height" constant="39" id="BN9-9x-0cV"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fenge.png" translatesAutoresizingMaskIntoConstraints="NO" id="mtX-2b-Ky2">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="285" id="88y-Yd-Gvw"/>
+                                            <constraint firstAttribute="height" constant="1" id="8hb-Rx-r6V"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vr-7j-SGz">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="63" id="AQe-Xe-brF"/>
+                                            <constraint firstAttribute="width" constant="60" id="WFp-s0-RDm"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="guest_big.png"/>
+                                        <connections>
+                                            <action selector="guestLogin:" destination="XOX-Ai-lCx" eventType="touchUpInside" id="i7a-7d-Dr2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XX8-0R-CAw">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="63" id="5dQ-Y1-ear"/>
+                                            <constraint firstAttribute="width" constant="60" id="WvL-58-jMt"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="seastar_big.png"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYO-h5-q0U">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="63" id="3fo-C8-9uN"/>
+                                            <constraint firstAttribute="width" constant="60" id="9PA-or-6Jw"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="facebook_big.png"/>
+                                        <connections>
+                                            <action selector="facebookLogin:" destination="XOX-Ai-lCx" eventType="touchUpInside" id="aut-di-O4h"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mtX-2b-Ky2" firstAttribute="top" secondItem="SS0-5h-STi" secondAttribute="bottom" constant="8" id="2FP-Ok-bIn"/>
+                                    <constraint firstAttribute="height" constant="228" id="4k5-FF-DkG"/>
+                                    <constraint firstAttribute="trailing" secondItem="OYO-h5-q0U" secondAttribute="trailing" constant="69" id="9lg-YZ-8BT"/>
+                                    <constraint firstItem="OYO-h5-q0U" firstAttribute="top" secondItem="mtX-2b-Ky2" secondAttribute="bottom" constant="50" id="JDm-Nl-dMT"/>
+                                    <constraint firstItem="XX8-0R-CAw" firstAttribute="top" secondItem="mtX-2b-Ky2" secondAttribute="bottom" constant="50" id="KXb-Fv-9cS"/>
+                                    <constraint firstAttribute="bottom" secondItem="OjM-GM-aib" secondAttribute="bottom" id="KmJ-Hx-ePJ"/>
+                                    <constraint firstItem="SS0-5h-STi" firstAttribute="centerX" secondItem="U9a-iA-x2J" secondAttribute="centerX" id="V3O-8s-IXv"/>
+                                    <constraint firstItem="XX8-0R-CAw" firstAttribute="centerX" secondItem="U9a-iA-x2J" secondAttribute="centerX" id="VHd-bm-l3d"/>
+                                    <constraint firstItem="SS0-5h-STi" firstAttribute="top" secondItem="U9a-iA-x2J" secondAttribute="top" constant="16" id="aPF-Wu-lrc"/>
+                                    <constraint firstAttribute="trailing" secondItem="OjM-GM-aib" secondAttribute="trailing" id="gGd-cz-TDQ"/>
+                                    <constraint firstAttribute="width" constant="445" id="hpx-Cx-zla"/>
+                                    <constraint firstItem="mtX-2b-Ky2" firstAttribute="centerX" secondItem="U9a-iA-x2J" secondAttribute="centerX" id="pOO-af-mGC"/>
+                                    <constraint firstItem="OjM-GM-aib" firstAttribute="top" secondItem="U9a-iA-x2J" secondAttribute="top" id="qtM-Or-aZ4"/>
+                                    <constraint firstItem="3Vr-7j-SGz" firstAttribute="top" secondItem="mtX-2b-Ky2" secondAttribute="bottom" constant="50" id="uwK-CN-DDt"/>
+                                    <constraint firstItem="3Vr-7j-SGz" firstAttribute="leading" secondItem="U9a-iA-x2J" secondAttribute="leading" constant="69" id="vcx-d3-JF1"/>
+                                    <constraint firstItem="OjM-GM-aib" firstAttribute="leading" secondItem="U9a-iA-x2J" secondAttribute="leading" id="zGO-hv-g48"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="U9a-iA-x2J" firstAttribute="centerX" secondItem="Pfv-Ql-BH2" secondAttribute="centerX" id="HWR-s0-T53"/>
+                            <constraint firstItem="U9a-iA-x2J" firstAttribute="centerY" secondItem="Pfv-Ql-BH2" secondAttribute="centerY" id="au0-cN-qhn"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSA-t8-UAo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-156" y="131"/>
+            <point key="canvasLocation" x="-225.33733133433284" y="80.799999999999997"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background.png" width="890" height="455"/>
+        <image name="facebook_big.png" width="120" height="126"/>
+        <image name="fenge.png" width="570" height="2"/>
+        <image name="guest_big.png" width="120" height="126"/>
+        <image name="logo_Horizontal.png" width="243" height="78"/>
+        <image name="seastar_big.png" width="120" height="126"/>
+    </resources>
 </document>
