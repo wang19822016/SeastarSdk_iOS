@@ -64,4 +64,11 @@ public class SeastarSdk {
         let viewModel = UserViewModel()
         viewModel.doLogout()
     }
+    
+    func purchase() {
+        IAPHelper.current.purchase(productIdentifier: "") {
+            success, product in
+            
+        };
+    }
 }

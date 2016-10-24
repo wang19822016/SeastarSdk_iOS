@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1015ECA61DB9FB9B0094C7B6 /* PurchaseModel.swift */; };
 		10223DEC1DB4CF2D004006EF /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */; };
 		104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104DE73F1DB8B38E00D7F736 /* seastar.storyboard */; };
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1015ECA61DB9FB9B0094C7B6 /* PurchaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftHTTP.framework; path = ../../../Users/osx/Downloads/SwiftHTTP.framework; sourceTree = "<group>"; };
 		104DE73F1DB8B38E00D7F736 /* seastar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = seastar.storyboard; sourceTree = "<group>"; };
 		104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SeastarSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 			children = (
 				104FB6EB1D9B6E6F004E22EF /* UserModel.swift */,
 				104FB6E61D9B6E57004E22EF /* AppModel.swift */,
+				1015ECA61DB9FB9B0094C7B6 /* PurchaseModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */,
 				104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */,
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
+				1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */,
 				1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */,
 				104FB6F11D9B6E86004E22EF /* Config.swift in Sources */,
 			);
