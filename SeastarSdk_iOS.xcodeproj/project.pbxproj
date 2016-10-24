@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1015ECA61DB9FB9B0094C7B6 /* PurchaseModel.swift */; };
-		10223DEC1DB4CF2D004006EF /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */; };
 		104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104DE73F1DB8B38E00D7F736 /* seastar.storyboard */; };
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
 		104FB6C31D9B6DA1004E22EF /* SeastarSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */; };
@@ -51,7 +50,6 @@
 
 /* Begin PBXFileReference section */
 		1015ECA61DB9FB9B0094C7B6 /* PurchaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
-		10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftHTTP.framework; path = ../../../Users/osx/Downloads/SwiftHTTP.framework; sourceTree = "<group>"; };
 		104DE73F1DB8B38E00D7F736 /* seastar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = seastar.storyboard; sourceTree = "<group>"; };
 		104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SeastarSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeastarSdk.h; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */,
-				10223DEC1DB4CF2D004006EF /* SwiftHTTP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +246,6 @@
 		1083D6F51DAE2F4B0062BC92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				10223DEB1DB4CF2D004006EF /* SwiftHTTP.framework */,
 				1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */,
 			);
 			name = Frameworks;
