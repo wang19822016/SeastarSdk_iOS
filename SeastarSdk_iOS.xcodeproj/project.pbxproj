@@ -48,8 +48,9 @@
 		EE6FA5521DBDF4AF006FE3DD /* seastar.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53E1DBDF4AF006FE3DD /* seastar.png */; };
 		EE6FA5531DBDF4AF006FE3DD /* yellowbutton_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */; };
 		EE6FA5541DBDF4AF006FE3DD /* yellowbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */; };
-		EE6FA5581DBDF6E1006FE3DD /* seastarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6FA5571DBDF6E1006FE3DD /* seastarViewController.swift */; };
 		EEDB475B1DBF2C45006499B8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */; };
+		EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */; };
+		EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +108,9 @@
 		EE6FA53E1DBDF4AF006FE3DD /* seastar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seastar.png; sourceTree = "<group>"; };
 		EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton_highlighted.png; sourceTree = "<group>"; };
 		EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton.png; sourceTree = "<group>"; };
-		EE6FA5571DBDF6E1006FE3DD /* seastarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = seastarViewController.swift; sourceTree = "<group>"; };
 		EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
+		EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
-				EE6FA5571DBDF6E1006FE3DD /* seastarViewController.swift */,
+				EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */,
+				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -433,11 +436,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				104FB6E91D9B6E5F004E22EF /* LoginViewController.swift in Sources */,
+				EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */,
 				104FB7031D9B7380004E22EF /* SeastarSdk.swift in Sources */,
 				104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */,
 				104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */,
-				EE6FA5581DBDF6E1006FE3DD /* seastarViewController.swift in Sources */,
 				104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */,
+				EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */,
 				104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */,
 				104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */,
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
@@ -469,12 +473,14 @@
 		104FB6AD1D9B6D72004E22EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
 		104FB6AE1D9B6D72004E22EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};
@@ -531,7 +537,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SeastarSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -596,7 +602,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SeastarSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seastar.SeastarSdk;
