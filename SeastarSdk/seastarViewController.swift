@@ -18,8 +18,9 @@ class seastarViewController: UIViewController {
 
     @IBAction func guestLogin(_ sender: AnyObject) {
         let userviewmodel = UserViewModel();
-        userviewmodel.doGuestLogin(success: { (_) in
+        userviewmodel.doGuestLogin(success: { user in
             print("GuestLoginSuccess");
+            
             }) { 
                 print("GuestLoginFaile");
         }

@@ -12,14 +12,6 @@
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
 		104FB6C31D9B6DA1004E22EF /* SeastarSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */; };
 		104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		104FB6D91D9B6E03004E22EF /* CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D11D9B6E03004E22EF /* CommonCrypto.h */; };
-		104FB6DA1D9B6E03004E22EF /* CommonCryptoError.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D21D9B6E03004E22EF /* CommonCryptoError.h */; };
-		104FB6DB1D9B6E03004E22EF /* CommonCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D31D9B6E03004E22EF /* CommonCryptor.h */; };
-		104FB6DC1D9B6E03004E22EF /* CommonDigest.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D41D9B6E03004E22EF /* CommonDigest.h */; };
-		104FB6DD1D9B6E03004E22EF /* CommonHMAC.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D51D9B6E03004E22EF /* CommonHMAC.h */; };
-		104FB6DE1D9B6E03004E22EF /* CommonKeyDerivation.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D61D9B6E03004E22EF /* CommonKeyDerivation.h */; };
-		104FB6DF1D9B6E03004E22EF /* CommonRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D71D9B6E03004E22EF /* CommonRandom.h */; };
-		104FB6E01D9B6E03004E22EF /* CommonSymmetricKeywrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6D81D9B6E03004E22EF /* CommonSymmetricKeywrap.h */; };
 		104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6E61D9B6E57004E22EF /* AppModel.swift */; };
 		104FB6E91D9B6E5F004E22EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */; };
 		104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6EB1D9B6E6F004E22EF /* UserModel.swift */; };
@@ -34,6 +26,7 @@
 		104FB7011D9B6FEA004E22EF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6FC1D9B6FEA004E22EF /* FBSDKShareKit.framework */; };
 		104FB7031D9B7380004E22EF /* SeastarSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB7021D9B7380004E22EF /* SeastarSdk.swift */; };
 		104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB73E1D9B9877004E22EF /* Facebook.swift */; };
+		10514D441DBF009B00D2CCF4 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10514D431DBF009B00D2CCF4 /* CryptoSwift.framework */; };
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
 		EE6FA5411DBDF4AF006FE3DD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52D1DBDF4AF006FE3DD /* back.png */; };
@@ -78,17 +71,8 @@
 		104FB6BD1D9B6DA1004E22EF /* SeastarSdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeastarSdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeastarSdkTests.swift; sourceTree = "<group>"; };
 		104FB6C41D9B6DA1004E22EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		104FB6D11D9B6E03004E22EF /* CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCrypto.h; path = 3rd/CommonCrypto/CommonCrypto.h; sourceTree = "<group>"; };
-		104FB6D21D9B6E03004E22EF /* CommonCryptoError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCryptoError.h; path = 3rd/CommonCrypto/CommonCryptoError.h; sourceTree = "<group>"; };
-		104FB6D31D9B6E03004E22EF /* CommonCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCryptor.h; path = 3rd/CommonCrypto/CommonCryptor.h; sourceTree = "<group>"; };
-		104FB6D41D9B6E03004E22EF /* CommonDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonDigest.h; path = 3rd/CommonCrypto/CommonDigest.h; sourceTree = "<group>"; };
-		104FB6D51D9B6E03004E22EF /* CommonHMAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonHMAC.h; path = 3rd/CommonCrypto/CommonHMAC.h; sourceTree = "<group>"; };
-		104FB6D61D9B6E03004E22EF /* CommonKeyDerivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonKeyDerivation.h; path = 3rd/CommonCrypto/CommonKeyDerivation.h; sourceTree = "<group>"; };
-		104FB6D71D9B6E03004E22EF /* CommonRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonRandom.h; path = 3rd/CommonCrypto/CommonRandom.h; sourceTree = "<group>"; };
-		104FB6D81D9B6E03004E22EF /* CommonSymmetricKeywrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonSymmetricKeywrap.h; path = 3rd/CommonCrypto/CommonSymmetricKeywrap.h; sourceTree = "<group>"; };
 		104FB6E61D9B6E57004E22EF /* AppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		104FB6EA1D9B6E66004E22EF /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		104FB6EB1D9B6E6F004E22EF /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		104FB6ED1D9B6E75004E22EF /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		104FB6F01D9B6E86004E22EF /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -101,6 +85,7 @@
 		104FB6FC1D9B6FEA004E22EF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = 3rd/Facebook/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		104FB7021D9B7380004E22EF /* SeastarSdk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeastarSdk.swift; sourceTree = "<group>"; };
 		104FB73E1D9B9877004E22EF /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
+		10514D431DBF009B00D2CCF4 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		EE6FA52D1DBDF4AF006FE3DD /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -134,6 +119,7 @@
 				1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */,
 				104FB7011D9B6FEA004E22EF /* FBSDKShareKit.framework in Frameworks */,
 				104FB6FD1D9B6FEA004E22EF /* Bolts.framework in Frameworks */,
+				10514D441DBF009B00D2CCF4 /* CryptoSwift.framework in Frameworks */,
 				104FB6FF1D9B6FEA004E22EF /* FBSDKCoreKit.framework in Frameworks */,
 				104FB7001D9B6FEA004E22EF /* FBSDKLoginKit.framework in Frameworks */,
 			);
@@ -181,7 +167,6 @@
 				104FB6E11D9B6E18004E22EF /* View */,
 				104FB6CC1D9B6DD1004E22EF /* 3rd */,
 				104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */,
-				104FB6EA1D9B6E66004E22EF /* module.map */,
 				104FB6B81D9B6DA1004E22EF /* Info.plist */,
 				104FB7021D9B7380004E22EF /* SeastarSdk.swift */,
 			);
@@ -200,25 +185,10 @@
 		104FB6CC1D9B6DD1004E22EF /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				10514D451DBF060C00D2CCF4 /* CryptoSwift */,
 				104FB6F71D9B6FD5004E22EF /* Facebook */,
-				104FB6D01D9B6DF2004E22EF /* CommonCrypto */,
 			);
 			name = 3rd;
-			sourceTree = "<group>";
-		};
-		104FB6D01D9B6DF2004E22EF /* CommonCrypto */ = {
-			isa = PBXGroup;
-			children = (
-				104FB6D11D9B6E03004E22EF /* CommonCrypto.h */,
-				104FB6D21D9B6E03004E22EF /* CommonCryptoError.h */,
-				104FB6D31D9B6E03004E22EF /* CommonCryptor.h */,
-				104FB6D41D9B6E03004E22EF /* CommonDigest.h */,
-				104FB6D51D9B6E03004E22EF /* CommonHMAC.h */,
-				104FB6D61D9B6E03004E22EF /* CommonKeyDerivation.h */,
-				104FB6D71D9B6E03004E22EF /* CommonRandom.h */,
-				104FB6D81D9B6E03004E22EF /* CommonSymmetricKeywrap.h */,
-			);
-			name = CommonCrypto;
 			sourceTree = "<group>";
 		};
 		104FB6E11D9B6E18004E22EF /* View */ = {
@@ -287,6 +257,14 @@
 			name = Facebook;
 			sourceTree = "<group>";
 		};
+		10514D451DBF060C00D2CCF4 /* CryptoSwift */ = {
+			isa = PBXGroup;
+			children = (
+				10514D431DBF009B00D2CCF4 /* CryptoSwift.framework */,
+			);
+			name = CryptoSwift;
+			sourceTree = "<group>";
+		};
 		1083D6F51DAE2F4B0062BC92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,15 +307,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				104FB6D91D9B6E03004E22EF /* CommonCrypto.h in Headers */,
-				104FB6DB1D9B6E03004E22EF /* CommonCryptor.h in Headers */,
 				104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */,
-				104FB6DC1D9B6E03004E22EF /* CommonDigest.h in Headers */,
-				104FB6DD1D9B6E03004E22EF /* CommonHMAC.h in Headers */,
-				104FB6E01D9B6E03004E22EF /* CommonSymmetricKeywrap.h in Headers */,
-				104FB6DA1D9B6E03004E22EF /* CommonCryptoError.h in Headers */,
-				104FB6DF1D9B6E03004E22EF /* CommonRandom.h in Headers */,
-				104FB6DE1D9B6E03004E22EF /* CommonKeyDerivation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,7 +531,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SeastarSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -626,7 +596,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SeastarSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seastar.SeastarSdk;
