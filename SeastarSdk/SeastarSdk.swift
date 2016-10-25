@@ -54,7 +54,7 @@ public class SeastarSdk : NSObject {
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-            let vc: UIViewController = storyboard.instantiateInitialViewController()!
+            let vc: UIViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
             viewController?.present(vc, animated: true, completion: nil)
         }
     }
@@ -72,3 +72,14 @@ public class SeastarSdk : NSObject {
         };
     }
 }
+
+extension SeastarSdk:MainLoginViewControllerDelegate
+{
+    func loginBack(usermodel: UserModel) {
+        print(usermodel);
+    }
+}
+
+
+
+

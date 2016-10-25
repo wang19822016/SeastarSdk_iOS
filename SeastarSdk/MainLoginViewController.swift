@@ -8,14 +8,16 @@
 
 import UIKit
 
+protocol MainLoginViewControllerDelegate:NSObjectProtocol {
+    func loginBack(usermodel:UserModel);
+}
+
 class MainLoginViewController: UIViewController {
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
-        modalPresentationStyle = UIModalPresentationStyle.custom;
-        transitioningDelegate = self;
-    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     @IBOutlet var backGroundImage: UIImageView!
@@ -30,6 +32,11 @@ class MainLoginViewController: UIViewController {
     
     let userViewModel = UserViewModel();
     
+    var loginBack:((_ usermodel:UserModel)->Void)?
+    
+    var delegate:MainLoginViewControllerDelegate
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backGroundImage.layer.cornerRadius = 4;
@@ -42,7 +49,8 @@ class MainLoginViewController: UIViewController {
         
         loginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
         
-        
+                modalPresentationStyle = UIModalPresentationStyle.custom;
+                transitioningDelegate = self;
         
     }
 
@@ -50,15 +58,22 @@ class MainLoginViewController: UIViewController {
     @IBAction func guestLogin(_ sender: AnyObject) {
         userViewModel.doGuestLogin(success: { (userModel:UserModel) in
             print("");
-            }) { 
+            self.dismiss(animated: true, completion: nil);
+            self.delegate.loginBack(usermodel: userModel);
+            
+            self.loginBack!(userModel);
+            }) {
+                
                 print("");
+                self.dismiss(animated: true, completion: nil);
         }
     }
 
     @IBAction func facebookLogin(_ sender: AnyObject) {
         userViewModel.doFacebookLogin(viewController: self, success: { (userModel:UserModel) in
-            print("");
-            }) { 
+            self.dismiss(animated: true, completion: nil);
+            self.delegate.loginBack(usermodel: userModel);
+            }) {
                 print("");
         }
     }
