@@ -34,16 +34,8 @@ public class SeastarSdk : NSObject {
         Facebook.current.applicationDidBecomeActive(application)
     }
     
-    // 如果失败，需要连续请求几次
     func requestSku(productIdentifiers: Set<IAPHelper.ProductIdentifier>) {
-        IAPHelper.current.requestProducts(productIdentifiers: productIdentifiers) {
-            success in
-            
-            if success {
-                // 添加交易监听
-                IAPHelper.current.addPaymentListener()
-            }
-        }
+        PurchaseViewModel.current.requestProducts(productIdentifiers: productIdentifiers)
     }
     
     public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
@@ -54,21 +46,15 @@ public class SeastarSdk : NSObject {
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-            let vc: UIViewController = storyboard.instantiateInitialViewController()!
+            let vc = storyboard.instantiateInitialViewController()!
             viewController?.present(vc, animated: true, completion: nil)
         }
     }
     
-    func logout() {
+    public func logout() {
         UserViewModel.current.doLogout()
     }
     
-    func purchase(productId: String, extra: String) {
-        let (success, user) = UserModel.loadCurrentUser()
-        
-        IAPHelper.current.purchase(productIdentifier: "") {
-            success, product in
-            
-        };
-    }
+    public func purchase(productId: String, extra: String, paySuccess: @escaping (String)->Void, payFailure: @escaping ()->Void) {
+            }
 }
