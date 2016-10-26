@@ -212,8 +212,8 @@
 		104FB6E41D9B6E35004E22EF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
 				EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */,
+				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
 				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
 			);
 			name = ViewController;
