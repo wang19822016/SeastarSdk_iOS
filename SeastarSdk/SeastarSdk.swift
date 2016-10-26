@@ -16,6 +16,7 @@ public class SeastarSdk : NSObject {
     var viewController: UIViewController? = nil
     
     public func initialize(viewController: UIViewController) {
+        PurchaseViewModel.current.initialize()
         self.viewController = viewController
     }
     
@@ -38,15 +39,21 @@ public class SeastarSdk : NSObject {
         PurchaseViewModel.current.requestProducts(productIdentifiers: productIdentifiers)
     }
     
+    func checkLeakPurchase() {
+        PurchaseViewModel.current.checkLeakPurchase()
+    }
+    
     public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
-        let (success, _) = UserModel.loadCurrentUser()
-        if success {
+        let user = UserModel()
+        if user.loadCurrentUser() {
             UserViewModel.current.doSessionLogin(success: {
                 userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { loginFailure() })
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-            let vc = storyboard.instantiateInitialViewController()!
+
+            let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
+            
             viewController?.present(vc, animated: true, completion: nil)
         }
     }
@@ -55,6 +62,21 @@ public class SeastarSdk : NSObject {
         UserViewModel.current.doLogout()
     }
     
-    public func purchase(productId: String, extra: String, paySuccess: @escaping (String)->Void, payFailure: @escaping ()->Void) {
-            }
+    public func purchase(productId: String, roleId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
+        PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, extra: extra, purchaseSuccess: {
+                order, productIdentifier in
+            
+                paySuccess(order, productIdentifier)
+            
+            }, purchaseFailure: {
+                productIdentifier in
+                
+                payFailure(productIdentifier)
+        })
+    }
 }
+
+
+
+
+

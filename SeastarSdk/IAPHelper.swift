@@ -14,7 +14,7 @@ import StoreKit
 typealias ProductIdentifier = String
 
 protocol IAPHelperDelegate {
-    func purchasedComplete(_ success: Bool, _ productIdentifier: ProductIdentifier, _ applicationUsername: String)
+    func purchasedComplete(_ success: Bool, _ productIdentifier: ProductIdentifier, _ applicationUsername: String, _ transactionIdentifier: String, _ receipt: String)
     //func restoreComplete(_ success: Bool)
 }
 
@@ -51,7 +51,7 @@ class IAPHelper : NSObject {
             payment.applicationUsername = applicationUsername
             SKPaymentQueue.default().add(payment)
         } else {
-            delegate?.purchasedComplete(false, productIdentifier, applicationUsername)
+            delegate?.purchasedComplete(false, productIdentifier, applicationUsername, "", "")
         }
     }
     
@@ -116,11 +116,18 @@ extension IAPHelper : SKPaymentTransactionObserver {
     private func complete(transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
         
-        if let applicationUsername = transaction.payment.applicationUsername {
-            delegate?.purchasedComplete(true, transaction.payment.productIdentifier, applicationUsername)
-        } else {
-            delegate?.purchasedComplete(true, transaction.payment.productIdentifier, "")
+        let productId = transaction.payment.productIdentifier
+        if let receiptURL = Bundle.main.appStoreReceiptURL {
+            if let receiptData = try? Data(contentsOf: receiptURL) {
+                let receipt = receiptData.base64EncodedString(options: .endLineWithLineFeed)
+                if let applicationUsername = transaction.payment.applicationUsername {
+                    delegate?.purchasedComplete(true, productId, applicationUsername, transaction.transactionIdentifier!, receipt)
+                    return
+                }
+            }
         }
+        
+        delegate?.purchasedComplete(true, productId, "", "", "")
     }
     
     private func restore(transaction: SKPaymentTransaction) {
@@ -142,10 +149,11 @@ extension IAPHelper : SKPaymentTransactionObserver {
         
         SKPaymentQueue.default().finishTransaction(transaction)
         
+        let productId = transaction.payment.productIdentifier
         if let applicationUsername = transaction.payment.applicationUsername {
-            delegate?.purchasedComplete(false, transaction.payment.productIdentifier, applicationUsername)
+            delegate?.purchasedComplete(false, productId, applicationUsername, "", "")
         } else {
-            delegate?.purchasedComplete(false, transaction.payment.productIdentifier, "")
+            delegate?.purchasedComplete(false, productId, "", "", "")
         }
     }
 }
