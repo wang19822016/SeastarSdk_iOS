@@ -35,10 +35,12 @@ public class SeastarSdk : NSObject {
         Facebook.current.applicationDidBecomeActive(application)
     }
     
+    // 请求支付商品，需要在合适的地方调用，可以缩短每次支付消耗的时间
     func requestSku(productIdentifiers: Set<IAPHelper.ProductIdentifier>) {
         PurchaseViewModel.current.requestProducts(productIdentifiers: productIdentifiers)
     }
     
+    // 掉单重处理
     func checkLeakPurchase() {
         PurchaseViewModel.current.checkLeakPurchase()
     }
