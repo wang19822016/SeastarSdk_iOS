@@ -40,6 +40,10 @@ class LoginViewController: UIViewController {
     }
     
     
+    @IBAction func backBtnCkick(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil);
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView();

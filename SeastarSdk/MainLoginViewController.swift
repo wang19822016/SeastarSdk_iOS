@@ -32,8 +32,9 @@ class MainLoginViewController: UIViewController {
     let userViewModel = UserViewModel();
     
     var loginBack:((_ usermodel:UserModel)->Void)?
-    var loginFailure:(()->Void)?
     
+    var loginFailure:(()->Void)?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -160,6 +160,7 @@ class UserViewModel {
     
     func doLogout() {
         Facebook.current.logout()
-        UserModel.removeCurrentUser()
+        let user = UserModel()
+        user.removeCurrentUser()
     }
 }

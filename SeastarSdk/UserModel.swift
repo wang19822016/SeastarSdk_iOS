@@ -9,8 +9,8 @@
 import Foundation
 
 class UserModel {
-    private static let USER_LIST_NAME = "users"
-    private static let CURRENT_USER_NAME = "current_user"
+    private let USER_LIST_NAME = "users"
+    private let CURRENT_USER_NAME = "current_user"
     
     var userId: Int = 0
     var userName: String = ""
@@ -27,7 +27,7 @@ class UserModel {
     var isNewUser: Int = UserNewOrOld.OLD.rawValue
     
     func load(userId: Int) -> Bool {
-        let userList = UserDefaults.standard.array(forKey: UserModel.USER_LIST_NAME) ?? []
+        let userList = UserDefaults.standard.array(forKey: USER_LIST_NAME) ?? []
         for user in userList {
             if let userDict = user as? [String : Any], let saveUserId = userDict["userId"] as? Int, saveUserId == userId {
                 self.userId = (userDict["userId"] as? Int) ?? 0
@@ -51,7 +51,7 @@ class UserModel {
     
     func save() {
         // 获取用户列表词典并更新用户信息
-        var userList = UserDefaults.standard.array(forKey: UserModel.USER_LIST_NAME) ?? []
+        var userList = UserDefaults.standard.array(forKey: USER_LIST_NAME) ?? []
         for (index, user) in userList.enumerated() {
             if let userDictConst = user as? [String : Any] {
                 var userDict = userDictConst
@@ -80,16 +80,16 @@ class UserModel {
     
     func saveAsCurrentUser() {
         // 更新当前登录用户
-        var currentUser = UserDefaults.standard.dictionary(forKey: UserModel.CURRENT_USER_NAME) ?? [:]
+        var currentUser = UserDefaults.standard.dictionary(forKey: CURRENT_USER_NAME) ?? [:]
         currentUser["userId"] = userId
         currentUser["userName"] = userName
         currentUser["session"] = session
-        UserDefaults.standard.set(currentUser, forKey: UserModel.CURRENT_USER_NAME)
+        UserDefaults.standard.set(currentUser, forKey: CURRENT_USER_NAME)
         
         UserDefaults.standard.synchronize()
     }
     
-    static func loadCurrentUser() -> (Bool, UserModel?) {
+    func loadCurrentUser() -> Bool {
         if let currentUser = UserDefaults.standard.dictionary(forKey: CURRENT_USER_NAME), let userId = currentUser["userId"] as? Int {
             let userList = UserDefaults.standard.array(forKey: USER_LIST_NAME) ?? []
             for user in userList {
@@ -107,15 +107,15 @@ class UserModel {
                     userModel.guestUserId = (userDict["guestUserId"] as? String) ?? ""
                     userModel.gamecenterUserId = (userDict["gamecenterUserId"] as? String) ?? ""
                     
-                    return (true, userModel)
+                    return true
                 }
             }
         }
         
-        return (false, nil)
+        return false
     }
     
-    static func removeCurrentUser() {
+    func removeCurrentUser() {
         UserDefaults.standard.removeObject(forKey: CURRENT_USER_NAME)
         UserDefaults.standard.synchronize()
     }

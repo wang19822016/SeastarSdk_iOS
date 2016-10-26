@@ -11,20 +11,25 @@
 import Foundation
 import StoreKit
 
+typealias ProductIdentifier = String
+
+protocol IAPHelperDelegate {
+    func purchasedComplete(_ success: Bool, _ productIdentifier: ProductIdentifier, _ applicationUsername: String, _ transactionIdentifier: String, _ receipt: String)
+    //func restoreComplete(_ success: Bool)
+}
+
 class IAPHelper : NSObject {
     
     static let current = IAPHelper()
     
     typealias ProductIdentifier = String
-    typealias PurchasedCompletionHandler = (_ success: Bool, _ product: SKProduct?) -> ()
     typealias RequestProductCompletionHandler = (_ success: Bool) -> ()
-    typealias RestoreCompletionHandler = (_ success: Bool, _ products: SKProduct?) -> ()
+    
+    var delegate: IAPHelperDelegate? = nil
     
     fileprivate var productsRequest: SKProductsRequest? = nil
     fileprivate var products: Dictionary<ProductIdentifier, SKProduct> = Dictionary<ProductIdentifier, SKProduct>()
-    fileprivate var purchasedCompletionHandler: PurchasedCompletionHandler? = nil
     fileprivate var requestProductCompletionHandler: RequestProductCompletionHandler? = nil
-    fileprivate var restoreCompletionHandler: RestoreCompletionHandler? = nil
     
     func requestProducts(productIdentifiers: Set<ProductIdentifier>, completionHandler: @escaping RequestProductCompletionHandler)  {
         if !productIdentifiers.isEmpty {
@@ -39,31 +44,31 @@ class IAPHelper : NSObject {
         }
     }
     
-    func purchase(productIdentifier: ProductIdentifier, completionHandler: @escaping PurchasedCompletionHandler) {
-        if products.isEmpty {
-            completionHandler(false, nil)
-        } else if let product = products[productIdentifier] {
-            purchasedCompletionHandler = completionHandler
+    func purchase(productIdentifier: ProductIdentifier, applicationUsername: String) {
+        if let product = products[productIdentifier] {
             
-            let payment = SKPayment(product: product)
+            let payment = SKMutablePayment(product: product)
+            payment.applicationUsername = applicationUsername
             SKPaymentQueue.default().add(payment)
         } else {
-            completionHandler(false, nil)
+            delegate?.purchasedComplete(false, productIdentifier, applicationUsername, "", "")
         }
     }
     
-    func addPaymentListener() {
+    func restorePurchases() {
+        SKPaymentQueue.default().restoreCompletedTransactions()
+    }
+    
+    func addListener() {
         SKPaymentQueue.default().add(self)
     }
     
-    func removePaymentListener() {
+    func removeListener() {
         SKPaymentQueue.default().remove(self)
     }
     
-    func restorePurchases(completionHandler: @escaping RestoreCompletionHandler) {
-        restoreCompletionHandler = completionHandler
-        
-        SKPaymentQueue.default().restoreCompletedTransactions()
+    func getProduct(productIdentifer: ProductIdentifier) -> SKProduct? {
+        return products[productIdentifer]
     }
     
     func canMakePayments() -> Bool {
@@ -90,6 +95,7 @@ extension IAPHelper : SKProductsRequestDelegate {
 
 extension IAPHelper : SKPaymentTransactionObserver {
     internal func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
@@ -110,54 +116,44 @@ extension IAPHelper : SKPaymentTransactionObserver {
     private func complete(transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
         
-        if let trans = transaction.original {
-            if let product = products[trans.payment.productIdentifier] {
-                purchasedCompletionHandler?(true, product)
-            } else {
-                purchasedCompletionHandler?(false, nil)
+        let productId = transaction.payment.productIdentifier
+        if let receiptURL = Bundle.main.appStoreReceiptURL {
+            if let receiptData = try? Data(contentsOf: receiptURL) {
+                let receipt = receiptData.base64EncodedString(options: .endLineWithLineFeed)
+                if let applicationUsername = transaction.payment.applicationUsername {
+                    delegate?.purchasedComplete(true, productId, applicationUsername, transaction.transactionIdentifier!, receipt)
+                    return
+                }
             }
-        } else {
-            purchasedCompletionHandler?(false, nil)
         }
         
-        purchasedCompletionHandler = nil
+        delegate?.purchasedComplete(true, productId, "", "", "")
     }
     
     private func restore(transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
         
-        if let trans = transaction.original {
-            if let product = products[trans.payment.productIdentifier] {
-                restoreCompletionHandler?(true, product)
-            } else {
-                restoreCompletionHandler?(false, nil)
-            }
-        } else {
-            restoreCompletionHandler?(false, nil)
-        }
-        
-        restoreCompletionHandler = nil
+        //if transaction.original != nil {
+        //    delegate?.restoreComplete(true)
+        //} else {
+        //    delegate?.restoreComplete(false)
+        //}
     }
     
     private func fail(transaction: SKPaymentTransaction) {
         if let transactionError = transaction.error as? NSError {
             if transactionError.code != SKError.paymentCancelled.rawValue {
-                print("Transaction Error: \(transaction.error?.localizedDescription)")
+                Log("Transaction Error: \(transaction.error?.localizedDescription)")
             }
         }
         
         SKPaymentQueue.default().finishTransaction(transaction)
         
-        if let trans = transaction.original {
-            if let product = products[trans.payment.productIdentifier] {
-                purchasedCompletionHandler?(false, product)
-            } else {
-                purchasedCompletionHandler?(false, nil)
-            }
+        let productId = transaction.payment.productIdentifier
+        if let applicationUsername = transaction.payment.applicationUsername {
+            delegate?.purchasedComplete(false, productId, applicationUsername, "", "")
         } else {
-            purchasedCompletionHandler?(false, nil)
+            delegate?.purchasedComplete(false, productId, "", "", "")
         }
-        
-        purchasedCompletionHandler = nil
     }
 }

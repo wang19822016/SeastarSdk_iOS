@@ -26,6 +26,7 @@
 		104FB7011D9B6FEA004E22EF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6FC1D9B6FEA004E22EF /* FBSDKShareKit.framework */; };
 		104FB7031D9B7380004E22EF /* SeastarSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB7021D9B7380004E22EF /* SeastarSdk.swift */; };
 		104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB73E1D9B9877004E22EF /* Facebook.swift */; };
+		10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10514D481DBF435600D2CCF4 /* PurchaseViewModel.swift */; };
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
 		EE6FA5411DBDF4AF006FE3DD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52D1DBDF4AF006FE3DD /* back.png */; };
@@ -48,6 +49,9 @@
 		EE6FA5521DBDF4AF006FE3DD /* seastar.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53E1DBDF4AF006FE3DD /* seastar.png */; };
 		EE6FA5531DBDF4AF006FE3DD /* yellowbutton_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */; };
 		EE6FA5541DBDF4AF006FE3DD /* yellowbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */; };
+		EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D21DC0A814000F6903 /* RegisterViewController.swift */; };
+		EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */; };
+		EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */; };
 		EEDB475B1DBF2C45006499B8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */; };
 		EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */; };
 		EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */; };
@@ -86,6 +90,7 @@
 		104FB6FC1D9B6FEA004E22EF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = 3rd/Facebook/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		104FB7021D9B7380004E22EF /* SeastarSdk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeastarSdk.swift; sourceTree = "<group>"; };
 		104FB73E1D9B9877004E22EF /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
+		10514D481DBF435600D2CCF4 /* PurchaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
 		1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		EE6FA52D1DBDF4AF006FE3DD /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -108,6 +113,9 @@
 		EE6FA53E1DBDF4AF006FE3DD /* seastar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seastar.png; sourceTree = "<group>"; };
 		EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton_highlighted.png; sourceTree = "<group>"; };
 		EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton.png; sourceTree = "<group>"; };
+		EE8209D21DC0A814000F6903 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = changeAccount.storyboard; sourceTree = "<group>"; };
 		EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
@@ -197,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				104DE73F1DB8B38E00D7F736 /* seastar.storyboard */,
+				EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -205,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				104FB6ED1D9B6E75004E22EF /* UserViewModel.swift */,
+				10514D481DBF435600D2CCF4 /* PurchaseViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -214,6 +224,8 @@
 			children = (
 				EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */,
 				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
+				EE8209D21DC0A814000F6903 /* RegisterViewController.swift */,
+				EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */,
 				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
 			);
 			name = ViewController;
@@ -409,6 +421,7 @@
 				EE6FA5421DBDF4AF006FE3DD /* background.png in Resources */,
 				EE6FA5541DBDF4AF006FE3DD /* yellowbutton.png in Resources */,
 				EE6FA5431DBDF4AF006FE3DD /* button_highlighted.png in Resources */,
+				EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */,
 				EE6FA5531DBDF4AF006FE3DD /* yellowbutton_highlighted.png in Resources */,
 				EE6FA5471DBDF4AF006FE3DD /* facebook_big.png in Resources */,
 				EE6FA54B1DBDF4AF006FE3DD /* guest.png in Resources */,
@@ -441,12 +454,15 @@
 				104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */,
 				104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */,
 				104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */,
+				EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */,
 				EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */,
 				104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */,
 				104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */,
+				10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */,
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
 				1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */,
 				1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */,
+				EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */,
 				104FB6F11D9B6E86004E22EF /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

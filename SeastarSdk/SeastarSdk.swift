@@ -16,6 +16,7 @@ public class SeastarSdk : NSObject {
     var viewController: UIViewController? = nil
     
     public func initialize(viewController: UIViewController) {
+        PurchaseViewModel.current.initialize()
         self.viewController = viewController
     }
     
@@ -34,26 +35,25 @@ public class SeastarSdk : NSObject {
         Facebook.current.applicationDidBecomeActive(application)
     }
     
-    // 如果失败，需要连续请求几次
+    // 请求支付商品，需要在合适的地方调用，可以缩短每次支付消耗的时间
     func requestSku(productIdentifiers: Set<IAPHelper.ProductIdentifier>) {
-        IAPHelper.current.requestProducts(productIdentifiers: productIdentifiers) {
-            success in
-            
-            if success {
-                // 添加交易监听
-                IAPHelper.current.addPaymentListener()
-            }
-        }
+        PurchaseViewModel.current.requestProducts(productIdentifiers: productIdentifiers)
+    }
+    
+    // 掉单重处理
+    func checkLeakPurchase() {
+        PurchaseViewModel.current.checkLeakPurchase()
     }
     
     public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
-        let (success, _) = UserModel.loadCurrentUser()
-        if success {
+        let user = UserModel()
+        if user.loadCurrentUser() {
             UserViewModel.current.doSessionLogin(success: {
                 userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { loginFailure() })
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+
             let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
             
             vc.loginBack = {(userModel:UserModel) in
@@ -68,17 +68,21 @@ public class SeastarSdk : NSObject {
         }
     }
     
-    func logout() {
+    public func logout() {
         UserViewModel.current.doLogout()
     }
     
-    func purchase(productId: String, extra: String) {
-        let (success, user) = UserModel.loadCurrentUser()
-        
-        IAPHelper.current.purchase(productIdentifier: "") {
-            success, product in
+    public func purchase(productId: String, roleId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
+        PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, extra: extra, purchaseSuccess: {
+                order, productIdentifier in
             
-        };
+                paySuccess(order, productIdentifier)
+            
+            }, purchaseFailure: {
+                productIdentifier in
+                
+                payFailure(productIdentifier)
+        })
     }
 }
 
