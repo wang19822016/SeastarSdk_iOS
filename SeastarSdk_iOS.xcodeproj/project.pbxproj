@@ -50,6 +50,9 @@
 		EE6FA5521DBDF4AF006FE3DD /* seastar.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53E1DBDF4AF006FE3DD /* seastar.png */; };
 		EE6FA5531DBDF4AF006FE3DD /* yellowbutton_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */; };
 		EE6FA5541DBDF4AF006FE3DD /* yellowbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */; };
+		EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D21DC0A814000F6903 /* RegisterViewController.swift */; };
+		EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */; };
+		EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */; };
 		EEDB475B1DBF2C45006499B8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */; };
 		EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */; };
 		EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */; };
@@ -112,6 +115,9 @@
 		EE6FA53E1DBDF4AF006FE3DD /* seastar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seastar.png; sourceTree = "<group>"; };
 		EE6FA53F1DBDF4AF006FE3DD /* yellowbutton_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton_highlighted.png; sourceTree = "<group>"; };
 		EE6FA5401DBDF4AF006FE3DD /* yellowbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbutton.png; sourceTree = "<group>"; };
+		EE8209D21DC0A814000F6903 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = changeAccount.storyboard; sourceTree = "<group>"; };
 		EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 			children = (
 				101038E01DC21F16006EF955 /* ComboBox.swift */,
 				104DE73F1DB8B38E00D7F736 /* seastar.storyboard */,
+				EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -218,8 +225,10 @@
 		104FB6E41D9B6E35004E22EF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
 				EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */,
+				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
+				EE8209D21DC0A814000F6903 /* RegisterViewController.swift */,
+				EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */,
 				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
 			);
 			name = ViewController;
@@ -415,6 +424,7 @@
 				EE6FA5421DBDF4AF006FE3DD /* background.png in Resources */,
 				EE6FA5541DBDF4AF006FE3DD /* yellowbutton.png in Resources */,
 				EE6FA5431DBDF4AF006FE3DD /* button_highlighted.png in Resources */,
+				EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */,
 				EE6FA5531DBDF4AF006FE3DD /* yellowbutton_highlighted.png in Resources */,
 				EE6FA5471DBDF4AF006FE3DD /* facebook_big.png in Resources */,
 				EE6FA54B1DBDF4AF006FE3DD /* guest.png in Resources */,
@@ -447,6 +457,7 @@
 				104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */,
 				104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */,
 				104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */,
+				EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */,
 				EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */,
 				104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */,
 				104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */,
@@ -454,6 +465,7 @@
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
 				1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */,
 				1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */,
+				EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */,
 				104FB6F11D9B6E86004E22EF /* Config.swift in Sources */,
 				101038E11DC21F16006EF955 /* ComboBox.swift in Sources */,
 			);

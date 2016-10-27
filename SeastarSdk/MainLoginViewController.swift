@@ -8,15 +8,14 @@
 
 import UIKit
 
-protocol MainLoginViewControllerDelegate {
-    func loginBack(usermodel:UserModel);
-}
 
 class MainLoginViewController: UIViewController {
 
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        modalPresentationStyle = UIModalPresentationStyle.custom;
+        transitioningDelegate = self;
     }
     
     
@@ -32,49 +31,53 @@ class MainLoginViewController: UIViewController {
     
     let userViewModel = UserViewModel();
     
-    var loginSuccessBack:((_ usermodel:UserModel?)->Void)?
-    var loginFailureBack:(()->Void)?
+    var loginBack:((_ usermodel:UserModel)->Void)?
     
-    var delegate:MainLoginViewControllerDelegate?
-    
+    var loginFailure:(()->Void)?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initView();
+    }
+
+    func initView()
+    {
         backGroundImage.layer.cornerRadius = 4;
         backGroundImage.layer.masksToBounds = true;
         
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         seastarLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         facebookLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
-
+        
         
         loginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
-        
-                modalPresentationStyle = UIModalPresentationStyle.custom;
-                transitioningDelegate = self;
-        
     }
-
     
     @IBAction func guestLogin(_ sender: AnyObject) {
-        userViewModel.doGuestLogin(success: { (userModel:UserModel) in
-            print("");
-            self.dismiss(animated: true, completion: nil);
-            
-            //self.loginBack!(userModel);
-            }) {
-                
-                print("");
-                self.dismiss(animated: true, completion: nil);
-        }
+        userViewModel.doGuestLogin(success: { userModel in
+            self.dismiss(animated: true) {
+                self.loginBack?(userModel)
+            }
+            }, failure: {
+                self.dismiss(animated: true) {
+                    self.loginFailure?();
+                }
+        })
     }
 
     @IBAction func facebookLogin(_ sender: AnyObject) {
-        userViewModel.doFacebookLogin(viewController: self, success: { (userModel:UserModel) in
-            self.dismiss(animated: true, completion: nil);
-            }) {
-                print("");
-        }
+        userViewModel.doFacebookLogin(viewController: self, success: { userModel in
+            self.dismiss(animated: true)
+            {
+                self.loginBack?(userModel)
+            }
+            }, failure: {
+                self.dismiss(animated: true)
+                {
+                    self.loginFailure?();
+                }
+        })
     }
     
 }
