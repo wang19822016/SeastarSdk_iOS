@@ -38,12 +38,12 @@ class RegisterViewController: UIViewController {
             let MainVC = LoginVC.presentingViewController as! MainLoginViewController;
             self.dismiss(animated: false, completion: { 
                 LoginVC.dismiss(animated: false, completion: {
-                    MainVC.loginBack!(Myusermodel);
+                    MainVC.loginSuccess?(Myusermodel);
                     MainVC.dismiss(animated: false, completion: nil);
                 })
             })
             }) { 
-                print("");
+                hud(hudString: "RegsiterFalse", hudView: self.view);
         }
     }
     
@@ -59,14 +59,14 @@ class RegisterViewController: UIViewController {
         backgroundImage.layer.masksToBounds = true;
         
         
-        adminTextField.placeholder = "请输入海星帐号";
+        adminTextField.placeholder = NSLocalizedString("please input seastar account", comment: "");
         adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
-        passwordTextField.placeholder = "请输入登录密码";
+        passwordTextField.placeholder = NSLocalizedString("please input password", comment: "");
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
-        emailTextField.placeholder = "请输入邮箱(可选)";
+        emailTextField.placeholder = NSLocalizedString("please input email(option)", comment: "");
         emailTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
-        registerBtn.setTitle("注册", for: UIControlState.normal);
+        registerBtn.setTitle(NSLocalizedString("register", comment: ""), for: UIControlState.normal);
         registerBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
     }

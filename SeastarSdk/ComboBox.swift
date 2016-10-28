@@ -158,6 +158,10 @@ protocol ComboBoxDelegate: class {
     fileprivate var currentRow: Int = 0
     fileprivate var isShown: Bool = false
     
+    var currentContentText: String {
+        return content.text ?? ""
+    }
+    
     // init中不能使用frame，这个时候可能还没有数值
     override init(frame: CGRect) {
         super.init(frame: frame)

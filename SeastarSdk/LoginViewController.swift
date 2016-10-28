@@ -34,14 +34,20 @@ class LoginViewController: UIViewController {
     @IBOutlet var comboBax: ComboBox!
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (MyuserModel:UserModel) in
+        userViewModel.doAccountLogin(username:comboBax.currentContentText,
+                                     password: passwordTextField.text!,
+                                     email: "",
+                                     opType: LoginOPType.Login,
+                                     success:
+            { (MyuserModel:UserModel) in
+                                        
             let MainVC = self.presentingViewController as! MainLoginViewController;
             self.dismiss(animated: false, completion: {
-                MainVC.loginBack!(MyuserModel)
+                MainVC.loginSuccess?(MyuserModel)
                 MainVC.dismiss(animated: false, completion: nil);
             });
             }) {
-                print("登录失败");
+                hud(hudString: "LoginFalse", hudView: self.view);
         }
         
     }
@@ -74,20 +80,20 @@ class LoginViewController: UIViewController {
         
         
         
-        passwordTextField.placeholder = "请输入登录密码";
+        passwordTextField.placeholder = NSLocalizedString("please input password", comment: "");
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
-        loginBtn.setTitle("登录", for: UIControlState.normal);
+        loginBtn.setTitle(NSLocalizedString("login", comment: ""), for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
-        let title = NSMutableAttributedString(string: "忘记密码");
+        let title = NSMutableAttributedString(string: NSLocalizedString("forget password", comment: ""));
         let titleRange = NSRange(location: 0,length: title.length);
         let num = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title.addAttribute(NSUnderlineStyleAttributeName, value: num, range: titleRange);
         forgetPasswordBtn.setAttributedTitle(title, for: UIControlState.normal);
         forgetPasswordBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
         
-        let title1 = NSMutableAttributedString(string: "帐号注册");
+        let title1 = NSMutableAttributedString(string: NSLocalizedString("register account", comment: ""));
         let titleRange1 = NSRange(location: 0,length: title.length);
         let num1 = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title1.addAttribute(NSUnderlineStyleAttributeName, value: num1, range: titleRange1);

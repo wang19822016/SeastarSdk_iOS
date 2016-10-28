@@ -56,7 +56,7 @@ public class SeastarSdk : NSObject {
 
             let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
             
-            vc.loginBack = {(userModel:UserModel) in
+            vc.loginSuccess = {(userModel:UserModel) in
                 loginSuccess(userModel.userId, userModel.session)
             }
             

@@ -30,3 +30,12 @@ func locale() -> String {
 func md5(string data: String) -> String {
     return data.md5()
 }
+
+func hud(hudString :String,hudView:UIView)
+{
+    let hud = MBProgressHUD.showAdded(to: hudView, animated: true);
+    hud.mode = MBProgressHUDMode.text;
+    hud.label.text = NSLocalizedString(hudString, comment: "");
+    hud.offset = CGPoint(x: 0.0, y: MBProgressMaxOffset)
+    hud .hide(animated: true, afterDelay: 3.0);
+}

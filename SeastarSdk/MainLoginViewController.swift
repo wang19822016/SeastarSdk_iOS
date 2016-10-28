@@ -31,7 +31,7 @@ class MainLoginViewController: UIViewController {
     
     let userViewModel = UserViewModel();
     
-    var loginBack:((_ usermodel:UserModel)->Void)?
+    var loginSuccess:((_ usermodel:UserModel)->Void)?
     
     var loginFailure:(()->Void)?
 
@@ -47,23 +47,21 @@ class MainLoginViewController: UIViewController {
         backGroundImage.layer.masksToBounds = true;
         
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
-        guestLoginLabel.text = "游客登录";
+        guestLoginLabel.text = NSLocalizedString("Guest", comment: "");
         seastarLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
-        seastarLoginLabel.text = "海星帐号";
+        seastarLoginLabel.text = NSLocalizedString("SeastarLogin", comment: "");
         facebookLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
-        facebookLoginLabel.text = "Facebook";
+        facebookLoginLabel.text = NSLocalizedString("Facebook", comment: "");
         loginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
     }
     
     @IBAction func guestLogin(_ sender: AnyObject) {
         userViewModel.doGuestLogin(success: { userModel in
             self.dismiss(animated: true) {
-                self.loginBack?(userModel)
+                self.loginSuccess?(userModel)
             }
             }, failure: {
-                self.dismiss(animated: true) {
-                    self.loginFailure?();
-                }
+                hud(hudString: "LoginFalse", hudView: self.view);
         })
     }
 
@@ -71,14 +69,12 @@ class MainLoginViewController: UIViewController {
         userViewModel.doFacebookLogin(viewController: self, success: { userModel in
             self.dismiss(animated: true)
             {
-                self.loginBack?(userModel)
+                self.loginSuccess?(userModel)
             }
             }, failure: {
-                self.dismiss(animated: true)
-                {
-                    self.loginFailure?();
-                }
+                hud(hudString: "LoginFalse", hudView: self.view);
         })
+
     }
     
 }
