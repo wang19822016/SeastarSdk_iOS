@@ -129,10 +129,6 @@ protocol ComboBoxDelegate: class {
         }
     }
     
-    var currentContentText: String {
-        return content.text ?? ""
-    }
-    
     //是否显示边框，默认显示
     var showBorder: Bool = true {
         didSet {
@@ -168,6 +164,10 @@ protocol ComboBoxDelegate: class {
     // 当前在文本框内显示的是哪一行
     fileprivate var currentRow: Int = 0
     fileprivate var isShown: Bool = false
+    
+    var currentContentText: String {
+        return content.text ?? ""
+    }
     
     // init中不能使用frame，这个时候可能还没有数值
     override init(frame: CGRect) {

@@ -9,6 +9,7 @@
 
 
 import Foundation
+import UIKit
 
 public class SeastarSdk : NSObject {
     public static let current = SeastarSdk()
@@ -56,7 +57,7 @@ public class SeastarSdk : NSObject {
 
             let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
             
-            vc.loginBack = {(userModel:UserModel) in
+            vc.loginSuccess = {(userModel:UserModel) in
                 loginSuccess(userModel.userId, userModel.session)
             }
             

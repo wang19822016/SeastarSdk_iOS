@@ -11,6 +11,7 @@
 		104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104DE73F1DB8B38E00D7F736 /* seastar.storyboard */; };
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
 		104FB6C31D9B6DA1004E22EF /* SeastarSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */; };
+		104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6E61D9B6E57004E22EF /* AppModel.swift */; };
 		104FB6E91D9B6E5F004E22EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */; };
 		104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6EB1D9B6E6F004E22EF /* UserModel.swift */; };
@@ -29,7 +30,6 @@
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
 		10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB484E1DC3296700A92273 /* ComboBox.swift */; };
-		10AB48551DC34CA100A92273 /* SeastarSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE6FA5411DBDF4AF006FE3DD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52D1DBDF4AF006FE3DD /* back.png */; };
 		EE6FA5421DBDF4AF006FE3DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52E1DBDF4AF006FE3DD /* background.png */; };
 		EE6FA5431DBDF4AF006FE3DD /* button_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52F1DBDF4AF006FE3DD /* button_highlighted.png */; };
@@ -53,6 +53,9 @@
 		EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D21DC0A814000F6903 /* RegisterViewController.swift */; };
 		EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */; };
 		EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */; };
+		EEAF5F081DC346EC00B044F9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
+		EEAF5F0F1DC34C6600B044F9 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EEAF5F101DC34C6600B044F9 /* MBProgressHUD.m in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
 		EEDB475B1DBF2C45006499B8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */; };
 		EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */; };
 		EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */; };
@@ -118,6 +121,8 @@
 		EE8209D21DC0A814000F6903 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = changeAccount.storyboard; sourceTree = "<group>"; };
+		EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EEDB475A1DBF2C45006499B8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
@@ -197,6 +202,7 @@
 		104FB6CC1D9B6DD1004E22EF /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				EEAF5F041DC346C800B044F9 /* MBProgressHUD */,
 				10514D451DBF060C00D2CCF4 /* CryptoSwift */,
 				104FB6F71D9B6FD5004E22EF /* Facebook */,
 			);
@@ -318,6 +324,15 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
+		EEAF5F041DC346C800B044F9 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */,
+				EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -325,7 +340,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10AB48551DC34CA100A92273 /* SeastarSdk.h in Headers */,
+				104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */,
+				EEAF5F0F1DC34C6600B044F9 /* MBProgressHUD.h in Headers */,
+				EEAF5F101DC34C6600B044F9 /* MBProgressHUD.m in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +481,7 @@
 				10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */,
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
 				1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */,
+				EEAF5F081DC346EC00B044F9 /* MBProgressHUD.m in Sources */,
 				1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */,
 				10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */,
 				EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */,
@@ -567,6 +585,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -630,6 +649,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

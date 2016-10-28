@@ -18,3 +18,4 @@ FOUNDATION_EXPORT const unsigned char SeastarSdkVersionString[];
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import "MBProgressHUD.h"

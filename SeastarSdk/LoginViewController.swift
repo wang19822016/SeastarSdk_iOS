@@ -16,8 +16,6 @@ class LoginViewController: UIViewController, ComboBoxDelegate {
         transitioningDelegate = self;
     }
     
-    @IBOutlet var adminTextField: UITextField!
-    
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var passwordTextField: UITextField!
     
@@ -33,14 +31,21 @@ class LoginViewController: UIViewController, ComboBoxDelegate {
     private var options: [UserModel] = []
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-        UserViewModel.current.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (MyuserModel:UserModel) in
+
+        UserViewModel.current.doAccountLogin(username: comboBax.currentContentText,
+                                     password: passwordTextField.text!,
+                                     email: "",
+                                     opType: LoginOPType.Login,
+                                     success:
+            { (MyuserModel:UserModel) in
+        
             let MainVC = self.presentingViewController as! MainLoginViewController;
             self.dismiss(animated: false, completion: {
-                MainVC.loginBack!(MyuserModel)
+                MainVC.loginSuccess?(MyuserModel)
                 MainVC.dismiss(animated: false, completion: nil);
             });
             }) {
-                print("登录失败");
+                hud(hudString: "LoginFalse", hudView: self.view);
         }
         
     }
@@ -82,20 +87,22 @@ class LoginViewController: UIViewController, ComboBoxDelegate {
         //comboBax.delegate = self //设置代理
         comboBax.options = optionsArray
         
-        passwordTextField.placeholder = "请输入登录密码";
+        
+        passwordTextField.placeholder = NSLocalizedString("pleaseInputPassword", comment: "");
+
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
-        loginBtn.setTitle("登录", for: UIControlState.normal);
+        loginBtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
-        let title = NSMutableAttributedString(string: "忘记密码");
+        let title = NSMutableAttributedString(string: NSLocalizedString("ForgetPassword", comment: ""));
         let titleRange = NSRange(location: 0,length: title.length);
         let num = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title.addAttribute(NSUnderlineStyleAttributeName, value: num, range: titleRange);
         forgetPasswordBtn.setAttributedTitle(title, for: UIControlState.normal);
         forgetPasswordBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
         
-        let title1 = NSMutableAttributedString(string: "帐号注册");
+        let title1 = NSMutableAttributedString(string: NSLocalizedString("RegisterAccount", comment: ""));
         let titleRange1 = NSRange(location: 0,length: title.length);
         let num1 = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title1.addAttribute(NSUnderlineStyleAttributeName, value: num1, range: titleRange1);
@@ -110,7 +117,7 @@ class LoginViewController: UIViewController, ComboBoxDelegate {
     }
     
     func selectOption(didChoose index: Int) {
-        let currentSelectText = comboBax.currentContentText
+        //let currentSelectText = comboBax.currentContentText
     }
     
     func deleteOption(didChoose index: Int) {
