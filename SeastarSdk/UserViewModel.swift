@@ -32,19 +32,25 @@ class UserViewModel {
         
         Network.post(url: app.serverUrl, json: req, success: { data in
             
-            var user = UserModel()
-            user.load(userId: (data["userId"] as? Int ?? 0))
-            user.userId = data["userId"] as? Int ?? 0
-            user.userName = data["userName"] as? String ?? ""
-            user.password = data["password"] as? String ?? ""
-            user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-            user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
-            user.guestUserId = deviceId()
-            user.session = data["session"] as? String ?? ""
-            user.save()
-            
-            success(user)
-            }, failure: { failure() })
+            if let code = data["code"] as? String, code == "0" {
+                var user = UserModel()
+                if user.load(userId: (data["userId"] as? Int ?? 0)) {
+                    
+                }
+                user.userId = data["userId"] as? Int ?? 0
+                user.userName = data["userName"] as? String ?? ""
+                user.password = data["password"] as? String ?? ""
+                user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
+                user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
+                user.guestUserId = deviceId()
+                user.session = data["session"] as? String ?? ""
+                user.save()
+                
+                success(user)
+            } else {
+                failure()
+            }
+        }, failure: { failure() })
 
     }
     
@@ -72,20 +78,25 @@ class UserViewModel {
                     ]
                 
                 Network.post(url: app.serverUrl, json: req, success: { data in
-                    var user = UserModel()
-                    user.load(userId: (data["userId"] as? Int ?? 0))
-                    user.userId = data["userId"] as? Int ?? 0
-                    user.userName = data["userName"] as? String ?? ""
-                    user.password = data["password"] as? String ?? ""
-                    user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-                    user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
-                    user.facebookUserId = fbuserId
-                    user.session = data["session"] as? String ?? ""
-                    user.save()
+                    if let code = data["code"] as? String, code == "0" {
+                        var user = UserModel()
+                        if user.load(userId: (data["userId"] as? Int ?? 0)) {
+                            
+                        }
+                        user.userId = data["userId"] as? Int ?? 0
+                        user.userName = data["userName"] as? String ?? ""
+                        user.password = data["password"] as? String ?? ""
+                        user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
+                        user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
+                        user.facebookUserId = fbuserId
+                        user.session = data["session"] as? String ?? ""
+                        user.save()
                     
-                    success(user)
-                    
-                    }, failure: { failure() })
+                        success(user)
+                    } else {
+                        failure()
+                    }
+                }, failure: { failure() })
             }, failure: { failure() })
     }
     
@@ -112,19 +123,25 @@ class UserViewModel {
         ]
         
         Network.post(url: app.serverUrl, json: req, success: { data in
-            
-            var user = UserModel()
-            user.load(userId: (data["userId"] as? Int ?? 0))
-            user.userId = data["userId"] as? Int ?? 0
-            user.userName = data["userName"] as? String ?? ""
-            user.password = data["password"] as? String ?? ""
-            user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-            user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
-            user.session = data["session"] as? String ?? ""
-            user.save()
-            
-            success(user)
-            }, failure: { failure() })
+            if let code = data["code"] as? String, code == "0" {
+                var user = UserModel()
+                if user.load(userId: (data["userId"] as? Int ?? 0)) {
+                    
+                }
+                user.userId = data["userId"] as? Int ?? 0
+                user.userName = data["userName"] as? String ?? ""
+                user.password = data["password"] as? String ?? ""
+                user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
+                user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
+                user.session = data["session"] as? String ?? ""
+                user.save()
+                
+                success(user)
+
+            } else {
+                failure()
+            }
+        }, failure: { failure() })
     }
     
     func doSessionLogin(success: @escaping (UserModel)->Void, failure: @escaping ()->Void) {
@@ -143,19 +160,24 @@ class UserViewModel {
         ]
         
         Network.post(url: app.serverUrl, json: req, success: { data in
-            
-            var user = UserModel()
-            user.load(userId: (data["userId"] as? Int ?? 0))
-            user.userId = data["userId"] as? Int ?? 0
-            user.userName = data["userName"] as? String ?? ""
-            user.password = data["password"] as? String ?? ""
-            user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-            user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
-            user.session = data["session"] as? String ?? ""
-            user.save()
-            
-            success(user)
-            }, failure: { failure() })
+            if let code = data["code"] as? String, code == "0" {
+                var user = UserModel()
+                if user.load(userId: (data["userId"] as? Int ?? 0)) {
+                    
+                }
+                user.userId = data["userId"] as? Int ?? 0
+                user.userName = data["userName"] as? String ?? ""
+                user.password = data["password"] as? String ?? ""
+                user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
+                user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
+                user.session = data["session"] as? String ?? ""
+                user.save()
+                
+                success(user)
+            } else {
+                failure()
+            }
+        }, failure: { failure() })
     }
     
     func doLogout() {

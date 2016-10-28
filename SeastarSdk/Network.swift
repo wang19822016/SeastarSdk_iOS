@@ -64,23 +64,27 @@ class Network {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         
+        Log("url: \(url) body: \(json)")
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
                 // 错误情况处理
+                Log("error: \(error)")
                 failure()
             } else {
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     // 接收数据正常
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    if let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) {
+                        Log("success: \(json)")
                         success(json as? [String: Any] ?? [:])
-                        return
-                    } catch {
-                        // 收到的数据不是json
+                    } else {
+                        Log("http ok, but response body format error")
+                        failure()
                     }
+                } else {
+                    Log("http fail")
+                    failure()
                 }
-                
-                failure()
             }
         }
         task.resume()

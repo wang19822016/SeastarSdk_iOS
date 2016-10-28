@@ -11,7 +11,6 @@
 		104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104DE73F1DB8B38E00D7F736 /* seastar.storyboard */; };
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
 		104FB6C31D9B6DA1004E22EF /* SeastarSdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6C21D9B6DA1004E22EF /* SeastarSdkTests.swift */; };
-		104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6E61D9B6E57004E22EF /* AppModel.swift */; };
 		104FB6E91D9B6E5F004E22EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */; };
 		104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6EB1D9B6E6F004E22EF /* UserModel.swift */; };
@@ -30,6 +29,7 @@
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
 		10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB484E1DC3296700A92273 /* ComboBox.swift */; };
+		10AB48551DC34CA100A92273 /* SeastarSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 104FB6B71D9B6DA1004E22EF /* SeastarSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE6FA5411DBDF4AF006FE3DD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52D1DBDF4AF006FE3DD /* back.png */; };
 		EE6FA5421DBDF4AF006FE3DD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52E1DBDF4AF006FE3DD /* background.png */; };
 		EE6FA5431DBDF4AF006FE3DD /* button_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52F1DBDF4AF006FE3DD /* button_highlighted.png */; };
@@ -325,7 +325,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				104FB6C51D9B6DA1004E22EF /* SeastarSdk.h in Headers */,
+				10AB48551DC34CA100A92273 /* SeastarSdk.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
