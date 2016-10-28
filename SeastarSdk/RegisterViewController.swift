@@ -16,10 +16,14 @@ class RegisterViewController: UIViewController {
         transitioningDelegate = self;
         
     }
+    
+     let userViewModel = UserViewModel();
+    
     @IBAction func backBtnClick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);
     }
     
+    @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var adminTextField: UITextField!
     
     @IBOutlet var passwordTextField: UITextField!
@@ -29,7 +33,18 @@ class RegisterViewController: UIViewController {
     @IBOutlet var registerBtn: UIButton!
     
     @IBAction func registerBtnClick(_ sender: AnyObject) {
-        
+        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, opType: LoginOPType.REGISTER, success: { (Myusermodel:UserModel) in
+            let LoginVC = self.presentingViewController as! LoginViewController;
+            let MainVC = LoginVC.presentingViewController as! MainLoginViewController;
+            self.dismiss(animated: false, completion: { 
+                LoginVC.dismiss(animated: false, completion: {
+                    MainVC.loginBack!(Myusermodel);
+                    MainVC.dismiss(animated: false, completion: nil);
+                })
+            })
+            }) { 
+                print("");
+        }
     }
     
     override func viewDidLoad() {
@@ -40,6 +55,10 @@ class RegisterViewController: UIViewController {
 
     func initView()
     {
+        backgroundImage.layer.cornerRadius = 4;
+        backgroundImage.layer.masksToBounds = true;
+        
+        
         adminTextField.placeholder = "请输入海星帐号";
         adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         passwordTextField.placeholder = "请输入登录密码";

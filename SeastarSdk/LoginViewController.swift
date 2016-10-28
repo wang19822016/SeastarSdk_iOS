@@ -19,9 +19,9 @@ class LoginViewController: UIViewController {
     let userViewModel = UserViewModel();
     
     
-    
     @IBOutlet var adminTextField: UITextField!
     
+    @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var passwordTextField: UITextField!
     
     @IBOutlet var loginBtn: UIButton!
@@ -34,11 +34,16 @@ class LoginViewController: UIViewController {
     @IBOutlet var comboBax: ComboBox!
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-//        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (userModel:UserModel) in
-//            }) { 
-//                
-//        }
-//        
+        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (MyuserModel:UserModel) in
+            let MainVC = self.presentingViewController as! MainLoginViewController;
+            self.dismiss(animated: false, completion: {
+                MainVC.loginBack!(MyuserModel)
+                MainVC.dismiss(animated: false, completion: nil);
+            });
+            }) {
+                print("登录失败");
+        }
+        
     }
     
     
@@ -54,12 +59,12 @@ class LoginViewController: UIViewController {
 
     func initView()
     {
-//        adminTextField.placeholder = "请输入海星帐号";
-//        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+        backgroundImage.layer.cornerRadius = 4;
+        backgroundImage.layer.masksToBounds = true;
         
-        let img = UIImage(named: "guest.png")!
-        let img2 = UIImage(named: "facebook.png")!
-        
+        let myBundle = Bundle(for: SeastarSdk.classForCoder());
+        let img = UIImage(named: "guest.png", in: myBundle, compatibleWith: nil)!;
+        let img2 = UIImage(named: "facebook.png", in: myBundle, compatibleWith: nil)!;
         let optionsArray = [(img,"1992"),(img,"1993"),(img2,"1994"), (img,"1995"), (img,"1996"),(img2,"1997"),(img,"1998")]//设置下拉列表项数据
         
         comboBax.editable = true //禁止编辑
