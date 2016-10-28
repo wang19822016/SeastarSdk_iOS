@@ -32,11 +32,11 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (userModel:UserModel) in
-            }) { 
-                
-        }
-        
+//        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (userModel:UserModel) in
+//            }) { 
+//                
+//        }
+//        
     }
     
     
@@ -52,8 +52,8 @@ class LoginViewController: UIViewController {
 
     func initView()
     {
-        adminTextField.placeholder = "请输入海星帐号";
-        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+//        adminTextField.placeholder = "请输入海星帐号";
+//        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
         passwordTextField.placeholder = "请输入登录密码";
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
