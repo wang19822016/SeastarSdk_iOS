@@ -32,7 +32,7 @@ class UserViewModel {
         
         Network.post(url: app.serverUrl, json: req, success: { data in
             
-            let user = UserModel()
+            var user = UserModel()
             user.load(userId: (data["userId"] as? Int ?? 0))
             user.userId = data["userId"] as? Int ?? 0
             user.userName = data["userName"] as? String ?? ""
@@ -72,7 +72,7 @@ class UserViewModel {
                     ]
                 
                 Network.post(url: app.serverUrl, json: req, success: { data in
-                    let user = UserModel()
+                    var user = UserModel()
                     user.load(userId: (data["userId"] as? Int ?? 0))
                     user.userId = data["userId"] as? Int ?? 0
                     user.userName = data["userName"] as? String ?? ""
@@ -113,7 +113,7 @@ class UserViewModel {
         
         Network.post(url: app.serverUrl, json: req, success: { data in
             
-            let user = UserModel()
+            var user = UserModel()
             user.load(userId: (data["userId"] as? Int ?? 0))
             user.userId = data["userId"] as? Int ?? 0
             user.userName = data["userName"] as? String ?? ""
@@ -144,7 +144,7 @@ class UserViewModel {
         
         Network.post(url: app.serverUrl, json: req, success: { data in
             
-            let user = UserModel()
+            var user = UserModel()
             user.load(userId: (data["userId"] as? Int ?? 0))
             user.userId = data["userId"] as? Int ?? 0
             user.userName = data["userName"] as? String ?? ""

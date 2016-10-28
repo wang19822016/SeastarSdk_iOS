@@ -8,16 +8,13 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, ComboBoxDelegate {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         modalPresentationStyle = UIModalPresentationStyle.custom;
         transitioningDelegate = self;
     }
-    
-    let userViewModel = UserViewModel();
-    
     
     @IBOutlet var adminTextField: UITextField!
     
@@ -33,8 +30,10 @@ class LoginViewController: UIViewController {
     
     @IBOutlet var comboBax: ComboBox!
     
+    private var options: [UserModel] = []
+    
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (MyuserModel:UserModel) in
+        UserViewModel.current.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (MyuserModel:UserModel) in
             let MainVC = self.presentingViewController as! MainLoginViewController;
             self.dismiss(animated: false, completion: {
                 MainVC.loginBack!(MyuserModel)
@@ -62,17 +61,26 @@ class LoginViewController: UIViewController {
         backgroundImage.layer.cornerRadius = 4;
         backgroundImage.layer.masksToBounds = true;
         
-        let myBundle = Bundle(for: SeastarSdk.classForCoder());
-        let img = UIImage(named: "guest.png", in: myBundle, compatibleWith: nil)!;
-        let img2 = UIImage(named: "facebook.png", in: myBundle, compatibleWith: nil)!;
-        let optionsArray = [(img,"1992"),(img,"1993"),(img2,"1994"), (img,"1995"), (img,"1996"),(img2,"1997"),(img,"1998")]//设置下拉列表项数据
-        
+        var optionsArray: [(UIImage, String)] = []
+        let frameworkBundle = Bundle(for: SeastarSdk.classForCoder())
+        let guestImg = UIImage(named: "guest.png", in: frameworkBundle, compatibleWith: nil)!
+        let facebookImg = UIImage(named: "facebook.png", in: frameworkBundle, compatibleWith: nil)!
+        let seastarImg = UIImage(named: "seastar.png", in: frameworkBundle, compatibleWith: nil)!
+        options = UserModel.loadAllUsers()
+        for user in options {
+            if !user.guestUserId.isEmpty {
+                optionsArray.append((guestImg, user.userName))
+            } else if !user.facebookUserId.isEmpty {
+                optionsArray.append((facebookImg, user.userName))
+            } else {
+                optionsArray.append((seastarImg, user.userName))
+            }
+        }
         comboBax.editable = true //禁止编辑
         comboBax.showBorder = false //不显示边框
+        comboBax.placeholder = "占位符号"
         //comboBax.delegate = self //设置代理
         comboBax.options = optionsArray
-        
-        
         
         passwordTextField.placeholder = "请输入登录密码";
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
@@ -101,6 +109,13 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func selectOption(didChoose index: Int) {
+        let currentSelectText = comboBax.currentContentText
+    }
+    
+    func deleteOption(didChoose index: Int) {
+        options.remove(at: index)
+    }
 
 }
 

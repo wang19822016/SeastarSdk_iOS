@@ -46,7 +46,7 @@ public class SeastarSdk : NSObject {
     }
     
     public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
-        let user = UserModel()
+        var user = UserModel()
         if user.loadCurrentUser() {
             UserViewModel.current.doSessionLogin(success: {
                 userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { loginFailure() })

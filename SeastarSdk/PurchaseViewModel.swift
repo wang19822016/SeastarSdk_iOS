@@ -76,7 +76,7 @@ class PurchaseViewModel : IAPHelperDelegate {
 
     
     func doPurchase(productId: String, roleId: String, extra: String, purchaseSuccess: @escaping SuccessCB, purchaseFailure: @escaping FailureCB) {
-        let user = UserModel()
+        var user = UserModel()
         if user.loadCurrentUser() {
             purchaseFailure(productId)
             

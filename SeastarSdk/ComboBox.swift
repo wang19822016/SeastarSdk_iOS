@@ -122,6 +122,17 @@ protocol ComboBoxDelegate: class {
     //tableCellView上button使用的图片
     @IBInspectable var optionImage: UIImage?
     
+    // 文本框占位字符串
+    var placeholder: String = "" {
+        didSet {
+            content.placeholder = placeholder
+        }
+    }
+    
+    var currentContentText: String {
+        return content.text ?? ""
+    }
+    
     //是否显示边框，默认显示
     var showBorder: Bool = true {
         didSet {
