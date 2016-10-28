@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		101038E11DC21F16006EF955 /* ComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101038E01DC21F16006EF955 /* ComboBox.swift */; };
 		1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1015ECA61DB9FB9B0094C7B6 /* PurchaseModel.swift */; };
 		104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104DE73F1DB8B38E00D7F736 /* seastar.storyboard */; };
 		104FB6BE1D9B6DA1004E22EF /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */; };
@@ -28,6 +27,7 @@
 		104FB7031D9B7380004E22EF /* SeastarSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB7021D9B7380004E22EF /* SeastarSdk.swift */; };
 		104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB73E1D9B9877004E22EF /* Facebook.swift */; };
 		10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10514D481DBF435600D2CCF4 /* PurchaseViewModel.swift */; };
+		1068D2621DC2F0BF006AFFBA /* ComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1068D2611DC2F0BF006AFFBA /* ComboBox.swift */; };
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
 		EE6FA5411DBDF4AF006FE3DD /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6FA52D1DBDF4AF006FE3DD /* back.png */; };
@@ -69,7 +69,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		101038E01DC21F16006EF955 /* ComboBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComboBox.swift; sourceTree = "<group>"; };
 		1015ECA61DB9FB9B0094C7B6 /* PurchaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		104DE73F1DB8B38E00D7F736 /* seastar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = seastar.storyboard; sourceTree = "<group>"; };
 		104FB6B41D9B6DA1004E22EF /* SeastarSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SeastarSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +92,7 @@
 		104FB7021D9B7380004E22EF /* SeastarSdk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeastarSdk.swift; sourceTree = "<group>"; };
 		104FB73E1D9B9877004E22EF /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		10514D481DBF435600D2CCF4 /* PurchaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
+		1068D2611DC2F0BF006AFFBA /* ComboBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComboBox.swift; sourceTree = "<group>"; };
 		1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		EE6FA52D1DBDF4AF006FE3DD /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		104FB6E11D9B6E18004E22EF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				101038E01DC21F16006EF955 /* ComboBox.swift */,
+				1068D2611DC2F0BF006AFFBA /* ComboBox.swift */,
 				104DE73F1DB8B38E00D7F736 /* seastar.storyboard */,
 				EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */,
 			);
@@ -465,9 +465,9 @@
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
 				1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */,
 				1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */,
+				1068D2621DC2F0BF006AFFBA /* ComboBox.swift in Sources */,
 				EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */,
 				104FB6F11D9B6E86004E22EF /* Config.swift in Sources */,
-				101038E11DC21F16006EF955 /* ComboBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

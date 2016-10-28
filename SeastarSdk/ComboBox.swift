@@ -65,6 +65,8 @@ protocol ComboBoxDelegate: class {
     }
     
     //-----------------控件---------------
+    // 底部背景
+    fileprivate var background: UIImageView!
     // 左侧头像
     fileprivate var head: UIImageView!
     // 中间文本框
@@ -120,6 +122,13 @@ protocol ComboBoxDelegate: class {
     @IBInspectable var headImage: UIImage? {
         didSet {
             head.image = headImage
+        }
+    }
+    
+    // 背景
+    @IBInspectable var backgroundImage: UIImage? {
+        didSet {
+            background.image = backgroundImage
         }
     }
     
@@ -180,6 +189,17 @@ protocol ComboBoxDelegate: class {
         rowHeight = self.frame.size.height
         rowWidth = self.frame.size.width
         
+        // 背景
+        let iTop: CGFloat = 1
+        let iBottom: CGFloat = 1
+        let iLeft: CGFloat = 1
+        let iRight: CGFloat = 1
+        let insets = UIEdgeInsets(top: iTop, left: iLeft, bottom: iBottom, right: iRight)
+        let iImage = backgroundImage?.resizableImage(withCapInsets: insets, resizingMode: UIImageResizingMode.stretch)
+        background = UIImageView(frame: CGRect.zero)
+        background.image = iImage
+        addSubview(background)
+        
         // 头像
         head = UIImageView(frame: CGRect.zero)
         addSubview(head)
@@ -193,7 +213,6 @@ protocol ComboBoxDelegate: class {
         dropDown = UIButton(type: .custom)
         dropDown.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
         addSubview(dropDown)
-        
         
         self.showBorder = true
         self.textColor = UIColor.darkGray
@@ -227,6 +246,8 @@ protocol ComboBoxDelegate: class {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        background.frame = CGRect(x: 0.2, y: 0.2, width: rowWidth - 0.4, height: rowHeight - 0.4)
         
         // 上下间隔3pt，离左侧5pt，宽高相等
         var posX = ComboBox.LEFT_RIGHT_MARIGN
