@@ -59,14 +59,14 @@ class RegisterViewController: UIViewController {
         backgroundImage.layer.masksToBounds = true;
         
         
-        adminTextField.placeholder = NSLocalizedString("please input seastar account", comment: "");
+        adminTextField.placeholder = NSLocalizedString("PleaseInputSeastarAccount", comment: "");
         adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
-        passwordTextField.placeholder = NSLocalizedString("please input password", comment: "");
+        passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
-        emailTextField.placeholder = NSLocalizedString("please input email(option)", comment: "");
+        emailTextField.placeholder = NSLocalizedString("PleaseInputEmail(Option)", comment: "");
         emailTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
-        registerBtn.setTitle(NSLocalizedString("register", comment: ""), for: UIControlState.normal);
+        registerBtn.setTitle(NSLocalizedString("Register", comment: ""), for: UIControlState.normal);
         registerBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
     }
