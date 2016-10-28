@@ -178,7 +178,8 @@
                                             <constraint firstAttribute="width" constant="97" id="QGm-bN-E9i"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gtt-Sa-sVy">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gtt-Sa-sVy">
+                                        <frame key="frameInset" minX="153" minY="69" width="274" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="274" id="0nm-2K-xy7"/>
                                             <constraint firstAttribute="height" constant="42" id="X7q-V4-wdz"/>
@@ -187,7 +188,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C9-V3-Ctl">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C9-V3-Ctl">
+                                        <frame key="frameInset" minX="153" minY="129" width="274" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="274" id="COc-mw-gKx"/>
                                             <constraint firstAttribute="height" constant="42" id="kwp-o5-LAo"/>
@@ -226,11 +228,8 @@
                                             <segue destination="px5-jY-gk4" kind="presentation" id="ZyS-bo-far"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gL9-74-jpS" customClass="ComboBox" customModule="SeastarSdk" customModuleProvider="target">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="274" id="3Vf-Hy-hwj"/>
-                                            <constraint firstAttribute="height" constant="42" id="vIw-fN-CMU"/>
-                                        </constraints>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gL9-74-jpS" customClass="ComboBox" customModule="SeastarSdk" customModuleProvider="target">
+                                        <frame key="frameInset" minX="153" minY="18" width="274" height="42"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="dropDownImage" value="down.png"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="headImage" value="guest.png"/>

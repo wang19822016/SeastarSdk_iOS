@@ -74,19 +74,7 @@ protocol ComboBoxDelegate: class {
     // 右侧按钮
     fileprivate var dropDown: UIButton!
     // 下拉列表
-    fileprivate lazy var tableView: UITableView! = {
-        let table = UITableView(frame: CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.rowHeight, width: self.rowWidth, height: 0), style: .plain)
-        table.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
-        //lists.showsVerticalScrollIndicator = false
-        //lists.bounces = false
-        table.dataSource = self
-        table.delegate = self
-        table.layer.borderColor = UIColor.lightGray.cgColor
-        table.layer.borderWidth = 0.5
-        // tableview添加到父view
-        self.superview?.addSubview(table)
-        return table
-    } ()
+    fileprivate var tableView: UITableView!
     
     //------------控件属性------------------
     //输入框和下拉列表项中文本颜色
@@ -118,17 +106,16 @@ protocol ComboBoxDelegate: class {
         }
     }
     
-    //头像图片
-    @IBInspectable var headImage: UIImage? {
-        didSet {
-            head.image = headImage
-        }
-    }
-    
     // 背景
     @IBInspectable var backgroundImage: UIImage? {
         didSet {
-            //background.image = backgroundImage
+            //let iTop: CGFloat = 1
+            //let iBottom: CGFloat = 1
+            //let iLeft: CGFloat = 1
+            //let iRight: CGFloat = 1
+            //let insets = UIEdgeInsets(top: iTop, left: iLeft, bottom: iBottom, right: iRight)
+            //let iImage = backgroundImage?.resizableImage(withCapInsets: insets, resizingMode: UIImageResizingMode.stretch)
+            background.image = backgroundImage
         }
     }
     
@@ -161,8 +148,8 @@ protocol ComboBoxDelegate: class {
                 currentRow = 0
                 head.image = options[0].img
                 content.text = options[0].text
+                tableView.reloadData()
             }
-            tableView.reloadData()
         }
     }
     
@@ -170,10 +157,8 @@ protocol ComboBoxDelegate: class {
     // 当前在文本框内显示的是哪一行
     fileprivate var currentRow: Int = 0
     fileprivate var isShown: Bool = false
-    // 菜单项的高度和宽度
-    fileprivate var rowHeight: CGFloat = 0
-    fileprivate var rowWidth: CGFloat = 0
     
+    // init中不能使用frame，这个时候可能还没有数值
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -185,19 +170,8 @@ protocol ComboBoxDelegate: class {
     }
     
     func setUp() {
-        // 保存下view原始数据，添加subview后会导致view大小变化
-        rowHeight = self.frame.size.height
-        rowWidth = self.frame.size.width
-        
         // 背景
-        //let iTop: CGFloat = 1
-        //let iBottom: CGFloat = 1
-        //let iLeft: CGFloat = 1
-        //let iRight: CGFloat = 1
-        //let insets = UIEdgeInsets(top: iTop, left: iLeft, bottom: iBottom, right: iRight)
-        //let iImage = backgroundImage?.resizableImage(withCapInsets: insets, resizingMode: UIImageResizingMode.stretch)
-        background = UIImageView(frame: CGRect(x: 0.2, y: 0.2, width: rowWidth - 0.4, height: rowHeight - 0.4))
-        background.image = backgroundImage
+        background = UIImageView(frame: CGRect.zero)
         addSubview(background)
         
         // 头像
@@ -214,6 +188,16 @@ protocol ComboBoxDelegate: class {
         dropDown.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
         addSubview(dropDown)
         
+        // 选项tableview
+        tableView = UITableView(frame: CGRect.zero, style: .plain)
+        tableView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        //tableView.showsVerticalScrollIndicator = false
+        //tableView.bounces = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.layer.borderColor = UIColor.lightGray.cgColor
+        tableView.layer.borderWidth = 0.5
+        
         self.showBorder = true
         self.textColor = UIColor.darkGray
         self.font = UIFont.systemFont(ofSize: 16)
@@ -223,7 +207,8 @@ protocol ComboBoxDelegate: class {
         if isShown {
             UIView.animate(withDuration: 0.3, animations: { ()->Void in
                 self.dropDown.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI * 2))
-                self.tableView.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.rowHeight - 0.5, width: self.rowWidth, height: 0)
+                self.tableView.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height - 0.5,
+                                              width: self.frame.size.width, height: 0)
             }) { finished in
                 if finished {
                     self.dropDown.transform = CGAffineTransform(rotationAngle: 0.0)
@@ -235,7 +220,8 @@ protocol ComboBoxDelegate: class {
             tableView.reloadData()
             UIView.animate(withDuration: 0.3, animations: { ()->Void in
                 self.dropDown.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
-                self.tableView.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.rowHeight - 0.5, width: self.rowWidth, height: CGFloat(3) * self.rowHeight)
+                self.tableView.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height - 0.5,
+                                              width: self.frame.size.width, height: CGFloat(3) * self.frame.size.height)
             }) { finished in
                 if finished {
                     self.isShown = true
@@ -245,16 +231,19 @@ protocol ComboBoxDelegate: class {
     }
     
     override func layoutSubviews() {
+        // 此处可以设置大小，能获取frame
         super.layoutSubviews()
         
-        background.frame = CGRect(x: 0.2, y: 0.2, width: rowWidth - 0.4, height: rowHeight - 0.4)
+        let rowWidth = self.frame.size.width
+        let rowHeight = self.frame.size.height
+        
+        background.frame = CGRect(x: 0.3, y: 0.3, width: rowWidth - 0.6, height: rowHeight - 0.6)
         
         // 上下间隔3pt，离左侧5pt，宽高相等
         var posX = ComboBox.LEFT_RIGHT_MARIGN
         let posY = ComboBox.TOP_BOTTOM_MARIGN
         var width = rowHeight - 2 * ComboBox.TOP_BOTTOM_MARIGN
         let height = rowHeight - 2 * ComboBox.TOP_BOTTOM_MARIGN
-        
         head.frame = CGRect(x: posX, y: posY, width: width, height: height)
         
         // 上下间隔3pt, 间隔head 3pt
@@ -266,6 +255,12 @@ protocol ComboBoxDelegate: class {
         posX = posX + width + ComboBox.HORIZONTAL_GAP
         width = rowHeight - ComboBox.TOP_BOTTOM_MARIGN
         dropDown.frame = CGRect(x: posX, y: posY, width: width, height: height)
+        
+        if self.superview != nil && tableView.superview == nil {
+            tableView.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height - 0.5,
+                                 width: self.frame.width, height: 0)
+            self.superview?.addSubview(tableView)
+        }
     }
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -290,7 +285,9 @@ protocol ComboBoxDelegate: class {
             cell?.textLabel?.font = font
             cell?.textLabel?.textColor = textColor
             
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: rowHeight - ComboBox.TOP_BOTTOM_MARIGN, height: rowHeight - ComboBox.TOP_BOTTOM_MARIGN))
+            let button = UIButton(frame: CGRect(x: 0, y: 0,
+                                                width: self.frame.size.height - ComboBox.TOP_BOTTOM_MARIGN,
+                                                height: self.frame.size.height - ComboBox.TOP_BOTTOM_MARIGN))
             button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
             button.setImage(optionImage, for: .normal)
             button.setImage(optionImage, for: .highlighted)
@@ -306,7 +303,7 @@ protocol ComboBoxDelegate: class {
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return rowHeight
+        return self.frame.size.height
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

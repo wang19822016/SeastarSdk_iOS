@@ -57,9 +57,8 @@ class LoginViewController: UIViewController {
 //        adminTextField.placeholder = "请输入海星帐号";
 //        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
-        let bundle1 = Bundle(for: SeastarSdk.classForCoder());
-        let img = UIImage(named: "guest.png", in: bundle1, compatibleWith: UITraitCollection())!
-        let img2 = UIImage(named: "facebook.png", in: bundle1, compatibleWith: UITraitCollection())!
+        let img = UIImage(named: "guest.png")!
+        let img2 = UIImage(named: "facebook.png")!
         
         let optionsArray = [(img,"1992"),(img,"1993"),(img2,"1994"), (img,"1995"), (img,"1996"),(img2,"1997"),(img,"1998")]//设置下拉列表项数据
         
