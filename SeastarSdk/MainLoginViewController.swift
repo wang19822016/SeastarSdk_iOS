@@ -47,10 +47,11 @@ class MainLoginViewController: UIViewController {
         backGroundImage.layer.masksToBounds = true;
         
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
+        guestLoginLabel.text = "游客登录";
         seastarLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
+        seastarLoginLabel.text = "海星帐号";
         facebookLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
-        
-        
+        facebookLoginLabel.text = "Facebook";
         loginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
     }
     

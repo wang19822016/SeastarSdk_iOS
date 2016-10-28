@@ -31,6 +31,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var registerBtn: UIButton!
     
     
+    @IBOutlet var comboBax: ComboBox!
+    
     @IBAction func loginBtnClick(_ sender: AnyObject) {
 //        userViewModel.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: "", opType: LoginOPType.Login, success: { (userModel:UserModel) in
 //            }) { 
@@ -55,9 +57,23 @@ class LoginViewController: UIViewController {
 //        adminTextField.placeholder = "请输入海星帐号";
 //        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
+        let bundle1 = Bundle(for: SeastarSdk.classForCoder());
+        let img = UIImage(named: "guest.png", in: bundle1, compatibleWith: UITraitCollection())!
+        let img2 = UIImage(named: "facebook.png", in: bundle1, compatibleWith: UITraitCollection())!
+        
+        let optionsArray = [(img,"1992"),(img,"1993"),(img2,"1994"), (img,"1995"), (img,"1996"),(img2,"1997"),(img,"1998")]//设置下拉列表项数据
+        
+        comboBax.editable = true //禁止编辑
+        comboBax.showBorder = false //不显示边框
+        //comboBax.delegate = self //设置代理
+        comboBax.options = optionsArray
+        
+        
+        
         passwordTextField.placeholder = "请输入登录密码";
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
+        loginBtn.setTitle("登录", for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
         let title = NSMutableAttributedString(string: "忘记密码");
@@ -67,7 +83,7 @@ class LoginViewController: UIViewController {
         forgetPasswordBtn.setAttributedTitle(title, for: UIControlState.normal);
         forgetPasswordBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
         
-        let title1 = NSMutableAttributedString(string: "忘记密码");
+        let title1 = NSMutableAttributedString(string: "帐号注册");
         let titleRange1 = NSRange(location: 0,length: title.length);
         let num1 = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title1.addAttribute(NSUnderlineStyleAttributeName, value: num1, range: titleRange1);

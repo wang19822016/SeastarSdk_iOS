@@ -128,7 +128,7 @@ protocol ComboBoxDelegate: class {
     // 背景
     @IBInspectable var backgroundImage: UIImage? {
         didSet {
-            background.image = backgroundImage
+            //background.image = backgroundImage
         }
     }
     
@@ -190,14 +190,14 @@ protocol ComboBoxDelegate: class {
         rowWidth = self.frame.size.width
         
         // 背景
-        let iTop: CGFloat = 1
-        let iBottom: CGFloat = 1
-        let iLeft: CGFloat = 1
-        let iRight: CGFloat = 1
-        let insets = UIEdgeInsets(top: iTop, left: iLeft, bottom: iBottom, right: iRight)
-        let iImage = backgroundImage?.resizableImage(withCapInsets: insets, resizingMode: UIImageResizingMode.stretch)
-        background = UIImageView(frame: CGRect.zero)
-        background.image = iImage
+        //let iTop: CGFloat = 1
+        //let iBottom: CGFloat = 1
+        //let iLeft: CGFloat = 1
+        //let iRight: CGFloat = 1
+        //let insets = UIEdgeInsets(top: iTop, left: iLeft, bottom: iBottom, right: iRight)
+        //let iImage = backgroundImage?.resizableImage(withCapInsets: insets, resizingMode: UIImageResizingMode.stretch)
+        background = UIImageView(frame: CGRect(x: 0.2, y: 0.2, width: rowWidth - 0.4, height: rowHeight - 0.4))
+        background.image = backgroundImage
         addSubview(background)
         
         // 头像
