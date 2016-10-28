@@ -163,4 +163,22 @@ class UserViewModel {
         let user = UserModel()
         user.removeCurrentUser()
     }
+    
+    func findPwd(_ username: String) {
+        let app = AppModel()
+        if !app.load() {
+            return
+        }
+        
+        let signStr = "\(app.appId)\(username)\(app.appKey)"
+        let md5Str = md5(string: signStr)
+        
+        let req: [String : Any] = [
+            "appId" : app.appId,
+            "userName" : username,
+            "sign" : md5Str
+        ]
+        
+        Network.post(url: app.serverUrl, json: req, success: { result in }, failure: {})
+    }
 }
