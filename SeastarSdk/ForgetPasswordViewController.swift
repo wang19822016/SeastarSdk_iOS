@@ -8,13 +8,7 @@
 
 import UIKit
 
-class ForgetPasswordViewController: UIViewController {
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
-        modalPresentationStyle = UIModalPresentationStyle.custom;
-        transitioningDelegate = self;
-    }
+class ForgetPasswordViewController: BaseViewController {
     
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var adminTextField: UITextField!
@@ -32,13 +26,8 @@ class ForgetPasswordViewController: UIViewController {
         UserViewModel.current.findPwd(adminTextField.text!);
         hud(hudString: "FindSuccess", hudView: view);
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initView();
-    }
 
-    func initView()
+    override func initView()
     {
         backgroundImage.layer.cornerRadius = 4;
         backgroundImage.layer.masksToBounds = true;
@@ -57,9 +46,3 @@ class ForgetPasswordViewController: UIViewController {
 
 }
 
-extension ForgetPasswordViewController:UIViewControllerTransitioningDelegate
-{
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return DimmingPresentationController(presentedViewController: presented, presenting: presenting);
-    }
-}

@@ -30,6 +30,7 @@
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
 		10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB484E1DC3296700A92273 /* ComboBox.swift */; };
+		10C861E51DC6DE8300BC6DCE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */; };
 		EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D21DC0A814000F6903 /* RegisterViewController.swift */; };
 		EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */; };
 		EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */; };
@@ -114,6 +115,7 @@
 		1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		10AB484E1DC3296700A92273 /* ComboBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComboBox.swift; sourceTree = "<group>"; };
+		10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EE8209D21DC0A814000F6903 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = changeAccount.storyboard; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				EE8209D21DC0A814000F6903 /* RegisterViewController.swift */,
 				EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */,
 				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
+				10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */,
 				104FB7031D9B7380004E22EF /* SeastarSdk.swift in Sources */,
 				104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */,
+				10C861E51DC6DE8300BC6DCE /* BaseViewController.swift in Sources */,
 				104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */,
 				104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */,
 				EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */,

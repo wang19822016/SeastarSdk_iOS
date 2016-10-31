@@ -8,14 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
-        modalPresentationStyle = UIModalPresentationStyle.custom;
-        transitioningDelegate = self;
-        
-    }
+class RegisterViewController: BaseViewController {
     
     @IBAction func backBtnClick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);
@@ -44,14 +37,8 @@ class RegisterViewController: UIViewController {
                 hud(hudString: "RegsiterFalse", hudView: self.view);
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initView();
 
-    }
-
-    func initView()
+    override func initView()
     {
         backgroundImage.layer.cornerRadius = 4;
         backgroundImage.layer.masksToBounds = true;
@@ -73,9 +60,3 @@ class RegisterViewController: UIViewController {
 
 }
 
-extension RegisterViewController:UIViewControllerTransitioningDelegate
-{
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return DimmingPresentationController(presentedViewController: presented, presenting: presenting);
-    }
-}
