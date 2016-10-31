@@ -33,6 +33,10 @@
 		EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D21DC0A814000F6903 /* RegisterViewController.swift */; };
 		EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */; };
 		EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */; };
+		EE8A44FF1DC6DE9F00B369A8 /* MainPortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A44FE1DC6DE9F00B369A8 /* MainPortraitViewController.swift */; };
+		EE8A45011DC6DEB000B369A8 /* LoginPortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A45001DC6DEB000B369A8 /* LoginPortraitViewController.swift */; };
+		EE8A45031DC6DED200B369A8 /* RegisterPortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A45021DC6DED200B369A8 /* RegisterPortraitViewController.swift */; };
+		EE8A45051DC6DEE500B369A8 /* ForgetPortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A45041DC6DEE500B369A8 /* ForgetPortraitViewController.swift */; };
 		EEAF5F081DC346EC00B044F9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
 		EEAF5F0F1DC34C6600B044F9 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EEAF5F101DC34C6600B044F9 /* MBProgressHUD.m in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
@@ -117,6 +121,10 @@
 		EE8209D21DC0A814000F6903 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = changeAccount.storyboard; sourceTree = "<group>"; };
+		EE8A44FE1DC6DE9F00B369A8 /* MainPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPortraitViewController.swift; sourceTree = "<group>"; };
+		EE8A45001DC6DEB000B369A8 /* LoginPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPortraitViewController.swift; sourceTree = "<group>"; };
+		EE8A45021DC6DED200B369A8 /* RegisterPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPortraitViewController.swift; sourceTree = "<group>"; };
+		EE8A45041DC6DEE500B369A8 /* ForgetPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPortraitViewController.swift; sourceTree = "<group>"; };
 		EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
@@ -265,10 +273,8 @@
 		104FB6E41D9B6E35004E22EF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */,
-				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
-				EE8209D21DC0A814000F6903 /* RegisterViewController.swift */,
-				EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */,
+				EE8A44FC1DC6DE2B00B369A8 /* landscape */,
+				EE8A44FD1DC6DE4300B369A8 /* portrait */,
 				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
 			);
 			name = ViewController;
@@ -321,6 +327,28 @@
 				1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE8A44FC1DC6DE2B00B369A8 /* landscape */ = {
+			isa = PBXGroup;
+			children = (
+				EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */,
+				104FB6E81D9B6E5F004E22EF /* LoginViewController.swift */,
+				EE8209D21DC0A814000F6903 /* RegisterViewController.swift */,
+				EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */,
+			);
+			name = landscape;
+			sourceTree = "<group>";
+		};
+		EE8A44FD1DC6DE4300B369A8 /* portrait */ = {
+			isa = PBXGroup;
+			children = (
+				EE8A44FE1DC6DE9F00B369A8 /* MainPortraitViewController.swift */,
+				EE8A45001DC6DEB000B369A8 /* LoginPortraitViewController.swift */,
+				EE8A45021DC6DED200B369A8 /* RegisterPortraitViewController.swift */,
+				EE8A45041DC6DEE500B369A8 /* ForgetPortraitViewController.swift */,
+			);
+			name = portrait;
 			sourceTree = "<group>";
 		};
 		EEAF5F041DC346C800B044F9 /* MBProgressHUD */ = {
@@ -547,18 +575,22 @@
 				104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */,
 				104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */,
 				104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */,
+				EE8A45031DC6DED200B369A8 /* RegisterPortraitViewController.swift in Sources */,
 				EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */,
 				EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */,
 				104FB6E71D9B6E57004E22EF /* AppModel.swift in Sources */,
 				104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */,
 				10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */,
+				EE8A45011DC6DEB000B369A8 /* LoginPortraitViewController.swift in Sources */,
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
 				1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */,
 				EEAF5F081DC346EC00B044F9 /* MBProgressHUD.m in Sources */,
+				EE8A45051DC6DEE500B369A8 /* ForgetPortraitViewController.swift in Sources */,
 				1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */,
 				10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */,
 				EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */,
 				104FB6F11D9B6E86004E22EF /* Config.swift in Sources */,
+				EE8A44FF1DC6DE9F00B369A8 /* MainPortraitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
