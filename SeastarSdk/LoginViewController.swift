@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: BaseViewController, ComboBoxDelegate {
+class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDelegate {
     
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var passwordTextField: UITextField!
@@ -74,7 +74,7 @@ class LoginViewController: BaseViewController, ComboBoxDelegate {
         //comboBax.delegate = self //设置代理
         comboBax.options = optionsArray
         
-        
+        passwordTextField.delegate = self
         passwordTextField.placeholder = NSLocalizedString("pleaseInputPassword", comment: "");
 
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
@@ -110,5 +110,25 @@ class LoginViewController: BaseViewController, ComboBoxDelegate {
     func deleteOption(didChoose index: Int) {
         options.remove(at: index)
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveUp(textField.frame)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveDown()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        passwordTextField.resignFirstResponder()
+        return true
+    }
 
+    func comboBoxDidBeginEditing() {
+        moveUp(comboBax.frame)
+    }
+    
+    func comboBoxDidEndEditing() {
+        moveDown()
+    }
 }

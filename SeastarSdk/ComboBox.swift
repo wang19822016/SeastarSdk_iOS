@@ -12,6 +12,9 @@ import UIKit
 protocol ComboBoxDelegate: class {
     func selectOption(didChoose index: Int)
     func deleteOption(didChoose index: Int)
+    
+    func comboBoxDidBeginEditing()
+    func comboBoxDidEndEditing()
 }
 
 @IBDesignable class ComboBox : UIView, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
@@ -164,6 +167,8 @@ protocol ComboBoxDelegate: class {
     // 当前在文本框内显示的是哪一行
     fileprivate var currentRow: Int = 0
     fileprivate var isShown: Bool = false
+    fileprivate var originWidth: CGFloat = 0
+    fileprivate var originHeight: CGFloat = 0
     
     var currentContentText: String {
         return content.text ?? ""
@@ -245,8 +250,15 @@ protocol ComboBoxDelegate: class {
         // 此处可以设置大小，能获取frame
         super.layoutSubviews()
         
-        let rowWidth = self.frame.size.width
-        let rowHeight = self.frame.size.height
+        // 在做动画是宽高可能是0，所以这么处理下
+        if self.frame.size.width > 0 {
+            originWidth = self.frame.size.width
+        }
+        if self.frame.size.height > 0 {
+            originHeight = self.frame.size.height
+        }
+        let rowWidth = originWidth
+        let rowHeight = originHeight
         
         background.frame = CGRect(x: 0.3, y: 0.3, width: rowWidth - 0.6, height: rowHeight - 0.6)
         
@@ -272,6 +284,14 @@ protocol ComboBoxDelegate: class {
                                  width: self.frame.width, height: 0)
             self.superview?.addSubview(tableView)
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.delegate?.comboBoxDidBeginEditing()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.delegate?.comboBoxDidEndEditing()
     }
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
