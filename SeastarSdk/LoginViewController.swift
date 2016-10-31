@@ -8,13 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, ComboBoxDelegate {
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        modalPresentationStyle = UIModalPresentationStyle.custom;
-        transitioningDelegate = self;
-    }
+class LoginViewController: BaseViewController, ComboBoxDelegate {
     
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var passwordTextField: UITextField!
@@ -54,17 +48,10 @@ class LoginViewController: UIViewController, ComboBoxDelegate {
     @IBAction func backBtnCkick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initView();
-        
-    }
 
-    func initView()
+    override func initView()
     {
-        backgroundImage.layer.cornerRadius = 4;
-        backgroundImage.layer.masksToBounds = true;
+        makeBounds(backgroundImage.layer)
         
         var optionsArray: [(UIImage, String)] = []
         let frameworkBundle = Bundle(for: SeastarSdk.classForCoder())
@@ -124,11 +111,4 @@ class LoginViewController: UIViewController, ComboBoxDelegate {
         options.remove(at: index)
     }
 
-}
-
-extension LoginViewController:UIViewControllerTransitioningDelegate
-{
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return DimmingPresentationController(presentedViewController: presented, presenting: presenting);
-    }
 }

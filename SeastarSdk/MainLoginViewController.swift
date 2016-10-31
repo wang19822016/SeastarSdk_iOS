@@ -9,15 +9,7 @@
 import UIKit
 
 
-class MainLoginViewController: UIViewController {
-
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        modalPresentationStyle = UIModalPresentationStyle.custom;
-        transitioningDelegate = self;
-    }
-    
+class MainLoginViewController: BaseViewController {
     
     @IBOutlet var backGroundImage: UIImageView!
     
@@ -33,16 +25,9 @@ class MainLoginViewController: UIViewController {
     
     var loginFailure:(()->Void)?
 
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initView();
-    }
-
-    func initView()
+    override func initView()
     {
-        backGroundImage.layer.cornerRadius = 4;
-        backGroundImage.layer.masksToBounds = true;
+        makeBounds(backGroundImage.layer)
         
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         guestLoginLabel.text = NSLocalizedString("Guest", comment: "");
@@ -75,13 +60,6 @@ class MainLoginViewController: UIViewController {
 
     }
     
-}
-
-extension MainLoginViewController:UIViewControllerTransitioningDelegate
-{
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return DimmingPresentationController(presentedViewController: presented, presenting: presenting);
-    }
 }
 
 
