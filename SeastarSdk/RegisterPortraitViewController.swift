@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterPortraitViewController: BaseViewController {
+class RegisterPortraitViewController: BaseViewController,UITextFieldDelegate {
 
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: BaseViewController {
+class RegisterViewController: BaseViewController,UITextFieldDelegate {
     
     @IBAction func backBtnClick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);

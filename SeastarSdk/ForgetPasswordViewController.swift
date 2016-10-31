@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForgetPasswordViewController: BaseViewController {
+class ForgetPasswordViewController: BaseViewController,UITextFieldDelegate {
     
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var adminTextField: UITextField!

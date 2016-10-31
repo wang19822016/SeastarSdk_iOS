@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForgetPortraitViewController: BaseViewController {
+class ForgetPortraitViewController: BaseViewController,UITextFieldDelegate {
 
     
     

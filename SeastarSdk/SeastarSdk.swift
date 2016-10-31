@@ -53,19 +53,37 @@ public class SeastarSdk : NSObject {
                 userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { loginFailure() })
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
-            let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-
-            let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
             
-            vc.loginSuccess = {(userModel:UserModel) in
+            //横屏
+//            let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+//
+//            let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
+//            
+//            vc.loginSuccess = {(userModel:UserModel) in
+//                loginSuccess(userModel.userId, userModel.session)
+//            }
+//            
+//            vc.loginFailure = {()in
+//                loginFailure();
+//            }
+//            
+//            viewController?.present(vc, animated: true, completion: nil)
+            
+            
+            //竖屏
+            let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+            
+            let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
+            
+            vcPortrait.LoginSuccess = {(userModel:UserModel) in
                 loginSuccess(userModel.userId, userModel.session)
             }
             
-            vc.loginFailure = {()in
+            vcPortrait.LoginFailure = {()in
                 loginFailure();
             }
             
-            viewController?.present(vc, animated: true, completion: nil)
+            viewController?.present(vcPortrait, animated: true, completion: nil)   
         }
     }
     
