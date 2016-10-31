@@ -8,28 +8,27 @@
 
 import UIKit
 
-class ForgetPortraitViewController: UIViewController {
+class ForgetPortraitViewController: BaseViewController {
 
+    
+    
+    @IBOutlet var backgroundImageView: UIImageView!
+    
+    @IBOutlet var adminTextField: UITextField!
+    
+    @IBOutlet var passwordGetBackBtn: UIButton!
+    
+    @IBOutlet var noticeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func backBtnClick(_ sender: AnyObject) {
+        
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func passwordGetBackBtnClick(_ sender: AnyObject) {
     }
-    */
-
 }

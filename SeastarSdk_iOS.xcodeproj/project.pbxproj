@@ -38,6 +38,7 @@
 		EE8A45011DC6DEB000B369A8 /* LoginPortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A45001DC6DEB000B369A8 /* LoginPortraitViewController.swift */; };
 		EE8A45031DC6DED200B369A8 /* RegisterPortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A45021DC6DED200B369A8 /* RegisterPortraitViewController.swift */; };
 		EE8A45051DC6DEE500B369A8 /* ForgetPortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A45041DC6DEE500B369A8 /* ForgetPortraitViewController.swift */; };
+		EE8A45091DC6E73700B369A8 /* background_p.png in Resources */ = {isa = PBXBuildFile; fileRef = EE8A45081DC6E73700B369A8 /* background_p.png */; };
 		EEAF5F081DC346EC00B044F9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
 		EEAF5F0F1DC34C6600B044F9 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EEAF5F101DC34C6600B044F9 /* MBProgressHUD.m in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
@@ -127,6 +128,7 @@
 		EE8A45001DC6DEB000B369A8 /* LoginPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPortraitViewController.swift; sourceTree = "<group>"; };
 		EE8A45021DC6DED200B369A8 /* RegisterPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPortraitViewController.swift; sourceTree = "<group>"; };
 		EE8A45041DC6DEE500B369A8 /* ForgetPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPortraitViewController.swift; sourceTree = "<group>"; };
+		EE8A45081DC6E73700B369A8 /* background_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_p.png; sourceTree = "<group>"; };
 		EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
@@ -277,8 +279,8 @@
 			children = (
 				EE8A44FC1DC6DE2B00B369A8 /* landscape */,
 				EE8A44FD1DC6DE4300B369A8 /* portrait */,
-				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
 				10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */,
+				EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -402,6 +404,7 @@
 		EEE839E31DC364D3003F8F79 /* portrait */ = {
 			isa = PBXGroup;
 			children = (
+				EE8A45081DC6E73700B369A8 /* background_p.png */,
 				EEE839E41DC364D3003F8F79 /* back_p.png */,
 				EEE839E51DC364D3003F8F79 /* buton_p.png */,
 				EEE839E61DC364D3003F8F79 /* button_highlighted_p.png */,
@@ -534,6 +537,7 @@
 				EEE839F41DC364D3003F8F79 /* buton_p.png in Resources */,
 				EEE83A011DC364D3003F8F79 /* seastar_p.png in Resources */,
 				EEE839F61DC364D3003F8F79 /* cancel_p.png in Resources */,
+				EE8A45091DC6E73700B369A8 /* background_p.png in Resources */,
 				EEE839BE1DC36035003F8F79 /* seastar_big.png in Resources */,
 				EEE839FD1DC364D3003F8F79 /* kuang_highlighted_p.png in Resources */,
 				EEE839B11DC36035003F8F79 /* cancel.png in Resources */,

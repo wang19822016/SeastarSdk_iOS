@@ -8,28 +8,59 @@
 
 import UIKit
 
-class MainPortraitViewController: UIViewController {
+class MainPortraitViewController: BaseViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    
+    
+    @IBOutlet var backgroundImageView: UIImageView!
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet var LoginTypeLabel: UILabel!
+    
+    @IBOutlet var GuestLabel: UILabel!
+    
+    @IBOutlet var SeastarLabel: UILabel!
+    
+    @IBOutlet var FacebookLabel: UILabel!
+    
+    var LoginSuccess:((_ usermodel:UserModel)->Void)?
+    
+    var LoginFailure:(()->Void)?
+    
+    
+    
+    override func initView() {
+        makeBounds(backgroundImageView.layer);
+        GuestLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
+        GuestLabel.text = NSLocalizedString("Guest", comment: "");
+        SeastarLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
+        SeastarLabel.text = NSLocalizedString("SeastarLogin", comment: "");
+        FacebookLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
+        FacebookLabel.text = NSLocalizedString("Facebook", comment: "");
+        LoginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func guestLogin(_ sender: AnyObject) {
+        UserViewModel.current.doGuestLogin(success: { userModel in
+            self.dismiss(animated: true) {
+                self.LoginSuccess?(userModel)
+            }
+            }, failure: {
+                hud(hudString: "LoginFalse", hudView: self.view);
+        })
     }
-    */
+
+    @IBAction func facebookLogin(_ sender: AnyObject) {
+        UserViewModel.current.doFacebookLogin(viewController: self, success: { userModel in
+            self.dismiss(animated: true)
+            {
+                self.LoginSuccess?(userModel)
+            }
+            }, failure: {
+                hud(hudString: "LoginFalse", hudView: self.view);
+        })
+
+    }
 
 }

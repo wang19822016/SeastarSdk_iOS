@@ -8,28 +8,44 @@
 
 import UIKit
 
-class LoginPortraitViewController: UIViewController {
+class LoginPortraitViewController: BaseViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    @IBOutlet var backgroundImageVIew: UIImageView!
+    
+    @IBOutlet var comboBox: ComboBox!
+    
+    @IBOutlet var passwordTextField: UITextField!
+    
+    @IBOutlet var Loginbtn: UIButton!
+    
+    @IBOutlet var ForgetBtn: UIButton!
+    
+    @IBOutlet var registerBtn: UIButton!
+    
+    private var options: [UserModel] = []
     
 
-    /*
-    // MARK: - Navigation
+    @IBAction func LoginBtnClick(_ sender: AnyObject) {
+        UserViewModel.current.doAccountLogin(username: comboBox.currentContentText,
+                                             password: passwordTextField.text!,
+                                             email: "",
+                                             opType: LoginOPType.Login,
+                                             success:
+            { (MyuserModel:UserModel) in
+                
+                let MainVC = self.presentingViewController as! MainPortraitViewController;
+                self.dismiss(animated: false, completion: {
+                    MainVC.LoginSuccess?(MyuserModel)
+                    MainVC.dismiss(animated: false, completion: nil);
+                });
+        }) {
+            hud(hudString: "LoginFalse", hudView: self.view);
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
 
+    @IBAction func backBtnClick(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil);
+    }
 }
