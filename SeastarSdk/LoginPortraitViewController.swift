@@ -76,8 +76,8 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
         
         passwordTextField.delegate = self
         passwordTextField.placeholder = NSLocalizedString("pleaseInputPassword", comment: "");
-        
         passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+        passwordTextField.delegate = self;
         
         Loginbtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         Loginbtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);

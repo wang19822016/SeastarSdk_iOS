@@ -16,9 +16,13 @@ public class SeastarSdk : NSObject {
     
     var viewController: UIViewController? = nil
     
-    public func initialize(viewController: UIViewController) {
+    var myOrientation:Orientation = Orientation.landscape
+    
+    
+    public func initialize(viewController: UIViewController, orientation:Orientation) {
         PurchaseViewModel.current.initialize()
         self.viewController = viewController
+        myOrientation = orientation;
     }
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法
@@ -54,36 +58,35 @@ public class SeastarSdk : NSObject {
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
             
-            //横屏
-//            let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-//
-//            let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
-//            
-//            vc.loginSuccess = {(userModel:UserModel) in
-//                loginSuccess(userModel.userId, userModel.session)
-//            }
-//            
-//            vc.loginFailure = {()in
-//                loginFailure();
-//            }
-//            
-//            viewController?.present(vc, animated: true, completion: nil)
-            
-            
-            //竖屏
-            let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-            
-            let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
-            
-            vcPortrait.LoginSuccess = {(userModel:UserModel) in
-                loginSuccess(userModel.userId, userModel.session)
+            if myOrientation == Orientation.landscape{
+                let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                
+                let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
+                
+                vc.loginSuccess = {(userModel:UserModel) in
+                    loginSuccess(userModel.userId, userModel.session)
+                }
+                
+                vc.loginFailure = {()in
+                    loginFailure();
+                }
+                
+                viewController?.present(vc, animated: true, completion: nil)
+            }else{
+                let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                
+                let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
+                
+                vcPortrait.LoginSuccess = {(userModel:UserModel) in
+                    loginSuccess(userModel.userId, userModel.session)
+                }
+                
+                vcPortrait.LoginFailure = {()in
+                    loginFailure();
+                }
+                
+                viewController?.present(vcPortrait, animated: true, completion: nil)
             }
-            
-            vcPortrait.LoginFailure = {()in
-                loginFailure();
-            }
-            
-            viewController?.present(vcPortrait, animated: true, completion: nil)   
         }
     }
     
@@ -93,9 +96,9 @@ public class SeastarSdk : NSObject {
     
     public func purchase(productId: String, roleId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
         PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, extra: extra, purchaseSuccess: {
-                order, productIdentifier in
+            order, productIdentifier in
             
-                paySuccess(order, productIdentifier)
+            paySuccess(order, productIdentifier)
             
             }, purchaseFailure: {
                 productIdentifier in

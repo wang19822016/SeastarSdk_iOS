@@ -75,8 +75,8 @@ class BaseViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
         if isUped {
-            self.view.endEditing(true)
             UIView.beginAnimations("resize", context: nil)
             UIView.setAnimationDuration(0.30)
             let rect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)

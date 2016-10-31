@@ -37,3 +37,9 @@ enum UserNewOrOld : Int {
     case NEW = 1
     case OLD = 0
 }
+
+public enum Orientation
+{
+    case landscape
+    case portrait
+}

@@ -33,6 +33,7 @@ class ForgetPasswordViewController: BaseViewController,UITextFieldDelegate {
         
         adminTextField.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
         adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+        adminTextField.delegate = self;
         
         passwordGetBackBtn.setTitle(NSLocalizedString("FindPassword", comment: ""), for: UIControlState.normal);
         passwordGetBackBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
@@ -42,6 +43,17 @@ class ForgetPasswordViewController: BaseViewController,UITextFieldDelegate {
         noticeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1);
     }
     
-
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveUp(textField.frame)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveDown()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
