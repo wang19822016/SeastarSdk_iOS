@@ -48,6 +48,11 @@ class BaseViewController: UIViewController {
     func initView() {
         
     }
+    
+    func makeBounds(_ layer: CALayer) {
+        layer.cornerRadius = 4;
+        layer.masksToBounds = true;
+    }
 }
 
 extension BaseViewController:UIViewControllerTransitioningDelegate

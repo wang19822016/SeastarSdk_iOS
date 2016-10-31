@@ -27,8 +27,7 @@ class MainLoginViewController: BaseViewController {
 
     override func initView()
     {
-        backGroundImage.layer.cornerRadius = 4;
-        backGroundImage.layer.masksToBounds = true;
+        makeBounds(backGroundImage.layer)
         
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         guestLoginLabel.text = NSLocalizedString("Guest", comment: "");

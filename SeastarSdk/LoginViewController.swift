@@ -51,8 +51,7 @@ class LoginViewController: BaseViewController, ComboBoxDelegate {
 
     override func initView()
     {
-        backgroundImage.layer.cornerRadius = 4;
-        backgroundImage.layer.masksToBounds = true;
+        makeBounds(backgroundImage.layer)
         
         var optionsArray: [(UIImage, String)] = []
         let frameworkBundle = Bundle(for: SeastarSdk.classForCoder())

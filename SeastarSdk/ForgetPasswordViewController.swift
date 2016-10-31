@@ -29,8 +29,7 @@ class ForgetPasswordViewController: BaseViewController {
 
     override func initView()
     {
-        backgroundImage.layer.cornerRadius = 4;
-        backgroundImage.layer.masksToBounds = true;
+        makeBounds(backgroundImage.layer)
         
         adminTextField.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
         adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
