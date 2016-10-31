@@ -120,7 +120,7 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        passwordTextField.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
 

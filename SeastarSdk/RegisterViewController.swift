@@ -54,7 +54,19 @@ class RegisterViewController: BaseViewController {
         
     }
     
-
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveUp(textField.frame)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveDown()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 
 }
 
