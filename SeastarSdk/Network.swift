@@ -70,20 +70,28 @@ class Network {
             if error != nil {
                 // 错误情况处理
                 Log("error: \(error)")
-                failure()
+                DispatchQueue.main.async {
+                    failure()
+                }
             } else {
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     // 接收数据正常
                     if let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) {
                         Log("success: \(json)")
-                        success(json as? [String: Any] ?? [:])
+                        DispatchQueue.main.async {
+                            success(json as? [String: Any] ?? [:])
+                        }
                     } else {
                         Log("http ok, but response body format error")
-                        failure()
+                        DispatchQueue.main.async {
+                            failure()
+                        }
                     }
                 } else {
                     Log("http fail")
-                    failure()
+                    DispatchQueue.main.async {
+                        failure()
+                    }
                 }
             }
         }
@@ -101,7 +109,7 @@ class Network {
             }
             i = i + 1
         }
-
+        
         return address
     }
 }

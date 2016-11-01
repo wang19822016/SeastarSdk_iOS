@@ -53,7 +53,7 @@ public class SeastarSdk : NSObject {
     public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
         var user = UserModel()
         if user.loadCurrentUser() {
-            UserViewModel.current.doSessionLogin(success: {
+            UserViewModel.current.doSessionLogin(usermodel:user,success: {
                 userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { loginFailure() })
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写

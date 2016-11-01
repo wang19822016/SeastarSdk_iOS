@@ -188,12 +188,9 @@
                                             <action selector="LoginBtnClick:" destination="nGr-SC-0dp" eventType="touchUpInside" id="y1v-qm-n19"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvL-Mv-N0U">
-                                        <color key="backgroundColor" red="0.011917127296328545" green="0.98189347982406616" blue="0.73639106750488281" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="L6a-Mp-tYg"/>
-                                            <constraint firstAttribute="width" constant="120" id="hmJ-Od-op3"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvL-Mv-N0U">
+                                        <frame key="frameInset" minX="240" minY="194" width="76" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="注册帐号"/>
                                         <connections>
                                             <segue destination="WER-qi-TY4" kind="presentation" id="rNb-1h-lxG"/>
@@ -221,12 +218,9 @@
                                             <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="cancel_p.png"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIk-cP-Tud">
-                                        <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="dBh-Td-3mL"/>
-                                            <constraint firstAttribute="width" constant="120" id="zv9-yg-1Fx"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIk-cP-Tud">
+                                        <frame key="frameInset" minX="153" minY="194" width="76" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="忘记密码"/>
                                         <connections>
                                             <segue destination="om8-ye-zYh" kind="presentation" id="fuq-mN-CBO"/>
@@ -241,17 +235,13 @@
                                     <constraint firstItem="SZ0-Ms-O6p" firstAttribute="top" secondItem="eRG-l3-ib0" secondAttribute="bottom" constant="4" id="ABw-tb-iYb"/>
                                     <constraint firstItem="zGj-On-HPF" firstAttribute="leading" secondItem="twx-lI-bUn" secondAttribute="leading" constant="7" id="Gwx-T0-du8"/>
                                     <constraint firstItem="eRG-l3-ib0" firstAttribute="centerX" secondItem="twx-lI-bUn" secondAttribute="centerX" id="Lpk-8w-LXS"/>
-                                    <constraint firstItem="CvL-Mv-N0U" firstAttribute="leading" secondItem="nIk-cP-Tud" secondAttribute="trailing" constant="17" id="Ntv-nw-reJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="CvL-Mv-N0U" secondAttribute="trailing" constant="18" id="Pla-Dd-ky9"/>
                                     <constraint firstItem="eRG-l3-ib0" firstAttribute="top" secondItem="twx-lI-bUn" secondAttribute="top" constant="11" id="PvR-yv-YeU"/>
                                     <constraint firstAttribute="trailing" secondItem="LTD-gU-Skg" secondAttribute="trailing" id="SA2-Ug-Y4J"/>
-                                    <constraint firstAttribute="bottom" secondItem="CvL-Mv-N0U" secondAttribute="bottom" constant="12" id="U2l-Ry-yzt"/>
                                     <constraint firstAttribute="height" constant="226" id="bDt-wW-Hkl"/>
                                     <constraint firstItem="zGj-On-HPF" firstAttribute="top" secondItem="twx-lI-bUn" secondAttribute="top" constant="7" id="c4B-DG-DQt"/>
                                     <constraint firstItem="Tb6-BP-acQ" firstAttribute="top" secondItem="SZ0-Ms-O6p" secondAttribute="bottom" constant="10" id="es1-v8-ZWg"/>
                                     <constraint firstAttribute="width" constant="334" id="gQg-DU-ioE"/>
                                     <constraint firstItem="SZ0-Ms-O6p" firstAttribute="centerX" secondItem="twx-lI-bUn" secondAttribute="centerX" id="lU5-FG-xwP"/>
-                                    <constraint firstAttribute="bottom" secondItem="nIk-cP-Tud" secondAttribute="bottom" constant="12" id="mKU-qC-sEq"/>
                                     <constraint firstAttribute="bottom" secondItem="LTD-gU-Skg" secondAttribute="bottom" id="wqE-MB-mbI"/>
                                     <constraint firstItem="XDE-Hg-swH" firstAttribute="top" secondItem="Tb6-BP-acQ" secondAttribute="bottom" constant="9" id="wzM-wx-qRc"/>
                                     <constraint firstItem="XDE-Hg-swH" firstAttribute="centerX" secondItem="twx-lI-bUn" secondAttribute="centerX" id="xSf-ev-U1b"/>

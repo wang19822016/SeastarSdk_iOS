@@ -26,12 +26,12 @@ class UserViewModel {
         let req: [String : Any] = [
             "appId": app.appId,
             "deviceId": deviceId(),
-            "locale": locale,
-            "deviceInfo": deviceInfo,
+            "locale": locale(),
+            "deviceInfo": deviceInfo(),
             "sign": md5Str
         ]
         
-        Network.post(url: app.serverUrl, json: req, success: { data in
+        Network.post(url: app.serverUrl + "/auth/guest", json: req, success: { data in
             
             if let code = data["code"] as? String, code == "0" {
                 var user = UserModel()
@@ -46,6 +46,7 @@ class UserViewModel {
                 user.guestUserId = deviceId()
                 user.session = data["session"] as? String ?? ""
                 user.save()
+                user.saveAsCurrentUser()
                 
                 success(user)
             } else {
@@ -78,7 +79,7 @@ class UserViewModel {
                     "sign": md5str
                     ]
                 
-                Network.post(url: app.serverUrl, json: req, success: { data in
+                Network.post(url: app.serverUrl + "/auth/thirdparty", json: req, success: { data in
                     if let code = data["code"] as? String, code == "0" {
                         var user = UserModel()
                         if user.load(userId: (data["userId"] as? Int ?? 0)) {
@@ -92,6 +93,7 @@ class UserViewModel {
                         user.facebookUserId = fbuserId
                         user.session = data["session"] as? String ?? ""
                         user.save()
+                        user.saveAsCurrentUser()
                     
                         success(user)
                     } else {
@@ -108,7 +110,13 @@ class UserViewModel {
             return
         }
         
-        let signStr = "\(app.appId)\(deviceId())\(locale())\(username)\(password)\(opType.rawValue)\(app.appKey)"
+        var loginPassword = password
+        if(opType == LoginOPType.Login)
+        {
+            loginPassword = md5(string: password);
+        }
+        
+        let signStr = "\(app.appId)\(deviceId())\(locale())\(username)\(loginPassword)\(opType.rawValue)\(app.appKey)"
         let md5Str = md5(string: signStr)
         
         let req: [String : Any] = [
@@ -117,13 +125,13 @@ class UserViewModel {
             "locale": locale(),
             "deviceInfo": deviceInfo(),
             "userName": username,
-            "password": password,
+            "password": loginPassword,
             "regist" : opType.rawValue,
             "email": email,
             "sign": md5Str
         ]
         
-        Network.post(url: app.serverUrl, json: req, success: { data in
+        Network.post(url: app.serverUrl + "/auth/username", json: req, success: { data in
             if let code = data["code"] as? String, code == "0" {
                 var user = UserModel()
                 if user.load(userId: (data["userId"] as? Int ?? 0)) {
@@ -136,6 +144,7 @@ class UserViewModel {
                 user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
                 user.session = data["session"] as? String ?? ""
                 user.save()
+                user.saveAsCurrentUser()
                 
                 success(user)
 
@@ -145,7 +154,7 @@ class UserViewModel {
         }, failure: { failure() })
     }
     
-    func doSessionLogin(success: @escaping (UserModel)->Void, failure: @escaping ()->Void) {
+    func doSessionLogin(usermodel:UserModel, success: @escaping (UserModel)->Void, failure: @escaping ()->Void) {
         let app = AppModel()
         if !app.load() {
             failure()
@@ -154,13 +163,13 @@ class UserViewModel {
         
         let req: [String : Any] = [
             "appId": app.appId,
-            "session": deviceId(),
-            "userId": 0,
+            "session": usermodel.session,
+            "userId": usermodel.userId,
             "locale": locale(),
             "deviceInfo": deviceInfo()
         ]
         
-        Network.post(url: app.serverUrl, json: req, success: { data in
+        Network.post(url: app.serverUrl + "/auth/session", json: req, success: { data in
             if let code = data["code"] as? String, code == "0" {
                 var user = UserModel()
                 if user.load(userId: (data["userId"] as? Int ?? 0)) {
@@ -173,6 +182,7 @@ class UserViewModel {
                 user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
                 user.session = data["session"] as? String ?? ""
                 user.save()
+                user.saveAsCurrentUser()
                 
                 success(user)
             } else {
@@ -202,6 +212,6 @@ class UserViewModel {
             "sign" : md5Str
         ]
         
-        Network.post(url: app.serverUrl, json: req, success: { result in }, failure: {})
+        Network.post(url: app.serverUrl + "/auth/findpwd", json: req, success: { result in }, failure: {})
     }
 }

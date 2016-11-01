@@ -70,30 +70,31 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
         }
         comboBax.editable = true //禁止编辑
         comboBax.showBorder = false //不显示边框
-        comboBax.placeholder = "占位符号"
+        comboBax.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
         //comboBax.delegate = self //设置代理
         comboBax.options = optionsArray
         
         passwordTextField.delegate = self
-        passwordTextField.placeholder = NSLocalizedString("pleaseInputPassword", comment: "");
+        passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
 
-        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+//        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
         loginBtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
-        let title = NSMutableAttributedString(string: NSLocalizedString("ForgetPassword", comment: ""));
+        let title = NSMutableAttributedString(string: NSLocalizedString("Forget", comment: ""));
         let titleRange = NSRange(location: 0,length: title.length);
         let num = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title.addAttribute(NSUnderlineStyleAttributeName, value: num, range: titleRange);
         forgetPasswordBtn.setAttributedTitle(title, for: UIControlState.normal);
         forgetPasswordBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
         
-        let title1 = NSMutableAttributedString(string: NSLocalizedString("RegisterAccount", comment: ""));
+        let title1 = NSMutableAttributedString(string:"Register"); //NSLocalizedString("Register", comment: ""));
         let titleRange1 = NSRange(location: 0,length: title.length);
         let num1 = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title1.addAttribute(NSUnderlineStyleAttributeName, value: num1, range: titleRange1);
         registerBtn.setAttributedTitle(title1, for: UIControlState.normal);
+        
         registerBtn.setTitleColor(UIColor(red: 58/255, green: 140/255, blue: 224/255, alpha: 1), for: UIControlState.normal);
         
     }

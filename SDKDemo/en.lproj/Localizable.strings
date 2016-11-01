@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  SeastarSdk_iOS
+
+  Created by seastar on 16/11/1.
+
+*/
+
+"Guest" = "Guest";
+"Seastar" = "Seastar";
+"Facebook" = "Facebook";
+"Login" = "Login";
+"Forget" = "Forget";
+"Register" = "Register";
+"LoginFalse" = "Login False";
+"RegsiterFalse" = "Regsiter False";
+"FindSuccess" = "Find Success";
+"FindPassword" = "Find Password";
+"NoticeLabel" = "Password will send to mailbox. if you have any question, please send email to vrseastar@vrseastar.com";
+"SelectLoginType" = "Select Login Type";
+"PleaseInputAccount" = "Please Input Account";
+"PleaseInputPassword" = "Please Input Password";
+"PleaseInputSeastarAccount" = "Please Input SeastarAccount";
+"PleaseInputEmail(Option)" = "Please Input Email(Option)";

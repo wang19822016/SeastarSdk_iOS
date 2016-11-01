@@ -39,7 +39,7 @@ class ForgetPortraitViewController: BaseViewController,UITextFieldDelegate {
         makeBounds(backgroundImageView.layer)
         
         adminTextField.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
-        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+//        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         adminTextField.delegate = self;
         
         passwordGetBackBtn.setTitle(NSLocalizedString("FindPassword", comment: ""), for: UIControlState.normal);

@@ -31,6 +31,9 @@
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
 		10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB484E1DC3296700A92273 /* ComboBox.swift */; };
 		10C861E51DC6DE8300BC6DCE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */; };
+		EE74EB661DC89E08001287EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE74EB681DC89E08001287EE /* Localizable.strings */; };
+		EE74EB711DC8A4CF001287EE /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE74EB6F1DC8A4C1001287EE /* SeastarSdk.framework */; };
+		EE74EB721DC8A4CF001287EE /* SeastarSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE74EB6F1DC8A4C1001287EE /* SeastarSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE8209D31DC0A814000F6903 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D21DC0A814000F6903 /* RegisterViewController.swift */; };
 		EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */; };
 		EE8209D71DC0B65D000F6903 /* changeAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */; };
@@ -54,8 +57,6 @@
 		EE8A45411DC743A000B369A8 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE8A45331DC7435B00B369A8 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE8A45421DC743A000B369A8 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE8A45341DC7435B00B369A8 /* FBSDKShareKit.framework */; };
 		EE8A45431DC743A000B369A8 /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE8A45341DC7435B00B369A8 /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE8A45471DC74AB100B369A8 /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE8A45451DC74A9F00B369A8 /* SeastarSdk.framework */; };
-		EE8A45481DC74AB100B369A8 /* SeastarSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE8A45451DC74A9F00B369A8 /* SeastarSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEAF5F081DC346EC00B044F9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
 		EEAF5F0F1DC34C6600B044F9 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EEAF5F101DC34C6600B044F9 /* MBProgressHUD.m in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
@@ -120,7 +121,7 @@
 				EE8A453B1DC743A000B369A8 /* Bolts.framework in Embed Frameworks */,
 				EE8A453F1DC743A000B369A8 /* FBSDKCoreKit.framework in Embed Frameworks */,
 				EE8A45431DC743A000B369A8 /* FBSDKShareKit.framework in Embed Frameworks */,
-				EE8A45481DC74AB100B369A8 /* SeastarSdk.framework in Embed Frameworks */,
+				EE74EB721DC8A4CF001287EE /* SeastarSdk.framework in Embed Frameworks */,
 				EE8A45411DC743A000B369A8 /* FBSDKLoginKit.framework in Embed Frameworks */,
 				EE8A453D1DC743A000B369A8 /* CryptoSwift.framework in Embed Frameworks */,
 			);
@@ -157,6 +158,14 @@
 		1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		10AB484E1DC3296700A92273 /* ComboBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComboBox.swift; sourceTree = "<group>"; };
 		10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		EE74EB5C1DC89D38001287EE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		EE74EB5D1DC89D38001287EE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		EE74EB5E1DC89D45001287EE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		EE74EB5F1DC89D45001287EE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		EE74EB671DC89E08001287EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EE74EB691DC89E0D001287EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EE74EB6A1DC89E12001287EE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		EE74EB6F1DC8A4C1001287EE /* SeastarSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeastarSdk.framework; sourceTree = "<group>"; };
 		EE8209D21DC0A814000F6903 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EE8209D41DC0A82A000F6903 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = changeAccount.storyboard; sourceTree = "<group>"; };
@@ -177,7 +186,6 @@
 		EE8A45321DC7435B00B369A8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		EE8A45331DC7435B00B369A8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		EE8A45341DC7435B00B369A8 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		EE8A45451DC74A9F00B369A8 /* SeastarSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeastarSdk.framework; sourceTree = "<group>"; };
 		EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
@@ -250,7 +258,7 @@
 				EE8A453A1DC743A000B369A8 /* Bolts.framework in Frameworks */,
 				EE8A453E1DC743A000B369A8 /* FBSDKCoreKit.framework in Frameworks */,
 				EE8A45421DC743A000B369A8 /* FBSDKShareKit.framework in Frameworks */,
-				EE8A45471DC74AB100B369A8 /* SeastarSdk.framework in Frameworks */,
+				EE74EB711DC8A4CF001287EE /* SeastarSdk.framework in Frameworks */,
 				EE8A45401DC743A000B369A8 /* FBSDKLoginKit.framework in Frameworks */,
 				EE8A453C1DC743A000B369A8 /* CryptoSwift.framework in Frameworks */,
 			);
@@ -423,7 +431,7 @@
 		EE8A451F1DC7392600B369A8 /* SDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				EE8A45451DC74A9F00B369A8 /* SeastarSdk.framework */,
+				EE74EB6F1DC8A4C1001287EE /* SeastarSdk.framework */,
 				EE8A45301DC7435B00B369A8 /* Bolts.framework */,
 				EE8A45311DC7435B00B369A8 /* CryptoSwift.framework */,
 				EE8A45321DC7435B00B369A8 /* FBSDKCoreKit.framework */,
@@ -431,6 +439,7 @@
 				EE8A45341DC7435B00B369A8 /* FBSDKShareKit.framework */,
 				EE8A45201DC7392600B369A8 /* AppDelegate.swift */,
 				EE8A45221DC7392600B369A8 /* ViewController.swift */,
+				EE74EB681DC89E08001287EE /* Localizable.strings */,
 				EE8A45241DC7392600B369A8 /* Main.storyboard */,
 				EE8A45271DC7392600B369A8 /* Assets.xcassets */,
 				EE8A45291DC7392600B369A8 /* LaunchScreen.storyboard */,
@@ -609,6 +618,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 104FB6A81D9B6D72004E22EF;
 			productRefGroup = 104FB6B51D9B6DA1004E22EF /* Products */;
@@ -682,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE8A452B1DC7392600B369A8 /* LaunchScreen.storyboard in Resources */,
+				EE74EB661DC89E08001287EE /* Localizable.strings in Resources */,
 				EE8A45281DC7392600B369A8 /* Assets.xcassets in Resources */,
 				EE8A45261DC7392600B369A8 /* Main.storyboard in Resources */,
 			);
@@ -748,10 +759,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		EE74EB681DC89E08001287EE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EE74EB671DC89E08001287EE /* Base */,
+				EE74EB691DC89E0D001287EE /* en */,
+				EE74EB6A1DC89E12001287EE /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		EE8A45241DC7392600B369A8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EE8A45251DC7392600B369A8 /* Base */,
+				EE74EB5C1DC89D38001287EE /* zh-Hant */,
+				EE74EB5E1DC89D45001287EE /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -760,6 +783,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				EE8A452A1DC7392600B369A8 /* Base */,
+				EE74EB5D1DC89D38001287EE /* zh-Hant */,
+				EE74EB5F1DC89D45001287EE /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -770,6 +795,7 @@
 		104FB6AD1D9B6D72004E22EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
@@ -777,6 +803,7 @@
 		104FB6AE1D9B6D72004E22EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
@@ -1173,6 +1200,7 @@
 				EE8A452E1DC7392600B369A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

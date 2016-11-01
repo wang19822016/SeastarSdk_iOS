@@ -45,36 +45,54 @@ struct UserModel {
                 return true
             }
         }
-
+        
         return false
     }
     
     func save() {
         // 获取用户列表词典并更新用户信息
         var userList = UserDefaults.standard.array(forKey: USER_LIST_NAME) ?? []
-        for (index, user) in userList.enumerated() {
-            if let userDictConst = user as? [String : Any] {
-                var userDict = userDictConst
-                if let saveUserId = userDict["userId"] as? Int, saveUserId == userId {
-                    userDict["userId"] = userId
-                    userDict["userName"] = userName
-                    userDict["password"] = password
-                    userDict["email"] = email
-                    userDict["status"] = status
-                    
-                    userDict["session"] = session
-                    
-                    userDict["facebookUserId"] = facebookUserId
-                    userDict["guestUserId"] = guestUserId
-                    userDict["gamecenterUserId"] = gamecenterUserId
-                    
-                    userList[index] = userDict
-                    
-                    UserDefaults.standard.set(userList, forKey: USER_LIST_NAME)
-                    UserDefaults.standard.synchronize()
-                    break
+        if userList.count > 0 {
+            for (index, user) in userList.enumerated() {
+                if let userDictConst = user as? [String : Any] {
+                    var userDict = userDictConst
+                    if let saveUserId = userDict["userId"] as? Int, saveUserId == userId {
+                        userDict["userId"] = userId
+                        userDict["userName"] = userName
+                        userDict["password"] = password
+                        userDict["email"] = email
+                        userDict["status"] = status
+                        
+                        userDict["session"] = session
+                        
+                        userDict["facebookUserId"] = facebookUserId
+                        userDict["guestUserId"] = guestUserId
+                        userDict["gamecenterUserId"] = gamecenterUserId
+                        
+                        userList[index] = userDict
+                        
+                        UserDefaults.standard.set(userList, forKey: USER_LIST_NAME)
+                        UserDefaults.standard.synchronize()
+                        break
+                    }
                 }
             }
+        } else {
+            var userDict = [String: Any]()
+            userDict["userId"] = userId
+            userDict["userName"] = userName
+            userDict["password"] = password
+            userDict["email"] = email
+            userDict["status"] = status
+            
+            userDict["session"] = session
+            
+            userDict["facebookUserId"] = facebookUserId
+            userDict["guestUserId"] = guestUserId
+            userDict["gamecenterUserId"] = gamecenterUserId
+            userList.append(userDict)
+            UserDefaults.standard.set(userList, forKey: USER_LIST_NAME)
+            UserDefaults.standard.synchronize()
         }
     }
     

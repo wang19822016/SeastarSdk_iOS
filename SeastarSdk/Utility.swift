@@ -24,7 +24,10 @@ func deviceInfo() -> String {
 }
 
 func locale() -> String {
-    return UserDefaults.standard.object(forKey: "AppleLanguages") as? String ?? ""
+    //return UserDefaults.standard.object(forKey: "AppleLanguages") as? String ?? ""
+    let languages = NSLocale.preferredLanguages;
+    return languages[0];
+    
 }
 
 func md5(string data: String) -> String {
@@ -33,9 +36,11 @@ func md5(string data: String) -> String {
 
 func hud(hudString :String,hudView:UIView)
 {
+    DispatchQueue.main.async {
     let hud = MBProgressHUD.showAdded(to: hudView, animated: true);
     hud.mode = MBProgressHUDMode.text;
     hud.label.text = NSLocalizedString(hudString, comment: "");
     hud.offset = CGPoint(x: 0.0, y: MBProgressMaxOffset)
     hud .hide(animated: true, afterDelay: 3.0);
+    }
 }

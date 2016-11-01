@@ -34,10 +34,11 @@ class MainPortraitViewController: BaseViewController {
         GuestLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         GuestLabel.text = NSLocalizedString("Guest", comment: "");
         SeastarLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
-        SeastarLabel.text = NSLocalizedString("SeastarLogin", comment: "");
+        SeastarLabel.text = NSLocalizedString("Seastar", comment: "");
         FacebookLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         FacebookLabel.text = NSLocalizedString("Facebook", comment: "");
         LoginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
+        LoginTypeLabel.text = NSLocalizedString("SelectLoginType", comment: "");
     }
     
     

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        SeastarSdk.current.initialize(viewController: (window?.rootViewController)!, orientation: Orientation.landscape);
+        SeastarSdk.current.initialize(viewController: (window?.rootViewController)!, orientation: Orientation.portrait);
         return SeastarSdk.current.application(application, didFinishLaunchingWithOptions: launchOptions);
     }
     

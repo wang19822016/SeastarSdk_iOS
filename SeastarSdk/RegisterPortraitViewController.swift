@@ -46,15 +46,15 @@ class RegisterPortraitViewController: BaseViewController,UITextFieldDelegate {
     override func initView() {
         makeBounds(backgroundImageView.layer);
         adminTextField.placeholder = NSLocalizedString("PleaseInputSeastarAccount", comment: "");
-        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+//        adminTextField.setValue(UIColor(red: 4/255, green: 66/255, blue: 81/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         adminTextField.delegate = self;
         
         passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
-        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+//        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         passwordTextField.delegate = self;
         
         emailTextField.placeholder = NSLocalizedString("PleaseInputEmail(Option)", comment: "");
-        emailTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+//        emailTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         emailTextField.delegate = self;
         
         registerBtn.setTitle(NSLocalizedString("Register", comment: ""), for: UIControlState.normal);

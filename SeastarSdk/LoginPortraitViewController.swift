@@ -70,26 +70,26 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
         }
         comboBox.editable = true //禁止编辑
         comboBox.showBorder = false //不显示边框
-        comboBox.placeholder = "占位符号"
+        comboBox.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
         //comboBax.delegate = self //设置代理
         comboBox.options = optionsArray
         
         passwordTextField.delegate = self
-        passwordTextField.placeholder = NSLocalizedString("pleaseInputPassword", comment: "");
-        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+        passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
+//        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         passwordTextField.delegate = self;
         
         Loginbtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         Loginbtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
-        let title = NSMutableAttributedString(string: NSLocalizedString("ForgetPassword", comment: ""));
+        let title = NSMutableAttributedString(string: NSLocalizedString("Forget", comment: ""));
         let titleRange = NSRange(location: 0,length: title.length);
         let num = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title.addAttribute(NSUnderlineStyleAttributeName, value: num, range: titleRange);
         ForgetBtn.setAttributedTitle(title, for: UIControlState.normal);
         ForgetBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
         
-        let title1 = NSMutableAttributedString(string: NSLocalizedString("RegisterAccount", comment: ""));
+        let title1 = NSMutableAttributedString(string: NSLocalizedString("Register", comment: ""));
         let titleRange1 = NSRange(location: 0,length: title.length);
         let num1 = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
         title1.addAttribute(NSUnderlineStyleAttributeName, value: num1, range: titleRange1);

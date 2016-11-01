@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  SeastarSdk_iOS
+
+  Created by seastar on 16/11/1.
+
+*/
+
+"Guest" = "Guest";
+"Seastar" = "Seastar";
+"Facebook" = "Facebook";
+"Login" = "登录";
+"Forget" = "忘记密码";
+"Register" = "注册帐号";
+"LoginFalse" = "登录失败";
+"RegsiterFalse" = "注册失败";
+"FindSuccess" = "找回成功";
+"FindPassword" = "找回密码";
+"NoticeLabel" = "密码将被发送到该账户注册时绑定的邮箱,如有疑问请联系客服信箱:vrseastar@vrseastar.com";
+"SelectLoginType" = "请选择登录方式";
+"PleaseInputAccount" = "请输入用户名";
+"PleaseInputPassword" = "请输入密码";
+"PleaseInputSeastarAccount" = "请输入海星帐号";
+"PleaseInputEmail(Option)" = "请输入邮箱(可选)";
