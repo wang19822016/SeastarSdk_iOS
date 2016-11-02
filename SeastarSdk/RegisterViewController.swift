@@ -10,6 +10,9 @@ import UIKit
 
 class RegisterViewController: BaseViewController,UITextFieldDelegate {
     
+    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle:
+        UIActivityIndicatorViewStyle.gray);
+    
     @IBAction func backBtnClick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);
     }
@@ -24,7 +27,9 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate {
     @IBOutlet var registerBtn: UIButton!
     
     @IBAction func registerBtnClick(_ sender: AnyObject) {
+        indicatorView.startAnimating();
         UserViewModel.current.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, opType: LoginOPType.REGISTER, success: { (Myusermodel:UserModel) in
+            self.indicatorView.stopAnimating();
             let LoginVC = self.presentingViewController as! LoginViewController;
             let MainVC = LoginVC.presentingViewController as! MainLoginViewController;
             self.dismiss(animated: false, completion: { 
@@ -33,13 +38,17 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate {
                     MainVC.dismiss(animated: false, completion: nil);
                 })
             })
-            }) { 
+            }) {
+                 self.indicatorView.stopAnimating();
                 hud(hudString: "RegsiterFalse", hudView: self.view);
         }
     }
 
     override func initView()
     {
+        indicatorView.center = view.center;
+        view.addSubview(indicatorView);
+
         makeBounds(backgroundImage.layer)
         
         adminTextField.placeholder = NSLocalizedString("PleaseInputSeastarAccount", comment: "");

@@ -24,6 +24,7 @@ struct PurchaseModel {
     var session: String = ""
     var price: String = ""
     var currency: String = ""
+    var serverId: String = ""
     
     func save() {
         var purchases = UserDefaults.standard.dictionary(forKey: PURCHASE_MODEL_NAME) ?? [String : Any]()
@@ -34,11 +35,12 @@ struct PurchaseModel {
         purchase["extra"] = extra
         purchase["applicationUsername"] = applicationUsername
         purchase["transactionIdentifier"] = transactionIdentifier
-        purchase["recepit"] = receipt
+        purchase["receipt"] = receipt
         purchase["userId"] = userId
         purchase["session"] = session
         purchase["price"] = price
         purchase["currency"] = currency
+        purchase["serverId"] = serverId
         
         purchases[applicationUsername] = purchase
         
@@ -49,7 +51,7 @@ struct PurchaseModel {
     mutating func load(applicationUsername: String) -> Bool {
         if let purchases = UserDefaults.standard.dictionary(forKey: PURCHASE_MODEL_NAME) {
             if let purchase = (purchases[applicationUsername] as? [String : Any]) {
-                roleId = (purchase["roldId"] as? String) ?? ""
+                roleId = (purchase["roleId"] as? String) ?? ""
                 productIdentifier = (purchase["productIdentifier"] as? String) ?? ""
                 extra = (purchase["extra"] as? String) ?? ""
                 self.applicationUsername = (purchase["applicationUsername"] as? String) ?? ""
@@ -59,6 +61,7 @@ struct PurchaseModel {
                 session = (purchase["session"] as? String) ?? ""
                 price = (purchase["price"] as? String) ?? ""
                 currency = (purchase["currency"] as? String) ?? ""
+                serverId = (purchase["serverId"] as? String) ?? ""
                 
                 return true
             }
@@ -95,7 +98,7 @@ struct PurchaseModel {
             for (_, value) in purchases {
                 if let purchase = (value as? [String : Any]) {
                     var model = PurchaseModel()
-                    model.roleId = (purchase["roldId"] as? String) ?? ""
+                    model.roleId = (purchase["roleId"] as? String) ?? ""
                     model.productIdentifier = (purchase["productIdentifier"] as? String) ?? ""
                     model.extra = (purchase["extra"] as? String) ?? ""
                     model.applicationUsername = (purchase["applicationUsername"] as? String) ?? ""
@@ -105,6 +108,7 @@ struct PurchaseModel {
                     model.session = (purchase["session"] as? String) ?? ""
                     model.price = (purchase["price"] as? String) ?? ""
                     model.currency = (purchase["currency"] as? String) ?? ""
+                    model.serverId = (purchase["serverId"] as? String) ?? ""
                     
                     purchaseArray.append(model)
                 }

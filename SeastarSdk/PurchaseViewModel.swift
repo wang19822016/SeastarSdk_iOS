@@ -14,12 +14,13 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     static let current = PurchaseViewModel()
     
-    var productIdentifiers: Set<IAPHelper.ProductIdentifier> = Set<IAPHelper.ProductIdentifier>()
+    var productIdentifiers: Set<ProductIdentifier> = Set<ProductIdentifier>()
     var purchaseSuccess: SuccessCB? = nil
     var purchaseFailure: FailureCB? = nil
     
     func initialize() {
         IAPHelper.current.addListener()
+        IAPHelper.current.delegate = self;
     }
     
     func destroy() {
@@ -27,7 +28,7 @@ class PurchaseViewModel : IAPHelperDelegate {
     }
     
     // 如果失败，再请求一次
-    func requestProducts(productIdentifiers: Set<IAPHelper.ProductIdentifier>) {
+    func requestProducts(productIdentifiers: Set<ProductIdentifier>) {
         self.productIdentifiers = productIdentifiers
         
         IAPHelper.current.requestProducts(productIdentifiers: self.productIdentifiers) { success in
@@ -52,18 +53,19 @@ class PurchaseViewModel : IAPHelperDelegate {
                 let req: [String : Any] = [
                     "appId" : app.appId,
                     "userId" : purchase.userId,
-                    "appleOrder" : purchase.transactionIdentifier,
+                    "transactionId" : purchase.transactionIdentifier,
                     "session" : purchase.session,
                     "productId": purchase.productIdentifier,
                     "receipt" : purchase.receipt,
                     "gameRoleId": purchase.roleId,
                     "cparam": purchase.extra,
                     "price": purchase.price,
+                    "serverId":purchase.serverId,
                     "currencyCode": purchase.currency
                 ]
                 
                 Log("verify: userId:\(purchase.userId) appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
-                Network.post(url: app.serverUrl, json: req, success: { result in
+                Network.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
                     // 验证成功，清除数据
                     purchase.remove()
                     Log("verify: \(result["code"]) \(result["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
@@ -75,9 +77,9 @@ class PurchaseViewModel : IAPHelperDelegate {
     }
 
     
-    func doPurchase(productId: String, roleId: String, extra: String, purchaseSuccess: @escaping SuccessCB, purchaseFailure: @escaping FailureCB) {
+    func doPurchase(productId: String, roleId: String, serverId: String, extra: String, purchaseSuccess: @escaping SuccessCB, purchaseFailure: @escaping FailureCB) {
         var user = UserModel()
-        if user.loadCurrentUser() {
+        if !user.loadCurrentUser() {
             purchaseFailure(productId)
             
             return
@@ -99,9 +101,11 @@ class PurchaseViewModel : IAPHelperDelegate {
             purchase.extra = extraB64String
             purchase.session = user.session
             purchase.userId = user.userId
-            purchase.price = formatter.string(from: product.price)!
-            purchase.currency = product.priceLocale.identifier
-            purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 1000)
+            purchase.serverId = serverId
+            purchase.price = String(describing: product.price)
+            let index = product.priceLocale.identifier.index(product.priceLocale.identifier.endIndex, offsetBy: -3);
+            purchase.currency = product.priceLocale.identifier.substring(from: index);
+            purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
             purchase.save()
             
             self.purchaseSuccess = purchaseSuccess
@@ -125,9 +129,10 @@ class PurchaseViewModel : IAPHelperDelegate {
                         purchase.extra = extraB64String
                         purchase.session = user.session
                         purchase.userId = user.userId
+                        purchase.serverId = serverId
                         purchase.price = formatter.string(from: product.price)!
                         purchase.currency = product.priceLocale.identifier
-                        purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 1000)
+                        purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
                         purchase.save()
                         
                         self.purchaseSuccess = purchaseSuccess
@@ -156,30 +161,30 @@ class PurchaseViewModel : IAPHelperDelegate {
                     purchase.transactionIdentifier = transactionIdentifier
                     purchase.receipt = receipt
                     purchase.save()
-                    
                     let app = AppModel()
                     if app.load() {
                         let req: [String : Any] = [
                             "appId" : app.appId,
                             "userId" : purchase.userId,
-                            "appleOrder" : purchase.transactionIdentifier,
+                            "transactionId" : purchase.transactionIdentifier,
                             "session" : purchase.session,
                             "productId": purchase.productIdentifier,
                             "receipt" : receipt,
                             "gameRoleId": purchase.roleId,
                             "cparam": purchase.extra,
                             "price": purchase.price,
-                            "currencyCode": purchase.currency
+                            "currencyCode": purchase.currency,
+                            "serverId": purchase.serverId
                         ]
                         
                         Log("verify: \(purchase.userId) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        Network.post(url: app.serverUrl, json: req, success: { result in
+                        Network.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
                             let code: Int = (result["code"] as? Int) ?? 0
                             let order: String = (result["order"] as? String) ?? ""
                             // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了
                             purchase.remove()
                             
-                            if code == 1 {
+                            if code == 0 {
                                 Log("verify: ok, \(purchase.transactionIdentifier) \(purchase.productIdentifier) \(order)")
                                 self.purchaseSuccess?(productIdentifier, order)
                                 self.purchaseSuccess = nil
@@ -222,7 +227,6 @@ class PurchaseViewModel : IAPHelperDelegate {
                 PurchaseModel.remove(applicationUsername: applicationUsername)
             }
             Log("verify: purchase fail, \(transactionIdentifier) \(productIdentifier)")
-            self.purchaseFailure?(productIdentifier)
             self.purchaseFailure?(productIdentifier)
             self.purchaseSuccess = nil
             self.purchaseFailure = nil

@@ -11,6 +11,9 @@ import UIKit
 
 class MainLoginViewController: BaseViewController {
     
+    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle:
+        UIActivityIndicatorViewStyle.gray);
+    
     @IBOutlet var backGroundImage: UIImageView!
     
     @IBOutlet var loginTypeLabel: UILabel!
@@ -27,6 +30,10 @@ class MainLoginViewController: BaseViewController {
     
     override func initView()
     {
+        indicatorView.center = view.center;
+        view.addSubview(indicatorView);
+
+        
         makeBounds(backGroundImage.layer)
         
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
@@ -40,11 +47,14 @@ class MainLoginViewController: BaseViewController {
     }
     
     @IBAction func guestLogin(_ sender: AnyObject) {
+        indicatorView.startAnimating();
         UserViewModel.current.doGuestLogin(success: { userModel in
+            self.indicatorView.stopAnimating();
             self.dismiss(animated: true) {
                 self.loginSuccess?(userModel)
             }
             }, failure: {
+                self.indicatorView.stopAnimating();
                 hud(hudString: "LoginFalse", hudView: self.view);
         })
     }

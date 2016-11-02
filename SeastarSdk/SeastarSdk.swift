@@ -41,12 +41,12 @@ public class SeastarSdk : NSObject {
     }
     
     // 请求支付商品，需要在合适的地方调用，可以缩短每次支付消耗的时间
-    func requestSku(productIdentifiers: Set<IAPHelper.ProductIdentifier>) {
+    public func requestSku(productIdentifiers: Set<ProductIdentifier>) {
         PurchaseViewModel.current.requestProducts(productIdentifiers: productIdentifiers)
     }
     
     // 掉单重处理
-    func checkLeakPurchase() {
+    public func checkLeakPurchase() {
         PurchaseViewModel.current.checkLeakPurchase()
     }
     
@@ -54,7 +54,38 @@ public class SeastarSdk : NSObject {
         var user = UserModel()
         if user.loadCurrentUser() {
             UserViewModel.current.doSessionLogin(usermodel:user,success: {
-                userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { loginFailure() })
+                userModel in loginSuccess(userModel.userId, userModel.session) }, failure: {
+                    if self.myOrientation == Orientation.landscape{
+                        let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                        
+                        let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
+                        
+                        vc.loginSuccess = {(userModel:UserModel) in
+                            loginSuccess(userModel.userId, userModel.session)
+                        }
+                        
+                        vc.loginFailure = {()in
+                            loginFailure();
+                        }
+                        
+                        self.viewController?.present(vc, animated: true, completion: nil)
+                    }else{
+                        let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                        
+                        let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
+                        
+                        vcPortrait.LoginSuccess = {(userModel:UserModel) in
+                            loginSuccess(userModel.userId, userModel.session)
+                        }
+                        
+                        vcPortrait.LoginFailure = {()in
+                            loginFailure();
+                        }
+                        
+                        self.viewController?.present(vcPortrait, animated: true, completion: nil)
+                    }
+                    
+            })
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
             
@@ -94,8 +125,8 @@ public class SeastarSdk : NSObject {
         UserViewModel.current.doLogout()
     }
     
-    public func purchase(productId: String, roleId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
-        PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, extra: extra, purchaseSuccess: {
+    public func purchase(productId: String, roleId: String, serverId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
+        PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, serverId: serverId, extra: extra, purchaseSuccess: {
             order, productIdentifier in
             
             paySuccess(order, productIdentifier)

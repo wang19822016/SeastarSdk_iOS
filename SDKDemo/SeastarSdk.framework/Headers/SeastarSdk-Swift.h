@@ -126,9 +126,11 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) SeastarSdk *
 - (BOOL)application:(UIApplication * _Nonnull)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> * _Nullable)launchOptions;
 - (BOOL)application:(UIApplication * _Nonnull)application open:(NSURL * _Nonnull)url sourceApplication:(NSString * _Nullable)sourceApplication annotation:(id _Nonnull)annotation;
 - (void)applicationDidBecomeActive:(UIApplication * _Nonnull)application;
+- (void)requestSkuWithProductIdentifiers:(NSSet<NSString *> * _Nonnull)productIdentifiers;
+- (void)checkLeakPurchase;
 - (void)loginWithLoginSuccess:(void (^ _Nonnull)(NSInteger, NSString * _Nonnull))loginSuccess loginFailure:(void (^ _Nonnull)(void))loginFailure;
 - (void)logout;
-- (void)purchaseWithProductId:(NSString * _Nonnull)productId roleId:(NSString * _Nonnull)roleId extra:(NSString * _Nonnull)extra paySuccess:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))paySuccess payFailure:(void (^ _Nonnull)(NSString * _Nonnull))payFailure;
+- (void)purchaseWithProductId:(NSString * _Nonnull)productId roleId:(NSString * _Nonnull)roleId serverId:(NSString * _Nonnull)serverId extra:(NSString * _Nonnull)extra paySuccess:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))paySuccess payFailure:(void (^ _Nonnull)(NSString * _Nonnull))payFailure;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

@@ -11,7 +11,7 @@
 import Foundation
 import StoreKit
 
-typealias ProductIdentifier = String
+public typealias ProductIdentifier = String
 
 protocol IAPHelperDelegate {
     func purchasedComplete(_ success: Bool, _ productIdentifier: ProductIdentifier, _ applicationUsername: String, _ transactionIdentifier: String, _ receipt: String)
@@ -22,7 +22,7 @@ class IAPHelper : NSObject {
     
     static let current = IAPHelper()
     
-    typealias ProductIdentifier = String
+//    typealias ProductIdentifier = String
     typealias RequestProductCompletionHandler = (_ success: Bool) -> ()
     
     var delegate: IAPHelperDelegate? = nil

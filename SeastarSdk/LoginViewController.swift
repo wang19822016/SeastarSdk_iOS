@@ -10,6 +10,10 @@ import UIKit
 
 class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDelegate {
     
+    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle:
+        UIActivityIndicatorViewStyle.gray);
+    
+    
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var passwordTextField: UITextField!
     
@@ -25,20 +29,21 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     private var options: [UserModel] = []
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-
+        indicatorView.startAnimating();
         UserViewModel.current.doAccountLogin(username: comboBax.currentContentText,
                                      password: passwordTextField.text!,
                                      email: "",
                                      opType: LoginOPType.Login,
                                      success:
             { (MyuserModel:UserModel) in
-        
+            self.indicatorView.stopAnimating();
             let MainVC = self.presentingViewController as! MainLoginViewController;
             self.dismiss(animated: false, completion: {
                 MainVC.loginSuccess?(MyuserModel)
                 MainVC.dismiss(animated: false, completion: nil);
             });
             }) {
+                self.indicatorView.stopAnimating();
                 hud(hudString: "LoginFalse", hudView: self.view);
         }
         
@@ -51,6 +56,10 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
 
     override func initView()
     {
+        indicatorView.center = view.center;
+        view.addSubview(indicatorView);
+
+        
         makeBounds(backgroundImage.layer)
         
         var optionsArray: [(UIImage, String)] = []
