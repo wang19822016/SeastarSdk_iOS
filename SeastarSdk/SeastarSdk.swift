@@ -16,15 +16,15 @@ public class SeastarSdk : NSObject {
     
     var viewController: UIViewController? = nil
     
-    var myOrientation:Orientation = Orientation.landscape
+    var myOrientation:Bool = true
     
     
-    public func initialize(viewController: UIViewController, orientation:Orientation) {
+    public func initializelll(viewController: UIViewController, landscape:Bool) {
         PurchaseViewModel.current.initialize()
         self.viewController = viewController
-        myOrientation = orientation;
+        myOrientation = landscape;
     }
-    
+
     // 需要切换到Facebook应用或者Safari的应调用下面方法
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         return Facebook.current.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -55,7 +55,7 @@ public class SeastarSdk : NSObject {
         if user.loadCurrentUser() {
             UserViewModel.current.doSessionLogin(usermodel:user,success: {
                 userModel in loginSuccess(userModel.userId, userModel.session) }, failure: {
-                    if self.myOrientation == Orientation.landscape{
+                    if self.myOrientation == true{
                         let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
                         
                         let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
@@ -89,7 +89,7 @@ public class SeastarSdk : NSObject {
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
             
-            if myOrientation == Orientation.landscape{
+            if myOrientation == true{
                 let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
                 
                 let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController

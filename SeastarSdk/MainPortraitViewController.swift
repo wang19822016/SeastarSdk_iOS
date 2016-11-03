@@ -11,7 +11,8 @@ import UIKit
 class MainPortraitViewController: BaseViewController {
 
     
-    
+    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle:
+        UIActivityIndicatorViewStyle.gray);
     
     @IBOutlet var backgroundImageView: UIImageView!
 
@@ -30,6 +31,8 @@ class MainPortraitViewController: BaseViewController {
     
     
     override func initView() {
+        indicatorView.center = view.center;
+        view.addSubview(indicatorView);
         makeBounds(backgroundImageView.layer);
         GuestLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         GuestLabel.text = NSLocalizedString("Guest", comment: "");
@@ -43,11 +46,14 @@ class MainPortraitViewController: BaseViewController {
     
     
     @IBAction func guestLogin(_ sender: AnyObject) {
+        indicatorView.startAnimating();
         UserViewModel.current.doGuestLogin(success: { userModel in
+            self.indicatorView.stopAnimating();
             self.dismiss(animated: true) {
                 self.LoginSuccess?(userModel)
             }
             }, failure: {
+                self.indicatorView.stopAnimating();
                 hud(hudString: "LoginFalse", hudView: self.view);
         })
     }

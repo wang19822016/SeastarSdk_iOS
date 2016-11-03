@@ -10,6 +10,9 @@ import UIKit
 
 class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFieldDelegate {
 
+    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle:
+        UIActivityIndicatorViewStyle.gray);
+    
     @IBOutlet var backgroundImageVIew: UIImageView!
     
     @IBOutlet var comboBox: ComboBox!
@@ -26,19 +29,21 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     
 
     @IBAction func LoginBtnClick(_ sender: AnyObject) {
+        indicatorView.startAnimating();
         UserViewModel.current.doAccountLogin(username: comboBox.currentContentText,
                                              password: passwordTextField.text!,
                                              email: "",
                                              opType: LoginOPType.Login,
                                              success:
             { (MyuserModel:UserModel) in
-                
+                self.indicatorView.stopAnimating();
                 let MainVC = self.presentingViewController as! MainPortraitViewController;
                 self.dismiss(animated: false, completion: {
                     MainVC.LoginSuccess?(MyuserModel)
                     MainVC.dismiss(animated: false, completion: nil);
                 });
         }) {
+            self.indicatorView.stopAnimating();
             hud(hudString: "LoginFalse", hudView: self.view);
         }
 
@@ -51,6 +56,8 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     
     override func initView()
     {
+        indicatorView.center = view.center;
+        view.addSubview(indicatorView);
         makeBounds(backgroundImageVIew.layer)
         
         var optionsArray: [(UIImage, String)] = []
