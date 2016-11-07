@@ -52,45 +52,51 @@ struct UserModel {
     func save() {
         // 获取用户列表词典并更新用户信息
         var userList = UserDefaults.standard.array(forKey: USER_LIST_NAME) ?? []
-        if userList.count > 0 {
-            for (index, user) in userList.enumerated() {
-                if let userDictConst = user as? [String : Any] {
-                    var userDict = userDictConst
-                    if let saveUserId = userDict["userId"] as? Int, saveUserId == userId {
-                        userDict["userId"] = userId
-                        userDict["userName"] = userName
-                        userDict["password"] = password
-                        userDict["email"] = email
-                        userDict["status"] = status
-                        
-                        userDict["session"] = session
-                        
-                        userDict["facebookUserId"] = facebookUserId
-                        userDict["guestUserId"] = guestUserId
-                        userDict["gamecenterUserId"] = gamecenterUserId
-                        
-                        userList[index] = userDict
-                        
-                        UserDefaults.standard.set(userList, forKey: USER_LIST_NAME)
-                        UserDefaults.standard.synchronize()
-                        break
-                    }
-                }
+        var findUser: Bool = false
+        var userDictionary: [String : Any] = [:]
+        for (index, user) in userList.enumerated() {
+            if let userDict = user as? [String : Any],
+                let saveUserId = userDict["userId"] as? Int,
+                saveUserId == userId {
+                
+                userDictionary = userDict
+                userDictionary["userId"] = userId
+                userDictionary["userName"] = userName
+                userDictionary["password"] = password
+                userDictionary["email"] = email
+                userDictionary["status"] = status
+                
+                userDictionary["session"] = session
+                
+                userDictionary["facebookUserId"] = facebookUserId
+                userDictionary["guestUserId"] = guestUserId
+                userDictionary["gamecenterUserId"] = gamecenterUserId
+
+                userList[index] = userDictionary
+                
+                UserDefaults.standard.set(userList, forKey: USER_LIST_NAME)
+                UserDefaults.standard.synchronize()
+
+                findUser = true
+                break;
             }
-        } else {
-            var userDict = [String: Any]()
-            userDict["userId"] = userId
-            userDict["userName"] = userName
-            userDict["password"] = password
-            userDict["email"] = email
-            userDict["status"] = status
-            
-            userDict["session"] = session
-            
-            userDict["facebookUserId"] = facebookUserId
-            userDict["guestUserId"] = guestUserId
-            userDict["gamecenterUserId"] = gamecenterUserId
-            userList.append(userDict)
+        }
+        
+        if !findUser {
+            userDictionary["userId"] = userId
+            userDictionary["userName"] = userName
+            userDictionary["password"] = password
+            userDictionary["email"] = email
+            userDictionary["status"] = status
+        
+            userDictionary["session"] = session
+        
+            userDictionary["facebookUserId"] = facebookUserId
+            userDictionary["guestUserId"] = guestUserId
+            userDictionary["gamecenterUserId"] = gamecenterUserId
+        
+            userList.append(userDictionary)
+        
             UserDefaults.standard.set(userList, forKey: USER_LIST_NAME)
             UserDefaults.standard.synchronize()
         }

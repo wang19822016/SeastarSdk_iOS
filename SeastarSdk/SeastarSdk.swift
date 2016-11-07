@@ -105,20 +105,41 @@ public class SeastarSdk : NSObject {
                 viewController?.present(vc, animated: true, completion: nil)
             }else{
                 let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-                
                 let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
-                
                 vcPortrait.LoginSuccess = {(userModel:UserModel) in
                     loginSuccess(userModel.userId, userModel.session)
                 }
-                
                 vcPortrait.LoginFailure = {()in
                     loginFailure();
                 }
-                
                 viewController?.present(vcPortrait, animated: true, completion: nil)
             }
         }
+    }
+    
+    public func changeAccount(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void)
+    {
+            if myOrientation == Orientation.landscape{
+                let storyboard: UIStoryboard = UIStoryboard(name: "changeAccount", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                let vc: ChangeAccountViewController = storyboard.instantiateInitialViewController()! as! ChangeAccountViewController
+                vc.ChangeAccountloginSuccess = {(userModel:UserModel) in
+                    loginSuccess(userModel.userId, userModel.session)
+                }
+                vc.ChangeAccountloginFailure = {()in
+                    loginFailure();
+                }
+                viewController?.present(vc, animated: true, completion: nil)
+            }else{
+                let storyboardPortrait: UIStoryboard = UIStoryboard(name: "changeAccount_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                let vcPortrait: ChangeAccountPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! ChangeAccountPortraitViewController
+                vcPortrait.ChangeAccountloginSuccess = {(userModel:UserModel) in
+                    loginSuccess(userModel.userId, userModel.session)
+                }
+                vcPortrait.ChangeAccountloginFailure = {()in
+                    loginFailure();
+                }
+                viewController?.present(vcPortrait, animated: true, completion: nil)
+            }
     }
     
     public func logout() {
@@ -128,12 +149,9 @@ public class SeastarSdk : NSObject {
     public func purchase(productId: String, roleId: String, serverId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
         PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, serverId: serverId, extra: extra, purchaseSuccess: {
             order, productIdentifier in
-            
             paySuccess(order, productIdentifier)
-            
             }, purchaseFailure: {
                 productIdentifier in
-                
                 payFailure(productIdentifier)
         })
     }

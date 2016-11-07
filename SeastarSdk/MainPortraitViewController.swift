@@ -9,12 +9,14 @@
 import UIKit
 
 class MainPortraitViewController: BaseViewController {
-
+    
+    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle:
+        UIActivityIndicatorViewStyle.gray);
     
     
     
     @IBOutlet var backgroundImageView: UIImageView!
-
+    
     @IBOutlet var LoginTypeLabel: UILabel!
     
     @IBOutlet var GuestLabel: UILabel!
@@ -30,6 +32,10 @@ class MainPortraitViewController: BaseViewController {
     
     
     override func initView() {
+        
+        indicatorView.center = view.center;
+        view.addSubview(indicatorView);
+        
         makeBounds(backgroundImageView.layer);
         GuestLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         GuestLabel.text = NSLocalizedString("Guest", comment: "");
@@ -43,25 +49,50 @@ class MainPortraitViewController: BaseViewController {
     
     
     @IBAction func guestLogin(_ sender: AnyObject) {
+        indicatorView.startAnimating();
         UserViewModel.current.doGuestLogin(success: { userModel in
-            self.dismiss(animated: true) {
-                self.LoginSuccess?(userModel)
+            self.indicatorView.stopAnimating();
+            let changeVC = self.presentingViewController;
+            if(changeVC is ChangeAccountPortraitViewController){
+                let vc = self.presentingViewController as! ChangeAccountPortraitViewController
+                self.dismiss(animated: false, completion: {
+                    changeVC?.dismiss(animated: false, completion: {
+                        vc.ChangeAccountloginSuccess?(userModel);
+                    })
+                })
+            }else{
+                self.dismiss(animated: false, completion: {
+                    self.LoginSuccess?(userModel);
+                })
             }
             }, failure: {
+                self.indicatorView.stopAnimating();
                 hud(hudString: "LoginFalse", hudView: self.view);
         })
     }
-
+    
     @IBAction func facebookLogin(_ sender: AnyObject) {
+        self.indicatorView.startAnimating();
         UserViewModel.current.doFacebookLogin(viewController: self, success: { userModel in
-            self.dismiss(animated: true)
-            {
-                self.LoginSuccess?(userModel)
+            self.indicatorView.stopAnimating();
+            let changeVC = self.presentingViewController;
+            if(changeVC is ChangeAccountPortraitViewController){
+                let vc = self.presentingViewController as! ChangeAccountPortraitViewController
+                self.dismiss(animated: false, completion: {
+                    changeVC?.dismiss(animated: false, completion: {
+                        vc.ChangeAccountloginSuccess?(userModel);
+                    })
+                })
+            }else{
+                self.dismiss(animated: false, completion: {
+                    self.LoginSuccess?(userModel);
+                })
             }
             }, failure: {
+                self.indicatorView.stopAnimating();
                 hud(hudString: "LoginFalse", hudView: self.view);
         })
-
+        
     }
-
+    
 }

@@ -51,7 +51,7 @@ class BaseViewController: UIViewController {
         let viewDownEdgeY = frame.origin.x + frame.size.height
         let offset = viewDownEdgeY - keyboardY
         UIView.beginAnimations("Resize", context: nil)
-        UIView.setAnimationDuration(0.30)
+        UIView.setAnimationDuration(0.10)
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
         if offset > 0 {
@@ -66,7 +66,7 @@ class BaseViewController: UIViewController {
     // 传入要移动控件的frame
     func moveDown() {
         UIView.beginAnimations("resize", context: nil)
-        UIView.setAnimationDuration(0.30)
+        UIView.setAnimationDuration(0.10)
         let rect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.frame = rect
         UIView.commitAnimations()
@@ -78,7 +78,7 @@ class BaseViewController: UIViewController {
         self.view.endEditing(true)
         if isUped {
             UIView.beginAnimations("resize", context: nil)
-            UIView.setAnimationDuration(0.30)
+            UIView.setAnimationDuration(0.10)
             let rect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.view.frame = rect
             UIView.commitAnimations()

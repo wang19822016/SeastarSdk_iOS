@@ -9,7 +9,10 @@
 import UIKit
 
 class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFieldDelegate {
-
+    
+    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle:
+        UIActivityIndicatorViewStyle.gray);
+    
     @IBOutlet var backgroundImageVIew: UIImageView!
     
     @IBOutlet var comboBox: ComboBox!
@@ -24,33 +27,49 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     
     private var options: [UserModel] = []
     
-
+    
     @IBAction func LoginBtnClick(_ sender: AnyObject) {
+        indicatorView.startAnimating();
         UserViewModel.current.doAccountLogin(username: comboBox.currentContentText,
                                              password: passwordTextField.text!,
                                              email: "",
                                              opType: LoginOPType.Login,
                                              success:
             { (MyuserModel:UserModel) in
-                
+                self.indicatorView.stopAnimating();
                 let MainVC = self.presentingViewController as! MainPortraitViewController;
-                self.dismiss(animated: false, completion: {
-                    MainVC.LoginSuccess?(MyuserModel)
-                    MainVC.dismiss(animated: false, completion: nil);
-                });
+                let changeVC = MainVC.presentingViewController;
+                if(changeVC is ChangeAccountPortraitViewController){
+                    let vc = MainVC.presentingViewController as! ChangeAccountPortraitViewController;
+                    self.dismiss(animated: false, completion: {
+                        MainVC.dismiss(animated: false, completion: {
+                            changeVC?.dismiss(animated: false, completion: {
+                                vc.ChangeAccountloginSuccess?(MyuserModel);
+                            })
+                        })
+                    })
+                }else{
+                    self.dismiss(animated: false, completion: {
+                        MainVC.dismiss(animated: false, completion: {
+                            MainVC.LoginSuccess?(MyuserModel);
+                        })
+                    })
+                }
         }) {
+            self.indicatorView.stopAnimating();
             hud(hudString: "LoginFalse", hudView: self.view);
         }
-
-        
     }
-
+    
     @IBAction func backBtnClick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);
     }
     
     override func initView()
     {
+        indicatorView.center = view.center;
+        view.addSubview(indicatorView);
+        
         makeBounds(backgroundImageVIew.layer)
         
         var optionsArray: [(UIImage, String)] = []
@@ -71,12 +90,12 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
         comboBox.editable = true //禁止编辑
         comboBox.showBorder = false //不显示边框
         comboBox.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
-        //comboBax.delegate = self //设置代理
+        comboBox.delegate = self //设置代理
         comboBox.options = optionsArray
         
         passwordTextField.delegate = self
         passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
-//        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+        //        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         passwordTextField.delegate = self;
         
         Loginbtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
@@ -97,7 +116,7 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
         registerBtn.setTitleColor(UIColor(red: 58/255, green: 140/255, blue: 224/255, alpha: 1), for: UIControlState.normal);
         
     }
-
+    
     
     
     func selectOption(didChoose index: Int) {

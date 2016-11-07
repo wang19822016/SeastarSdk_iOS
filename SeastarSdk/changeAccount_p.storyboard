@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Hf2-A1-3MK">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Change Account Portrait View Controller-->
+        <scene sceneID="ab4-Hm-CVY">
+            <objects>
+                <viewController id="Hf2-A1-3MK" customClass="ChangeAccountPortraitViewController" customModule="SeastarSdk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BSi-B4-hDN"/>
+                        <viewControllerLayoutGuide type="bottom" id="JRM-eR-aRZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HbC-JY-h60">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QbH-Aa-6Sc">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="rK0-gx-nYm"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Fz-jL-zxG">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="r1U-pX-DFB"/>
+                                            <constraint firstAttribute="width" constant="126" id="sSc-Vv-x1M"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9l-Xa-ZSA" customClass="ComboBox" customModule="SeastarSdk" customModuleProvider="target">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="296" id="Irz-es-q29"/>
+                                            <constraint firstAttribute="height" constant="36" id="jXS-Hn-Rwi"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="dropDownImage" value="down_p.png"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="backgroundImage" value="kuang_highlighted_p.png"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="cancel_p.png"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yps-2M-0Vt">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="296" id="tig-qX-QKP"/>
+                                            <constraint firstAttribute="height" constant="36" id="wNd-sd-hmu"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="buton_p.png"/>
+                                        <connections>
+                                            <action selector="loginBtnClick:" destination="Hf2-A1-3MK" eventType="touchUpInside" id="QFT-xc-MD1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYz-oC-gUh">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="119" id="cEQ-JP-96D"/>
+                                            <constraint firstAttribute="height" constant="23" id="tGJ-b0-vl2"/>
+                                        </constraints>
+                                        <state key="normal" title="OtherAccount"/>
+                                        <connections>
+                                            <segue destination="Zbo-QP-8BO" kind="presentation" id="gDg-wi-cHd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="rK0-gx-nYm" secondAttribute="trailing" id="4wP-Jx-gQh"/>
+                                    <constraint firstAttribute="width" constant="334" id="5Ev-Xx-CkA"/>
+                                    <constraint firstAttribute="trailing" secondItem="gYz-oC-gUh" secondAttribute="trailing" constant="19" id="DND-ZX-bIK"/>
+                                    <constraint firstItem="6Fz-jL-zxG" firstAttribute="top" secondItem="QbH-Aa-6Sc" secondAttribute="top" constant="12" id="Ehn-I2-mHt"/>
+                                    <constraint firstItem="6Fz-jL-zxG" firstAttribute="centerX" secondItem="QbH-Aa-6Sc" secondAttribute="centerX" id="GEk-oh-wWI"/>
+                                    <constraint firstItem="Yps-2M-0Vt" firstAttribute="centerX" secondItem="QbH-Aa-6Sc" secondAttribute="centerX" id="LfI-U7-eUe"/>
+                                    <constraint firstItem="rK0-gx-nYm" firstAttribute="top" secondItem="QbH-Aa-6Sc" secondAttribute="top" id="Pz0-qE-KE9"/>
+                                    <constraint firstItem="e9l-Xa-ZSA" firstAttribute="top" secondItem="6Fz-jL-zxG" secondAttribute="bottom" constant="12" id="eNR-VZ-gYS"/>
+                                    <constraint firstAttribute="height" constant="226" id="gA1-oo-2Bo"/>
+                                    <constraint firstItem="e9l-Xa-ZSA" firstAttribute="centerX" secondItem="QbH-Aa-6Sc" secondAttribute="centerX" id="j0s-2K-bjX"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yps-2M-0Vt" secondAttribute="bottom" constant="61" id="lNP-55-9cb"/>
+                                    <constraint firstAttribute="bottom" secondItem="gYz-oC-gUh" secondAttribute="bottom" constant="19" id="na1-cB-cJK"/>
+                                    <constraint firstItem="rK0-gx-nYm" firstAttribute="leading" secondItem="QbH-Aa-6Sc" secondAttribute="leading" id="nrq-VN-2b3"/>
+                                    <constraint firstAttribute="bottom" secondItem="rK0-gx-nYm" secondAttribute="bottom" id="yMS-fH-orA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="QbH-Aa-6Sc" firstAttribute="centerY" secondItem="HbC-JY-h60" secondAttribute="centerY" id="CN6-zX-FuA"/>
+                            <constraint firstItem="QbH-Aa-6Sc" firstAttribute="centerX" secondItem="HbC-JY-h60" secondAttribute="centerX" id="D0Q-gy-Xj8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="changeBtn" destination="gYz-oC-gUh" id="jPc-HJ-WZb"/>
+                        <outlet property="comboBox" destination="e9l-Xa-ZSA" id="mu3-Yi-KRH"/>
+                        <outlet property="loginBtn" destination="Yps-2M-0Vt" id="nLl-nb-Gmr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5J6-1Q-ycg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53.600000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--seastar_p-->
+        <scene sceneID="kqu-F5-sHO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="seastar_p" id="Zbo-QP-8BO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YGt-6e-gv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="697" y="136"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background_p.png" width="668" height="452"/>
+        <image name="buton_p.png" width="592" height="72"/>
+        <image name="cancel_p.png" width="80" height="80"/>
+        <image name="down_p.png" width="80" height="80"/>
+        <image name="kuang_highlighted_p.png" width="592" height="72"/>
+        <image name="logo_p.png" width="249" height="81"/>
+    </resources>
+</document>

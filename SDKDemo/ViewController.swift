@@ -28,6 +28,14 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func changeAccount(_ sender: AnyObject) {
+        SeastarSdk.current.changeAccount(loginSuccess: { (int:Int, string:String) in
+            print("loginSuccess")
+            print(int,string)
+            }) { 
+                print("loginFalse");
+        }
+    }
     @IBAction func logout(_ sender: AnyObject) {
         SeastarSdk.current.logout();
     }

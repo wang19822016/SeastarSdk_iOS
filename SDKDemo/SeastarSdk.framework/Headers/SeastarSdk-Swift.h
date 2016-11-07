@@ -129,6 +129,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) SeastarSdk *
 - (void)requestSkuWithProductIdentifiers:(NSSet<NSString *> * _Nonnull)productIdentifiers;
 - (void)checkLeakPurchase;
 - (void)loginWithLoginSuccess:(void (^ _Nonnull)(NSInteger, NSString * _Nonnull))loginSuccess loginFailure:(void (^ _Nonnull)(void))loginFailure;
+- (void)changeAccountWithLoginSuccess:(void (^ _Nonnull)(NSInteger, NSString * _Nonnull))loginSuccess loginFailure:(void (^ _Nonnull)(void))loginFailure;
 - (void)logout;
 - (void)purchaseWithProductId:(NSString * _Nonnull)productId roleId:(NSString * _Nonnull)roleId serverId:(NSString * _Nonnull)serverId extra:(NSString * _Nonnull)extra paySuccess:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))paySuccess payFailure:(void (^ _Nonnull)(NSString * _Nonnull))payFailure;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;

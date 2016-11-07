@@ -31,34 +31,46 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         indicatorView.startAnimating();
         UserViewModel.current.doAccountLogin(username: comboBax.currentContentText,
-                                     password: passwordTextField.text!,
-                                     email: "",
-                                     opType: LoginOPType.Login,
-                                     success:
+                                             password: passwordTextField.text!,
+                                             email: "",
+                                             opType: LoginOPType.Login,
+                                             success:
             { (MyuserModel:UserModel) in
-            self.indicatorView.stopAnimating();
-            let MainVC = self.presentingViewController as! MainLoginViewController;
-            self.dismiss(animated: false, completion: {
-                MainVC.loginSuccess?(MyuserModel)
-                MainVC.dismiss(animated: false, completion: nil);
-            });
-            }) {
                 self.indicatorView.stopAnimating();
-                hud(hudString: "LoginFalse", hudView: self.view);
+                let MainVC = self.presentingViewController as! MainLoginViewController;
+                let changeVC = MainVC.presentingViewController;
+                if(changeVC is ChangeAccountViewController){
+                    let vc = MainVC.presentingViewController as! ChangeAccountViewController;
+                    self.dismiss(animated: false, completion: { 
+                        MainVC.dismiss(animated: false, completion: { 
+                            changeVC?.dismiss(animated: false, completion: { 
+                                vc.ChangeAccountloginSuccess?(MyuserModel);
+                            })
+                        })
+                    })
+                }else{
+                    self.dismiss(animated: false, completion: { 
+                        MainVC.dismiss(animated: false, completion: { 
+                            MainVC.loginSuccess?(MyuserModel);
+                        })
+                    })
+                }
+        }) {
+            self.indicatorView.stopAnimating();
+            hud(hudString: "LoginFalse", hudView: self.view);
         }
-        
     }
     
     
     @IBAction func backBtnCkick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);
     }
-
+    
     override func initView()
     {
         indicatorView.center = view.center;
         view.addSubview(indicatorView);
-
+        
         
         makeBounds(backgroundImage.layer)
         
@@ -80,13 +92,13 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
         comboBax.editable = true //禁止编辑
         comboBax.showBorder = false //不显示边框
         comboBax.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
-        //comboBax.delegate = self //设置代理
+        comboBax.delegate = self //设置代理
         comboBax.options = optionsArray
         
         passwordTextField.delegate = self
         passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
-
-//        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
+        
+        //        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
         loginBtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
@@ -133,9 +145,9 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
         textField.resignFirstResponder()
         return true
     }
-
+    
     func comboBoxDidBeginEditing() {
-        moveUp(comboBax.frame)
+        self.moveUp(self.comboBax.frame)
     }
     
     func comboBoxDidEndEditing() {

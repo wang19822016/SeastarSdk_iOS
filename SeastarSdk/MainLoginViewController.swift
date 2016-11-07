@@ -50,8 +50,18 @@ class MainLoginViewController: BaseViewController {
         indicatorView.startAnimating();
         UserViewModel.current.doGuestLogin(success: { userModel in
             self.indicatorView.stopAnimating();
-            self.dismiss(animated: true) {
-                self.loginSuccess?(userModel)
+            let changeVC = self.presentingViewController;
+            if(changeVC is ChangeAccountViewController){
+                let vc = self.presentingViewController as! ChangeAccountViewController;
+                self.dismiss(animated: false, completion: { 
+                    vc.dismiss(animated: false, completion: { 
+                        vc.ChangeAccountloginSuccess?(userModel);
+                    })
+                })
+            }else{
+                self.dismiss(animated: false, completion: {
+                    self.loginSuccess?(userModel);
+                })
             }
             }, failure: {
                 self.indicatorView.stopAnimating();
@@ -61,12 +71,24 @@ class MainLoginViewController: BaseViewController {
     
     
     @IBAction func facebookLogin(_ sender: AnyObject) {
+        self.indicatorView.startAnimating();
         UserViewModel.current.doFacebookLogin(viewController: self, success: { userModel in
-            self.dismiss(animated: true)
-            {
-                self.loginSuccess?(userModel)
+            self.indicatorView.stopAnimating();
+            let changeVC = self.presentingViewController;
+            if(changeVC is ChangeAccountViewController){
+                let vc = self.presentingViewController as! ChangeAccountViewController;
+                self.dismiss(animated: false, completion: {
+                    vc.dismiss(animated: false, completion: {
+                        vc.ChangeAccountloginSuccess?(userModel);
+                    })
+                })
+            }else{
+                self.dismiss(animated: false, completion: {
+                    self.loginSuccess?(userModel);
+                })
             }
             }, failure: {
+                self.indicatorView.stopAnimating();
                 hud(hudString: "LoginFalse", hudView: self.view);
         })
         
