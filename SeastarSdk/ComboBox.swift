@@ -53,11 +53,12 @@ protocol ComboBoxDelegate: class {
             var width = self.frame.size.height - 2 * ComboBox.TOP_BOTTOM_MARIGN
             let height = self.frame.size.height - 2 * ComboBox.TOP_BOTTOM_MARIGN
             
-            imageView?.frame = CGRect(x: posX, y: posY, width: width, height: height)
+            //imageView?.frame = CGRect(x: posX, y: posY, width: width, height: height)
             
             // 上下间隔3pt, 间隔head 3pt
-            posX = posX + width + ComboBox.HORIZONTAL_GAP
-            width = self.frame.size.width - posX - ComboBox.HORIZONTAL_GAP - ComboBox.LEFT_RIGHT_MARIGN - (self.frame.size.height - 2 * ComboBox.TOP_BOTTOM_MARIGN)
+            //posX = posX + width + ComboBox.HORIZONTAL_GAP
+            //width = self.frame.size.width - posX - ComboBox.HORIZONTAL_GAP - ComboBox.LEFT_RIGHT_MARIGN - (self.frame.size.height - 2 * ComboBox.TOP_BOTTOM_MARIGN)
+            width = self.frame.size.width - posX - ComboBox.HORIZONTAL_GAP - (self.frame.size.height - 2 * ComboBox.TOP_BOTTOM_MARIGN);
             textLabel?.frame = CGRect(x: posX, y: posY, width: width, height: height)
             
             // 上下间隔3pt，间隔左侧3pt，间隔右侧5pt，宽高相等
@@ -152,17 +153,18 @@ protocol ComboBoxDelegate: class {
     weak var delegate: ComboBoxDelegate?
     
     // 数据
-    var options:[(img:UIImage, text:String)] = [] {
+    var options:[String] = [] {
         didSet {
             if options.count > 0 {
                 currentRow = 0
-                head.image = options[0].img
-                content.text = options[0].text
+                //head.image = options[0].0
+                content.text = options[0]
                 tableView.reloadData()
             }
         }
     }
-    
+
+    var optionsString:[UIImage] = [];
     // 其他属性
     // 当前在文本框内显示的是哪一行
     fileprivate var currentRow: Int = 0
@@ -191,8 +193,8 @@ protocol ComboBoxDelegate: class {
         addSubview(background)
         
         // 头像
-        head = UIImageView(frame: CGRect.zero)
-        addSubview(head)
+//        head = UIImageView(frame: CGRect.zero)
+//        addSubview(head)
         
         // 名称
         content = UITextField(frame: CGRect.zero)
@@ -267,13 +269,13 @@ protocol ComboBoxDelegate: class {
         let posY = ComboBox.TOP_BOTTOM_MARIGN
         var width = rowHeight - 2 * ComboBox.TOP_BOTTOM_MARIGN
         let height = rowHeight - 2 * ComboBox.TOP_BOTTOM_MARIGN
-        head.frame = CGRect(x: posX, y: posY, width: width, height: height)
+        //head.frame = CGRect(x: posX, y: posY, width: width, height: height)
         
         // 上下间隔3pt, 间隔head 3pt
-        posX = posX + width + ComboBox.HORIZONTAL_GAP
-        width = rowWidth - posX - ComboBox.HORIZONTAL_GAP - ComboBox.LEFT_RIGHT_MARIGN - (rowHeight - 2 * ComboBox.TOP_BOTTOM_MARIGN)
+        //posX = posX + width + ComboBox.HORIZONTAL_GAP
+        //width = rowWidth - posX - ComboBox.HORIZONTAL_GAP - ComboBox.LEFT_RIGHT_MARIGN - (rowHeight - 2 * ComboBox.TOP_BOTTOM_MARIGN)
+        width = rowWidth - posX - ComboBox.HORIZONTAL_GAP - (rowHeight - 2 * ComboBox.TOP_BOTTOM_MARIGN)
         content.frame = CGRect(x: posX, y: posY, width: width, height: height)
-        
         // 上下间隔3pt，间隔左侧3pt，间隔右侧5pt，宽高相等
         posX = posX + width + ComboBox.HORIZONTAL_GAP
         width = rowHeight - ComboBox.TOP_BOTTOM_MARIGN
@@ -312,7 +314,7 @@ protocol ComboBoxDelegate: class {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CustomTableViewCell
         if cell == nil {
             cell = CustomTableViewCell(style: .default, reuseIdentifier: "cell")
-            cell?.textLabel?.text = options[indexPath.row].text
+            cell?.textLabel?.text = options[indexPath.row]
             cell?.textLabel?.font = font
             cell?.textLabel?.textColor = textColor
             
@@ -324,10 +326,10 @@ protocol ComboBoxDelegate: class {
             button.setImage(optionImage, for: .highlighted)
             cell?.accessoryView = button
             
-            cell?.imageView!.image = options[indexPath.row].img
+            //cell?.imageView!.image = options[indexPath.row].0
         } else {
-            cell?.textLabel?.text = options[indexPath.row].text
-            cell?.imageView!.image = options[indexPath.row].img
+            cell?.textLabel?.text = options[indexPath.row]
+           //cell?.imageView!.image = options[indexPath.row].0
         }
         
         return cell!
@@ -338,8 +340,8 @@ protocol ComboBoxDelegate: class {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        content.text = options[indexPath.row].text
-        head.image = options[indexPath.row].img
+        content.text = options[indexPath.row]
+        //head.image = options[indexPath.row].0
         currentRow = indexPath.row
         
         self.delegate?.selectOption(didChoose: indexPath.row)
@@ -357,18 +359,18 @@ protocol ComboBoxDelegate: class {
                             // 如果还有数据
                             currentRow = currentRow - 1
                             
-                            head.image = options[currentRow].img
-                            content.text = options[currentRow].text
+                            //head.image = options[currentRow].0
+                            content.text = options[currentRow]
                         } else {
                             // 已经没有数据了
-                            head.image = nil
+                            //head.image = nil
                             content.text = nil
                         }
                     } else {
                         // 不是删除的最后一行，则使用下一个来显示，currentRow不必移动
                         
-                        head.image = options[currentRow + 1].img
-                        content.text = options[currentRow + 1].text
+                        //head.image = options[currentRow + 1].0
+                        content.text = options[currentRow + 1]
                     }
                 }
                 options.remove(at: indexPath.row)

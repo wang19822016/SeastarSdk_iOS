@@ -12,6 +12,9 @@ class BaseViewController: UIViewController {
     
     private var isUped: Bool = false
 
+    let indView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge);
+    let customView = UIView();
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -28,8 +31,27 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView();
+        
+        customView.frame = view.frame;
+        customView.backgroundColor = UIColor.gray
+        customView.alpha = 0.3;
+        indView.center = customView.center;
     }
-
+    
+    func startCustomView()
+    {
+        view.addSubview(customView);
+        customView.addSubview(indView);
+        indView.startAnimating();
+    }
+    
+    func stopCustomView()
+    {
+        indView.stopAnimating();
+        indView.removeFromSuperview();
+        customView.removeFromSuperview();
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -46,12 +68,12 @@ class BaseViewController: UIViewController {
     }
     
     func moveUp(_ frame: CGRect) {
-        let keyboardHeight: CGFloat = 216.0 + 35.0 //键盘高度216 键盘上tabbar35
+        let keyboardHeight: CGFloat = 216.0 + 70//+ 35.0 //键盘高度216 键盘上tabbar35
         let keyboardY: CGFloat = self.view.frame.height - keyboardHeight
-        let viewDownEdgeY = frame.origin.x + frame.size.height
+        let viewDownEdgeY = frame.origin.y + frame.size.height
         let offset = viewDownEdgeY - keyboardY
         UIView.beginAnimations("Resize", context: nil)
-        UIView.setAnimationDuration(0.30)
+        UIView.setAnimationDuration(0.10) 
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
         if offset > 0 {
@@ -66,7 +88,7 @@ class BaseViewController: UIViewController {
     // 传入要移动控件的frame
     func moveDown() {
         UIView.beginAnimations("resize", context: nil)
-        UIView.setAnimationDuration(0.30)
+        UIView.setAnimationDuration(0.10)
         let rect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.frame = rect
         UIView.commitAnimations()
@@ -78,7 +100,7 @@ class BaseViewController: UIViewController {
         self.view.endEditing(true)
         if isUped {
             UIView.beginAnimations("resize", context: nil)
-            UIView.setAnimationDuration(0.30)
+            UIView.setAnimationDuration(0.10)
             let rect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.view.frame = rect
             UIView.commitAnimations()
