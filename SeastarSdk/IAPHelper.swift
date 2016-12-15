@@ -22,7 +22,7 @@ class IAPHelper : NSObject {
     
     static let current = IAPHelper()
     
-//    typealias ProductIdentifier = String
+    //    typealias ProductIdentifier = String
     typealias RequestProductCompletionHandler = (_ success: Bool) -> ()
     
     var delegate: IAPHelperDelegate? = nil
@@ -31,18 +31,15 @@ class IAPHelper : NSObject {
     fileprivate var products: Dictionary<ProductIdentifier, SKProduct> = Dictionary<ProductIdentifier, SKProduct>()
     fileprivate var requestProductCompletionHandler: RequestProductCompletionHandler? = nil
     
-    func requestProducts(productIdentifiers: Set<ProductIdentifier>, completionHandler: @escaping RequestProductCompletionHandler)  {
-        if !productIdentifiers.isEmpty {
-            requestProductCompletionHandler = completionHandler
-            
-            productsRequest?.cancel()
-            productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
-            productsRequest!.delegate = self
-            productsRequest!.start()
-        } else {
-            completionHandler(true)
-        }
+    func requestProducts(productIdentifiers: ProductIdentifier, completionHandler: @escaping RequestProductCompletionHandler)  {
+        requestProductCompletionHandler = completionHandler
+        let ProductSet:Set<String> = [productIdentifiers];
+        productsRequest?.cancel()
+        productsRequest = SKProductsRequest(productIdentifiers: ProductSet)
+        productsRequest!.delegate = self
+        productsRequest!.start()
     }
+    
     
     func purchase(productIdentifier: ProductIdentifier, applicationUsername: String) {
         if let product = products[productIdentifier] {

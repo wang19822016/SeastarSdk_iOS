@@ -31,18 +31,14 @@ public class SeastarSdk : NSObject {
     }
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法
-    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return Facebook.current.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any){
+        
+        Facebook.current.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     // 需要fb纪录应用激活事件的调用下面的方法
     public func applicationDidBecomeActive(_ application: UIApplication) {
         Facebook.current.applicationDidBecomeActive(application)
-    }
-    
-    // 请求支付商品，需要在合适的地方调用，可以缩短每次支付消耗的时间
-    public func requestSku(productIdentifiers: Set<ProductIdentifier>) {
-        PurchaseViewModel.current.requestProducts(productIdentifiers: productIdentifiers)
     }
     
     // 掉单重处理

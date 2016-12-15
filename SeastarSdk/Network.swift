@@ -23,7 +23,7 @@ import Foundation
  
  */
 
-class Network {
+class Network{
     private static var TIME_OUT: TimeInterval = 8.0
     
     static func get(url: String, params: Dictionary<String, Any> = Dictionary<String, Any>(), success: @escaping (String) -> Void, failure: @escaping () -> Void) {
@@ -31,6 +31,7 @@ class Network {
         address = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         var request: URLRequest = URLRequest(url: URL(string: address)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
         request.httpMethod = "GET"
+        
         
         
         let task:URLSessionDataTask = URLSession.shared.dataTask(with: request) {
@@ -113,3 +114,7 @@ class Network {
         return address
     }
 }
+
+
+
+

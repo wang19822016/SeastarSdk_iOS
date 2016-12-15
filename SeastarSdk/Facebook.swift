@@ -156,7 +156,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     }
     
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) {
         // 用户轻触邀请中的 Open/Play（打开/试玩）按钮或 Is Ready（准备就绪）安装通知时，将跳转至您的应用。此后将传入应用链接中定义的网址。
         if let parserUrl = BFURL(inboundURL: url, sourceApplication: sourceApplication!) {
             if let appLinkData = parserUrl.appLinkData {
@@ -175,7 +175,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         }
         
         // 需要切换到Facebook应用或者Safari的应调用下面方法
-        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     // 需要fb纪录应用激活事件的调用下面的方法
@@ -384,7 +384,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         if nextFriendInfoPage == nil {
             failure()
         } else {
-            Network.get(url: nextFriendInfoPage!, params: [:], success: { result in
+            MyNetwork.current.get(url: nextFriendInfoPage!, params: [:], success: { result in
                 
                 if let json = try? JSONSerialization.jsonObject(with: result.data(using: .utf8)!, options: .allowFragments),
                     let rootDict = json as? [String : Any] {
@@ -408,7 +408,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         if prevFriendInfoPage == nil {
             failure()
         } else {
-            Network.get(url: prevFriendInfoPage!, params: [:], success: { result in
+            MyNetwork.current.get(url: prevFriendInfoPage!, params: [:], success: { result in
                 if let json = try? JSONSerialization.jsonObject(with: result.data(using: .utf8)!, options: .allowFragments),
                     let rootDict = json as? [String : Any] {
                         success(result)

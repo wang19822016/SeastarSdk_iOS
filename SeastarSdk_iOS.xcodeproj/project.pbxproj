@@ -37,6 +37,7 @@
 		EE37DF341DE8275A00FEF37B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE37DF2F1DE8275A00FEF37B /* FBSDKShareKit.framework */; };
 		EE37DF361DE8276700FEF37B /* SeastarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE37DF301DE8275A00FEF37B /* SeastarSdk.framework */; };
 		EE37DF371DE8276700FEF37B /* SeastarSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE37DF301DE8275A00FEF37B /* SeastarSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE3E2AF61DF7B94900A89537 /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E2AF51DF7B94900A89537 /* VerticalButton.swift */; };
 		EE6C40D11DE56FE80037DC76 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C408E1DE56FE80037DC76 /* AES.swift */; };
 		EE6C40D21DE56FE80037DC76 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C408F1DE56FE80037DC76 /* Array+Extension.swift */; };
 		EE6C40D31DE56FE80037DC76 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C40901DE56FE80037DC76 /* Authenticator.swift */; };
@@ -128,6 +129,7 @@
 		EEAF5F101DC34C6600B044F9 /* MBProgressHUD.m in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
 		EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */; };
 		EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */; };
+		EEDC91881E02AE1A0071DE2D /* server.cer in Resources */ = {isa = PBXBuildFile; fileRef = EEDC91871E02AE0C0071DE2D /* server.cer */; };
 		EEE839AE1DC36035003F8F79 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE8399A1DC36035003F8F79 /* background.png */; };
 		EEE839AF1DC36035003F8F79 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE8399B1DC36035003F8F79 /* button.png */; };
 		EEE839B01DC36035003F8F79 /* button_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE8399C1DC36035003F8F79 /* button_highlighted.png */; };
@@ -157,6 +159,7 @@
 		EEE83A001DC364D3003F8F79 /* seastar_big_p.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE839F11DC364D3003F8F79 /* seastar_big_p.png */; };
 		EEE83A011DC364D3003F8F79 /* seastar_p.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE839F21DC364D3003F8F79 /* seastar_p.png */; };
 		EEE83A031DC364F4003F8F79 /* seastar_p.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */; };
+		EEFEC6351E01156F00542FF6 /* MyNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFEC6341E01156F00542FF6 /* MyNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +219,7 @@
 		EE37DF2E1DE8275A00FEF37B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		EE37DF2F1DE8275A00FEF37B /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		EE37DF301DE8275A00FEF37B /* SeastarSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeastarSdk.framework; sourceTree = "<group>"; };
+		EE3E2AF51DF7B94900A89537 /* VerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
 		EE6C408E1DE56FE80037DC76 /* AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		EE6C408F1DE56FE80037DC76 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		EE6C40901DE56FE80037DC76 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 		EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
+		EEDC91871E02AE0C0071DE2D /* server.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.cer; sourceTree = "<group>"; };
 		EEE8399A1DC36035003F8F79 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		EEE8399B1DC36035003F8F79 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		EEE8399C1DC36035003F8F79 /* button_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_highlighted.png; sourceTree = "<group>"; };
@@ -343,6 +348,7 @@
 		EEE839F11DC364D3003F8F79 /* seastar_big_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seastar_big_p.png; sourceTree = "<group>"; };
 		EEE839F21DC364D3003F8F79 /* seastar_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seastar_p.png; sourceTree = "<group>"; };
 		EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = seastar_p.storyboard; sourceTree = "<group>"; };
+		EEFEC6341E01156F00542FF6 /* MyNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +411,7 @@
 		104FB6B61D9B6DA1004E22EF /* SeastarSdk */ = {
 			isa = PBXGroup;
 			children = (
+				EEDD60CE1E02A93B00C2DB5C /* cer */,
 				EEE839E31DC364D3003F8F79 /* portrait */,
 				EEE839981DC36035003F8F79 /* landscape */,
 				104FB6F21D9B6E91004E22EF /* Utils */,
@@ -444,6 +451,7 @@
 			isa = PBXGroup;
 			children = (
 				10AB484E1DC3296700A92273 /* ComboBox.swift */,
+				EE3E2AF51DF7B94900A89537 /* VerticalButton.swift */,
 				104DE73F1DB8B38E00D7F736 /* seastar.storyboard */,
 				EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */,
 				EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */,
@@ -495,6 +503,7 @@
 			children = (
 				104FB6F51D9B6EB6004E22EF /* Utility.swift */,
 				104FB6F31D9B6E99004E22EF /* Network.swift */,
+				EEFEC6341E01156F00542FF6 /* MyNetwork.swift */,
 				104FB73E1D9B9877004E22EF /* Facebook.swift */,
 				1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */,
 			);
@@ -676,6 +685,14 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		EEDD60CE1E02A93B00C2DB5C /* cer */ = {
+			isa = PBXGroup;
+			children = (
+				EEDC91871E02AE0C0071DE2D /* server.cer */,
+			);
+			name = cer;
+			sourceTree = "<group>";
+		};
 		EEE839981DC36035003F8F79 /* landscape */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +864,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEDC91881E02AE1A0071DE2D /* server.cer in Resources */,
 				EEE839FC1DC364D3003F8F79 /* guest_p.png in Resources */,
 				EEE839AF1DC36035003F8F79 /* button.png in Resources */,
 				EEE839F91DC364D3003F8F79 /* facebook_p.png in Resources */,
@@ -964,6 +982,7 @@
 				EE6C40F01DE56FE80037DC76 /* Rabbit+Foundation.swift in Sources */,
 				104FB73F1D9B9877004E22EF /* Facebook.swift in Sources */,
 				EE6C40E71DE56FE80037DC76 /* CSArrayType+Extensions.swift in Sources */,
+				EEFEC6351E01156F00542FF6 /* MyNetwork.swift in Sources */,
 				10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */,
 				EE8A45011DC6DEB000B369A8 /* LoginPortraitViewController.swift in Sources */,
 				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
@@ -976,6 +995,7 @@
 				EE6C40E61DE56FE80037DC76 /* Cryptors.swift in Sources */,
 				EE6C41051DE56FE80037DC76 /* SHA1.swift in Sources */,
 				EE6C40F21DE56FE80037DC76 /* Utils+Foundation.swift in Sources */,
+				EE3E2AF61DF7B94900A89537 /* VerticalButton.swift in Sources */,
 				EE6C40E01DE56FE80037DC76 /* Blowfish.swift in Sources */,
 				EE6C40FD1DE56FE80037DC76 /* PBKDF2.swift in Sources */,
 				EE6C40DF1DE56FE80037DC76 /* RandomAccessBlockModeWorker.swift in Sources */,
@@ -1139,6 +1159,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seastar.SeastarSdk;
@@ -1207,6 +1228,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seastar.SeastarSdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

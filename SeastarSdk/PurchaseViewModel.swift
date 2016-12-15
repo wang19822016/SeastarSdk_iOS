@@ -14,7 +14,7 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     static let current = PurchaseViewModel()
     
-    var productIdentifiers: Set<ProductIdentifier> = Set<ProductIdentifier>()
+    //    var productIdentifiers: Set<ProductIdentifier> = Set<ProductIdentifier>()
     var purchaseSuccess: SuccessCB? = nil
     var purchaseFailure: FailureCB? = nil
     
@@ -25,18 +25,6 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     func destroy() {
         IAPHelper.current.removeListener()
-    }
-    
-    // 如果失败，再请求一次
-    func requestProducts(productIdentifiers: Set<ProductIdentifier>) {
-        self.productIdentifiers = productIdentifiers
-        
-        IAPHelper.current.requestProducts(productIdentifiers: self.productIdentifiers) { success in
-            if !success {
-                Log("request product fail, retry.")
-                IAPHelper.current.requestProducts(productIdentifiers: self.productIdentifiers) { success in }
-            }
-        }
     }
     
     func checkLeakPurchase() {
@@ -65,17 +53,17 @@ class PurchaseViewModel : IAPHelperDelegate {
                 ]
                 
                 Log("verify: userId:\(purchase.userId) appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
-                Network.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
+                MyNetwork.current.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
                     // 验证成功，清除数据
                     purchase.remove()
                     Log("verify: \(result["code"]) \(result["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                    }, failure: {
-                        Log("verify: network error \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
+                }, failure: {
+                    Log("verify: network error \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
                 })
             }
         }
     }
-
+    
     
     func doPurchase(productId: String, roleId: String, serverId: String, extra: String, purchaseSuccess: @escaping SuccessCB, purchaseFailure: @escaping FailureCB) {
         var user = UserModel()
@@ -87,14 +75,13 @@ class PurchaseViewModel : IAPHelperDelegate {
         
         let extraData = extra.data(using: .utf8)!
         let extraB64String = extraData.base64EncodedString(options: .endLineWithLineFeed)
-        
+//        var purchaseModel = PurchaseModel();
         if let product = IAPHelper.current.getProduct(productIdentifer: productId) {
-            // 有商品信息
+            //有商品信息
             let formatter = NumberFormatter()
             formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
             formatter.numberStyle = NumberFormatter.Style.currency
             formatter.locale = product.priceLocale
-            
             var purchase = PurchaseModel()
             purchase.roleId = roleId
             purchase.productIdentifier = productId
@@ -103,8 +90,10 @@ class PurchaseViewModel : IAPHelperDelegate {
             purchase.userId = user.userId
             purchase.serverId = serverId
             purchase.price = String(describing: product.price)
+            
             let index = product.priceLocale.identifier.index(product.priceLocale.identifier.endIndex, offsetBy: -3);
             purchase.currency = product.priceLocale.identifier.substring(from: index);
+            
             purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
             purchase.save()
             
@@ -113,16 +102,14 @@ class PurchaseViewModel : IAPHelperDelegate {
             
             // 启动支付
             IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: purchase.applicationUsername)
-        } else {
-            IAPHelper.current.requestProducts(productIdentifiers: self.productIdentifiers) { success in
-                if success {
+        }else{
+            IAPHelper.current.requestProducts(productIdentifiers: productId, completionHandler: { (success:Bool) in
+                if success{
                     if let product = IAPHelper.current.getProduct(productIdentifer: productId) {
-                        // 有商品信息
                         let formatter = NumberFormatter()
                         formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
                         formatter.numberStyle = NumberFormatter.Style.currency
                         formatter.locale = product.priceLocale
-                        
                         var purchase = PurchaseModel()
                         purchase.roleId = roleId
                         purchase.productIdentifier = productId
@@ -130,8 +117,9 @@ class PurchaseViewModel : IAPHelperDelegate {
                         purchase.session = user.session
                         purchase.userId = user.userId
                         purchase.serverId = serverId
-                        purchase.price = formatter.string(from: product.price)!
-                        purchase.currency = product.priceLocale.identifier
+                        purchase.price = String(describing: product.price)
+                        let index = product.priceLocale.identifier.index((product.priceLocale.identifier.endIndex), offsetBy: -3);
+                        purchase.currency = (product.priceLocale.identifier.substring(from: index));
                         purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
                         purchase.save()
                         
@@ -140,13 +128,11 @@ class PurchaseViewModel : IAPHelperDelegate {
                         
                         // 启动支付
                         IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: purchase.applicationUsername)
-                    } else {
-                        purchaseFailure(productId)
                     }
-                } else {
-                    purchaseFailure(productId)
+                }else{
+                    print("支付失败");
                 }
-            }
+            })
         }
     }
     
@@ -178,7 +164,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         ]
                         
                         Log("verify: \(purchase.userId) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        Network.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
+                        MyNetwork.current.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
                             let code: Int = (result["code"] as? Int) ?? 0
                             let order: String = (result["order"] as? String) ?? ""
                             // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了
@@ -195,11 +181,11 @@ class PurchaseViewModel : IAPHelperDelegate {
                                 self.purchaseSuccess = nil
                                 self.purchaseFailure = nil
                             }
-                            }, failure: {
-                                Log("verify: network error, \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                                self.purchaseFailure?(productIdentifier)
-                                self.purchaseSuccess = nil
-                                self.purchaseFailure = nil
+                        }, failure: {
+                            Log("verify: network error, \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
+                            self.purchaseFailure?(productIdentifier)
+                            self.purchaseSuccess = nil
+                            self.purchaseFailure = nil
                         })
                     } else {
                         // app信息加载失败
