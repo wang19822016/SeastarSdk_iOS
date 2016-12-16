@@ -17,7 +17,6 @@
 		104FB6EC1D9B6E6F004E22EF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6EB1D9B6E6F004E22EF /* UserModel.swift */; };
 		104FB6EE1D9B6E75004E22EF /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6ED1D9B6E75004E22EF /* UserViewModel.swift */; };
 		104FB6F11D9B6E86004E22EF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6F01D9B6E86004E22EF /* Config.swift */; };
-		104FB6F41D9B6E99004E22EF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6F31D9B6E99004E22EF /* Network.swift */; };
 		104FB6F61D9B6EB6004E22EF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FB6F51D9B6EB6004E22EF /* Utility.swift */; };
 		104FB6FD1D9B6FEA004E22EF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104FB6F81D9B6FEA004E22EF /* Bolts.framework */; };
 		104FB6FE1D9B6FEA004E22EF /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 104FB6F91D9B6FEA004E22EF /* FacebookSDKStrings.bundle */; };
@@ -200,7 +199,6 @@
 		104FB6EB1D9B6E6F004E22EF /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		104FB6ED1D9B6E75004E22EF /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		104FB6F01D9B6E86004E22EF /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		104FB6F31D9B6E99004E22EF /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		104FB6F51D9B6EB6004E22EF /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		104FB6F81D9B6FEA004E22EF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = 3rd/Facebook/Bolts.framework; sourceTree = "<group>"; };
 		104FB6F91D9B6FEA004E22EF /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKStrings.bundle; path = 3rd/Facebook/FacebookSDKStrings.bundle; sourceTree = "<group>"; };
@@ -502,7 +500,6 @@
 			isa = PBXGroup;
 			children = (
 				104FB6F51D9B6EB6004E22EF /* Utility.swift */,
-				104FB6F31D9B6E99004E22EF /* Network.swift */,
 				EEFEC6341E01156F00542FF6 /* MyNetwork.swift */,
 				104FB73E1D9B9877004E22EF /* Facebook.swift */,
 				1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */,
@@ -985,7 +982,6 @@
 				EEFEC6351E01156F00542FF6 /* MyNetwork.swift in Sources */,
 				10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */,
 				EE8A45011DC6DEB000B369A8 /* LoginPortraitViewController.swift in Sources */,
-				104FB6F41D9B6E99004E22EF /* Network.swift in Sources */,
 				EE6C41081DE56FE80037DC76 /* String+Extension.swift in Sources */,
 				EE74E1CC1DCC2DCF0039D429 /* ChangeAccountPortraitViewController.swift in Sources */,
 				1015ECA71DB9FB9B0094C7B6 /* PurchaseModel.swift in Sources */,

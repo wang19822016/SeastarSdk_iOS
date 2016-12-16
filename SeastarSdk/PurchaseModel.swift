@@ -20,7 +20,7 @@ struct PurchaseModel {
     var applicationUsername: String = ""
     var transactionIdentifier: String = ""
     var receipt: String = ""
-    var userId: Int = 0
+//    var userId: Int = 0
     var session: String = ""
     var price: String = ""
     var currency: String = ""
@@ -36,7 +36,7 @@ struct PurchaseModel {
         purchase["applicationUsername"] = applicationUsername
         purchase["transactionIdentifier"] = transactionIdentifier
         purchase["receipt"] = receipt
-        purchase["userId"] = userId
+//        purchase["userId"] = userId
         purchase["session"] = session
         purchase["price"] = price
         purchase["currency"] = currency
@@ -57,7 +57,7 @@ struct PurchaseModel {
                 self.applicationUsername = (purchase["applicationUsername"] as? String) ?? ""
                 transactionIdentifier = (purchase["transactionIdentifier"] as? String) ?? ""
                 receipt = (purchase["receipt"] as? String) ?? ""
-                userId = (purchase["userId"] as? Int) ?? 0
+//                userId = (purchase["userId"] as? Int) ?? 0
                 session = (purchase["session"] as? String) ?? ""
                 price = (purchase["price"] as? String) ?? ""
                 currency = (purchase["currency"] as? String) ?? ""
@@ -104,7 +104,7 @@ struct PurchaseModel {
                     model.applicationUsername = (purchase["applicationUsername"] as? String) ?? ""
                     model.transactionIdentifier = (purchase["transactionIdentifier"] as? String) ?? ""
                     model.receipt = (purchase["receipt"] as? String) ?? ""
-                    model.userId = (purchase["userId"] as? Int) ?? 0
+//                    model.userId = (purchase["userId"] as? Int) ?? 0
                     model.session = (purchase["session"] as? String) ?? ""
                     model.price = (purchase["price"] as? String) ?? ""
                     model.currency = (purchase["currency"] as? String) ?? ""

@@ -120,33 +120,25 @@ extension MyNetwork:URLSessionDataDelegate{
         let serverTrust = challenge.protectionSpace.serverTrust
         let certificate = SecTrustGetCertificateAtIndex(serverTrust!, 0)
         
-        // Set SSL policies for domain name check
         let policies = NSMutableArray();
         policies.add(SecPolicyCreateSSL(true, (challenge.protectionSpace.host as CFString?)))
         SecTrustSetPolicies(serverTrust!, policies);
         
-        //Evaluate server certificate
         var result: SecTrustResultType = SecTrustResultType(rawValue: 0)!
         SecTrustEvaluate(serverTrust!, &result)
-        //let isServerTrusted:Bool = (result == SecTrustResultType.unspecified || result == SecTrustResultType.proceed)
+        
+//        let isServerTrusted:Bool = (result == SecTrustResultType.unspecified || result == SecTrustResultType.proceed)
+        
         let isServerTrusted = true;
-        // Get local and remote cert data
         let remoteCertificateData:NSData = SecCertificateCopyData(certificate!)
         let cerBundle = Bundle(for: SeastarSdk.classForCoder());
         let pathToCert = cerBundle.path(forResource: "server", ofType: "cer");
         let localCertificate:NSData = NSData(contentsOfFile: pathToCert!)!
-        print("-----");
-        print(remoteCertificateData);
-        print("\(pathToCert)");
-        print(localCertificate);
-        print("-----");
         if (isServerTrusted && remoteCertificateData.isEqual(to: localCertificate as Data)) {
             let credential:URLCredential = URLCredential(trust: serverTrust!);
             completionHandler(.useCredential, credential)
-            print(11);
         } else {
             completionHandler(.cancelAuthenticationChallenge, nil)
-            print(22);
         }
     }
     

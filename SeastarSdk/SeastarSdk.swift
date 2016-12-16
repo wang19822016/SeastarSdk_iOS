@@ -50,7 +50,9 @@ public class SeastarSdk : NSObject {
         var user = UserModel()
         if user.loadCurrentUser() {
             UserViewModel.current.doSessionLogin(usermodel:user,success: {
-                userModel in loginSuccess(userModel.userId, userModel.session) }, failure: { str in
+                userModel in loginSuccess(userModel.userId, userModel.session)
+                hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+            }, failure: { str in
                     if self.myOrientation == true{
                         let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
                         

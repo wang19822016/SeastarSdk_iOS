@@ -10,9 +10,6 @@ import UIKit
 
 class RegisterViewController: BaseViewController,UITextFieldDelegate {
     
-//    let indView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray);
-//    let customView = UIView();
-    
     @IBAction func backBtnClick(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil);
     }
@@ -25,20 +22,6 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate {
     @IBOutlet var emailTextField: UITextField!
     
     @IBOutlet var registerBtn: UIButton!
-    
-//    func startCustomView()
-//    {
-//        view.addSubview(customView);
-//        customView.addSubview(indView);
-//        indView.startAnimating();
-//    }
-//    
-//    func stopCustomView()
-//    {
-//        indView.stopAnimating();
-//        indView.removeFromSuperview();
-//        customView.removeFromSuperview();
-//    }
     
     @IBAction func registerBtnClick(_ sender: AnyObject) {
         if (seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!) && seastarCompare(email: emailTextField.text!)){
@@ -89,11 +72,6 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate {
     
     override func initView()
     {
-//        customView.frame = view.frame;
-//        customView.backgroundColor = UIColor.gray
-//        customView.alpha = 0.3;
-//        indView.center = customView.center;
-        
         makeBounds(backgroundImage.layer)
         
         adminTextField.placeholder = NSLocalizedString("PleaseInputSeastarAccount", comment: "");

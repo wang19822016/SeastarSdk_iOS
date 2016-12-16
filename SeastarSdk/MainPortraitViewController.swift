@@ -10,9 +10,6 @@ import UIKit
 
 class MainPortraitViewController: BaseViewController {
     
-//    let indView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray);
-//    let customView = UIView();
-    
     @IBOutlet var backgroundImageView: UIImageView!
     
     @IBOutlet var LoginTypeLabel: UILabel!
@@ -27,26 +24,7 @@ class MainPortraitViewController: BaseViewController {
     
     var LoginFailure:(()->Void)?
     
-//    func startCustomView()
-//    {
-//        view.addSubview(customView);
-//        customView.addSubview(indView);
-//        indView.startAnimating();
-//    }
-//    
-//    func stopCustomView()
-//    {
-//        indView.stopAnimating();
-//        indView.removeFromSuperview();
-//        customView.removeFromSuperview();
-//    }
-    
     override func initView() {
-        
-//        customView.frame = view.frame;
-//        customView.backgroundColor = UIColor.gray
-//        customView.alpha = 0.3;
-//        indView.center = customView.center;
         
         makeBounds(backgroundImageView.layer);
         GuestLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
@@ -77,16 +55,14 @@ class MainPortraitViewController: BaseViewController {
                     self.LoginSuccess?(userModel);
                 })
             }
-            }, failure: { str in
-               self.stopCustomView();
-                hud(hudString: "LoginFalse", hudView: self.view);
+        }, failure: { str in
+            self.stopCustomView();
+            hud(hudString: "LoginFalse", hudView: self.view);
         })
     }
     
     @IBAction func facebookLogin(_ sender: AnyObject) {
-//        startCustomView();
         UserViewModel.current.doFacebookLogin(viewController: self, success: { userModel in
-//            self.stopCustomView();
             let changeVC = self.presentingViewController;
             if(changeVC is ChangeAccountPortraitViewController){
                 let vc = self.presentingViewController as! ChangeAccountPortraitViewController
@@ -100,9 +76,8 @@ class MainPortraitViewController: BaseViewController {
                     self.LoginSuccess?(userModel);
                 })
             }
-            }, failure: { str in
-//               self.stopCustomView();
-                hud(hudString: "LoginFalse", hudView: self.view);
+        }, failure: { str in
+            hud(hudString: "LoginFalse", hudView: self.view);
         })
         
     }

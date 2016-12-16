@@ -39,8 +39,8 @@ class PurchaseViewModel : IAPHelperDelegate {
         for purchase in purchases {
             if !purchase.transactionIdentifier.isEmpty && !purchase.receipt.isEmpty {
                 let req: [String : Any] = [
-                    "appId" : app.appId,
-                    "userId" : purchase.userId,
+//                    "appId" : app.appId,
+//                    "userId" : purchase.userId,
                     "transactionId" : purchase.transactionIdentifier,
                     "session" : purchase.session,
                     "productId": purchase.productIdentifier,
@@ -52,8 +52,8 @@ class PurchaseViewModel : IAPHelperDelegate {
                     "currencyCode": purchase.currency
                 ]
                 
-                Log("verify: userId:\(purchase.userId) appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
-                MyNetwork.current.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
+                Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
+                MyNetwork.current.post(url: app.serverUrl + "/v2/iap/apple", json: req, success: { result in
                     // 验证成功，清除数据
                     purchase.remove()
                     Log("verify: \(result["code"]) \(result["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
@@ -87,7 +87,7 @@ class PurchaseViewModel : IAPHelperDelegate {
             purchase.productIdentifier = productId
             purchase.extra = extraB64String
             purchase.session = user.session
-            purchase.userId = user.userId
+//            purchase.userId = user.userId
             purchase.serverId = serverId
             purchase.price = String(describing: product.price)
             
@@ -115,7 +115,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         purchase.productIdentifier = productId
                         purchase.extra = extraB64String
                         purchase.session = user.session
-                        purchase.userId = user.userId
+//                        purchase.userId = user.userId
                         purchase.serverId = serverId
                         purchase.price = String(describing: product.price)
                         let index = product.priceLocale.identifier.index((product.priceLocale.identifier.endIndex), offsetBy: -3);
@@ -150,8 +150,8 @@ class PurchaseViewModel : IAPHelperDelegate {
                     let app = AppModel()
                     if app.load() {
                         let req: [String : Any] = [
-                            "appId" : app.appId,
-                            "userId" : purchase.userId,
+//                            "appId" : app.appId,
+//                            "userId" : purchase.userId,
                             "transactionId" : purchase.transactionIdentifier,
                             "session" : purchase.session,
                             "productId": purchase.productIdentifier,
@@ -163,8 +163,8 @@ class PurchaseViewModel : IAPHelperDelegate {
                             "serverId": purchase.serverId
                         ]
                         
-                        Log("verify: \(purchase.userId) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        MyNetwork.current.post(url: app.serverUrl + "/iap/apple", json: req, success: { result in
+                        Log("verify: \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
+                        MyNetwork.current.post(url: app.serverUrl + "/v2/iap/apple", json: req, success: { result in
                             let code: Int = (result["code"] as? Int) ?? 0
                             let order: String = (result["order"] as? String) ?? ""
                             // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了

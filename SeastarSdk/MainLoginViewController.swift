@@ -11,9 +11,6 @@ import UIKit
 
 class MainLoginViewController: BaseViewController {
     
-//    let indView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray);
-//    let customView = UIView();
-    
     @IBOutlet var backGroundImage: UIImageView!
     
     @IBOutlet var loginTypeLabel: UILabel!
@@ -30,11 +27,6 @@ class MainLoginViewController: BaseViewController {
     
     override func initView()
     {
-//        customView.frame = view.frame;
-//        customView.backgroundColor = UIColor.gray
-//        customView.alpha = 0.3;
-//        indView.center = customView.center;
-
         makeBounds(backGroundImage.layer)
         
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
@@ -47,20 +39,6 @@ class MainLoginViewController: BaseViewController {
         loginTypeLabel.text = NSLocalizedString("SelectLoginType", comment: "");
     }
     
-//    func startCustomView()
-//    {
-//        view.addSubview(customView);
-//        customView.addSubview(indView);
-//        indView.startAnimating();
-//    }
-//    
-//    func stopCustomView()
-//    {
-//        indView.stopAnimating();
-//        indView.removeFromSuperview();
-//        customView.removeFromSuperview();
-//    }
-
     @IBAction func guestLogin(_ sender: AnyObject) {
         startCustomView()
         UserViewModel.current.doGuestLogin(success: { userModel in
@@ -86,9 +64,7 @@ class MainLoginViewController: BaseViewController {
     
     
     @IBAction func facebookLogin(_ sender: AnyObject) {
-//        startCustomView();
         UserViewModel.current.doFacebookLogin(viewController: self, success: { userModel in
-//            self.stopCustomView();
             let changeVC = self.presentingViewController;
             if(changeVC is ChangeAccountViewController){
                 let vc = self.presentingViewController as! ChangeAccountViewController;
@@ -103,7 +79,6 @@ class MainLoginViewController: BaseViewController {
                 })
             }
             }, failure: { str in
-//                self.stopCustomView();
                 hud(hudString: "LoginFalse", hudView: self.view);
         })
         

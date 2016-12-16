@@ -20,18 +20,16 @@ class UserViewModel {
             return
         }
         
-        let signStr = "\(app.appId)\(deviceId())\(locale())\(app.appKey)"
+        let signStr = "\(app.appId)\(deviceId())\(app.appKey)"
         let md5Str = md5(string: signStr)
         
         let req: [String : Any] = [
             "appId": app.appId,
             "deviceId": deviceId(),
-            "locale": locale(),
-            "deviceInfo": deviceInfo(),
             "sign": md5Str
         ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/auth/guest", json: req, success: { data in
+        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/guest", json: req, success: { data in
             
             if let code = data["code"] as? String {
                 if code == "0"{
@@ -72,21 +70,19 @@ class UserViewModel {
                 return
             }
             
-            let signstr = "\(deviceId())\(locale())\(fbuserId)\(token)\(LoginType.FACEBOOK.rawValue)\(app.appKey)"
+            let signstr = "\(deviceId())\(fbuserId)\(token)\(LoginType.FACEBOOK.rawValue)\(app.appKey)"
             let md5str = md5(string: signstr)
             
             let req: [String : Any] = [
                 "appId": app.appId,
                 "deviceId": deviceId(),
-                "locale": locale(),
-                "deviceInfo": deviceInfo(),
                 "thirdUserId": fbuserId,
                 "thirdAccessToken": token,
                 "loginType": LoginType.FACEBOOK.rawValue,
                 "sign": md5str
             ]
             
-            MyNetwork.current.post(url: app.serverUrl + "/auth/thirdparty", json: req, success: { data in
+            MyNetwork.current.post(url: app.serverUrl + "/v2/auth/thirdparty", json: req, success: { data in
                 if let code = data["code"] as? String{
                     if code == "0"{
                         var user = UserModel()
@@ -130,14 +126,12 @@ class UserViewModel {
             loginPassword = md5(string: password);
         }
         
-        let signStr = "\(app.appId)\(deviceId())\(locale())\(username)\(loginPassword)\(opType.rawValue)\(app.appKey)"
+        let signStr = "\(app.appId)\(deviceId())\(username)\(loginPassword)\(opType.rawValue)\(app.appKey)"
         let md5Str = md5(string: signStr)
         
         let req: [String : Any] = [
             "appId": app.appId,
             "deviceId": deviceId(),
-            "locale": locale(),
-            "deviceInfo": deviceInfo(),
             "userName": username,
             "password": loginPassword,
             "regist" : opType.rawValue,
@@ -145,7 +139,7 @@ class UserViewModel {
             "sign": md5Str
         ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/auth/username", json: req, success: { data in
+        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/username", json: req, success: { data in
             if let code = data["code"] as? String{
                 if code == "0"{
                     var user = UserModel()
@@ -179,14 +173,10 @@ class UserViewModel {
         }
         
         let req: [String : Any] = [
-            "appId": app.appId,
             "session": usermodel.session,
-            "userId": usermodel.userId,
-            "locale": locale(),
-            "deviceInfo": deviceInfo()
-        ]
+            ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/auth/session", json: req, success: { data in
+        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/session", json: req, success: { data in
             if let code = data["code"] as? String{
                 if code == "0"{
                     var user = UserModel()
@@ -221,10 +211,9 @@ class UserViewModel {
         let user = UserModel()
         user.removeCurrentUser()
         let req: [String : Any] = [
-            "userId" : user.userId,
             "session" : user.session
         ]
-        MyNetwork.current.post(url: app.serverUrl + "/auth/logout", json: req, success: { (_) in
+        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/logout", json: req, success: { (_) in
         }) {
         }
     }
@@ -244,6 +233,6 @@ class UserViewModel {
             "sign" : md5Str
         ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/auth/findpwd", json: req, success: { result in }, failure: {})
+        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/findpwd", json: req, success: { result in }, failure: {})
     }
 }

@@ -10,9 +10,6 @@ import UIKit
 
 class RegisterPortraitViewController: BaseViewController,UITextFieldDelegate {
     
-//    let indView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray);
-//    let customView = UIView();
-    
     @IBOutlet var backgroundImageView: UIImageView!
     
     @IBOutlet var adminTextField: UITextField!
@@ -74,27 +71,10 @@ class RegisterPortraitViewController: BaseViewController,UITextFieldDelegate {
             }
         }
     }
-    
-//    func startCustomView()
-//    {
-//        view.addSubview(customView);
-//        customView.addSubview(indView);
-//        indView.startAnimating();
-//    }
-//    
-//    func stopCustomView()
-//    {
-//        indView.stopAnimating();
-//        indView.removeFromSuperview();
-//        customView.removeFromSuperview();
-//    }
+
     
     override func initView() {
-        
-//        customView.frame = view.frame;
-//        customView.backgroundColor = UIColor.gray
-//        customView.alpha = 0.3;
-//        indView.center = customView.center;
+
         
         makeBounds(backgroundImageView.layer);
         adminTextField.placeholder = NSLocalizedString("PleaseInputSeastarAccount", comment: "");

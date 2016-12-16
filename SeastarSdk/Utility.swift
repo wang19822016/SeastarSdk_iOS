@@ -23,7 +23,6 @@ func deviceInfo() -> String {
 }
 
 func locale() -> String {
-    //return UserDefaults.standard.object(forKey: "AppleLanguages") as? String ?? ""
     let languages = NSLocale.preferredLanguages;
     return languages[0];
     
@@ -46,7 +45,7 @@ func hud(hudString :String,hudView:UIView)
 }
 
 func seastarCompare(admin Str:String) ->Bool{
-    let Regex = "[a-zA-Z][a-zA-Z0-9]{5,10}";
+    let Regex = "[a-zA-Z][a-zA-Z0-9]{5,22}";
     let Test = NSPredicate(format: "SELF MATCHES %@" ,Regex);
     if Test.evaluate(with: Str){
         return true;

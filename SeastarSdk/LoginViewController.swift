@@ -10,10 +10,6 @@ import UIKit
 
 class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDelegate {
     
-//    let indView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray);
-//    let customView = UIView();
-    
-    
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var passwordTextField: UITextField!
     
@@ -27,20 +23,6 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     @IBOutlet var comboBax: ComboBox!
     
     private var options: [UserModel] = []
-    
-//    func startCustomView()
-//    {
-//        view.addSubview(customView);
-//        customView.addSubview(indView);
-//        indView.startAnimating();
-//    }
-//    
-//    func stopCustomView()
-//    {
-//        indView.stopAnimating();
-//        indView.removeFromSuperview();
-//        customView.removeFromSuperview();
-//    }
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         if(seastarCompare(admin: comboBax.currentContentText) && seastarCompare(password: passwordTextField.text!)){
@@ -105,28 +87,11 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     
     override func initView()
     {
-//        customView.frame = view.frame;
-//        customView.backgroundColor = UIColor.gray
-//        customView.alpha = 0.3;
-//        indView.center = customView.center;
-        
-        
         makeBounds(backgroundImage.layer)
         
         var optionsArray: [String] = []
-        //let frameworkBundle = Bundle(for: SeastarSdk.classForCoder())
-//        let guestImg = UIImage(named: "guest.png", in: frameworkBundle, compatibleWith: nil)!
-//        let facebookImg = UIImage(named: "facebook.png", in: frameworkBundle, compatibleWith: nil)!
-//        let seastarImg = UIImage(named: "seastar.png", in: frameworkBundle, compatibleWith: nil)!
         options = UserModel.loadAllUsers()
         for user in options {
-//            if !user.guestUserId.isEmpty {
-//                optionsArray.append((guestImg, user.userName))
-//            } else if !user.facebookUserId.isEmpty {
-//                optionsArray.append((facebookImg, user.userName))
-//            } else {
-//                optionsArray.append((seastarImg, user.userName))
-//            }
             if !user.guestUserId.isEmpty {
                 optionsArray.append(user.userName)
             } else if !user.facebookUserId.isEmpty {
@@ -144,7 +109,6 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
         comboBax.options = optionsArray;
         passwordTextField.delegate = self
         passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
-        //        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
         
         loginBtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);

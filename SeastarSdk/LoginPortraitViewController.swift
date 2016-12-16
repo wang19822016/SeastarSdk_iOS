@@ -10,9 +10,6 @@ import UIKit
 
 class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFieldDelegate {
     
-//    let indView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray);
-//    let customView = UIView();
-    
     @IBOutlet var backgroundImageVIew: UIImageView!
     
     @IBOutlet var comboBox: ComboBox!
@@ -27,19 +24,6 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     
     private var options: [UserModel] = []
     
-//    func startCustomView()
-//    {
-//        view.addSubview(customView);
-//        customView.addSubview(indView);
-//        indView.startAnimating();
-//    }
-//    
-//    func stopCustomView()
-//    {
-//        indView.stopAnimating();
-//        indView.removeFromSuperview();
-//        customView.removeFromSuperview();
-//    }
     
     @IBAction func LoginBtnClick(_ sender: AnyObject) {
         if(seastarCompare(admin: comboBox.currentContentText) && seastarCompare(password: passwordTextField.text!)){
@@ -103,18 +87,9 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     
     override func initView()
     {
-//        customView.frame = view.frame;
-//        customView.backgroundColor = UIColor.gray
-//        customView.alpha = 0.3;
-//        indView.center = customView.center;
-        
         makeBounds(backgroundImageVIew.layer)
         
         var optionsArray: [String] = []
-//        let frameworkBundle = Bundle(for: SeastarSdk.classForCoder())
-//        let guestImg = UIImage(named: "guest.png", in: frameworkBundle, compatibleWith: nil)!
-//        let facebookImg = UIImage(named: "facebook.png", in: frameworkBundle, compatibleWith: nil)!
-//        let seastarImg = UIImage(named: "seastar.png", in: frameworkBundle, compatibleWith: nil)!
         options = UserModel.loadAllUsers()
         for user in options {
             if !user.guestUserId.isEmpty {
