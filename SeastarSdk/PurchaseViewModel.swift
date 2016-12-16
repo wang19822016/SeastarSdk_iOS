@@ -73,8 +73,8 @@ class PurchaseViewModel : IAPHelperDelegate {
             return
         }
         
-        let extraData = extra.data(using: .utf8)!
-        let extraB64String = extraData.base64EncodedString(options: .endLineWithLineFeed)
+//        let extraData = extra.data(using: .utf8)!
+//        let extraB64String = extraData.base64EncodedString(options: .endLineWithLineFeed)
 //        var purchaseModel = PurchaseModel();
         if let product = IAPHelper.current.getProduct(productIdentifer: productId) {
             //有商品信息
@@ -85,7 +85,7 @@ class PurchaseViewModel : IAPHelperDelegate {
             var purchase = PurchaseModel()
             purchase.roleId = roleId
             purchase.productIdentifier = productId
-            purchase.extra = extraB64String
+            purchase.extra = extra;
             purchase.session = user.session
 //            purchase.userId = user.userId
             purchase.serverId = serverId
@@ -113,7 +113,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         var purchase = PurchaseModel()
                         purchase.roleId = roleId
                         purchase.productIdentifier = productId
-                        purchase.extra = extraB64String
+                        purchase.extra = extra
                         purchase.session = user.session
 //                        purchase.userId = user.userId
                         purchase.serverId = serverId
