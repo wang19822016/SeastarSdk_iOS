@@ -85,7 +85,7 @@ class PurchaseViewModel : IAPHelperDelegate {
             var purchase = PurchaseModel()
             purchase.roleId = roleId
             purchase.productIdentifier = productId
-            purchase.extra = extraB64String
+            purchase.extra = extra
             purchase.session = user.session
             purchase.userId = user.userId
             purchase.serverId = serverId
@@ -113,7 +113,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         var purchase = PurchaseModel()
                         purchase.roleId = roleId
                         purchase.productIdentifier = productId
-                        purchase.extra = extraB64String
+                        purchase.extra = extra
                         purchase.session = user.session
                         purchase.userId = user.userId
                         purchase.serverId = serverId
