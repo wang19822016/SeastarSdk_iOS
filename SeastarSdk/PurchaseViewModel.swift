@@ -39,8 +39,6 @@ class PurchaseViewModel : IAPHelperDelegate {
         for purchase in purchases {
             if !purchase.transactionIdentifier.isEmpty && !purchase.receipt.isEmpty {
                 let req: [String : Any] = [
-//                    "appId" : app.appId,
-//                    "userId" : purchase.userId,
                     "transactionId" : purchase.transactionIdentifier,
                     "session" : purchase.session,
                     "productId": purchase.productIdentifier,
@@ -53,7 +51,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                 ]
                 
                 Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
-                MyNetwork.current.post(url: app.serverUrl + "/v2/iap/apple", json: req, success: { result in
+                MyNetwork.current.post(url: app.serverUrl + "/v2/pay/apple", json: req, success: { result in
                     // 验证成功，清除数据
                     purchase.remove()
                     Log("verify: \(result["code"]) \(result["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
@@ -73,9 +71,6 @@ class PurchaseViewModel : IAPHelperDelegate {
             return
         }
         
-//        let extraData = extra.data(using: .utf8)!
-//        let extraB64String = extraData.base64EncodedString(options: .endLineWithLineFeed)
-//        var purchaseModel = PurchaseModel();
         if let product = IAPHelper.current.getProduct(productIdentifer: productId) {
             //有商品信息
             let formatter = NumberFormatter()
@@ -87,7 +82,6 @@ class PurchaseViewModel : IAPHelperDelegate {
             purchase.productIdentifier = productId
             purchase.extra = extra;
             purchase.session = user.session
-//            purchase.userId = user.userId
             purchase.serverId = serverId
             purchase.price = String(describing: product.price)
             
@@ -105,7 +99,7 @@ class PurchaseViewModel : IAPHelperDelegate {
         }else{
             IAPHelper.current.requestProducts(productIdentifiers: productId, completionHandler: { (success:Bool) in
                 if success{
-                    if let product = IAPHelper.current.getProduct(productIdentifer: productId) {
+                    if let product = IAPHelper.current.getProduct(productIdentifer: productId){
                         let formatter = NumberFormatter()
                         formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
                         formatter.numberStyle = NumberFormatter.Style.currency
@@ -115,7 +109,6 @@ class PurchaseViewModel : IAPHelperDelegate {
                         purchase.productIdentifier = productId
                         purchase.extra = extra
                         purchase.session = user.session
-//                        purchase.userId = user.userId
                         purchase.serverId = serverId
                         purchase.price = String(describing: product.price)
                         let index = product.priceLocale.identifier.index((product.priceLocale.identifier.endIndex), offsetBy: -3);
@@ -130,7 +123,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: purchase.applicationUsername)
                     }
                 }else{
-                    print("支付失败");
+                    purchaseFailure(productId)
                 }
             })
         }
@@ -150,8 +143,6 @@ class PurchaseViewModel : IAPHelperDelegate {
                     let app = AppModel()
                     if app.load() {
                         let req: [String : Any] = [
-//                            "appId" : app.appId,
-//                            "userId" : purchase.userId,
                             "transactionId" : purchase.transactionIdentifier,
                             "session" : purchase.session,
                             "productId": purchase.productIdentifier,
@@ -164,7 +155,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         ]
                         
                         Log("verify: \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        MyNetwork.current.post(url: app.serverUrl + "/v2/iap/apple", json: req, success: { result in
+                        MyNetwork.current.post(url: app.serverUrl + "/v2/pay/apple", json: req, success: { result in
                             let code: Int = (result["code"] as? Int) ?? 0
                             let order: String = (result["order"] as? String) ?? ""
                             // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了

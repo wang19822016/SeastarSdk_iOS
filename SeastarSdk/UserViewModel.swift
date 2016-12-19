@@ -44,7 +44,6 @@ class UserViewModel {
                         user.password = password;
                     }
                     user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-                    user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
                     user.guestUserId = deviceId()
                     user.session = data["session"] as? String ?? ""
                     user.save()
@@ -96,7 +95,6 @@ class UserViewModel {
                             user.password = password;
                         }
                         user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-                        user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
                         user.facebookUserId = fbuserId
                         user.session = data["session"] as? String ?? ""
                         user.save()
@@ -121,10 +119,6 @@ class UserViewModel {
         }
         
         var loginPassword = password
-        if(opType == LoginOPType.Login)
-        {
-            loginPassword = md5(string: password);
-        }
         
         let signStr = "\(app.appId)\(deviceId())\(username)\(loginPassword)\(opType.rawValue)\(app.appKey)"
         let md5Str = md5(string: signStr)
@@ -148,9 +142,8 @@ class UserViewModel {
                     }
                     user.userId = data["userId"] as? Int ?? 0
                     user.userName = data["userName"] as? String ?? ""
-                    user.password = password //data["password"] as? String ?? ""
+                    user.password = data["password"] as? String ?? ""
                     user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-                    user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
                     user.session = data["session"] as? String ?? ""
                     user.save()
                     user.saveAsCurrentUser()
@@ -187,7 +180,6 @@ class UserViewModel {
                     user.userName = data["userName"] as? String ?? ""
                     //user.password = data["password"] as? String ?? ""
                     user.status = data["status"] as? Int ?? UserStatus.ALLOW.rawValue
-                    user.isNewUser = data["newUser"] as? Int ?? UserNewOrOld.OLD.rawValue
                     user.session = data["session"] as? String ?? ""
                     user.save()
                     user.saveAsCurrentUser()
