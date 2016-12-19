@@ -28,8 +28,9 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     @IBAction func LoginBtnClick(_ sender: AnyObject) {
         if(seastarCompare(admin: comboBox.currentContentText) && seastarCompare(password: passwordTextField.text!)){
             startCustomView();
+            let passwordMD5 = md5(string: passwordTextField.text!);
             UserViewModel.current.doAccountLogin(username: comboBox.currentContentText,
-                                                 password: passwordTextField.text!,
+                                                 password: passwordMD5,
                                                  email: "",
                                                  opType: LoginOPType.Login,
                                                  success:

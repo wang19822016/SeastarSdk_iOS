@@ -27,8 +27,9 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         if(seastarCompare(admin: comboBax.currentContentText) && seastarCompare(password: passwordTextField.text!)){
             startCustomView();
+            let passwordMD5 = md5(string: passwordTextField.text!);
             UserViewModel.current.doAccountLogin(username: comboBax.currentContentText,
-                                                 password: passwordTextField.text!,
+                                                 password: passwordMD5,
                                                  email: "",
                                                  opType: LoginOPType.Login,
                                                  success:

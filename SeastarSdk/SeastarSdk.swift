@@ -19,7 +19,7 @@ public class SeastarSdk : NSObject {
     var myOrientation:Bool = true
     
     
-    public func initializelll(viewController: UIViewController, landscape:Bool) {
+    public func initialize(viewController: UIViewController, landscape:Bool) {
         PurchaseViewModel.current.initialize()
         self.viewController = viewController
         myOrientation = landscape;
