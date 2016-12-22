@@ -69,7 +69,8 @@ class UserViewModel {
                 return
             }
             
-            let signstr = "\(deviceId())\(fbuserId)\(token)\(LoginType.FACEBOOK.rawValue)\(app.appKey)"
+            let signstr = "\(app.appId)\(deviceId())\(fbuserId)\(token)\(LoginType.FACEBOOK.rawValue)\(app.appKey)"
+            
             let md5str = md5(string: signstr)
             
             let req: [String : Any] = [
