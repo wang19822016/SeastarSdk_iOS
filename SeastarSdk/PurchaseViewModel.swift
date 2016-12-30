@@ -53,6 +53,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                 Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
                 MyNetwork.current.post(url: app.serverUrl + "/v2/pay/apple", json: req, success: { result in
                     // 验证成功，清除数据
+                    //remove
                     purchase.remove()
                     Log("verify: \(result["code"]) \(result["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
                 }, failure: {
