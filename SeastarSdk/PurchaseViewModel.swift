@@ -29,14 +29,17 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     func checkLeakPurchase() {
         // 每次主动上传支付漏单
+        print("跳出漏单1");
         let app = AppModel()
         if !app.load() {
             Log("no app config")
+            print("跳出漏单2");
             return
         }
-        
+         print("跳出漏单3");
         let purchases = PurchaseModel.loadAll()
         for purchase in purchases {
+             print("跳出漏单4");
             if !purchase.transactionIdentifier.isEmpty && !purchase.receipt.isEmpty {
                 let req: [String : Any] = [
                     "transactionId" : purchase.transactionIdentifier,
@@ -49,13 +52,15 @@ class PurchaseViewModel : IAPHelperDelegate {
                     "serverId":purchase.serverId,
                     "currencyCode": purchase.currency
                 ]
-                
+                 print("跳出漏单5");
                 Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
-                MyNetwork.current.post(url: app.serverUrl + "/v2/pay/apple", json: req, success: { result in
+                MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/pay/apple", json: req, success: { result in
                     // 验证成功，清除数据
+                     print("跳出漏单6");
                     purchase.remove()
                     Log("verify: \(result["code"]) \(result["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
                 }, failure: {
+                     print("跳出漏单7");
                     Log("verify: network error \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
                 })
             }
@@ -155,7 +160,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         ]
                         
                         Log("verify: \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        MyNetwork.current.post(url: app.serverUrl + "/v2/pay/apple", json: req, success: { result in
+                        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/pay/apple", json: req, success: { result in
                             let code: Int = (result["code"] as? Int) ?? 0
                             let order: String = (result["order"] as? String) ?? ""
                             // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了

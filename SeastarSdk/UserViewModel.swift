@@ -29,7 +29,7 @@ class UserViewModel {
             "sign": md5Str
         ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/guest", json: req, success: { data in
+        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/auth/guest", json: req, success: { data in
             
             if let code = data["code"] as? String {
                 if code == "0"{
@@ -82,7 +82,7 @@ class UserViewModel {
                 "sign": md5str
             ]
             
-            MyNetwork.current.post(url: app.serverUrl + "/v2/auth/thirdparty", json: req, success: { data in
+            MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/auth/thirdparty", json: req, success: { data in
                 if let code = data["code"] as? String{
                     if code == "0"{
                         var user = UserModel()
@@ -134,7 +134,7 @@ class UserViewModel {
             "sign": md5Str
         ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/username", json: req, success: { data in
+        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/auth/username", json: req, success: { data in
             if let code = data["code"] as? String{
                 if code == "0"{
                     var user = UserModel()
@@ -170,7 +170,7 @@ class UserViewModel {
             "session": usermodel.session,
             ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/session", json: req, success: { data in
+        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/auth/session", json: req, success: { data in
             if let code = data["code"] as? String{
                 if code == "0"{
                     var user = UserModel()
@@ -206,7 +206,7 @@ class UserViewModel {
         let req: [String : Any] = [
             "session" : user.session
         ]
-        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/logout", json: req, success: { (_) in
+        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/auth/logout", json: req, success: { (_) in
         }) {
         }
     }
@@ -226,6 +226,6 @@ class UserViewModel {
             "sign" : md5Str
         ]
         
-        MyNetwork.current.post(url: app.serverUrl + "/v2/auth/findpwd", json: req, success: { result in }, failure: {})
+        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/auth/findpwd", json: req, success: { result in }, failure: {})
     }
 }
