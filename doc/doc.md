@@ -41,20 +41,24 @@
     添加一项，identifier: None, Icon: None, Role: Editor, URL Schemes: fb + fb分配的appid
 
 # 5. 添加运行时方法：
-<code>
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {<br/>
-    //sdk的初始化  landscape  横屏传true  竖屏传false<br/>
-    [[SeastarSdk current]initializeWithViewController:_window.rootViewController landscape:true];<br/>
-    //facebook的初始化<br/>
-    [[SeastarSdk current]application:application didFinishLaunchingWithOptions:launchOptions];<br/>
-    return YES;<br/>
-}<br/>
--(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{<br/>
-    //跳转第三方登录时调用的方法<br/>
-    [[SeastarSdk current]application:application open:url sourceApplication:sourceApplication annotation:annotation];<br/>
-    return YES;<br/>
-}<br/>
-- (void)applicationDidBecomeActive:(UIApplication *)application {<br/>
-    [[SeastarSdk current]applicationDidBecomeActive:application];<br/>
-}<br/>
-</code>
+
+
+```object-c
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //sdk的初始化  landscape  横屏传true  竖屏传false
+    [[SeastarSdk current]initializeWithViewController:_window.rootViewController landscape:true];
+    //facebook的初始化
+    [[SeastarSdk current]application:application didFinishLaunchingWithOptions:launchOptions];
+    return YES;
+}
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    //跳转第三方登录时调用的方法
+    [[SeastarSdk current]application:application open:url sourceApplication:sourceApplication annotation:annotation];
+    return YES;
+}
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[SeastarSdk current]applicationDidBecomeActive:application];
+}
+
+```
