@@ -46,7 +46,8 @@
 * 选中project下的info标签, 点击Localizations下的＋按钮，选择Chinese (Traditional), 在弹出的窗口中只选中Localizable.strings文件。
 * 展开Project navigator下的Localizable.strings.
 * 选中Localizable.strings (Base), 粘贴如下内容:<br/>
-    ```
+    ```Objective-C
+
     "Guest" = "Guest";
     "Seastar" = "Seastar Account ";
     "Facebook" = "Facebook";
@@ -72,6 +73,7 @@
     "PleaseInputSeastarAccount" = "   Enter username(6 to 10)";
     "PleaseInputEmail(Option)" = "   Enter email address";
     "ChangeAccount" = "Use Other Account";
+    
     ```
 *  选中Localizable.strings (Chinese (Traditional)), 粘贴如下内容:<br/>
     ```
