@@ -73,10 +73,11 @@
     "PleaseInputSeastarAccount" = "   Enter username(6 to 10)";
     "PleaseInputEmail(Option)" = "   Enter email address";
     "ChangeAccount" = "Use Other Account";
-    
+
     ```
 *  选中Localizable.strings (Chinese (Traditional)), 粘贴如下内容:<br/>
-    ```
+    ```Objective-C
+
     "Guest" = "Guest";
     "Seastar" = "海星";
     "Facebook" = "Facebook";
@@ -102,6 +103,7 @@
     "PleaseInputSeastarAccount" = "請輸入海星賬號";
     "PleaseInputEmail(Option)" = "請輸入信箱(可選)";
     "ChangeAccount" = "切換賬號";
+    
     ```
 
 # 6. 添加运行时方法：
