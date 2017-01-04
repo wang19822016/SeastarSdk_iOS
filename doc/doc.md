@@ -40,10 +40,14 @@
 * URL Types:<br/>
     添加一项，identifier: None, Icon: None, Role: Editor, URL Schemes: fb + fb分配的appid
 
-# 5. 添加运行时方法：
+# 5. 添加国际化资源:
+* 将Localizable.strings添加到工程.
+* 在
+
+# 6. 添加运行时方法：
 
 
-```object-c
+```Objective-C
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //sdk的初始化  landscape  横屏传true  竖屏传false
@@ -60,5 +64,54 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[SeastarSdk current]applicationDidBecomeActive:application];
 }
+
+```
+
+# 7. 登录:
+```Objective-C
+
+//登陆方法 成功返回  userID  和 Session 失败没有返回值
+[[SeastarSdk current]loginWithLoginSuccess:^(NSInteger userID, NSString * _Nonnull session) {
+        // 登录成功, 返回帐号ID和session，可以用session去服务器端验证帐号有效性
+    } loginFailure:^{
+
+    }];
+
+```
+
+# 8. 登出:
+```Objective-C
+
+[[SeastarSdk current]logout];
+
+```
+
+# 9. 支付:
+```Objective-C
+
+[[SeastarSdk current]purchaseWithProductId:@"商品ID" roleId:@"游戏内角色ID" serverId:@"充值服务器ID" extra:@"附加数据" paySuccess:^(NSString * _Nonnull order, NSString * _Nonnull productIdentifier) {
+        // 成功后将本次支付的流水号和商品ID返回
+    } payFailure:^(NSString * _Nonnull productIdentifier) {
+        NSLog(@"%@",productIdentifier);
+    }];
+
+```
+
+# 10. 检查掉单：
+```Objective-C
+
+// 需要在登录后调用本方法来重新提交掉单。
+[[SeastarSdk current]checkLeakPurchase];
+
+```
+
+# 11. 切换帐号:
+```Objective-C
+
+[[SeastarSdk current]changeAccountWithLoginSuccess:^(NSInteger userID, NSString * _Nonnull Session) {
+        // 切换成功，返回帐号ID和session，可以用session去服务器端验证帐号有效性
+    } loginFailure:^{
+
+    }];
 
 ```
