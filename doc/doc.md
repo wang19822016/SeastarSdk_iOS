@@ -1,18 +1,18 @@
-# 1. Linked Frameworks and Libraries:
+# 1. target中的Linked Frameworks and Libraries:
 添加如下framework：
 * Bolts.framework
 * FBSDLCoreKit.framework
 * FBSDKShareKit.framework
 * FBSDKLoginKit.framework
 
-# 2. Embedded Binaries:
+# 2. target中的Embedded Binaries:
 添加如下framework:
 * SeastarSdk.framework
 
-# 3. Build Settings:
+# 3. target中的Build Settings:
 设置 Always Embed Swift Standard Libraries 为 Yes.
 
-# 4. info:
+# 4. target中的Info:
 * Custom iOS Target Properties:
     * 添加Key: App Transport Security Settings, Type: Dictionary<br/>添加子项：
         * Key: Allow Arbitrary Loads, Type: Boolean, Value: YES
@@ -40,9 +40,67 @@
 * URL Types:<br/>
     添加一项，identifier: None, Icon: None, Role: Editor, URL Schemes: fb + fb分配的appid
 
-# 5. 添加国际化资源:
-* 将Localizable.strings添加到工程.
-* 在
+# 5. 国际化:
+* 新建Strings File类型文件, 命名为Localizable.
+* 选中Project navigator下的Localizable.strings, 然后选中File Inspector, 点击Localization下的Localize按钮，勾选Base.
+* 选中project下的info标签, 点击Localizations下的＋按钮，选择Chinese (Traditional), 在弹出的窗口中只选中Localizable.strings文件。
+* 展开Project navigator下的Localizable.strings.
+* 选中Localizable.strings (Base), 粘贴如下内容:<br/>
+    ```
+    "Guest" = "Guest";
+    "Seastar" = "Seastar Account ";
+    "Facebook" = "Facebook";
+    "Login" = "Sign in";
+    "Forget" = "Forgot Password";
+    "Register" = "Register";
+    "LoginFalse" = "Sign in False";
+    "PleaseEnterTheCorrectAdmin" = "Please enter the username with 6 to 10 letters and numbers.The beginning must be letter.";
+    "PleaseEnterTheCorrectPassword" = "Please enter the password with 8 to 16 letters and numbers";
+    "PleaseEnterTheCorrectEmail" = "Please enter the correct email address";
+    "AccountOrPasswordError" = "Account Or Password Error";
+    "AccountDoesNotExist" = "Account Does Not Exist";
+    "YouHaveBeenBanned" = "You Have Been Banned";
+    "AccountAlreadyExists" = "Account Already Exist";
+    "LoginSuccess" = "Sign in Success";
+    "RegsiterFalse" = "Regsiter False";
+    "FindSuccess" = "Retrieve Success";
+    "FindPassword" = "Retrieve Password";
+    "NoticeLabel" = "Password will send to mailbox. If you have any questions, please send email to vrseastar@vrseastar.com";
+    "SelectLoginType" = "Sign in With";
+    "PleaseInputAccount" = "   Enter username(6 to 10)";
+    "PleaseInputPassword" = "   Enter password(8 to 16)";
+    "PleaseInputSeastarAccount" = "   Enter username(6 to 10)";
+    "PleaseInputEmail(Option)" = "   Enter email address";
+    "ChangeAccount" = "Use Other Account";
+    ```
+*  选中Localizable.strings (Chinese (Traditional)), 粘贴如下内容:<br/>
+    ```
+    "Guest" = "Guest";
+    "Seastar" = "海星";
+    "Facebook" = "Facebook";
+    "Login" = "登入";
+    "Forget" = "忘記密碼";
+    "Register" = "註冊賬號";
+    "LoginFalse" = "登入失敗";
+    "PleaseEnterTheCorrectAdmin" = "请输入6-10用户名字母开头";
+    "PleaseEnterTheCorrectPassword" = "请输入8-16密码";
+    "PleaseEnterTheCorrectEmail" = "请输入正确的邮箱格式";
+    "AccountOrPasswordError" = "帐号或密码错误";
+    "AccountDoesNotExist" = "帐号不存在";
+    "YouHaveBeenBanned" = "您已经被封号";
+    "AccountAlreadyExists" = "帐号已经被注册";
+    "LoginSuccess" = "登入成功";
+    "RegsiterFalse" = "註冊失敗";
+    "FindSuccess" = "找回成功";
+    "FindPassword" = "密碼找回";
+    "NoticeLabel" = "密碼將被發送到該賬戶綁定的信箱,如有疑問請聯繫客服信箱:vrseastar@vrseastar.com";
+    "SelectLoginType" = "請選擇登入方式";
+    "PleaseInputAccount" = "請輸入賬號";
+    "PleaseInputPassword" = "請輸入密碼";
+    "PleaseInputSeastarAccount" = "請輸入海星賬號";
+    "PleaseInputEmail(Option)" = "請輸入信箱(可選)";
+    "ChangeAccount" = "切換賬號";
+    ```
 
 # 6. 添加运行时方法：
 
