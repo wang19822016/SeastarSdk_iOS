@@ -16,7 +16,7 @@
         "currency": "货币单位，8字符",
         "status": "充值成功与否，数字",
         "sandbox": "是否沙盒，数字",
-        "cparam": "客户端上报的附加数据，250字符",
+        "cparam": "客户端上报的附加数据，250字符，需要base64解码",
         "virtualCoin": "充值获得虚拟币数量，数字",
         "giveVirtualCoin": "充值赠送虚拟币数量，数字",
         "sign": "签名"
