@@ -34,7 +34,6 @@ class PurchaseViewModel : IAPHelperDelegate {
             Log("no app config")
             return
         }
-        
         let purchases = PurchaseModel.loadAll()
         for purchase in purchases {
             if !purchase.transactionIdentifier.isEmpty && !purchase.receipt.isEmpty {
@@ -49,9 +48,8 @@ class PurchaseViewModel : IAPHelperDelegate {
                     "serverId":purchase.serverId,
                     "currencyCode": purchase.currency
                 ]
-                
                 Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
-                MyNetwork.current.post(url: app.serverUrl + "/v2/pay/apple", json: req, success: { result in
+                MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/pay/apple", json: req, success: { result in
                     // 验证成功，清除数据
                     //remove
                     purchase.remove()
@@ -156,7 +154,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         ]
                         
                         Log("verify: \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        MyNetwork.current.post(url: app.serverUrl + "/v2/pay/apple", json: req, success: { result in
+                        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/pay/apple", json: req, success: { result in
                             let code: Int = (result["code"] as? Int) ?? 0
                             let order: String = (result["order"] as? String) ?? ""
                             // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了

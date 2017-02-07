@@ -10,6 +10,7 @@
 
 import Foundation
 import UIKit
+import AppsFlyerLib
 
 public class SeastarSdk : NSObject {
     public static let current = SeastarSdk()
@@ -28,6 +29,9 @@ public class SeastarSdk : NSObject {
     // 需要切换到Facebook应用或者Safari的应调用下面方法
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         Facebook.current.application(application, didFinishLaunchingWithOptions: launchOptions)
+        let app = AppModel()
+        AppsFlyerTracker.shared().appleAppID = app.appsFlyerID
+        AppsFlyerTracker.shared().appsFlyerDevKey = app.appsFlyerKey
     }
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法
@@ -126,6 +130,7 @@ public class SeastarSdk : NSObject {
                 let vc: ChangeAccountViewController = storyboard.instantiateInitialViewController()! as! ChangeAccountViewController
                 vc.ChangeAccountloginSuccess = {(userModel:UserModel) in
                     loginSuccess(userModel.userId, userModel.session)
+                    hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
                 }
                 vc.ChangeAccountloginFailure = {()in
                     loginFailure();
@@ -136,6 +141,7 @@ public class SeastarSdk : NSObject {
                 let vcPortrait: ChangeAccountPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! ChangeAccountPortraitViewController
                 vcPortrait.ChangeAccountloginSuccess = {(userModel:UserModel) in
                     loginSuccess(userModel.userId, userModel.session)
+                    hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
                 }
                 vcPortrait.ChangeAccountloginFailure = {()in
                     loginFailure();
@@ -157,6 +163,80 @@ public class SeastarSdk : NSObject {
                 payFailure(productIdentifier)
         })
     }
+    
+    //统计相关
+    public func trackActive(){
+        AppsFlyerTracker.shared().trackAppLaunch()
+    }
+    
+    public func trackRegisterUninstall(deviceToken:Data){
+        AppsFlyerTracker.shared().registerUninstall(deviceToken);
+    }
+    
+    public func trackLogin(){
+        AppsFlyerTracker.shared().trackEvent(AFEventLogin, withValues: nil);
+    }
+    
+    public func trackRegistration(){
+        AppsFlyerTracker.shared().trackEvent(AFEventCompleteRegistration, withValues: nil);
+    }
+    
+    public func trackPurchase(sku:String,skuType:String,price:Int,currency:String){
+        let purchaseDic:[String:Any] = [AFEventParamContentId:sku,
+                                        AFEventParamContentType : skuType,
+                                        AFEventParamRevenue: price,
+                                        AFEventParamCurrency:currency
+        ]
+        AppsFlyerTracker.shared().trackEvent(AFEventPurchase, withValues: purchaseDic);
+    }
+    
+    public func trackLevelAchieved(level:String,score:String){
+        let levelDic:[String:Any] = [AFEventParamLevel:level,
+                                     AFEventParamScore :score
+        ]
+        AppsFlyerTracker.shared().trackEvent(AFEventLevelAchieved, withValues: levelDic)
+    }
+    
+    //Facebook相关
+
+    func share(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
+               imageURL image: String, contentDescription description: String, caller:@escaping (Bool)->Void) {
+    
+        Facebook.current.share(viewController: controller, contentURL: url, contentTitle: title, imageURL: image, contentDescription: description, caller:caller);
+    }
+    
+    func share(viewController controller: UIViewController, imageURL url: String, imageCaption caption: String, caller: @escaping (Bool)->Void) {
+        Facebook.current.share(viewController: controller, imageURL: url, imageCaption: caption, caller: caller);
+    }
+    
+    func doGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping (Bool)->Void) {
+        Facebook.current.doGameRequest(requestMessage: message, requestTitle: title, caller: caller);
+    }
+    
+    func deleteGameRequest() {
+        Facebook.current.deleteGameRequest();
+    }
+    
+    func doAppInvite(viewController controller: UIViewController, appLinkURL linkURL:String, appInvitePreviewImageURL imageURL: String,caller:@escaping (Bool)->Void) {
+        Facebook.current.doAppInvite(viewController: controller, appLinkURL: linkURL, appInvitePreviewImageURL: imageURL, caller: caller);
+    }
+    
+    func getMeInfo(success:@escaping (String)->Void, failure:@escaping ()->Void){
+        Facebook.current.getMeInfo(success: success, failure: failure);
+    }
+    
+    func getFriendInfo(height:Int, width:Int, limit:Int, success:@escaping (String)->Void, failure:@escaping ()->Void) {
+        Facebook.current.getFriendInfo(height: height, width: width, limit: limit, success: success, failure: failure);
+    }
+    
+    func getNextFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
+        Facebook.current.getNextFriendInfo(success: success, failure: failure);
+    }
+    
+    func getPrevFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
+        Facebook.current.getPrevFriendInfo(success: success, failure: failure);
+    }
+
 }
 
 
