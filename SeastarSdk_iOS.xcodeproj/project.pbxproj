@@ -126,6 +126,7 @@
 		EEAF5F081DC346EC00B044F9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
 		EEAF5F0F1DC34C6600B044F9 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EEAF5F101DC34C6600B044F9 /* MBProgressHUD.m in Headers */ = {isa = PBXBuildFile; fileRef = EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */; };
+		EEBB48501E4965AD007DB0C6 /* AppsFlyerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBB484F1E4965AD007DB0C6 /* AppsFlyerLib.framework */; };
 		EEDB475D1DBF2D8D006499B8 /* MainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */; };
 		EEDB475F1DBF2E6A006499B8 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */; };
 		EEDC91881E02AE1A0071DE2D /* server.cer in Resources */ = {isa = PBXBuildFile; fileRef = EEDC91871E02AE0C0071DE2D /* server.cer */; };
@@ -314,6 +315,7 @@
 		EE8A452C1DC7392600B369A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEAF5F051DC346EC00B044F9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EEBB484F1E4965AD007DB0C6 /* AppsFlyerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppsFlyerLib.framework; sourceTree = "<group>"; };
 		EEDB475C1DBF2D8D006499B8 /* MainLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainLoginViewController.swift; sourceTree = "<group>"; };
 		EEDB475E1DBF2E6A006499B8 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		EEDC91871E02AE0C0071DE2D /* server.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.cer; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */,
+				EEBB48501E4965AD007DB0C6 /* AppsFlyerLib.framework in Frameworks */,
 				104FB7011D9B6FEA004E22EF /* FBSDKShareKit.framework in Frameworks */,
 				104FB6FD1D9B6FEA004E22EF /* Bolts.framework in Frameworks */,
 				104FB6FF1D9B6FEA004E22EF /* FBSDKCoreKit.framework in Frameworks */,
@@ -438,6 +441,7 @@
 		104FB6CC1D9B6DD1004E22EF /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				EEBB484E1E496530007DB0C6 /* Appsflyer */,
 				EE6C408C1DE56FE70037DC76 /* Sources */,
 				EEAF5F041DC346C800B044F9 /* MBProgressHUD */,
 				104FB6F71D9B6FD5004E22EF /* Facebook */,
@@ -680,6 +684,14 @@
 				EEAF5F061DC346EC00B044F9 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		EEBB484E1E496530007DB0C6 /* Appsflyer */ = {
+			isa = PBXGroup;
+			children = (
+				EEBB484F1E4965AD007DB0C6 /* AppsFlyerLib.framework */,
+			);
+			name = Appsflyer;
 			sourceTree = "<group>";
 		};
 		EEDD60CE1E02A93B00C2DB5C /* cer */ = {
