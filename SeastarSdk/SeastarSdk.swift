@@ -199,41 +199,41 @@ public class SeastarSdk : NSObject {
     
     //Facebook相关
 
-    func share(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
+    func shareFb(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
                imageURL image: String, contentDescription description: String, caller:@escaping (Bool)->Void) {
     
         Facebook.current.share(viewController: controller, contentURL: url, contentTitle: title, imageURL: image, contentDescription: description, caller:caller);
     }
     
-    func share(viewController controller: UIViewController, imageURL url: String, imageCaption caption: String, caller: @escaping (Bool)->Void) {
+    func shareFb(viewController controller: UIViewController, imageURL url: String, imageCaption caption: String, caller: @escaping (Bool)->Void) {
         Facebook.current.share(viewController: controller, imageURL: url, imageCaption: caption, caller: caller);
     }
     
-    func doGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping (Bool)->Void) {
+    func doFbGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping (Bool)->Void) {
         Facebook.current.doGameRequest(requestMessage: message, requestTitle: title, caller: caller);
     }
     
-    func deleteGameRequest() {
+    func deleteFbGameRequest() {
         Facebook.current.deleteGameRequest();
     }
     
-    func doAppInvite(viewController controller: UIViewController, appLinkURL linkURL:String, appInvitePreviewImageURL imageURL: String,caller:@escaping (Bool)->Void) {
+    func doFbAppInvite(viewController controller: UIViewController, appLinkURL linkURL:String, appInvitePreviewImageURL imageURL: String,caller:@escaping (Bool)->Void) {
         Facebook.current.doAppInvite(viewController: controller, appLinkURL: linkURL, appInvitePreviewImageURL: imageURL, caller: caller);
     }
     
-    func getMeInfo(success:@escaping (String)->Void, failure:@escaping ()->Void){
+    func getFbMeInfo(success:@escaping (String)->Void, failure:@escaping ()->Void){
         Facebook.current.getMeInfo(success: success, failure: failure);
     }
     
-    func getFriendInfo(height:Int, width:Int, limit:Int, success:@escaping (String)->Void, failure:@escaping ()->Void) {
+    func getFbFriendInfo(height:Int, width:Int, limit:Int, success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getFriendInfo(height: height, width: width, limit: limit, success: success, failure: failure);
     }
     
-    func getNextFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
+    func getNextFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getNextFriendInfo(success: success, failure: failure);
     }
     
-    func getPrevFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
+    func getPrevFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getPrevFriendInfo(success: success, failure: failure);
     }
 
