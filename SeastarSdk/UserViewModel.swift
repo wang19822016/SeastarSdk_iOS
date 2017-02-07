@@ -119,7 +119,7 @@ class UserViewModel {
             return
         }
         
-        var loginPassword = password
+        let loginPassword = password
         
         let signStr = "\(app.appId)\(deviceId())\(username)\(loginPassword)\(opType.rawValue)\(app.appKey)"
         let md5Str = md5(string: signStr)
