@@ -1,7 +1,7 @@
 # 1. target中的Linked Frameworks and Libraries:
 添加如下framework：
 * Bolts.framework
-* FBSDLCoreKit.framework
+* FBSDKCoreKit.framework
 * FBSDKShareKit.framework
 * FBSDKLoginKit.framework
 
@@ -37,6 +37,8 @@
         * Key: AppId, Type: Number, Value: 分配的应用ID
         * Key: AppKey, Type: String, Value: 分配的客户端密钥
         * Key: ServerUrl, Type: String, Value: https://52.77.192.179
+        * Key: AppsFlyerID, Type: String, Value: appsflyer的id
+        * Key: AppsFlyerKey, Type: String, Value: appsflyer的key
 * URL Types:<br/>
     添加一项，identifier: None, Icon: None, Role: Editor, URL Schemes: fb + fb分配的appid
 
@@ -103,7 +105,7 @@
     "PleaseInputSeastarAccount" = "請輸入海星賬號";
     "PleaseInputEmail(Option)" = "請輸入信箱(可選)";
     "ChangeAccount" = "切換賬號";
-    
+
     ```
 
 # 6. 添加运行时方法：
@@ -125,6 +127,9 @@
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[SeastarSdk current]applicationDidBecomeActive:application];
+}
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    [[SeastarSdk current]application:application didRegisterForRemoteNotificationsWithDeviceToken:userInfo];
 }
 
 ```
@@ -175,5 +180,72 @@
     } loginFailure:^{
 
     }];
+
+```
+
+# 12. appsflyer统计接口
+```Objective-C
+
+// 升级接口
+[[SeastarSdk current]trackLevelAchievedWithLevel:@"当前等级" score:@"当前经验，可以默认为0"];
+
+// 支付接口
+[[SeastarSdk current]trackPurchaseWithSku:@"商品ID" skuType:@"商品类型，如月卡、普通商品等，可以自定义" price:商品价格 currency:@"充值货币，可以默认为USD，price按照USD算"];
+
+// 角色注册接口
+[[SeastarSdk current]trackRegistration];
+
+// 角色登录接口
+[[SeastarSdk current]trackLogin];
+
+```
+
+# 12. facebook 分享接口
+```Objective-C
+
+// 分享图片
+// imageUri: 图片URI，需要在网站上生成一个url，分享时uri就是这个url
+// caption 分享标题
+[[SeastarSdk current]shareFbWithViewController:self imageURL:@"图片地址" imageCaption:@"标题" caller:^(BOOL caller) {}];
+
+// 分享链接
+// contentURL: 分享的链接，如果是商店内app应用地址，用户不能添加分享文字，分享内容中生成一个商店截图,
+//      如果是自己制作的网页，需要按照fb要求添加fb的tag，此时用户可以添加自己的分享文字。
+// contentTitle: 分享标题
+// imageURL: 分享内容中显示的图片的地址，可以不添加，在contentURL为商店应用页面链接时不起作用
+// contentDescription: 默认的分享文字
+[[SeastarSdk current]shareFbWithViewController:self contentURL:@"链接" contentTitle:@"标题" imageURL:@"分享图片地址" contentDescription:@"分享文字" caller:^(BOOL caller) {}];
+
+// 游戏邀请
+// title: 邀请标题
+// message: 邀请信息内容
+// 会弹出窗口，选中邀请的好友
+[[SeastarSdk current]doFbGameRequestWithRequestMessage:@"邀请内容" requestTitle:@"标题" caller:^(BOOL caller) {}];
+
+// 删除邀请信息
+// 每次启动时调用，可以删除邀请信息
+[[SeastarSdk current]deleteFbGameRequest];
+
+```
+
+# 13. facebook信息接口
+```Objective-C
+
+// 以下接口返回一个json串，从其中可以解析出数据
+
+// 获取好友信息
+// height: 头像高度
+// width: 头像宽度
+// limit: 每次获得的好友条数
+[[SeastarSdk current]getFbFriendInfoWithHeight:20 width:20 limit:20 success:^(NSString * _Nonnull str) {} failure:^{}];
+
+// 获取下一批好友信息
+[[SeastarSdk current]getNextFbFriendInfoWithSuccess:^(NSString * _Nonnull str) {} failure:^{}];
+
+// 获取上一批好友信息
+void getPrevFbFriendInfo(final OnActionTwoFinishListener listener)
+
+// 获得个人信息
+[[SeastarSdk current]getPrevFbFriendInfoWithSuccess:^(NSString * _Nonnull str) {} failure:^{}];
 
 ```
