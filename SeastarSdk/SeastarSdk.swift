@@ -43,6 +43,11 @@ public class SeastarSdk : NSObject {
     // 需要fb纪录应用激活事件的调用下面的方法
     public func applicationDidBecomeActive(_ application: UIApplication) {
         Facebook.current.applicationDidBecomeActive(application)
+        AppsFlyerTracker.shared().trackAppLaunch()
+    }
+    //统计卸载
+    public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        AppsFlyerTracker.shared().registerUninstall(deviceToken);
     }
     
     // 掉单重处理
@@ -165,14 +170,6 @@ public class SeastarSdk : NSObject {
     }
     
     //统计相关
-    public func trackActive(){
-        AppsFlyerTracker.shared().trackAppLaunch()
-    }
-    
-    public func trackRegisterUninstall(deviceToken:Data){
-        AppsFlyerTracker.shared().registerUninstall(deviceToken);
-    }
-    
     public func trackLogin(){
         AppsFlyerTracker.shared().trackEvent(AFEventLogin, withValues: nil);
     }
