@@ -200,7 +200,7 @@
 
 ```
 
-# 12. facebook 分享接口
+# 13. facebook 分享接口
 ```Objective-C
 
 // 分享图片
@@ -228,7 +228,7 @@
 
 ```
 
-# 13. facebook信息接口
+# 14. facebook信息接口
 ```Objective-C
 
 // 以下接口返回一个json串，从其中可以解析出数据
