@@ -18,5 +18,6 @@ FOUNDATION_EXPORT const unsigned char SeastarSdkVersionString[];
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import <AppsFlyerLib/AppsFlyerTracker.h>
 #import "MBProgressHUD.h"
 #import "CryptoSwift.h"

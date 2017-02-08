@@ -29,9 +29,14 @@ public class SeastarSdk : NSObject {
     // 需要切换到Facebook应用或者Safari的应调用下面方法
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         Facebook.current.application(application, didFinishLaunchingWithOptions: launchOptions)
-        let app = AppModel()
-        AppsFlyerTracker.shared().appleAppID = app.appsFlyerID
-        AppsFlyerTracker.shared().appsFlyerDevKey = app.appsFlyerKey
+        
+        let content = Bundle.main.path(forResource: "Info", ofType: "plist")
+        let rootDictionary = NSMutableDictionary(contentsOfFile: content!)
+        let appsflyerID:String = rootDictionary!.object(forKey: "AppsFlyerID") as! String;
+        let appsFlyerKey:String = rootDictionary!.object(forKey: "AppsFlyerKey") as! String;
+        
+        AppsFlyerTracker.shared().appleAppID = appsflyerID
+        AppsFlyerTracker.shared().appsFlyerDevKey = appsFlyerKey
     }
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法
