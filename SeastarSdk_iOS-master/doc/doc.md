@@ -128,8 +128,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[SeastarSdk current]applicationDidBecomeActive:application];
 }
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    [[SeastarSdk current]application:application didRegisterForRemoteNotificationsWithDeviceToken:userInfo];
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+[[SeastarSdk current]application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 ```
