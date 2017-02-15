@@ -37,8 +37,8 @@
         * Key: AppId, Type: Number, Value: 分配的应用ID
         * Key: AppKey, Type: String, Value: 分配的客户端密钥
         * Key: ServerUrl, Type: String, Value: https://52.77.192.179
-        * Key: AppsFlyerID, Type: String, Value: appsflyer的id
-        * Key: AppsFlyerKey, Type: String, Value: appsflyer的key
+    * 添加Key: AppsFlyerID, Type: String, Value: appsflyer的id
+    * 添加Key: AppsFlyerKey, Type: String, Value: appsflyer的key
 * URL Types:<br/>
     添加一项，identifier: None, Icon: None, Role: Editor, URL Schemes: fb + fb分配的appid
 
