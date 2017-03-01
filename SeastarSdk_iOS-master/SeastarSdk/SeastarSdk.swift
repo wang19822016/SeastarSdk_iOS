@@ -29,9 +29,13 @@ public class SeastarSdk : NSObject {
     // 需要切换到Facebook应用或者Safari的应调用下面方法
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         Facebook.current.application(application, didFinishLaunchingWithOptions: launchOptions)
-        let app = AppModel()
-        AppsFlyerTracker.shared().appleAppID = app.appsFlyerID
-        AppsFlyerTracker.shared().appsFlyerDevKey = app.appsFlyerKey
+        
+        let content = Bundle.main.path(forResource: "Info", ofType: "plist");
+        let rootDictionary = NSMutableDictionary(contentsOfFile: content!);
+        let appsFlyerID = rootDictionary?.object(forKey: "AppsFlyerID")as! String;
+        let appsFlyerKey = rootDictionary?.object(forKey: "AppsFlyerKey")as! String;
+        AppsFlyerTracker.shared().appleAppID = appsFlyerID;
+        AppsFlyerTracker.shared().appsFlyerDevKey = appsFlyerKey;
     }
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法
@@ -163,6 +167,14 @@ public class SeastarSdk : NSObject {
         PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, serverId: serverId, extra: extra, purchaseSuccess: {
             order, productIdentifier in
             paySuccess(order, productIdentifier)
+            
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "", message: "Success, you will get the purchases in 1-3 min. If have questions, please contact streetball.seastar@gamil.com", preferredStyle: .alert);
+                let confirm = UIAlertAction(title: "Confirm", style: .default, handler: nil);
+                alert.addAction(confirm);
+                self.viewController?.present(alert, animated: true, completion: nil);
+            }
+            
             }, purchaseFailure: {
                 productIdentifier in
                 payFailure(productIdentifier)

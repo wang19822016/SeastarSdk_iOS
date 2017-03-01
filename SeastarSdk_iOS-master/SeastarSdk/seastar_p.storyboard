@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1U-8s-bq6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1U-8s-bq6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,20 +22,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baj-lt-dcY">
-                                <rect key="frame" x="20.5" y="220.5" width="334" height="226"/>
+                                <rect key="frame" x="21" y="221" width="334" height="226"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="b7g-uK-SkG">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="226"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="tEi-45-68J">
-                                        <rect key="frame" x="104.5" y="12" width="125" height="40"/>
+                                        <rect key="frame" x="104" y="12" width="125" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="9Ul-A4-Nyw"/>
                                             <constraint firstAttribute="height" constant="40" id="ulF-f9-Bxe"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fenge_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sr7-Hb-D1h">
-                                        <rect key="frame" x="24.5" y="62" width="285" height="1"/>
+                                        <rect key="frame" x="24" y="62" width="285" height="1"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="285" id="G1v-3A-2pj"/>
                                             <constraint firstAttribute="height" constant="1" id="YCw-WH-W6D"/>
@@ -316,13 +316,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qah-E6-PRg">
-                                <rect key="frame" x="20.5" y="220.5" width="334" height="226"/>
+                                <rect key="frame" x="21" y="221" width="334" height="226"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ch6-lw-Ocd">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="226"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="yhg-qo-uYJ">
-                                        <rect key="frame" x="104.5" y="11" width="125" height="40"/>
+                                        <rect key="frame" x="104" y="11" width="125" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="BBW-Ng-d7v"/>
                                             <constraint firstAttribute="height" constant="40" id="rpt-Aj-SWP"/>
@@ -424,13 +424,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgy-kA-1yD">
-                                <rect key="frame" x="20.5" y="220.5" width="334" height="226"/>
+                                <rect key="frame" x="21" y="221" width="334" height="226"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-yy-MGt">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="226"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="gtf-i9-0kE">
-                                        <rect key="frame" x="104.5" y="10" width="125" height="40"/>
+                                        <rect key="frame" x="104" y="10" width="125" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="29E-db-dKy"/>
                                             <constraint firstAttribute="height" constant="40" id="kHC-lX-2o3"/>
@@ -545,7 +545,7 @@
         <image name="guest_big_p.png" width="120" height="126"/>
         <image name="kuang_highlighted_p.png" width="592" height="72"/>
         <image name="kuang_p.png" width="592" height="72"/>
-        <image name="logo_p.png" width="249" height="81"/>
+        <image name="logo_p.png" width="243" height="78"/>
         <image name="seastar_big_p.png" width="120" height="126"/>
     </resources>
 </document>
