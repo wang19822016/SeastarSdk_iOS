@@ -190,8 +190,8 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tb6-BP-acQ">
                                         <rect key="frame" x="19" y="101" width="296" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="40Q-N8-Hsb"/>
-                                            <constraint firstAttribute="width" constant="296" id="zJI-sB-a95"/>
+                                            <constraint firstAttribute="width" constant="296" id="7ex-4l-eas"/>
+                                            <constraint firstAttribute="height" constant="36" id="JvY-nx-LIu"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -200,8 +200,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDE-Hg-swH">
                                         <rect key="frame" x="19" y="146" width="296" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="296" id="Zmp-aZ-I9m"/>
-                                            <constraint firstAttribute="height" constant="36" id="qdc-ec-xDh"/>
+                                            <constraint firstAttribute="width" constant="296" id="4dj-wa-D1t"/>
+                                            <constraint firstAttribute="height" constant="36" id="ce7-hJ-YOt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" backgroundImage="buton_p.png"/>
@@ -233,19 +233,16 @@
                                             <action selector="backBtnClick:" destination="nGr-SC-0dp" eventType="touchUpInside" id="Z6b-Am-2RK"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZ0-Ms-O6p" customClass="ComboBox" customModule="SeastarSdk" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_highlighted_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-rv-vUD">
                                         <rect key="frame" x="19" y="55" width="296" height="36"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="296" id="1Ei-Cx-qjd"/>
-                                            <constraint firstAttribute="height" constant="36" id="GuV-JU-Llo"/>
+                                            <constraint firstAttribute="height" constant="36" id="dgB-aQ-2EL"/>
+                                            <constraint firstAttribute="width" constant="296" id="uma-hn-Ttq"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="backgroundImage" value="kuang_highlighted_p.png"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="dropDownImage" value="down_p.png"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="optionImage" value="cancel_p.png"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIk-cP-Tud">
                                         <rect key="frame" x="73" y="194" width="156" height="20"/>
                                         <constraints>
@@ -261,26 +258,26 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7tO-rv-vUD" secondAttribute="trailing" constant="19" id="1vG-mL-hGM"/>
                                     <constraint firstItem="LTD-gU-Skg" firstAttribute="top" secondItem="twx-lI-bUn" secondAttribute="top" id="4hb-35-rVk"/>
-                                    <constraint firstItem="Tb6-BP-acQ" firstAttribute="centerX" secondItem="twx-lI-bUn" secondAttribute="centerX" id="67G-vM-a8c"/>
                                     <constraint firstItem="LTD-gU-Skg" firstAttribute="leading" secondItem="twx-lI-bUn" secondAttribute="leading" id="7Ra-NZ-QoG"/>
-                                    <constraint firstItem="SZ0-Ms-O6p" firstAttribute="top" secondItem="eRG-l3-ib0" secondAttribute="bottom" constant="4" id="ABw-tb-iYb"/>
+                                    <constraint firstItem="7tO-rv-vUD" firstAttribute="top" secondItem="eRG-l3-ib0" secondAttribute="bottom" constant="4" id="Be1-pz-hRJ"/>
+                                    <constraint firstItem="Tb6-BP-acQ" firstAttribute="top" secondItem="7tO-rv-vUD" secondAttribute="bottom" constant="10" id="F9G-yy-Kjr"/>
                                     <constraint firstItem="zGj-On-HPF" firstAttribute="leading" secondItem="twx-lI-bUn" secondAttribute="leading" constant="7" id="Gwx-T0-du8"/>
                                     <constraint firstItem="eRG-l3-ib0" firstAttribute="centerX" secondItem="twx-lI-bUn" secondAttribute="centerX" id="Lpk-8w-LXS"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tb6-BP-acQ" secondAttribute="trailing" constant="19" id="NYA-Hw-Sbd"/>
                                     <constraint firstItem="eRG-l3-ib0" firstAttribute="top" secondItem="twx-lI-bUn" secondAttribute="top" constant="11" id="PvR-yv-YeU"/>
                                     <constraint firstAttribute="trailing" secondItem="LTD-gU-Skg" secondAttribute="trailing" id="SA2-Ug-Y4J"/>
+                                    <constraint firstItem="XDE-Hg-swH" firstAttribute="top" secondItem="Tb6-BP-acQ" secondAttribute="bottom" constant="9" id="UHA-sQ-a5C"/>
                                     <constraint firstAttribute="bottom" secondItem="nIk-cP-Tud" secondAttribute="bottom" constant="12" id="Uj9-cn-9PI"/>
                                     <constraint firstItem="CvL-Mv-N0U" firstAttribute="leading" secondItem="nIk-cP-Tud" secondAttribute="trailing" constant="11" id="Wy2-Sd-rwZ"/>
                                     <constraint firstAttribute="height" constant="226" id="bDt-wW-Hkl"/>
                                     <constraint firstItem="zGj-On-HPF" firstAttribute="top" secondItem="twx-lI-bUn" secondAttribute="top" constant="7" id="c4B-DG-DQt"/>
-                                    <constraint firstItem="Tb6-BP-acQ" firstAttribute="top" secondItem="SZ0-Ms-O6p" secondAttribute="bottom" constant="10" id="es1-v8-ZWg"/>
                                     <constraint firstAttribute="width" constant="334" id="gQg-DU-ioE"/>
-                                    <constraint firstItem="SZ0-Ms-O6p" firstAttribute="centerX" secondItem="twx-lI-bUn" secondAttribute="centerX" id="lU5-FG-xwP"/>
                                     <constraint firstAttribute="trailing" secondItem="CvL-Mv-N0U" secondAttribute="trailing" constant="18" id="oOZ-9L-0qd"/>
+                                    <constraint firstAttribute="trailing" secondItem="XDE-Hg-swH" secondAttribute="trailing" constant="19" id="rZ9-wR-yDr"/>
                                     <constraint firstAttribute="bottom" secondItem="LTD-gU-Skg" secondAttribute="bottom" id="wqE-MB-mbI"/>
-                                    <constraint firstItem="XDE-Hg-swH" firstAttribute="top" secondItem="Tb6-BP-acQ" secondAttribute="bottom" constant="9" id="wzM-wx-qRc"/>
                                     <constraint firstAttribute="bottom" secondItem="CvL-Mv-N0U" secondAttribute="bottom" constant="12" id="x6u-q5-5OY"/>
-                                    <constraint firstItem="XDE-Hg-swH" firstAttribute="centerX" secondItem="twx-lI-bUn" secondAttribute="centerX" id="xSf-ev-U1b"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -293,8 +290,8 @@
                     <connections>
                         <outlet property="ForgetBtn" destination="nIk-cP-Tud" id="cwZ-fY-3el"/>
                         <outlet property="Loginbtn" destination="XDE-Hg-swH" id="c01-dE-LqY"/>
+                        <outlet property="adminTextField" destination="7tO-rv-vUD" id="zfa-AQ-Ae4"/>
                         <outlet property="backgroundImageVIew" destination="LTD-gU-Skg" id="cTz-nb-H1K"/>
-                        <outlet property="comboBox" destination="SZ0-Ms-O6p" id="XOf-8q-fKg"/>
                         <outlet property="passwordTextField" destination="Tb6-BP-acQ" id="IbL-lx-OUz"/>
                         <outlet property="registerBtn" destination="CvL-Mv-N0U" id="noq-xc-NhS"/>
                     </connections>
@@ -538,8 +535,6 @@
         <image name="background_p.png" width="668" height="452"/>
         <image name="buton_p.png" width="592" height="72"/>
         <image name="button_highlighted_p.png" width="592" height="72"/>
-        <image name="cancel_p.png" width="80" height="80"/>
-        <image name="down_p.png" width="80" height="80"/>
         <image name="facebook_big_p.png" width="120" height="126"/>
         <image name="fenge_p.png" width="570" height="2"/>
         <image name="guest_big_p.png" width="120" height="126"/>

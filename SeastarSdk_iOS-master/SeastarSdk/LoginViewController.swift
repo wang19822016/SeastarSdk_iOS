@@ -8,10 +8,11 @@
 
 import UIKit
 
-class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDelegate {
+class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet var backgroundImage: UIImageView!
     @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var adminTextField: UITextField!
     
     @IBOutlet var loginBtn: UIButton!
     
@@ -20,15 +21,15 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     @IBOutlet var registerBtn: UIButton!
     
     
-    @IBOutlet var comboBax: ComboBox!
+//    @IBOutlet var comboBax: ComboBox!
     
     private var options: [UserModel] = []
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-        if(seastarCompare(admin: comboBax.currentContentText) && seastarCompare(password: passwordTextField.text!)){
+        if(seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!)){
             startCustomView();
             let passwordMD5 = md5(string: passwordTextField.text!);
-            UserViewModel.current.doAccountLogin(username: comboBax.currentContentText,
+            UserViewModel.current.doAccountLogin(username: adminTextField.text!,
                                                  password: passwordMD5,
                                                  email: "",
                                                  opType: LoginOPType.Login,
@@ -73,7 +74,7 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
                 hud(hudString: loginErrorStr, hudView: self.view);
             }
         }else{
-            if !seastarCompare(admin: comboBax.currentContentText){
+            if !seastarCompare(admin: adminTextField.text!){
                 hud(hudString: "PleaseEnterTheCorrectAdmin", hudView: self.view);
             }else{
                 hud(hudString: "PleaseEnterTheCorrectPassword", hudView: self.view);
@@ -90,24 +91,24 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
     {
         makeBounds(backgroundImage.layer)
         
-        var optionsArray: [String] = []
-        options = UserModel.loadAllUsers()
-        for user in options {
-            if !user.guestUserId.isEmpty {
-                optionsArray.append(user.userName)
-            } else if !user.facebookUserId.isEmpty {
-                optionsArray.append(user.userName)
-            } else {
-                optionsArray.append(user.userName)
-            }
-        }
-        print(options);
-        print(optionsArray);
-        comboBax.editable = true //禁止编辑
-        comboBax.showBorder = false //不显示边框
-        comboBax.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
-        comboBax.delegate = self //设置代理
-        comboBax.options = optionsArray;
+//        var optionsArray: [String] = []
+//        options = UserModel.loadAllUsers()
+//        for user in options {
+//            if !user.guestUserId.isEmpty {
+//                optionsArray.append(user.userName)
+//            } else if !user.facebookUserId.isEmpty {
+//                optionsArray.append(user.userName)
+//            } else {
+//                optionsArray.append(user.userName)
+//            }
+//        }
+//        comboBax.editable = true //禁止编辑
+//        comboBax.showBorder = false //不显示边框
+//        comboBax.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
+//        comboBax.delegate = self //设置代理
+//        comboBax.options = optionsArray;
+        adminTextField.delegate = self;
+        adminTextField.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
         passwordTextField.delegate = self
         passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
         
@@ -134,13 +135,13 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
         // Dispose of any resources that can be recreated.
     }
     
-    func selectOption(didChoose index: Int) {
-        //let currentSelectText = comboBax.currentContentText
-    }
-    
-    func deleteOption(didChoose index: Int) {
-        options.remove(at: index)
-    }
+//    func selectOption(didChoose index: Int) {
+//        //let currentSelectText = comboBax.currentContentText
+//    }
+//    
+//    func deleteOption(didChoose index: Int) {
+//        options.remove(at: index)
+//    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         moveUp(textField.frame)
@@ -155,11 +156,11 @@ class LoginViewController: BaseViewController, ComboBoxDelegate, UITextFieldDele
         return true
     }
     
-    func comboBoxDidBeginEditing() {
-        self.moveUp(self.comboBax.frame)
-    }
-    
-    func comboBoxDidEndEditing() {
-        moveDown()
-    }
+//    func comboBoxDidBeginEditing() {
+//        self.moveUp(self.comboBax.frame)
+//    }
+//    
+//    func comboBoxDidEndEditing() {
+//        moveDown()
+//    }
 }

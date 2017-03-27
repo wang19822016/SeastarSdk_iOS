@@ -19,13 +19,14 @@ public class SeastarSdk : NSObject {
     
     var myOrientation:Bool = true
     
+    private var options: [UserModel] = []
     
     public func initialize(viewController: UIViewController, landscape:Bool) {
         PurchaseViewModel.current.initialize()
         self.viewController = viewController
         myOrientation = landscape;
     }
-
+    
     // 需要切换到Facebook应用或者Safari的应调用下面方法
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         Facebook.current.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -66,38 +67,54 @@ public class SeastarSdk : NSObject {
                 userModel in loginSuccess(userModel.userId, userModel.session)
                 hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
             }, failure: { str in
-                    if self.myOrientation == true{
-                        let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-                        
-                        let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
-                        
-                        vc.loginSuccess = {(userModel:UserModel) in
-                            loginSuccess(userModel.userId, userModel.session)
-                            hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+                if self.myOrientation == true{
+                    self.options = UserModel.loadAllUsers()
+                    for user in self.options {
+                        if !user.userName.isEmpty{
+                            let storyboard: UIStoryboard = UIStoryboard(name: "changeAccount", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                            let vc: ChangeAccountViewController = storyboard.instantiateInitialViewController()! as! ChangeAccountViewController
+                            vc.ChangeAccountloginSuccess = {(userModel:UserModel) in
+                                loginSuccess(userModel.userId, userModel.session)
+                                hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+                            }
+                            vc.ChangeAccountloginFailure = {()in
+                                loginFailure();
+                            }
+                            self.viewController?.present(vc, animated: true, completion: nil)
                         }
-                        
-                        vc.loginFailure = {()in
-                            loginFailure();
+                        else{
+                            let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                            
+                            let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
+                            
+                            vc.loginSuccess = {(userModel:UserModel) in
+                                loginSuccess(userModel.userId, userModel.session)
+                                hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+                            }
+                            
+                            vc.loginFailure = {()in
+                                loginFailure();
+                            }
+                            self.viewController?.present(vc, animated: true, completion: nil)
                         }
-                        
-                        self.viewController?.present(vc, animated: true, completion: nil)
-                    }else{
-                        let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-                        
-                        let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
-                        
-                        vcPortrait.LoginSuccess = {(userModel:UserModel) in
-                            loginSuccess(userModel.userId, userModel.session)
-                            hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
-                        }
-                        
-                        vcPortrait.LoginFailure = {()in
-                            loginFailure();
-                        }
-                        
-                        self.viewController?.present(vcPortrait, animated: true, completion: nil)
+                    }
+                }else{
+                    let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                    
+                    let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
+                    
+                    vcPortrait.LoginSuccess = {(userModel:UserModel) in
+                        loginSuccess(userModel.userId, userModel.session)
+                        hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
                     }
                     
+                    vcPortrait.LoginFailure = {()in
+                        loginFailure();
+                    }
+                    
+                    self.viewController?.present(vcPortrait, animated: true, completion: nil)
+                }
+                
             })
         } else {
             //因为在frame里面其bundle默认是framework的，不是工程mainBundle，所以这边bundle要按一下写
@@ -134,29 +151,29 @@ public class SeastarSdk : NSObject {
     
     public func changeAccount(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void)
     {
-            if self.myOrientation == true{
-                let storyboard: UIStoryboard = UIStoryboard(name: "changeAccount", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-                let vc: ChangeAccountViewController = storyboard.instantiateInitialViewController()! as! ChangeAccountViewController
-                vc.ChangeAccountloginSuccess = {(userModel:UserModel) in
-                    loginSuccess(userModel.userId, userModel.session)
-                    hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
-                }
-                vc.ChangeAccountloginFailure = {()in
-                    loginFailure();
-                }
-                viewController?.present(vc, animated: true, completion: nil)
-            }else{
-                let storyboardPortrait: UIStoryboard = UIStoryboard(name: "changeAccount_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
-                let vcPortrait: ChangeAccountPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! ChangeAccountPortraitViewController
-                vcPortrait.ChangeAccountloginSuccess = {(userModel:UserModel) in
-                    loginSuccess(userModel.userId, userModel.session)
-                    hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
-                }
-                vcPortrait.ChangeAccountloginFailure = {()in
-                    loginFailure();
-                }
-                viewController?.present(vcPortrait, animated: true, completion: nil)
+        if self.myOrientation == true{
+            let storyboard: UIStoryboard = UIStoryboard(name: "changeAccount", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+            let vc: ChangeAccountViewController = storyboard.instantiateInitialViewController()! as! ChangeAccountViewController
+            vc.ChangeAccountloginSuccess = {(userModel:UserModel) in
+                loginSuccess(userModel.userId, userModel.session)
+                hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
             }
+            vc.ChangeAccountloginFailure = {()in
+                loginFailure();
+            }
+            viewController?.present(vc, animated: true, completion: nil)
+        }else{
+            let storyboardPortrait: UIStoryboard = UIStoryboard(name: "changeAccount_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+            let vcPortrait: ChangeAccountPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! ChangeAccountPortraitViewController
+            vcPortrait.ChangeAccountloginSuccess = {(userModel:UserModel) in
+                loginSuccess(userModel.userId, userModel.session)
+                hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+            }
+            vcPortrait.ChangeAccountloginFailure = {()in
+                loginFailure();
+            }
+            viewController?.present(vcPortrait, animated: true, completion: nil)
+        }
     }
     
     public func logout() {
@@ -175,9 +192,9 @@ public class SeastarSdk : NSObject {
                 self.viewController?.present(alert, animated: true, completion: nil);
             }
             
-            }, purchaseFailure: {
-                productIdentifier in
-                payFailure(productIdentifier)
+        }, purchaseFailure: {
+            productIdentifier in
+            payFailure(productIdentifier)
         })
     }
     
@@ -207,10 +224,10 @@ public class SeastarSdk : NSObject {
     }
     
     //Facebook相关
-
-    public func shareFb(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
-               imageURL image: String, contentDescription description: String, caller:@escaping (Bool)->Void) {
     
+    public func shareFb(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
+                        imageURL image: String, contentDescription description: String, caller:@escaping (Bool)->Void) {
+        
         Facebook.current.share(viewController: controller, contentURL: url, contentTitle: title, imageURL: image, contentDescription: description, caller:caller);
     }
     
@@ -245,7 +262,7 @@ public class SeastarSdk : NSObject {
     public func getPrevFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getPrevFriendInfo(success: success, failure: failure);
     }
-
+    
 }
 
 

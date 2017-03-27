@@ -8,11 +8,13 @@
 
 import UIKit
 
-class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFieldDelegate {
+class LoginPortraitViewController: BaseViewController,UITextFieldDelegate {
     
     @IBOutlet var backgroundImageVIew: UIImageView!
     
-    @IBOutlet var comboBox: ComboBox!
+//    @IBOutlet var comboBox: ComboBox!
+    
+    @IBOutlet var adminTextField: UITextField!
     
     @IBOutlet var passwordTextField: UITextField!
     
@@ -26,10 +28,10 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     
     
     @IBAction func LoginBtnClick(_ sender: AnyObject) {
-        if(seastarCompare(admin: comboBox.currentContentText) && seastarCompare(password: passwordTextField.text!)){
+        if(seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!)){
             startCustomView();
             let passwordMD5 = md5(string: passwordTextField.text!);
-            UserViewModel.current.doAccountLogin(username: comboBox.currentContentText,
+            UserViewModel.current.doAccountLogin(username: adminTextField.text!,
                                                  password: passwordMD5,
                                                  email: "",
                                                  opType: LoginOPType.Login,
@@ -74,7 +76,7 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
                 hud(hudString: loginErrorStr, hudView: self.view);
             }
         }else{
-            if !seastarCompare(admin: comboBox.currentContentText){
+            if !seastarCompare(admin: adminTextField.text!){
                 hud(hudString: "PleaseEnterTheCorrectAdmin", hudView: self.view);
             }else{
                 hud(hudString: "PleaseEnterTheCorrectPassword", hudView: self.view);
@@ -90,23 +92,24 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
     {
         makeBounds(backgroundImageVIew.layer)
         
-        var optionsArray: [String] = []
-        options = UserModel.loadAllUsers()
-        for user in options {
-            if !user.guestUserId.isEmpty {
-                optionsArray.append(user.userName)
-            } else if !user.facebookUserId.isEmpty {
-                optionsArray.append(user.userName)
-            } else {
-                optionsArray.append(user.userName)
-            }
-        }
-        comboBox.editable = true //禁止编辑
-        comboBox.showBorder = false //不显示边框
-        comboBox.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
-        comboBox.delegate = self //设置代理
-        comboBox.options = optionsArray
-        
+//        var optionsArray: [String] = []
+//        options = UserModel.loadAllUsers()
+//        for user in options {0
+//            if !user.guestUserId.isEmpty {
+//                optionsArray.append(user.userName)
+//            } else if !user.facebookUserId.isEmpty {
+//                optionsArray.append(user.userName)
+//            } else {
+//                optionsArray.append(user.userName)
+//            }
+//        }
+//        comboBox.editable = true //禁止编辑
+//        comboBox.showBorder = false //不显示边框
+//        comboBox.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
+//        comboBox.delegate = self //设置代理
+//        comboBox.options = optionsArray
+        adminTextField.delegate = self;
+        adminTextField.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
         passwordTextField.delegate = self
         passwordTextField.placeholder = NSLocalizedString("PleaseInputPassword", comment: "");
         //        passwordTextField.setValue(UIColor(red: 176/255, green: 175/255, blue: 179/255, alpha: 1), forKeyPath: "placeholderLabel.textColor");
@@ -137,9 +140,9 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
         //let currentSelectText = comboBax.currentContentText
     }
     
-    func deleteOption(didChoose index: Int) {
-        options.remove(at: index)
-    }
+//    func deleteOption(didChoose index: Int) {
+//        options.remove(at: index)
+//    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         moveUp(textField.frame)
@@ -154,11 +157,11 @@ class LoginPortraitViewController: BaseViewController,ComboBoxDelegate,UITextFie
         return true
     }
     
-    func comboBoxDidBeginEditing() {
-        moveUp(comboBox.frame)
-    }
-    
-    func comboBoxDidEndEditing() {
-        moveDown()
-    }
+//    func comboBoxDidBeginEditing() {
+//        moveUp(comboBox.frame)
+//    }
+//    
+//    func comboBoxDidEndEditing() {
+//        moveDown()
+//    }
 }

@@ -55,16 +55,18 @@ class ChangeAccountViewController: BaseViewController,ComboBoxDelegate {
     override func initView() {
         
         
-        
-        var optionsArray: [String] = []
+        var optionsArray: [Any] = []
         options = UserModel.loadAllUsers()
         for user in options {
             if !user.guestUserId.isEmpty {
-                optionsArray.append(user.userName)
+                let tuples = ("guest",user.userName);
+                optionsArray.append(tuples);
             } else if !user.facebookUserId.isEmpty {
-                optionsArray.append(user.userName)
+                let tuples = ("facebook",user.userName);
+                optionsArray.append(tuples);
             } else {
-                optionsArray.append(user.userName)
+                let tuples = ("seastar",user.userName);
+                optionsArray.append(tuples);
             }
         }
         comboBox.editable = false //禁止编辑
