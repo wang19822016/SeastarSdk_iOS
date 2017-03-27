@@ -13,6 +13,95 @@ class UserViewModel {
     
     static let current = UserViewModel()
     
+    func doRegist(_ username: String, _ password: String, _ email: String, _ type: Int, _ success: @escaping ()->Void, _ failure: @escaping ()->Void) {
+        let app = AppModel()
+        if !app.load() {
+            failure()
+            return
+        }
+        
+        let signStr = "\(app.appId)\(type)\(email)\(app.appKey)"
+        let body: [String : Any] = ["appId" : app.appId, "email" : email, "type" : type, "sign" : md5(string: signStr)]
+        
+        MyNetwork.current.post(app.serverUrl + "/api/user", ["Authorization" : "Basic " + b64Encode(username + ":" + password)!], body, {
+            code, response in
+            if code == 201 {
+                // 注册成功
+                success()
+            } else {
+                failure()
+            }
+        }, {
+            failure()
+        })
+    }
+    
+    func doLogin(_ username: String, _ password: String, _ type: Int, _ success: @escaping(UserModel)->Void, _ failure: @escaping ()->Void) {
+        let app = AppModel()
+        if !app.load() {
+            failure()
+            return
+        }
+        
+        let signStr = "\(app.appId)\(type)\(app.appKey)"
+        let body: [String : Any] = ["appId" : app.appId, "type" : type, "sign" : md5(string: signStr)]
+        
+        MyNetwork.current.post(app.serverUrl + "/api/user/token", ["Authorization" : "Basic " + b64Encode(username + ":" + password)!], body, {
+            code, response in
+            if code == 200 {
+                // 注册成功
+                let user = UserModel(token: (response["access_token"] as? String) ?? "")
+                user.save()
+                user.saveAsCurrentUser()
+                
+                success(user)
+            } else {
+                failure()
+            }
+        }, {
+            failure()
+        })
+    }
+    
+    func doLoginAndRegistAndLogin(_ username: String, _ password: String, _ type: Int, _ success: @escaping (UserModel)->Void, _ failure: @escaping ()->Void) {
+        let app = AppModel()
+        if !app.load() {
+            failure()
+            return
+        }
+        
+        let signStr = "\(app.appId)\(type)\(app.appKey)"
+        let body: [String : Any] = ["appId" : app.appId, "type" : type, "sign" : md5(string: signStr)]
+        
+        MyNetwork.current.post(app.serverUrl + "/api/user", ["Authorization" : "Basic " + b64Encode(username + ":" + password)!], body, {
+            code, response in
+            if code == 200 {
+                // 注册成功
+            } else if code == 404 {
+                self.doRegist(username, password, "", type, {
+                    self.doLogin(username, password, type, success, failure)
+                }, {
+                    failure()
+                })
+            } else {
+                failure()
+            }
+        }, {
+            failure()
+        })
+    }
+    
+    /*
+    func hasEmail(_ result: @escaping () -> Void) {
+        let app = AppModel()
+        if !app.load() {
+            failure()
+            return
+        }
+        
+        //MyNetwork.current.get(<#T##url: String##String#>, <#T##headers: [String : String]##[String : String]#>, <#T##success: (Int, [String : Any]) -> Void##(Int, [String : Any]) -> Void#>, <#T##failure: () -> Void##() -> Void#>)
+    }
+    
     func doGuestLogin(success: @escaping (UserModel)->Void, failure: @escaping (String)->Void) {
         let app = AppModel()
         if !app.load() {
@@ -194,6 +283,7 @@ class UserViewModel {
             }
         }, failure: { failure("-1") })
     }
+ */
     
     func doLogout() {
         let app = AppModel()
@@ -203,12 +293,6 @@ class UserViewModel {
         Facebook.current.logout()
         let user = UserModel()
         user.removeCurrentUser()
-        let req: [String : Any] = [
-            "session" : user.session
-        ]
-        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/auth/logout", json: req, success: { (_) in
-        }) {
-        }
     }
     
     func findPwd(_ username: String) {

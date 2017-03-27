@@ -74,3 +74,30 @@ func seastarCompare(email Str:String) ->Bool{
     }
 }
 
+func b64UrlDecode(_ encodedString: String) -> String? {
+    if let decodeString = encodedString.removingPercentEncoding {
+        if let data = Data(base64Encoded: decodeString) {
+            return String(data: data, encoding: .utf8)
+        }
+    }
+
+    return nil
+}
+
+func b64UrlEncode(_ originString: String) -> String? {
+    let str: String = Data(originString.utf8).base64EncodedString()
+    return str.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+}
+
+func b64Decode(_ encodedString: String) -> String? {
+    if let data = Data(base64Encoded: encodedString) {
+        return String(data: data, encoding: .utf8)
+    }
+
+    
+    return nil
+}
+
+func b64Encode(_ originString: String) -> String? {
+    return Data(originString.utf8).base64EncodedString()
+}
