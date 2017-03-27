@@ -114,6 +114,7 @@ extension IAPHelper : SKPaymentTransactionObserver {
         SKPaymentQueue.default().finishTransaction(transaction)
         
         let productId = transaction.payment.productIdentifier
+        
         if let receiptURL = Bundle.main.appStoreReceiptURL {
             if let receiptData = try? Data(contentsOf: receiptURL) {
                 let receipt = receiptData.base64EncodedString(options: .endLineWithLineFeed)
