@@ -124,7 +124,6 @@ class ChangeAccountViewController: BaseViewController{
             self.appear = false;
             self.downButton.transform = CGAffineTransform(rotationAngle: 0.0)
             self.tableView.removeFromSuperview();
-            //CGAffineTransform(rotationAngle: CGFloat(M_PI * 2))
         })
     }
     
