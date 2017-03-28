@@ -21,58 +21,37 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet var registerBtn: UIButton!
     
     
-//    @IBOutlet var comboBax: ComboBox!
+    //    @IBOutlet var comboBax: ComboBox!
     
     private var options: [UserModel] = []
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         if(seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!)){
             startCustomView();
-            let passwordMD5 = md5(string: passwordTextField.text!);
-            UserViewModel.current.doAccountLogin(username: adminTextField.text!,
-                                                 password: passwordMD5,
-                                                 email: "",
-                                                 opType: LoginOPType.Login,
-                                                 success:
-                { (MyuserModel:UserModel) in
-                    self.stopCustomView();
-                    let MainVC = self.presentingViewController as! MainLoginViewController;
-                    let changeVC = MainVC.presentingViewController;
-                    if(changeVC is ChangeAccountViewController){
-                        let vc = MainVC.presentingViewController as! ChangeAccountViewController;
-                        self.dismiss(animated: false, completion: {
-                            MainVC.dismiss(animated: false, completion: {
-                                changeVC?.dismiss(animated: false, completion: {
-                                    vc.ChangeAccountloginSuccess?(MyuserModel);
-                                })
-                            })
-                        })
-                    }else{
-                        self.dismiss(animated: false, completion: {
-                            MainVC.dismiss(animated: false, completion: {
-                                MainVC.loginSuccess?(MyuserModel);
-                            })
-                        })
-                    }
-            }) { str in
+            //let passwordMD5 = md5(string: passwordTextField.text!);
+            UserViewModel.current.doLogin(adminTextField.text!, passwordTextField.text!, LoginType.ACCOUNT.rawValue, { (userModel) in
                 self.stopCustomView();
-                var loginErrorStr:String;
-                if(str == "60"){
-                    loginErrorStr = "AccountDoesNotExist";
-                }
-                else if(str == "61"){
-                    loginErrorStr = "AccountOrPasswordError";
-                }
-                else if(str == "63"){
-                    loginErrorStr = "AccountDoesNotExist";
-                }
-                else if(str == "64"){
-                    loginErrorStr = "YouHaveBeenBanned";
+                let MainVC = self.presentingViewController as! MainLoginViewController;
+                let changeVC = MainVC.presentingViewController;
+                if(changeVC is ChangeAccountViewController){
+                    let vc = MainVC.presentingViewController as! ChangeAccountViewController;
+                    self.dismiss(animated: false, completion: {
+                        MainVC.dismiss(animated: false, completion: {
+                            changeVC?.dismiss(animated: false, completion: {
+                                vc.ChangeAccountloginSuccess?(userModel);
+                            })
+                        })
+                    })
                 }else{
-                    loginErrorStr = "LoginFalse";
+                    self.dismiss(animated: false, completion: {
+                        MainVC.dismiss(animated: false, completion: {
+                            MainVC.loginSuccess?(userModel);
+                        })
+                    })
                 }
-                hud(hudString: loginErrorStr, hudView: self.view);
-            }
+            }, {
+                hud(hudString: "AccountOrPasswordError", hudView: self.view);
+            })
         }else{
             if !seastarCompare(admin: adminTextField.text!){
                 hud(hudString: "PleaseEnterTheCorrectAdmin", hudView: self.view);
@@ -80,6 +59,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 hud(hudString: "PleaseEnterTheCorrectPassword", hudView: self.view);
             }
         }
+        
     }
     
     
@@ -90,23 +70,6 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     override func initView()
     {
         makeBounds(backgroundImage.layer)
-        
-//        var optionsArray: [String] = []
-//        options = UserModel.loadAllUsers()
-//        for user in options {
-//            if !user.guestUserId.isEmpty {
-//                optionsArray.append(user.userName)
-//            } else if !user.facebookUserId.isEmpty {
-//                optionsArray.append(user.userName)
-//            } else {
-//                optionsArray.append(user.userName)
-//            }
-//        }
-//        comboBax.editable = true //禁止编辑
-//        comboBax.showBorder = false //不显示边框
-//        comboBax.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
-//        comboBax.delegate = self //设置代理
-//        comboBax.options = optionsArray;
         adminTextField.delegate = self;
         adminTextField.placeholder = NSLocalizedString("PleaseInputAccount", comment: "");
         passwordTextField.delegate = self
@@ -132,16 +95,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
-    
-//    func selectOption(didChoose index: Int) {
-//        //let currentSelectText = comboBax.currentContentText
-//    }
-//    
-//    func deleteOption(didChoose index: Int) {
-//        options.remove(at: index)
-//    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         moveUp(textField.frame)
@@ -155,12 +110,4 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
-//    func comboBoxDidBeginEditing() {
-//        self.moveUp(self.comboBax.frame)
-//    }
-//    
-//    func comboBoxDidEndEditing() {
-//        moveDown()
-//    }
 }

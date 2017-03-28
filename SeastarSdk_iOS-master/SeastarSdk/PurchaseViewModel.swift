@@ -80,7 +80,7 @@ class PurchaseViewModel : IAPHelperDelegate {
             purchase.roleId = roleId
             purchase.productIdentifier = productId
             purchase.extra = extra;
-            purchase.session = user.session
+            purchase.session = user.token
             purchase.serverId = serverId
             purchase.price = String(describing: product.price)
             
@@ -107,7 +107,7 @@ class PurchaseViewModel : IAPHelperDelegate {
                         purchase.roleId = roleId
                         purchase.productIdentifier = productId
                         purchase.extra = extra
-                        purchase.session = user.session
+                        purchase.session = user.token
                         purchase.serverId = serverId
                         purchase.price = String(describing: product.price)
                         let index = product.priceLocale.identifier.index((product.priceLocale.identifier.endIndex), offsetBy: -3);

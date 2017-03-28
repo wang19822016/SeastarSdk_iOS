@@ -12,12 +12,9 @@ import UIKit
 protocol ComboBoxDelegate: class {
     func selectOption(didChoose index: Int)
     func deleteOption(didChoose index: Int)
-    
-    func comboBoxDidBeginEditing()
-    func comboBoxDidEndEditing()
 }
 
-@IBDesignable class ComboBox : UIView, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+@IBDesignable class ComboBox : UIView, UITableViewDataSource, UITableViewDelegate{
     
     // 元件水平间隔
     fileprivate static let HORIZONTAL_GAP: CGFloat = 3
@@ -157,7 +154,7 @@ protocol ComboBoxDelegate: class {
         didSet {
             if options.count > 0 {
                 currentRow = 0
-                head.image = UIImage(named: (options[0] as! (String,String)).0)
+                head.image = UIImage(named:initBundleImage(ImageStr: (options[0] as! (String,String)).0));
                 content.text = (options[0] as! (String,String)).1
                 tableView.reloadData()
             }
@@ -187,6 +184,12 @@ protocol ComboBoxDelegate: class {
         setUp()
     }
     
+    func initBundleImage(ImageStr:String)->String{
+        let bundle = Bundle(for: SeastarSdk.classForCoder());
+        let fileStr = bundle.path(forResource: ImageStr, ofType: "png");
+        return fileStr!;
+    }
+    
     func setUp() {
         // 背景
         background = UIImageView(frame: CGRect.zero)
@@ -198,7 +201,7 @@ protocol ComboBoxDelegate: class {
         
         // 名称
         content = UITextField(frame: CGRect.zero)
-        content.delegate = self
+//        content.delegate = self
         addSubview(content)
         
         // 下拉按钮
@@ -288,20 +291,6 @@ protocol ComboBoxDelegate: class {
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.delegate?.comboBoxDidBeginEditing()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.delegate?.comboBoxDidEndEditing()
-    }
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        return true
-    }
-    
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -321,6 +310,7 @@ protocol ComboBoxDelegate: class {
             let button = UIButton(frame: CGRect(x: 0, y: 0,
                                                 width: self.frame.size.height - ComboBox.TOP_BOTTOM_MARIGN,
                                                 height: self.frame.size.height - ComboBox.TOP_BOTTOM_MARIGN))
+            button.tag = indexPath.row;
             button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
             button.setImage(optionImage, for: .normal)
             button.setImage(optionImage, for: .highlighted)
@@ -329,55 +319,56 @@ protocol ComboBoxDelegate: class {
 //            cell?.imageView!.image = options[indexPath.row].0
         } else {
             cell?.textLabel?.text = (options[indexPath.row] as! (String,String)).1
-            cell?.imageView!.image = UIImage(named:(options[indexPath.row] as! (String,String)).0)
+            cell?.imageView!.image = UIImage(named:initBundleImage(ImageStr: (options[indexPath.row] as! (String,String)).0));
         }
         
         return cell!
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.frame.size.height
-    }
+//    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return self.frame.size.height
+//    }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        content.text = (options[indexPath.row] as! (String,String)).1
-        head.image = UIImage(named:(options[indexPath.row] as! (String,String)).0)
-        currentRow = indexPath.row
-        
-        self.delegate?.selectOption(didChoose: indexPath.row)
-        showOrHide()
-    }
+//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        content.text = (options[indexPath.row] as! (String,String)).1
+//        head.image = UIImage(named:initBundleImage(ImageStr: (options[indexPath.row] as! (String,String)).0));
+//        currentRow = indexPath.row
+//        
+//        self.delegate?.selectOption(didChoose: indexPath.row)
+//        showOrHide()
+//    }
     
     public func buttonPressed(_ sender: UIButton) {
-        if let cell = sender.superview as? CustomTableViewCell {
-            if let indexPath = tableView.indexPath(for: cell) {
-                if currentRow == indexPath.row {
-                    // 如果当前显示的行被删除，需要选择一行重新显示，如果没有数据了，直接清除所有
-                    if currentRow == options.count - 1 {
-                        // 删除的最后一行，则选择上一行
-                        if currentRow != 0 {
-                            // 如果还有数据
-                            currentRow = currentRow - 1
-                            
-                            head.image = UIImage(named:(options[indexPath.row] as! (String,String)).0)
-                            content.text = (options[currentRow] as! (String,String)).1
-                        } else {
-                            // 已经没有数据了
-                            //head.image = nil
-                            content.text = nil
-                        }
-                    } else {
-                        // 不是删除的最后一行，则使用下一个来显示，currentRow不必移动
-                        
-                        head.image = UIImage(named:(options[indexPath.row] as! (String,String)).0)
-                        content.text = (options[currentRow + 1] as! (String,String)).1
-                    }
-                }
-                options.remove(at: indexPath.row)
-                
-                self.delegate?.deleteOption(didChoose: indexPath.row)
-            }
-        }
-        
+//        if let cell = sender.superview as? CustomTableViewCell {
+//            if let indexPath = tableView.indexPath(for: cell) {
+//                if currentRow == indexPath.row {
+//                    // 如果当前显示的行被删除，需要选择一行重新显示，如果没有数据了，直接清除所有
+//                    if currentRow == options.count - 1 {
+//                        // 删除的最后一行，则选择上一行
+//                        if currentRow != 0 {
+//                            // 如果还有数据
+//                            currentRow = currentRow - 1
+//                            
+//                            head.image = UIImage(named:initBundleImage(ImageStr: (options[indexPath.row] as! (String,String)).0))
+//                            content.text = (options[currentRow] as! (String,String)).1
+//                        } else {
+//                            // 已经没有数据了
+//                            head.image = nil
+//                            content.text = nil
+//                        }
+//                    } else {
+//                        // 不是删除的最后一行，则使用下一个来显示，currentRow不必移动
+//                        
+//                        head.image = UIImage(named:initBundleImage(ImageStr: (options[indexPath.row] as! (String,String)).0))
+//                        content.text = (options[currentRow + 1] as! (String,String)).1
+//                    }
+//                }
+//                options.remove(at: indexPath.row)
+//                
+//                self.delegate?.deleteOption(didChoose: indexPath.row)
+//            }
+//        }
+        options.remove(at: sender.tag);
+        tableView.reloadData();
     }
 }

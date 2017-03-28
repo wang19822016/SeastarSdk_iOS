@@ -10,6 +10,9 @@ import UIKit
 
 class LoginPortraitViewController: BaseViewController,UITextFieldDelegate {
     
+    
+    /*
+    
     @IBOutlet var backgroundImageVIew: UIImageView!
     
 //    @IBOutlet var comboBox: ComboBox!
@@ -164,4 +167,6 @@ class LoginPortraitViewController: BaseViewController,UITextFieldDelegate {
 //    func comboBoxDidEndEditing() {
 //        moveDown()
 //    }
+ 
+ */
 }

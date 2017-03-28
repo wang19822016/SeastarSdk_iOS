@@ -37,7 +37,7 @@ class MainPortraitViewController: BaseViewController {
         LoginTypeLabel.text = NSLocalizedString("SelectLoginType", comment: "");
     }
     
-    
+    /*
     @IBAction func guestLogin(_ sender: AnyObject) {
         startCustomView();
         UserViewModel.current.doGuestLogin(success: { userModel in
@@ -81,5 +81,6 @@ class MainPortraitViewController: BaseViewController {
         })
         
     }
+ */
     
 }

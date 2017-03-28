@@ -63,6 +63,37 @@ public class SeastarSdk : NSObject {
     public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
         var user = UserModel()
         if user.loadCurrentUser() {
+            loginSuccess(Int(user.userId), user.token)
+        }else{
+            let userModel = UserModel.loadAllUsers();
+            if userModel.count == 0{
+                //没账号
+                let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                
+                let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
+                vc.loginSuccess = {(userModel:UserModel) in
+                    loginSuccess(Int(userModel.userId), userModel.token)
+                    hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+                }
+                vc.loginFailure = {()in
+                    loginFailure();
+                }
+                self.viewController?.present(vc, animated: true, completion: nil)
+            }else{
+                //有账号
+                let storyboard: UIStoryboard = UIStoryboard(name: "changeAccount", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                let vc: ChangeAccountViewController = storyboard.instantiateInitialViewController()! as! ChangeAccountViewController
+                vc.ChangeAccountloginSuccess = {(userModel:UserModel) in
+                    loginSuccess(Int(userModel.userId), userModel.token)
+                    hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+                }
+                vc.ChangeAccountloginFailure = {()in
+                    loginFailure();
+                }
+                self.viewController?.present(vc, animated: true, completion: nil)
+            }
+        }
+        /*
             UserViewModel.current.doSessionLogin(usermodel:user,success: {
                 userModel in loginSuccess(userModel.userId, userModel.session)
                 hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
@@ -125,7 +156,7 @@ public class SeastarSdk : NSObject {
                 let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
                 
                 vc.loginSuccess = {(userModel:UserModel) in
-                    loginSuccess(userModel.userId, userModel.session)
+                    loginSuccess(userModel.userId, userModel.token)
                     hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
                 }
                 
@@ -138,7 +169,7 @@ public class SeastarSdk : NSObject {
                 let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
                 let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
                 vcPortrait.LoginSuccess = {(userModel:UserModel) in
-                    loginSuccess(userModel.userId, userModel.session)
+                    loginSuccess(userModel.userId, userModel.token)
                     hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
                 }
                 vcPortrait.LoginFailure = {()in
@@ -147,6 +178,7 @@ public class SeastarSdk : NSObject {
                 viewController?.present(vcPortrait, animated: true, completion: nil)
             }
         }
+        */
     }
     
     public func changeAccount(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void)
@@ -155,7 +187,7 @@ public class SeastarSdk : NSObject {
             let storyboard: UIStoryboard = UIStoryboard(name: "changeAccount", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
             let vc: ChangeAccountViewController = storyboard.instantiateInitialViewController()! as! ChangeAccountViewController
             vc.ChangeAccountloginSuccess = {(userModel:UserModel) in
-                loginSuccess(userModel.userId, userModel.session)
+                loginSuccess(Int(userModel.userId), userModel.token)
                 hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
             }
             vc.ChangeAccountloginFailure = {()in
@@ -166,7 +198,7 @@ public class SeastarSdk : NSObject {
             let storyboardPortrait: UIStoryboard = UIStoryboard(name: "changeAccount_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
             let vcPortrait: ChangeAccountPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! ChangeAccountPortraitViewController
             vcPortrait.ChangeAccountloginSuccess = {(userModel:UserModel) in
-                loginSuccess(userModel.userId, userModel.session)
+                loginSuccess(Int(userModel.userId), userModel.token)
                 hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
             }
             vcPortrait.ChangeAccountloginFailure = {()in

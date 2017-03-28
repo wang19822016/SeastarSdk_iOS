@@ -10,18 +10,103 @@ import UIKit
 
 class MyNetwork: NSObject {
     
-    func get(){
-        let url = URL(string: "");
-        let request = URLRequest(url: url!);
-        let session = URLSession(configuration: .default, delegate: self, delegateQueue:OperationQueue.main);
-        let task = session.dataTask(with: request);
-        task.resume()
+    static let current = MyNetwork()
+    private var TIME_OUT: TimeInterval = 8.0
+    
+    func get(_ url: String, _ headers: [String : String], _ success: @escaping (Int, [String : Any]) -> Void, _ failure: @escaping() -> Void) {
+        var request = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
+        request.httpMethod = "GET"
         
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key);
+        }
+        request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
+        let task = session.dataTask(with: request) {
+            (data, response, error) -> Void in
+            
+            if error != nil {
+                // TODO
+                failure()
+            } else {
+                if let data = data {
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                    if let json = json as? [String : Any] {
+                        if let response = response as? HTTPURLResponse {
+                            success(response.statusCode, json)
+                        }
+                    }
+                }
+            }
+        }
+        task.resume()
     }
     
     
-    static let current = MyNetwork()
-    private var TIME_OUT: TimeInterval = 8.0
+    func post(_ url: String , _ headers: [String : String], _ body: [String : Any], _ success: @escaping (Int, [String : Any]) -> Void, _ failure: @escaping() -> Void) {
+        var request = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+        
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key);
+        }
+        request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
+        let task = session.dataTask(with: request) {
+            (data, response, error) -> Void in
+            
+            if error != nil {
+                // TODO
+                failure()
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    if let data = data {
+                        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                        if let json = json as? [String : Any] {
+                            success(response.statusCode, json)
+                            return
+                        }
+                    }
+                    
+                    success(response.statusCode, [:])
+                }
+                
+            }
+        }
+        task.resume()
+    }
+    
+    func put(_ url: String , _ headers: [String : String], _ body: [String : Any], _ success: @escaping (Int, [String : Any]) -> Void, _ failure: @escaping() -> Void) {
+        var request = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
+        request.httpMethod = "PUT"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+        
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key);
+        }
+        request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
+        let task = session.dataTask(with: request) {
+            (data, response, error) -> Void in
+            
+            if error != nil {
+                // TODO
+                failure()
+            } else {
+                if let data = data {
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                    if let json = json as? [String : Any] {
+                        if let response = response as? HTTPURLResponse {
+                            success(response.statusCode, json)
+                        }
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+
     
     func get(url: String, params: Dictionary<String, Any> = Dictionary<String, Any>(), success: @escaping (String) -> Void, failure: @escaping () -> Void) {
         var address: String = assembleGetAddress(url: url, params: params)
@@ -29,7 +114,7 @@ class MyNetwork: NSObject {
         var request: URLRequest = URLRequest(url: URL(string: address)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
         request.httpMethod = "GET"
         
-        let session = URLSession(configuration: .default, delegate: self, delegateQueue:OperationQueue.main);
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main);
         
         let task:URLSessionDataTask = session.dataTask(with: request) {
             (data: Data?, response: URLResponse?, error: Error?) -> Void in
@@ -63,7 +148,7 @@ class MyNetwork: NSObject {
         request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         
         Log("url: \(url) body: \(json)")
-        let session = URLSession(configuration: .default, delegate: self, delegateQueue:OperationQueue.main);
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main);
         let task = session.dataTask(with: request) { data, response, error in
             if error != nil {
                 // 错误情况处理
@@ -113,54 +198,3 @@ class MyNetwork: NSObject {
 }
 
 
-
-extension MyNetwork:URLSessionDataDelegate{
-
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        let serverTrust = challenge.protectionSpace.serverTrust
-        let certificate = SecTrustGetCertificateAtIndex(serverTrust!, 0)
-        
-        let policies = NSMutableArray();
-        policies.add(SecPolicyCreateSSL(true, (challenge.protectionSpace.host as CFString?)))
-        SecTrustSetPolicies(serverTrust!, policies);
-        
-        var result: SecTrustResultType = SecTrustResultType(rawValue: 0)!
-        SecTrustEvaluate(serverTrust!, &result)
-        
-//        let isServerTrusted:Bool = (result == SecTrustResultType.unspecified || result == SecTrustResultType.proceed)
-        
-        let isServerTrusted = true;
-        let remoteCertificateData:NSData = SecCertificateCopyData(certificate!)
-        let cerBundle = Bundle(for: SeastarSdk.classForCoder());
-        let pathToCert = cerBundle.path(forResource: "server", ofType: "cer");
-        let localCertificate:NSData = NSData(contentsOfFile: pathToCert!)!
-        if (isServerTrusted && remoteCertificateData.isEqual(to: localCertificate as Data)) {
-            let credential:URLCredential = URLCredential(trust: serverTrust!);
-            completionHandler(.useCredential, credential)
-        } else {
-            completionHandler(.cancelAuthenticationChallenge, nil)
-        }
-    }
-    
-    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        print(#function)
-        
-    }
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        print(#function)
-        
-    }
-    
-    
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        print(#function)
-        
-    }
-    
-    
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        print(#function)
-        
-    }
-    
-}

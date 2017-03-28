@@ -26,39 +26,41 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate {
     @IBAction func registerBtnClick(_ sender: AnyObject) {
         if (seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!) && seastarCompare(email: emailTextField.text!)){
             startCustomView();
-            UserViewModel.current.doAccountLogin(username: adminTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, opType: LoginOPType.REGISTER, success: { (myUserModel:UserModel) in
-                self.stopCustomView();
-                let LoginVC = self.presentingViewController as! LoginViewController;
-                let MainVC = LoginVC.presentingViewController as! MainLoginViewController;
-                let changeVC = MainVC.presentingViewController
-                if(changeVC is ChangeAccountViewController){
-                    let vc = MainVC.presentingViewController as! ChangeAccountViewController;
-                    self.dismiss(animated: false, completion: {
-                        LoginVC.dismiss(animated: false, completion: {
-                            MainVC.dismiss(animated: false, completion: {
-                                changeVC?.dismiss(animated: false, completion: {
-                                    vc.ChangeAccountloginSuccess?(myUserModel);
+            
+            UserViewModel.current.doRegist(adminTextField.text!, passwordTextField.text!, emailTextField.text!, LoginType.ACCOUNT.rawValue, {
+                UserViewModel.current.doLogin(self.adminTextField.text!, self.passwordTextField.text!, LoginType.ACCOUNT.rawValue, { (userModel) in
+                    self.stopCustomView();
+                    let LoginVC = self.presentingViewController as! LoginViewController;
+                    let MainVC = LoginVC.presentingViewController as! MainLoginViewController;
+                    let changeVC = MainVC.presentingViewController
+                    if(changeVC is ChangeAccountViewController){
+                        let vc = MainVC.presentingViewController as! ChangeAccountViewController;
+                        self.dismiss(animated: false, completion: {
+                            LoginVC.dismiss(animated: false, completion: {
+                                MainVC.dismiss(animated: false, completion: {
+                                    changeVC?.dismiss(animated: false, completion: {
+                                        vc.ChangeAccountloginSuccess?(userModel);
+                                    })
                                 })
                             })
                         })
-                    })
-                }else{
-                    self.dismiss(animated: false, completion: {
-                        LoginVC.dismiss(animated: false, completion: {
-                            MainVC.dismiss(animated: false, completion: {
-                                MainVC.loginSuccess?(myUserModel);
+                    }else{
+                        self.dismiss(animated: false, completion: {
+                            LoginVC.dismiss(animated: false, completion: {
+                                MainVC.dismiss(animated: false, completion: {
+                                    MainVC.loginSuccess?(userModel);
+                                })
                             })
                         })
-                    })
-                }
-            }) { str in
-                self.stopCustomView();
-                if str == "62"{
-                    hud(hudString: "AccountAlreadyExists", hudView: self.view)
-                }else{
+                    }
+                }, {
+                    self.stopCustomView();
                     hud(hudString: "RegisterFasle", hudView: self.view)
-                }
-            }
+                })
+            }, {
+                self.stopCustomView();
+                hud(hudString: "RegisterFasle", hudView: self.view)
+            })
         }else{
             if !seastarCompare(admin: adminTextField.text!){
                 hud(hudString: "PleaseEnterTheCorrectAdmin", hudView: self.view);
@@ -90,10 +92,10 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        var rect = textField.frame
-//        if textField == emailTextField{
-//            rect.origin.y += 40;
-//        }
+        //        var rect = textField.frame
+        //        if textField == emailTextField{
+        //            rect.origin.y += 40;
+        //        }
         moveUp(textField.frame);
     }
     

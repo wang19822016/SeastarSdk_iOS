@@ -10,7 +10,7 @@ import UIKit
 
 class ForgetPortraitViewController: BaseViewController,UITextFieldDelegate {
 
-    
+    /*
     
     @IBOutlet var backgroundImageView: UIImageView!
     
@@ -62,4 +62,5 @@ class ForgetPortraitViewController: BaseViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+ */
 }

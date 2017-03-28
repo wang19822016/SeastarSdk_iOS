@@ -41,30 +41,8 @@ class MainLoginViewController: BaseViewController {
     
     @IBAction func guestLogin(_ sender: AnyObject) {
         startCustomView()
-        UserViewModel.current.doGuestLogin(success: { userModel in
-            self.stopCustomView();
-            let changeVC = self.presentingViewController;
-            if(changeVC is ChangeAccountViewController){
-                let vc = self.presentingViewController as! ChangeAccountViewController;
-                self.dismiss(animated: false, completion: { 
-                    vc.dismiss(animated: false, completion: { 
-                        vc.ChangeAccountloginSuccess?(userModel);
-                    })
-                })
-            }else{
-                self.dismiss(animated: false, completion: {
-                    self.loginSuccess?(userModel);
-                })
-            }
-            }, failure: { str in
-                self.stopCustomView();
-                hud(hudString: "LoginFalse", hudView: self.view);
-        })
-    }
-    
-    
-    @IBAction func facebookLogin(_ sender: AnyObject) {
-        UserViewModel.current.doFacebookLogin(viewController: self, success: { userModel in
+        UserViewModel.current.doLoginAndRegistAndLogin(deviceId(), deviceId(), LoginType.GUEST.rawValue, { (userModel) in
+             self.stopCustomView();
             let changeVC = self.presentingViewController;
             if(changeVC is ChangeAccountViewController){
                 let vc = self.presentingViewController as! ChangeAccountViewController;
@@ -78,12 +56,39 @@ class MainLoginViewController: BaseViewController {
                     self.loginSuccess?(userModel);
                 })
             }
-            }, failure: { str in
-                hud(hudString: "LoginFalse", hudView: self.view);
-        })
-        
+        }) {
+            self.stopCustomView();
+            hud(hudString: "LoginFalse", hudView: self.view);
+        }
     }
     
+    
+    @IBAction func facebookLogin(_ sender: AnyObject) {
+        startCustomView()
+        Facebook.current.login(viewController: self, success: { fbuserId, token in
+            UserViewModel.current.doLoginAndRegistAndLogin(fbuserId, token, LoginType.FACEBOOK.rawValue, { (userModel) in
+                self.stopCustomView();
+                let changeVC = self.presentingViewController;
+                if(changeVC is ChangeAccountViewController){
+                    let vc = self.presentingViewController as! ChangeAccountViewController;
+                    self.dismiss(animated: false, completion: {
+                        vc.dismiss(animated: false, completion: {
+                            vc.ChangeAccountloginSuccess?(userModel);
+                        })
+                    })
+                }else{
+                    self.dismiss(animated: false, completion: {
+                        self.loginSuccess?(userModel);
+                    })
+                }},{
+                    self.stopCustomView();
+                    hud(hudString: "LoginFalse", hudView: self.view);
+                });
+            },failure: {
+                self.stopCustomView();
+                hud(hudString: "LoginFalse", hudView: self.view);
+            })
+        }
 }
 
 

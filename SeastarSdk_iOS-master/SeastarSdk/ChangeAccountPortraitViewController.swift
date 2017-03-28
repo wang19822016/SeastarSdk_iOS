@@ -8,9 +8,8 @@
 
 import UIKit
 
+
 class ChangeAccountPortraitViewController: BaseViewController,ComboBoxDelegate {
-    
-    
     @IBOutlet var comboBox: ComboBox!
     
     @IBOutlet var loginBtn: UIButton!
@@ -22,7 +21,7 @@ class ChangeAccountPortraitViewController: BaseViewController,ComboBoxDelegate {
     var ChangeAccountloginSuccess:((_ usermodel:UserModel)->Void)?
     
     var ChangeAccountloginFailure:(()->Void)?
-    
+    /*
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         for option in options
         {
@@ -83,7 +82,7 @@ class ChangeAccountPortraitViewController: BaseViewController,ComboBoxDelegate {
         changeBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
     }
     
-    
+    */
     func selectOption(didChoose index: Int)
     {
         
@@ -99,5 +98,5 @@ class ChangeAccountPortraitViewController: BaseViewController,ComboBoxDelegate {
     func comboBoxDidEndEditing()
     {
         moveDown();
-    }
+    }   
 }

@@ -10,6 +10,8 @@ import UIKit
 
 class RegisterPortraitViewController: BaseViewController,UITextFieldDelegate {
     
+    /*
+    
     @IBOutlet var backgroundImageView: UIImageView!
     
     @IBOutlet var adminTextField: UITextField!
@@ -106,5 +108,6 @@ class RegisterPortraitViewController: BaseViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
+   
+ */
 }
