@@ -23,6 +23,7 @@ class UserViewModel {
         let signStr = "\(app.appId)\(type)\(email)\(app.appKey)"
         let body: [String : Any] = ["appId" : app.appId, "email" : email, "type" : type, "sign" : md5(string: signStr)]
         print(signStr);
+
         MyNetwork.current.post(app.serverUrl + "/api/user", ["Authorization" : "Basic " + b64Encode(username + ":" + password)!], body, {
             code, response in
             if code == 201 {
@@ -33,6 +34,7 @@ class UserViewModel {
             } else {
                 print(code);
                 print(response);
+
                 failure()
             }
         }, {
@@ -58,6 +60,7 @@ class UserViewModel {
                 let user = UserModel(token: (response["access_token"] as? String) ?? "")
                 user.save()
                 user.saveAsCurrentUser()
+
                 success(user)
             } else {
                 failure()

@@ -14,6 +14,8 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     static let current = PurchaseViewModel()
     
+    var purchase = PurchaseModel()
+    
     //    var productIdentifiers: Set<ProductIdentifier> = Set<ProductIdentifier>()
     var purchaseSuccess: SuccessCB? = nil
     var purchaseFailure: FailureCB? = nil
@@ -39,7 +41,6 @@ class PurchaseViewModel : IAPHelperDelegate {
             if !purchase.transactionIdentifier.isEmpty && !purchase.receipt.isEmpty {
                 let req: [String : Any] = [
                     "transactionId" : purchase.transactionIdentifier,
-                    "session" : purchase.session,
                     "productId": purchase.productIdentifier,
                     "receipt" : purchase.receipt,
                     "gameRoleId": purchase.roleId,
@@ -48,13 +49,13 @@ class PurchaseViewModel : IAPHelperDelegate {
                     "serverId":purchase.serverId,
                     "currencyCode": purchase.currency
                 ]
-                Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.session) productId:\(purchase.productIdentifier)")
-                MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/pay/apple", json: req, success: { result in
+                Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.token) productId:\(purchase.productIdentifier)")
+                MyNetwork.current.post(app.serverUrl + "/api/pay/apple", ["Authorization" : "Bearer \(purchase.token)"], req, { code, resposne in
                     // 验证成功，清除数据
                     //remove
                     purchase.remove()
-                    Log("verify: \(result["code"]) \(result["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                }, failure: {
+                    Log("verify: \(code) \(resposne["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
+                }, {
                     Log("verify: network error \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
                 })
             }
@@ -64,7 +65,7 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     func doPurchase(productId: String, roleId: String, serverId: String, extra: String, purchaseSuccess: @escaping SuccessCB, purchaseFailure: @escaping FailureCB) {
         var user = UserModel()
-        if !user.loadCurrentUser() {
+        if !user.loadCurrentUser() || purchase.productIdentifier.isEmpty {
             purchaseFailure(productId)
             
             return
@@ -76,19 +77,20 @@ class PurchaseViewModel : IAPHelperDelegate {
             formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
             formatter.numberStyle = NumberFormatter.Style.currency
             formatter.locale = product.priceLocale
-            var purchase = PurchaseModel()
+            
             purchase.roleId = roleId
             purchase.productIdentifier = productId
             purchase.extra = extra;
-            purchase.session = user.token
+            purchase.token = user.token
+
             purchase.serverId = serverId
             purchase.price = String(describing: product.price)
+            purchase.token = user.token
             
             let index = product.priceLocale.identifier.index(product.priceLocale.identifier.endIndex, offsetBy: -3);
             purchase.currency = product.priceLocale.identifier.substring(from: index);
             
             purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
-            purchase.save()
             
             self.purchaseSuccess = purchaseSuccess
             self.purchaseFailure = purchaseFailure
@@ -103,23 +105,25 @@ class PurchaseViewModel : IAPHelperDelegate {
                         formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
                         formatter.numberStyle = NumberFormatter.Style.currency
                         formatter.locale = product.priceLocale
+
                         var purchase = PurchaseModel()
                         purchase.roleId = roleId
                         purchase.productIdentifier = productId
                         purchase.extra = extra
-                        purchase.session = user.token
+                        purchase.token = user.token
                         purchase.serverId = serverId
                         purchase.price = String(describing: product.price)
+
                         let index = product.priceLocale.identifier.index((product.priceLocale.identifier.endIndex), offsetBy: -3);
-                        purchase.currency = (product.priceLocale.identifier.substring(from: index));
-                        purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
-                        purchase.save()
+                        self.purchase.currency = (product.priceLocale.identifier.substring(from: index));
+                        self.purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
+                        self.purchase.token = user.token
                         
                         self.purchaseSuccess = purchaseSuccess
                         self.purchaseFailure = purchaseFailure
                         
                         // 启动支付
-                        IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: purchase.applicationUsername)
+                        IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: self.purchase.applicationUsername)
                     }
                 }else{
                     purchaseFailure(productId)
@@ -131,78 +135,53 @@ class PurchaseViewModel : IAPHelperDelegate {
     func purchasedComplete(_ success: Bool, _ productIdentifier: ProductIdentifier, _ applicationUsername: String,
                            _ transactionIdentifier: String, _ receipt: String) {
         if success {
-            if !applicationUsername.isEmpty {
-                var purchase = PurchaseModel()
-                if purchase.load(applicationUsername: applicationUsername) {
-                    
-                    // 补全交易信息，重新存储
-                    purchase.transactionIdentifier = transactionIdentifier
-                    purchase.receipt = receipt
-                    purchase.save()
-                    let app = AppModel()
-                    if app.load() {
-                        let req: [String : Any] = [
-                            "transactionId" : purchase.transactionIdentifier,
-                            "session" : purchase.session,
-                            "productId": purchase.productIdentifier,
-                            "receipt" : receipt,
-                            "gameRoleId": purchase.roleId,
-                            "cparam": purchase.extra,
-                            "price": purchase.price,
-                            "currencyCode": purchase.currency,
-                            "serverId": purchase.serverId
-                        ]
-                        
-                        Log("verify: \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        MyNetwork.current.post(url: app.serverUrl + "/sdk/v2/pay/apple", json: req, success: { result in
-                            let code: Int = (result["code"] as? Int) ?? 0
-                            let order: String = (result["order"] as? String) ?? ""
-                            // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了
-                            purchase.remove()
-                            
-                            if code == 0 {
-                                Log("verify: ok, \(purchase.transactionIdentifier) \(purchase.productIdentifier) \(order)")
-                                self.purchaseSuccess?(productIdentifier, order)
-                                self.purchaseSuccess = nil
-                                self.purchaseFailure = nil
-                            } else {
-                                Log("verify: fail, \(purchase.transactionIdentifier) \(purchase.productIdentifier) \(code)")
-                                self.purchaseFailure?(productIdentifier)
-                                self.purchaseSuccess = nil
-                                self.purchaseFailure = nil
-                            }
-                        }, failure: {
-                            Log("verify: network error, \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                            self.purchaseFailure?(productIdentifier)
-                            self.purchaseSuccess = nil
-                            self.purchaseFailure = nil
-                        })
-                    } else {
-                        // app信息加载失败
-                        Log("verify: no app config, \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-                        self.purchaseFailure?(productIdentifier)
-                        self.purchaseSuccess = nil
-                        self.purchaseFailure = nil
-                    }
+            // 补全交易信息，重新存储
+            purchase.transactionIdentifier = transactionIdentifier
+            purchase.receipt = receipt
+            
+            let app = AppModel()
+            app.load()
+            let req: [String : Any] = [
+                "transactionId" : purchase.transactionIdentifier,
+                "productId": purchase.productIdentifier,
+                "receipt" : receipt,
+                "gameRoleId": purchase.roleId,
+                "cparam": purchase.extra,
+                "price": purchase.price,
+                "currencyCode": purchase.currency,
+                "serverId": purchase.serverId
+            ]
+            
+            Log("verify: \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
+            MyNetwork.current.post(app.serverUrl + "/api/pay/apple", ["Authorization" : "Bearer \(purchase.token)"], req, { code, result in
+                
+                let order: String = (result["order"] as? String) ?? ""
+                // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了
+                
+                if code == 200 {
+                    Log("verify: ok, \(self.purchase.transactionIdentifier) \(self.purchase.productIdentifier) \(order)")
+                    self.purchase.productIdentifier = ""
+                    self.purchaseSuccess?(productIdentifier, order)
+                    self.purchaseSuccess = nil
+                    self.purchaseFailure = nil
                 } else {
-                    // 支付信息加载失败
-                    Log("verify: no purchase with applicationUsername, \(transactionIdentifier) \(productIdentifier)")
+                    Log("verify: fail, \(self.purchase.transactionIdentifier) \(self.purchase.productIdentifier) \(code)")
+                    self.purchase.productIdentifier = ""
                     self.purchaseFailure?(productIdentifier)
                     self.purchaseSuccess = nil
                     self.purchaseFailure = nil
                 }
-            } else {
-                // 支付返回的信息缺少
-                Log("verify: no applicationUsername, \(transactionIdentifier) \(productIdentifier)")
+            }, {
+                Log("verify: network error, \(self.purchase.transactionIdentifier) \(self.purchase.productIdentifier)")
+                self.purchase.save()
+                self.purchase.productIdentifier = ""
                 self.purchaseFailure?(productIdentifier)
                 self.purchaseSuccess = nil
                 self.purchaseFailure = nil
-            }
+            })
         } else {
-            if !applicationUsername.isEmpty {
-                PurchaseModel.remove(applicationUsername: applicationUsername)
-            }
             Log("verify: purchase fail, \(transactionIdentifier) \(productIdentifier)")
+            self.purchase.productIdentifier = ""
             self.purchaseFailure?(productIdentifier)
             self.purchaseSuccess = nil
             self.purchaseFailure = nil

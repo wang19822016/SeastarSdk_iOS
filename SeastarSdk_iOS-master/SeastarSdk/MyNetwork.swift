@@ -21,6 +21,7 @@ class MyNetwork: NSObject {
             request.addValue(value, forHTTPHeaderField: key);
         }
         request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
+
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
@@ -52,6 +53,7 @@ class MyNetwork: NSObject {
             request.addValue(value, forHTTPHeaderField: key);
         }
         request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
+
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
@@ -71,7 +73,7 @@ class MyNetwork: NSObject {
                     
                     success(response.statusCode, [:])
                 }
-                
+
             }
         }
         task.resume()
@@ -86,6 +88,7 @@ class MyNetwork: NSObject {
             request.addValue(value, forHTTPHeaderField: key);
         }
         request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
+
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
