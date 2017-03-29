@@ -33,29 +33,7 @@ class RegisterPortraitViewController: BaseViewController,UITextFieldDelegate {
             UserViewModel.current.doRegist(adminTextField.text!, passwordTextField.text!, emailTextField.text!, LoginType.ACCOUNT.rawValue, {
                 UserViewModel.current.doLogin(self.adminTextField.text!, self.passwordTextField.text!, LoginType.ACCOUNT.rawValue, { (userModel) in
                     self.stopCustomView();
-                    let LoginVC = self.presentingViewController as! LoginPortraitViewController;
-                    let MainVC = LoginVC.presentingViewController as! MainPortraitViewController;
-                    let changeVC = MainVC.presentingViewController
-                    if(changeVC is ChangeAccountPortraitViewController){
-                        let vc = MainVC.presentingViewController as! ChangeAccountPortraitViewController;
-                        self.dismiss(animated: false, completion: {
-                            LoginVC.dismiss(animated: false, completion: {
-                                MainVC.dismiss(animated: false, completion: {
-                                    changeVC?.dismiss(animated: false, completion: {
-                                        vc.ChangeAccountloginSuccess?(userModel);
-                                    })
-                                })
-                            })
-                        })
-                    }else{
-                        self.dismiss(animated: false, completion: {
-                            LoginVC.dismiss(animated: false, completion: {
-                                MainVC.dismiss(animated: false, completion: {
-                                    MainVC.LoginSuccess?(userModel);
-                                })
-                            })
-                        })
-                    }
+                    self.loginSuccess(user: userModel);
                 }, {
                     self.stopCustomView();
                     hud(hudString: "RegisterFasle", hudView: self.view)

@@ -35,25 +35,9 @@ class LoginPortraitViewController: BaseViewController,UITextFieldDelegate {
             startCustomView();
             UserViewModel.current.doLogin(adminTextField.text!, passwordTextField.text!, LoginType.ACCOUNT.rawValue, { (userModel) in
                 self.stopCustomView();
-                let MainVC = self.presentingViewController as! MainPortraitViewController;
-                let changeVC = MainVC.presentingViewController;
-                if(changeVC is ChangeAccountPortraitViewController){
-                    let vc = MainVC.presentingViewController as! ChangeAccountPortraitViewController;
-                    self.dismiss(animated: false, completion: {
-                        MainVC.dismiss(animated: false, completion: {
-                            changeVC?.dismiss(animated: false, completion: {
-                                vc.ChangeAccountloginSuccess?(userModel);
-                            })
-                        })
-                    })
-                }else{
-                    self.dismiss(animated: false, completion: {
-                        MainVC.dismiss(animated: false, completion: {
-                            MainVC.LoginSuccess?(userModel);
-                        })
-                    })
-                }
+                self.loginSuccess(user: userModel);
             }, {
+                self.stopCustomView();
                 hud(hudString: "AccountOrPasswordError", hudView: self.view);
             })
         }else{

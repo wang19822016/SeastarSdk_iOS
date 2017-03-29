@@ -113,6 +113,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OC7-we-Tzi">
+                                        <rect key="frame" x="7" y="7" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="5ir-p9-3N6"/>
+                                            <constraint firstAttribute="height" constant="40" id="UIr-dz-QSC"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="back.png"/>
+                                        <connections>
+                                            <action selector="dismissClick:" destination="XOX-Ai-lCx" eventType="touchUpInside" id="SKt-mT-uPC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -128,9 +139,11 @@
                                     <constraint firstItem="SS0-5h-STi" firstAttribute="centerX" secondItem="U9a-iA-x2J" secondAttribute="centerX" id="V3O-8s-IXv"/>
                                     <constraint firstItem="XX8-0R-CAw" firstAttribute="centerX" secondItem="U9a-iA-x2J" secondAttribute="centerX" id="VHd-bm-l3d"/>
                                     <constraint firstItem="SS0-5h-STi" firstAttribute="top" secondItem="U9a-iA-x2J" secondAttribute="top" constant="16" id="aPF-Wu-lrc"/>
+                                    <constraint firstItem="OC7-we-Tzi" firstAttribute="top" secondItem="U9a-iA-x2J" secondAttribute="top" constant="7" id="afR-1a-3Hx"/>
                                     <constraint firstItem="KKf-wQ-YHg" firstAttribute="top" secondItem="OYO-h5-q0U" secondAttribute="bottom" constant="8" id="gEF-Ou-bg6"/>
                                     <constraint firstAttribute="trailing" secondItem="OjM-GM-aib" secondAttribute="trailing" id="gGd-cz-TDQ"/>
                                     <constraint firstAttribute="width" constant="445" id="hpx-Cx-zla"/>
+                                    <constraint firstItem="OC7-we-Tzi" firstAttribute="leading" secondItem="U9a-iA-x2J" secondAttribute="leading" constant="7" id="jvV-64-pXL"/>
                                     <constraint firstAttribute="trailing" secondItem="KKf-wQ-YHg" secondAttribute="trailing" constant="41" id="oRf-NK-M2y"/>
                                     <constraint firstItem="mtX-2b-Ky2" firstAttribute="centerX" secondItem="U9a-iA-x2J" secondAttribute="centerX" id="pOO-af-mGC"/>
                                     <constraint firstItem="OjM-GM-aib" firstAttribute="top" secondItem="U9a-iA-x2J" secondAttribute="top" id="qtM-Or-aZ4"/>
@@ -148,6 +161,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="OC7-we-Tzi" id="C2E-bP-kpu"/>
                         <outlet property="backGroundImage" destination="OjM-GM-aib" id="xIg-4g-xt2"/>
                         <outlet property="facebookLoginLabel" destination="KKf-wQ-YHg" id="lWW-ZJ-R05"/>
                         <outlet property="guestLoginLabel" destination="xyG-s6-PnZ" id="0fe-AY-ip0"/>

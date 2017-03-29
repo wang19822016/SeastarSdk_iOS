@@ -24,15 +24,10 @@ class ChangeAccountPortraitViewController: BaseViewController{
     private var options: [UserModel] = []
     var optionsArray: [Any] = []
     var currentUserModel = UserModel();
-    
-    var ChangeAccountloginSuccess:((_ usermodel:UserModel)->Void)?
-    
-    var ChangeAccountloginFailure:(()->Void)?
 
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-        ChangeAccountloginSuccess!(currentUserModel);
+        self.loginSuccess(user: currentUserModel);
         currentUserModel.saveAsCurrentUser();
-        dismiss(animated: true, completion: nil);
     }
 
     override func initView() {
@@ -65,9 +60,11 @@ class ChangeAccountPortraitViewController: BaseViewController{
                 optionsArray.append(tuples);
             }
         }
+        if options.count > 0{
         currentUserModel = UserModel.loadAllUsers()[0];
         userImage.image = returnImage(myIndex: 0);
         currentUser.text = returnUser(myIndex: 0);
+        }
     }
     
     func initTableView(){
@@ -90,12 +87,22 @@ class ChangeAccountPortraitViewController: BaseViewController{
     }
     
     func deleteUser(_ sender: UIButton) {
+        
+        let userModel = (optionsArray[sender.tag] as! (String,String,UserModel)).2
+        userModel.remove();
+        var currentModel = UserModel();
+        if currentModel.loadCurrentUser(){
+            if currentModel.userId == userModel.userId{
+                currentModel.removeCurrentUser()
+            }
+        }
         optionsArray.remove(at: sender.tag);
         tableView.reloadData();
         if(optionsArray.count == 0){
-            currentUser.text = "";
-            upBack();
-            
+            let storyboard: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+            let vc: MainPortraitViewController = storyboard.instantiateInitialViewController()! as! MainPortraitViewController
+
+            self.present(vc, animated: true, completion: nil);
         }
     }
     
@@ -163,7 +170,7 @@ extension ChangeAccountPortraitViewController:UITableViewDelegate,UITableViewDat
         button.setBackgroundImage(returnCancel(), for: .normal);
         button.tag = indexPath.row;
         button.addTarget(self, action: #selector(deleteUser(_:)), for: .touchUpInside);
-        //        cell?.accessoryView = button;
+        cell?.accessoryView = button;
         return cell!;
     }
     

@@ -30,8 +30,10 @@ class ForgetPortraitViewController: BaseViewController,UITextFieldDelegate {
     }
 
     @IBAction func passwordGetBackBtnClick(_ sender: AnyObject) {
+        if !(adminTextField.text == ""){
         UserViewModel.current.findPwd(adminTextField.text!);
         hud(hudString: "FindSuccess", hudView: view);
+        }
     }
     
     override func initView()

@@ -20,36 +20,16 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet var registerBtn: UIButton!
     
-    
-    //    @IBOutlet var comboBax: ComboBox!
-    
     private var options: [UserModel] = []
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         if(seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!)){
             startCustomView();
-            //let passwordMD5 = md5(string: passwordTextField.text!);
             UserViewModel.current.doLogin(adminTextField.text!, passwordTextField.text!, LoginType.ACCOUNT.rawValue, { (userModel) in
                 self.stopCustomView();
-                let MainVC = self.presentingViewController as! MainLoginViewController;
-                let changeVC = MainVC.presentingViewController;
-                if(changeVC is ChangeAccountViewController){
-                    let vc = MainVC.presentingViewController as! ChangeAccountViewController;
-                    self.dismiss(animated: false, completion: {
-                        MainVC.dismiss(animated: false, completion: {
-                            changeVC?.dismiss(animated: false, completion: {
-                                vc.ChangeAccountloginSuccess?(userModel);
-                            })
-                        })
-                    })
-                }else{
-                    self.dismiss(animated: false, completion: {
-                        MainVC.dismiss(animated: false, completion: {
-                            MainVC.loginSuccess?(userModel);
-                        })
-                    })
-                }
+                self.loginSuccess(user: userModel);
             }, {
+                self.stopCustomView();
                 hud(hudString: "AccountOrPasswordError", hudView: self.view);
             })
         }else{

@@ -34,6 +34,7 @@
 		EE37DF331DE8275A00FEF37B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE37DF2E1DE8275A00FEF37B /* FBSDKLoginKit.framework */; };
 		EE37DF341DE8275A00FEF37B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE37DF2F1DE8275A00FEF37B /* FBSDKShareKit.framework */; };
 		EE3E2AF61DF7B94900A89537 /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3E2AF51DF7B94900A89537 /* VerticalButton.swift */; };
+		EE59F17D1E8BAF4E00EF345C /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59F17C1E8BAF4E00EF345C /* Global.swift */; };
 		EE6C40D11DE56FE80037DC76 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C408E1DE56FE80037DC76 /* AES.swift */; };
 		EE6C40D21DE56FE80037DC76 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C408F1DE56FE80037DC76 /* Array+Extension.swift */; };
 		EE6C40D31DE56FE80037DC76 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C40901DE56FE80037DC76 /* Authenticator.swift */; };
@@ -212,6 +213,7 @@
 		EE37DF2E1DE8275A00FEF37B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		EE37DF2F1DE8275A00FEF37B /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		EE3E2AF51DF7B94900A89537 /* VerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
+		EE59F17C1E8BAF4E00EF345C /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		EE6C408E1DE56FE80037DC76 /* AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		EE6C408F1DE56FE80037DC76 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		EE6C40901DE56FE80037DC76 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				EEFEC6341E01156F00542FF6 /* MyNetwork.swift */,
 				104FB73E1D9B9877004E22EF /* Facebook.swift */,
 				1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */,
+				EE59F17C1E8BAF4E00EF345C /* Global.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -994,6 +997,7 @@
 				EE6C40D21DE56FE80037DC76 /* Array+Extension.swift in Sources */,
 				EE6C410B1DE56FE80037DC76 /* UInt64+Extension.swift in Sources */,
 				EE6C410E1DE56FE80037DC76 /* Utils.swift in Sources */,
+				EE59F17D1E8BAF4E00EF345C /* Global.swift in Sources */,
 				EE6C40D91DE56FE80037DC76 /* CBC.swift in Sources */,
 				EE6C41061DE56FE80037DC76 /* SHA2.swift in Sources */,
 				EE6C40D61DE56FE80037DC76 /* BlockMode.swift in Sources */,

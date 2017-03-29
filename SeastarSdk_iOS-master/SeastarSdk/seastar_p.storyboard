@@ -114,6 +114,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7S-Uz-JwE">
+                                        <rect key="frame" x="7" y="7" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="5Tq-kh-I4c"/>
+                                            <constraint firstAttribute="height" constant="40" id="E7G-X4-pBF"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="back_p.png"/>
+                                        <connections>
+                                            <action selector="backButtonClick:" destination="i1U-8s-bq6" eventType="touchUpInside" id="AEE-Zl-cW2"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -136,10 +147,12 @@
                                     <constraint firstAttribute="trailing" secondItem="Lr5-Hv-ngs" secondAttribute="trailing" constant="38" id="VKi-3l-OyK"/>
                                     <constraint firstItem="Sr7-Hb-D1h" firstAttribute="centerX" secondItem="baj-lt-dcY" secondAttribute="centerX" id="XCz-Xd-Vrz"/>
                                     <constraint firstItem="exX-Pn-GSY" firstAttribute="centerX" secondItem="baj-lt-dcY" secondAttribute="centerX" id="XUA-Gl-iYn"/>
+                                    <constraint firstItem="t7S-Uz-JwE" firstAttribute="top" secondItem="baj-lt-dcY" secondAttribute="top" constant="7" id="XVq-kU-uQb"/>
                                     <constraint firstItem="tEi-45-68J" firstAttribute="centerX" secondItem="baj-lt-dcY" secondAttribute="centerX" id="Yxc-Eb-QvK"/>
                                     <constraint firstItem="bdD-EM-A6d" firstAttribute="top" secondItem="Sr7-Hb-D1h" secondAttribute="bottom" constant="10" id="ZTz-6E-Qhi"/>
                                     <constraint firstAttribute="height" constant="226" id="b7P-38-e2t"/>
                                     <constraint firstItem="7In-fT-AcN" firstAttribute="leading" secondItem="baj-lt-dcY" secondAttribute="leading" constant="33" id="bIc-7n-nph"/>
+                                    <constraint firstItem="t7S-Uz-JwE" firstAttribute="leading" secondItem="baj-lt-dcY" secondAttribute="leading" constant="7" id="ihe-sh-uX6"/>
                                     <constraint firstAttribute="bottom" secondItem="b7g-uK-SkG" secondAttribute="bottom" id="xhd-Io-Bqi"/>
                                 </constraints>
                             </view>
@@ -155,6 +168,7 @@
                         <outlet property="GuestLabel" destination="7In-fT-AcN" id="jeE-SF-5UC"/>
                         <outlet property="LoginTypeLabel" destination="bdD-EM-A6d" id="eHc-fI-zSQ"/>
                         <outlet property="SeastarLabel" destination="sES-Sr-U31" id="zOx-gt-MBP"/>
+                        <outlet property="backButton" destination="t7S-Uz-JwE" id="hu5-dg-rrZ"/>
                         <outlet property="backgroundImageView" destination="b7g-uK-SkG" id="wxX-Ez-j8B"/>
                     </connections>
                 </viewController>

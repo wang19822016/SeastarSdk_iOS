@@ -24,8 +24,6 @@ class ChangeAccountViewController: BaseViewController{
     
     @IBOutlet var myView: UIView!
     
-    @IBOutlet var comboBox: ComboBox!
-    
     @IBOutlet var loginBtn: UIButton!
     
     @IBOutlet var changeBtn: UIButton!
@@ -35,16 +33,11 @@ class ChangeAccountViewController: BaseViewController{
     var optionsArray: [Any] = []
     var currentUserModel = UserModel();
     
-    var ChangeAccountloginSuccess:((_ usermodel:UserModel)->Void)?
-    
-    var ChangeAccountloginFailure:(()->Void)?
-    
     var accountIndex:Int = 0;
     
     @IBAction func loginBtnClick(_ sender: AnyObject) {
-        ChangeAccountloginSuccess!(currentUserModel);
+        self.loginSuccess(user: currentUserModel);
         currentUserModel.saveAsCurrentUser();
-        dismiss(animated: true, completion: nil);
     }
     
     override func initView() {
@@ -76,9 +69,12 @@ class ChangeAccountViewController: BaseViewController{
                 optionsArray.append(tuples);
             }
         }
+        
+        if options.count > 0{
         currentUserModel = UserModel.loadAllUsers()[0];
         UserImage.image = returnImage(myIndex: 0)
         currentUser.text = returnUser(myIndex: 0);
+        }
     }
     
     func initTableView(){
@@ -101,12 +97,20 @@ class ChangeAccountViewController: BaseViewController{
     }
     
     func deleteUser(_ sender: UIButton) {
+        let userModel = (optionsArray[sender.tag] as! (String,String,UserModel)).2
+        userModel.remove();
+        var currentModel = UserModel();
+        if currentModel.loadCurrentUser(){
+            if currentModel.userId == userModel.userId{
+                currentModel.removeCurrentUser()
+            }
+        }
         optionsArray.remove(at: sender.tag);
         tableView.reloadData();
         if(optionsArray.count == 0){
-            currentUser.text = "";
-            upBack();
-            
+            let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+            let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
+            self.present(vc, animated: true, completion: nil);
         }
     }
     
@@ -173,7 +177,7 @@ extension ChangeAccountViewController:UITableViewDelegate,UITableViewDataSource{
         button.setBackgroundImage(returnCancel(), for: .normal);
         button.tag = indexPath.row;
         button.addTarget(self, action: #selector(deleteUser(_:)), for: .touchUpInside);
-//        cell?.accessoryView = button;
+        cell?.accessoryView = button;
         return cell!;
     }
     

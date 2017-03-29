@@ -108,6 +108,30 @@ class BaseViewController: UIViewController {
         
         isUped = false
     }
+    
+    func dismissController(controller:UIViewController?, user: UserModel?) {
+        if controller === Global.current.rootViewController {
+            if let user = user {
+                Global.current.loginSuccess?(user);
+            } else {
+                Global.current.loginFailure?();
+            }
+            return
+        }
+        
+        let vc = controller?.presentingViewController
+        controller?.dismiss(animated: false, completion: {
+            self.dismissController(controller: vc, user: user)
+        })
+    }
+    
+    func loginSuccess(user: UserModel?){
+        dismissController(controller: self, user: user)
+    }
+    
+    func loginFail() {
+        dismissController(controller: self, user: nil)
+    }
 }
 
 extension BaseViewController:UIViewControllerTransitioningDelegate

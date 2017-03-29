@@ -10,6 +10,8 @@ import UIKit
 
 class MainPortraitViewController: BaseViewController {
     
+    
+    @IBOutlet var backButton: UIButton!
     @IBOutlet var backgroundImageView: UIImageView!
     
     @IBOutlet var LoginTypeLabel: UILabel!
@@ -19,10 +21,6 @@ class MainPortraitViewController: BaseViewController {
     @IBOutlet var SeastarLabel: UILabel!
     
     @IBOutlet var FacebookLabel: UILabel!
-    
-    var LoginSuccess:((_ usermodel:UserModel)->Void)?
-    
-    var LoginFailure:(()->Void)?
     
     override func initView() {
         
@@ -42,19 +40,7 @@ class MainPortraitViewController: BaseViewController {
         startCustomView();
         UserViewModel.current.doLoginAndRegistAndLogin(deviceId(), deviceId(), LoginType.GUEST.rawValue, { (userModel) in
             self.stopCustomView();
-            let changeVC = self.presentingViewController;
-            if(changeVC is ChangeAccountPortraitViewController){
-                let vc = self.presentingViewController as! ChangeAccountPortraitViewController
-                self.dismiss(animated: false, completion: {
-                    changeVC?.dismiss(animated: false, completion: {
-                        vc.ChangeAccountloginSuccess?(userModel);
-                    })
-                })
-            }else{
-                self.dismiss(animated: false, completion: {
-                    self.LoginSuccess?(userModel);
-                })
-            }
+            self.loginSuccess(user: userModel);
         }) {
             self.stopCustomView();
             hud(hudString: "LoginFalse", hudView: self.view);
@@ -66,19 +52,7 @@ class MainPortraitViewController: BaseViewController {
         Facebook.current.login(viewController: self, success: { (fbuserId, token) in
             UserViewModel.current.doLoginAndRegistAndLogin(fbuserId, token, LoginType.FACEBOOK.rawValue, { (userModel) in
                 self.stopCustomView();
-                let changeVC = self.presentingViewController;
-                if(changeVC is ChangeAccountViewController){
-                    let vc = self.presentingViewController as! ChangeAccountViewController;
-                    self.dismiss(animated: false, completion: {
-                        vc.dismiss(animated: false, completion: {
-                            vc.ChangeAccountloginSuccess?(userModel);
-                        })
-                    })
-                }else{
-                    self.dismiss(animated: false, completion: {
-                        self.LoginSuccess?(userModel);
-                    })
-                }
+                self.loginSuccess(user: userModel);
             }, {
                 self.stopCustomView();
                 hud(hudString: "LoginFalse", hudView: self.view);
@@ -89,5 +63,13 @@ class MainPortraitViewController: BaseViewController {
         }
     }
     
+    @IBAction func backButtonClick(_ sender: Any) {
+        let vc = self.presentingViewController
+        if(vc is ChangeAccountPortraitViewController){
+            dismiss(animated: true, completion: nil);
+        }else{
+            loginFail()
+        }
+    }
     
 }
