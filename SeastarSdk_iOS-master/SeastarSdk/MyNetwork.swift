@@ -21,22 +21,32 @@ class MyNetwork: NSObject {
             request.addValue(value, forHTTPHeaderField: key);
         }
         request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
-
+        
+        Log("GET: \(url)  headers:\(headers)")
+        
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
             if error != nil {
                 // TODO
+                Log(error!.localizedDescription)
                 failure()
             } else {
-                if let data = data {
-                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                    if let json = json as? [String : Any] {
-                        if let response = response as? HTTPURLResponse {
+                if let response = response as? HTTPURLResponse {
+                    if let data = data {
+                        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                        if let json = json as? [String : Any] {
+                            Log("GET: \(url) resposneCode: \(response.statusCode) responseBody: \(json)")
                             success(response.statusCode, json)
+                            return
                         }
                     }
+                    
+                    Log("GET: \(url) resposneCode: \(response.statusCode) responseBody: [:]")
+                    success(response.statusCode, [:])
+                } else {
+                    failure()
                 }
             }
         }
@@ -53,27 +63,33 @@ class MyNetwork: NSObject {
             request.addValue(value, forHTTPHeaderField: key);
         }
         request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
-
+        
+        Log("POST: \(url)  headers:\(headers) body:\(body)")
+        
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
             if error != nil {
                 // TODO
+                Log(error!.localizedDescription)
                 failure()
             } else {
                 if let response = response as? HTTPURLResponse {
                     if let data = data {
                         let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                         if let json = json as? [String : Any] {
+                            Log("POST: \(url) resposneCode: \(response.statusCode) responseBody: \(json)")
                             success(response.statusCode, json)
                             return
                         }
                     }
                     
+                    Log("POST: \(url) resposneCode: \(response.statusCode) responseBody: [:]")
                     success(response.statusCode, [:])
+                } else {
+                    failure()
                 }
-
             }
         }
         task.resume()
@@ -88,33 +104,39 @@ class MyNetwork: NSObject {
             request.addValue(value, forHTTPHeaderField: key);
         }
         request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "content-type");
-
+        
+        Log("PUT: \(url)  headers:\(headers) body:\(body)")
+        
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
             if error != nil {
                 // TODO
+                Log(error!.localizedDescription)
                 failure()
             } else {
-                if let data = data {
-                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                    if let json = json as? [String : Any] {
-                        if let response = response as? HTTPURLResponse {
+                if let response = response as? HTTPURLResponse {
+                    if let data = data {
+                        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                        if let json = json as? [String : Any] {
+                            Log("PUT: \(url) resposneCode: \(response.statusCode) responseBody: \(json)")
                             success(response.statusCode, json)
+                            return
                         }
                     }
+                    Log("PUT: \(url) resposneCode: \(response.statusCode) responseBody: [:]")
+                    success(response.statusCode, [:])
+                } else {
+                    failure()
                 }
             }
         }
         task.resume()
     }
-
     
-    func get(url: String, params: Dictionary<String, Any> = Dictionary<String, Any>(), success: @escaping (String) -> Void, failure: @escaping () -> Void) {
-        var address: String = assembleGetAddress(url: url, params: params)
-        address = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        var request: URLRequest = URLRequest(url: URL(string: address)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
+    func get(url: String, success: @escaping (String) -> Void, failure: @escaping () -> Void) {
+        var request: URLRequest = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
         request.httpMethod = "GET"
         
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main);
@@ -135,68 +157,6 @@ class MyNetwork: NSObject {
             }
         }
         task.resume()
-    }
-    
-    func post(url: String, json:[String : Any], success: @escaping ([String: Any])->Void, failure:@escaping ()->Void) {
-        if !JSONSerialization.isValidJSONObject(json) {
-            // 不是json格式
-            failure()
-            return
-        }
-        
-        var request = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-        
-        Log("url: \(url) body: \(json)")
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue:OperationQueue.main);
-        let task = session.dataTask(with: request) { data, response, error in
-            if error != nil {
-                // 错误情况处理
-                Log("error: \(error)")
-                DispatchQueue.main.async {
-                    failure()
-                }
-            } else {
-                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                    // 接收数据正常
-                    if let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) {
-                        Log("success: \(json)")
-                        DispatchQueue.main.async {
-                            success(json as? [String: Any] ?? [:])
-                        }
-                    } else {
-                        Log("http ok, but response body format error")
-                        DispatchQueue.main.async {
-                            failure()
-                        }
-                    }
-                } else {
-                    Log("http fail")
-                    DispatchQueue.main.async {
-                        failure()
-                    }
-                }
-            }
-        }
-        task.resume()
-    }
-    
-    private func assembleGetAddress(url: String, params:Dictionary<String, Any>) -> String {
-        var address: String = url
-        var i: Int = 0
-        for (key, value) in params {
-            if i == 0 {
-                address += "?\(key)=\(value)"
-            } else {
-                address += "&\(key)=\(value)"
-            }
-            i = i + 1
-        }
-        
-        return address
     }
 }
 

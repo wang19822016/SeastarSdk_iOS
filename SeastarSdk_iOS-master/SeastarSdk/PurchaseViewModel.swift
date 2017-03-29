@@ -14,7 +14,7 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     static let current = PurchaseViewModel()
     
-    var purchase = PurchaseModel()
+    var curPurchase = PurchaseModel()
     
     //    var productIdentifiers: Set<ProductIdentifier> = Set<ProductIdentifier>()
     var purchaseSuccess: SuccessCB? = nil
@@ -32,12 +32,9 @@ class PurchaseViewModel : IAPHelperDelegate {
     func checkLeakPurchase() {
         // 每次主动上传支付漏单
         let app = AppModel()
-        if !app.load() {
-            Log("no app config")
-            return
-        }
         let purchases = PurchaseModel.loadAll()
         for purchase in purchases {
+            purchase.remove()
             if !purchase.transactionIdentifier.isEmpty && !purchase.receipt.isEmpty {
                 let req: [String : Any] = [
                     "transactionId" : purchase.transactionIdentifier,
@@ -51,9 +48,6 @@ class PurchaseViewModel : IAPHelperDelegate {
                 ]
                 Log("appleOrder: \(purchase.transactionIdentifier) session:\(purchase.token) productId:\(purchase.productIdentifier)")
                 MyNetwork.current.post(app.serverUrl + "/api/pay/apple", ["Authorization" : "Bearer \(purchase.token)"], req, { code, resposne in
-                    // 验证成功，清除数据
-                    //remove
-                    purchase.remove()
                     Log("verify: \(code) \(resposne["order"]) \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
                 }, {
                     Log("verify: network error \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
@@ -65,9 +59,8 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     func doPurchase(productId: String, roleId: String, serverId: String, extra: String, purchaseSuccess: @escaping SuccessCB, purchaseFailure: @escaping FailureCB) {
         var user = UserModel()
-        if !user.loadCurrentUser() || purchase.productIdentifier.isEmpty {
+        if !user.loadCurrentUser() || curPurchase.applicationUsername.isEmpty {
             purchaseFailure(productId)
-            
             return
         }
         
@@ -78,25 +71,25 @@ class PurchaseViewModel : IAPHelperDelegate {
             formatter.numberStyle = NumberFormatter.Style.currency
             formatter.locale = product.priceLocale
             
-            purchase.roleId = roleId
-            purchase.productIdentifier = productId
-            purchase.extra = extra;
-            purchase.token = user.token
+            curPurchase.roleId = roleId
+            curPurchase.productIdentifier = productId
+            curPurchase.extra = extra;
+            curPurchase.token = user.token
 
-            purchase.serverId = serverId
-            purchase.price = String(describing: product.price)
-            purchase.token = user.token
+            curPurchase.serverId = serverId
+            curPurchase.price = String(describing: product.price)
+            curPurchase.token = user.token
             
             let index = product.priceLocale.identifier.index(product.priceLocale.identifier.endIndex, offsetBy: -3);
-            purchase.currency = product.priceLocale.identifier.substring(from: index);
+            curPurchase.currency = product.priceLocale.identifier.substring(from: index);
             
-            purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
+            curPurchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
             
             self.purchaseSuccess = purchaseSuccess
             self.purchaseFailure = purchaseFailure
             
             // 启动支付
-            IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: purchase.applicationUsername)
+            IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: curPurchase.applicationUsername)
         }else{
             IAPHelper.current.requestProducts(productIdentifiers: productId, completionHandler: { (success:Bool) in
                 if success{
@@ -106,24 +99,23 @@ class PurchaseViewModel : IAPHelperDelegate {
                         formatter.numberStyle = NumberFormatter.Style.currency
                         formatter.locale = product.priceLocale
 
-                        var purchase = PurchaseModel()
-                        purchase.roleId = roleId
-                        purchase.productIdentifier = productId
-                        purchase.extra = extra
-                        purchase.token = user.token
-                        purchase.serverId = serverId
-                        purchase.price = String(describing: product.price)
+                        self.curPurchase.roleId = roleId
+                        self.curPurchase.productIdentifier = productId
+                        self.curPurchase.extra = extra
+                        self.curPurchase.token = user.token
+                        self.curPurchase.serverId = serverId
+                        self.curPurchase.price = String(describing: product.price)
 
                         let index = product.priceLocale.identifier.index((product.priceLocale.identifier.endIndex), offsetBy: -3);
-                        self.purchase.currency = (product.priceLocale.identifier.substring(from: index));
-                        self.purchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
-                        self.purchase.token = user.token
+                        self.curPurchase.currency = (product.priceLocale.identifier.substring(from: index));
+                        self.curPurchase.applicationUsername = String(Date(timeIntervalSinceNow: 0).timeIntervalSince1970 * 100000)
+                        self.curPurchase.token = user.token
                         
                         self.purchaseSuccess = purchaseSuccess
                         self.purchaseFailure = purchaseFailure
                         
                         // 启动支付
-                        IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: self.purchase.applicationUsername)
+                        IAPHelper.current.purchase(productIdentifier: productId, applicationUsername: self.curPurchase.applicationUsername)
                     }
                 }else{
                     purchaseFailure(productId)
@@ -136,52 +128,47 @@ class PurchaseViewModel : IAPHelperDelegate {
                            _ transactionIdentifier: String, _ receipt: String) {
         if success {
             // 补全交易信息，重新存储
-            purchase.transactionIdentifier = transactionIdentifier
-            purchase.receipt = receipt
+            curPurchase.transactionIdentifier = transactionIdentifier
+            curPurchase.receipt = receipt
             
             let app = AppModel()
-            app.load()
             let req: [String : Any] = [
-                "transactionId" : purchase.transactionIdentifier,
-                "productId": purchase.productIdentifier,
+                "transactionId" : curPurchase.transactionIdentifier,
+                "productId": curPurchase.productIdentifier,
                 "receipt" : receipt,
-                "gameRoleId": purchase.roleId,
-                "cparam": purchase.extra,
-                "price": purchase.price,
-                "currencyCode": purchase.currency,
-                "serverId": purchase.serverId
+                "gameRoleId": curPurchase.roleId,
+                "cparam": curPurchase.extra,
+                "price": curPurchase.price,
+                "currencyCode": curPurchase.currency,
+                "serverId": curPurchase.serverId
             ]
             
-            Log("verify: \(purchase.transactionIdentifier) \(purchase.productIdentifier)")
-            MyNetwork.current.post(app.serverUrl + "/api/pay/apple", ["Authorization" : "Bearer \(purchase.token)"], req, { code, result in
-                
+            Log("verify: \(curPurchase.transactionIdentifier) \(curPurchase.productIdentifier)")
+            MyNetwork.current.post(app.serverUrl + "/api/pay/apple", ["Authorization" : "Bearer \(curPurchase.token)"], req, { code, result in
+                self.curPurchase.applicationUsername = ""
                 let order: String = (result["order"] as? String) ?? ""
-                // 成功清除数据，失败也清除数据，因为失败了说明数据有问题，没有再存储的必要了
-                
                 if code == 200 {
-                    Log("verify: ok, \(self.purchase.transactionIdentifier) \(self.purchase.productIdentifier) \(order)")
-                    self.purchase.productIdentifier = ""
+                    Log("verify: ok, \(self.curPurchase.transactionIdentifier) \(self.curPurchase.productIdentifier) \(order)")
                     self.purchaseSuccess?(productIdentifier, order)
                     self.purchaseSuccess = nil
                     self.purchaseFailure = nil
                 } else {
-                    Log("verify: fail, \(self.purchase.transactionIdentifier) \(self.purchase.productIdentifier) \(code)")
-                    self.purchase.productIdentifier = ""
+                    Log("verify: fail, \(self.curPurchase.transactionIdentifier) \(self.curPurchase.productIdentifier) \(code)")
                     self.purchaseFailure?(productIdentifier)
                     self.purchaseSuccess = nil
                     self.purchaseFailure = nil
                 }
             }, {
-                Log("verify: network error, \(self.purchase.transactionIdentifier) \(self.purchase.productIdentifier)")
-                self.purchase.save()
-                self.purchase.productIdentifier = ""
+                Log("verify: network error, \(self.curPurchase.transactionIdentifier) \(self.curPurchase.productIdentifier)")
+                self.curPurchase.save()
+                self.curPurchase.applicationUsername = ""
                 self.purchaseFailure?(productIdentifier)
                 self.purchaseSuccess = nil
                 self.purchaseFailure = nil
             })
         } else {
             Log("verify: purchase fail, \(transactionIdentifier) \(productIdentifier)")
-            self.purchase.productIdentifier = ""
+            self.curPurchase.applicationUsername = ""
             self.purchaseFailure?(productIdentifier)
             self.purchaseSuccess = nil
             self.purchaseFailure = nil

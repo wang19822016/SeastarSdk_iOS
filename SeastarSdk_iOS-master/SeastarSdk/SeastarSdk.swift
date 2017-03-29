@@ -25,6 +25,8 @@ public class SeastarSdk : NSObject {
         PurchaseViewModel.current.initialize()
         self.viewController = viewController
         myOrientation = landscape;
+        
+        UserModel.clearExpire()
     }
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法

@@ -96,15 +96,22 @@ func b64UrlDecode(_ encodedString: String) -> String? {
 }
 
 func b64UrlEncode(_ originString: String) -> String? {
-    let str: String = Data(originString.utf8).base64EncodedString()
-    return str.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+    var str: String = Data(originString.utf8).base64EncodedString()
+    let strArray = str.components(separatedBy: "=")
+    if (strArray.count > 0) {
+        str = strArray[0]
+        str = str.replacingOccurrences(of: "+", with: "-")
+        str = str.replacingOccurrences(of: "/", with: "_")
+        return str
+    }
+    
+    return str
 }
 
 func b64Decode(_ encodedString: String) -> String? {
     if let data = Data(base64Encoded: encodedString) {
         return String(data: data, encoding: .utf8)
     }
-
     
     return nil
 }

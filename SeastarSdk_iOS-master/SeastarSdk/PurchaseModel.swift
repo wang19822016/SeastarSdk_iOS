@@ -20,7 +20,6 @@ struct PurchaseModel {
     var applicationUsername: String = ""
     var transactionIdentifier: String = ""
     var receipt: String = ""
-//    var userId: Int = 0
     var token: String = ""
     var price: String = ""
     var currency: String = ""
@@ -36,7 +35,6 @@ struct PurchaseModel {
         purchase["applicationUsername"] = applicationUsername
         purchase["transactionIdentifier"] = transactionIdentifier
         purchase["receipt"] = receipt
-//        purchase["userId"] = userId
         purchase["token"] = token
         purchase["price"] = price
         purchase["currency"] = currency
@@ -57,7 +55,6 @@ struct PurchaseModel {
                 self.applicationUsername = (purchase["applicationUsername"] as? String) ?? ""
                 transactionIdentifier = (purchase["transactionIdentifier"] as? String) ?? ""
                 receipt = (purchase["receipt"] as? String) ?? ""
-//                userId = (purchase["userId"] as? Int) ?? 0
                 token = (purchase["token"] as? String) ?? ""
                 price = (purchase["price"] as? String) ?? ""
                 currency = (purchase["currency"] as? String) ?? ""
@@ -81,17 +78,6 @@ struct PurchaseModel {
         }
     }
     
-    static func remove(applicationUsername: String) {
-        if let purchases = UserDefaults.standard.dictionary(forKey: "purchases") {
-            if purchases[applicationUsername] != nil {
-                var tempPurchases = purchases
-                tempPurchases.removeValue(forKey: applicationUsername)
-                UserDefaults.standard.set(tempPurchases, forKey: "purchases")
-                UserDefaults.standard.synchronize()
-            }
-        }
-    }
-    
     static func loadAll() -> [PurchaseModel] {
         var purchaseArray: [PurchaseModel] = []
         if let purchases = UserDefaults.standard.dictionary(forKey: "purchases") {
@@ -104,7 +90,6 @@ struct PurchaseModel {
                     model.applicationUsername = (purchase["applicationUsername"] as? String) ?? ""
                     model.transactionIdentifier = (purchase["transactionIdentifier"] as? String) ?? ""
                     model.receipt = (purchase["receipt"] as? String) ?? ""
-//                    model.userId = (purchase["userId"] as? Int) ?? 0
                     model.token = (purchase["token"] as? String) ?? ""
                     model.price = (purchase["price"] as? String) ?? ""
                     model.currency = (purchase["currency"] as? String) ?? ""
