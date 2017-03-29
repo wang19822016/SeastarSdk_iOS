@@ -28,7 +28,6 @@
 		10514D491DBF435600D2CCF4 /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10514D481DBF435600D2CCF4 /* PurchaseViewModel.swift */; };
 		1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */; };
 		1083D6F71DAE2F4B0062BC92 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */; };
-		10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB484E1DC3296700A92273 /* ComboBox.swift */; };
 		10C861E51DC6DE8300BC6DCE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */; };
 		EE37DF311DE8275A00FEF37B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE37DF2C1DE8275A00FEF37B /* Bolts.framework */; };
 		EE37DF321DE8275A00FEF37B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE37DF2D1DE8275A00FEF37B /* FBSDKCoreKit.framework */; };
@@ -207,7 +206,6 @@
 		10514D481DBF435600D2CCF4 /* PurchaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
 		1083D6F31DAE2ECE0062BC92 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		1083D6F61DAE2F4B0062BC92 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
-		10AB484E1DC3296700A92273 /* ComboBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComboBox.swift; sourceTree = "<group>"; };
 		10C861E41DC6DE8300BC6DCE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EE37DF2C1DE8275A00FEF37B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		EE37DF2D1DE8275A00FEF37B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -444,7 +442,6 @@
 		104FB6E11D9B6E18004E22EF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				10AB484E1DC3296700A92273 /* ComboBox.swift */,
 				EE3E2AF51DF7B94900A89537 /* VerticalButton.swift */,
 				104DE73F1DB8B38E00D7F736 /* seastar.storyboard */,
 				EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */,
@@ -995,7 +992,6 @@
 				EE6C40D41DE56FE80037DC76 /* Bit.swift in Sources */,
 				1083D6F41DAE2ECE0062BC92 /* IAPHelper.swift in Sources */,
 				EE6C40D21DE56FE80037DC76 /* Array+Extension.swift in Sources */,
-				10AB484F1DC3296700A92273 /* ComboBox.swift in Sources */,
 				EE6C410B1DE56FE80037DC76 /* UInt64+Extension.swift in Sources */,
 				EE6C410E1DE56FE80037DC76 /* Utils.swift in Sources */,
 				EE6C40D91DE56FE80037DC76 /* CBC.swift in Sources */,

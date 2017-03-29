@@ -65,6 +65,7 @@ public class SeastarSdk : NSObject {
         if user.loadCurrentUser() {
             loginSuccess(Int(user.userId), user.token)
         }else{
+            if(myOrientation){
             let userModel = UserModel.loadAllUsers();
             if userModel.count == 0{
                 //没账号
@@ -92,7 +93,33 @@ public class SeastarSdk : NSObject {
                 }
                 self.viewController?.present(vc, animated: true, completion: nil)
             }
-        }
+            }else{
+                let userModel = UserModel.loadAllUsers()
+                if userModel.count == 0{
+                    let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                    let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
+                    vcPortrait.LoginSuccess = {(userModel:UserModel) in
+                        loginSuccess(Int(userModel.userId), userModel.token)
+                        hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+                    }
+                    vcPortrait.LoginFailure = {()in
+                        loginFailure();
+                    }
+                    self.viewController?.present(vcPortrait, animated: true, completion: nil)
+                }else{
+                    let storyboardPortrait: UIStoryboard = UIStoryboard(name: "changeAccount_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
+                    let vcPortrait: ChangeAccountPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! ChangeAccountPortraitViewController
+                    vcPortrait.ChangeAccountloginSuccess = {(userModel:UserModel) in
+                        loginSuccess(Int(userModel.userId), userModel.token)
+                        hud(hudString: "LoginSuccess", hudView: self.viewController!.view)
+                    }
+                    vcPortrait.ChangeAccountloginFailure = {()in
+                        loginFailure();
+                    }
+                    viewController?.present(vcPortrait, animated: true, completion: nil)
+                }
+            }
+            }
         /*
             UserViewModel.current.doSessionLogin(usermodel:user,success: {
                 userModel in loginSuccess(userModel.userId, userModel.session)

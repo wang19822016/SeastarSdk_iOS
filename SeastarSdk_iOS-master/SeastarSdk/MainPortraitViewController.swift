@@ -37,10 +37,10 @@ class MainPortraitViewController: BaseViewController {
         LoginTypeLabel.text = NSLocalizedString("SelectLoginType", comment: "");
     }
     
-    /*
+    
     @IBAction func guestLogin(_ sender: AnyObject) {
         startCustomView();
-        UserViewModel.current.doGuestLogin(success: { userModel in
+        UserViewModel.current.doLoginAndRegistAndLogin(deviceId(), deviceId(), LoginType.GUEST.rawValue, { (userModel) in
             self.stopCustomView();
             let changeVC = self.presentingViewController;
             if(changeVC is ChangeAccountPortraitViewController){
@@ -55,32 +55,39 @@ class MainPortraitViewController: BaseViewController {
                     self.LoginSuccess?(userModel);
                 })
             }
-        }, failure: { str in
+        }) {
             self.stopCustomView();
             hud(hudString: "LoginFalse", hudView: self.view);
-        })
+        }
     }
     
     @IBAction func facebookLogin(_ sender: AnyObject) {
-        UserViewModel.current.doFacebookLogin(viewController: self, success: { userModel in
-            let changeVC = self.presentingViewController;
-            if(changeVC is ChangeAccountPortraitViewController){
-                let vc = self.presentingViewController as! ChangeAccountPortraitViewController
-                self.dismiss(animated: false, completion: {
-                    changeVC?.dismiss(animated: false, completion: {
-                        vc.ChangeAccountloginSuccess?(userModel);
+        startCustomView()
+        Facebook.current.login(viewController: self, success: { (fbuserId, token) in
+            UserViewModel.current.doLoginAndRegistAndLogin(fbuserId, token, LoginType.FACEBOOK.rawValue, { (userModel) in
+                self.stopCustomView();
+                let changeVC = self.presentingViewController;
+                if(changeVC is ChangeAccountViewController){
+                    let vc = self.presentingViewController as! ChangeAccountViewController;
+                    self.dismiss(animated: false, completion: {
+                        vc.dismiss(animated: false, completion: {
+                            vc.ChangeAccountloginSuccess?(userModel);
+                        })
                     })
-                })
-            }else{
-                self.dismiss(animated: false, completion: {
-                    self.LoginSuccess?(userModel);
-                })
-            }
-        }, failure: { str in
+                }else{
+                    self.dismiss(animated: false, completion: {
+                        self.LoginSuccess?(userModel);
+                    })
+                }
+            }, {
+                self.stopCustomView();
+                hud(hudString: "LoginFalse", hudView: self.view);
+            })
+        }) {
+            self.stopCustomView();
             hud(hudString: "LoginFalse", hudView: self.view);
-        })
-        
+        }
     }
- */
+    
     
 }

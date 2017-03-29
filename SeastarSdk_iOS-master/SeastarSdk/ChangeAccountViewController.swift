@@ -32,6 +32,7 @@ class ChangeAccountViewController: BaseViewController{
     
     private var options: [UserModel] = []
     
+    var optionsArray: [Any] = []
     var currentUserModel = UserModel();
     
     var ChangeAccountloginSuccess:((_ usermodel:UserModel)->Void)?
@@ -59,7 +60,6 @@ class ChangeAccountViewController: BaseViewController{
         initTableView();
     }
     
-    var optionsArray: [Any] = []
     
     func initMyView(){
         appear = false;
@@ -98,7 +98,6 @@ class ChangeAccountViewController: BaseViewController{
                 upBack();
             }
         }
-        
     }
     
     func deleteUser(_ sender: UIButton) {

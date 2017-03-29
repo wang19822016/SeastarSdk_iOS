@@ -140,7 +140,9 @@ class PurchaseViewModel : IAPHelperDelegate {
             purchase.receipt = receipt
             
             let app = AppModel()
-            app.load()
+            if(!app.load()){
+                return;
+            }
             let req: [String : Any] = [
                 "transactionId" : purchase.transactionIdentifier,
                 "productId": purchase.productIdentifier,
