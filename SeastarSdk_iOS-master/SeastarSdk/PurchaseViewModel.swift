@@ -59,7 +59,7 @@ class PurchaseViewModel : IAPHelperDelegate {
     
     func doPurchase(productId: String, roleId: String, serverId: String, extra: String, purchaseSuccess: @escaping SuccessCB, purchaseFailure: @escaping FailureCB) {
         var user = UserModel()
-        if !user.loadCurrentUser() || curPurchase.applicationUsername.isEmpty {
+        if !user.loadCurrentUser() || !curPurchase.applicationUsername.isEmpty {
             purchaseFailure(productId)
             return
         }

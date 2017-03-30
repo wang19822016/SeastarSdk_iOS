@@ -23,10 +23,10 @@ class MainLoginViewController: BaseViewController {
     
     @IBOutlet var facebookLoginLabel: UILabel!
     
+    var showBackButton:Bool = true
     override func initView()
     {
         makeBounds(backGroundImage.layer)
-        
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         guestLoginLabel.text = NSLocalizedString("Guest", comment: "");
         seastarLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
@@ -35,6 +35,7 @@ class MainLoginViewController: BaseViewController {
         facebookLoginLabel.text = NSLocalizedString("Facebook", comment: "");
         loginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
         loginTypeLabel.text = NSLocalizedString("SelectLoginType", comment: "");
+        backButton.isHidden = !showBackButton;
     }
     
     @IBAction func guestLogin(_ sender: AnyObject) {
@@ -65,13 +66,9 @@ class MainLoginViewController: BaseViewController {
             hud(hudString: "LoginFalse", hudView: self.view);
         }
     }
+    
     @IBAction func dismissClick(_ sender: Any) {
-        let vc = self.presentingViewController
-        if(vc is ChangeAccountViewController){
-            dismiss(animated: true, completion: nil);
-        }else{
-            loginFail()
-        }
+        dismiss(animated: true, completion: nil);
     }
 }
 

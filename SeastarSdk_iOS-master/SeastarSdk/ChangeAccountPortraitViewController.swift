@@ -101,7 +101,7 @@ class ChangeAccountPortraitViewController: BaseViewController{
         if(optionsArray.count == 0){
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
             let vc: MainPortraitViewController = storyboard.instantiateInitialViewController()! as! MainPortraitViewController
-
+            vc.showBackButton = true;
             self.present(vc, animated: true, completion: nil);
         }
     }

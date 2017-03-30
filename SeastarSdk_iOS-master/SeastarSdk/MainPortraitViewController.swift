@@ -22,6 +22,8 @@ class MainPortraitViewController: BaseViewController {
     
     @IBOutlet var FacebookLabel: UILabel!
     
+    var showBackButton:Bool = true;
+    
     override func initView() {
         
         makeBounds(backgroundImageView.layer);
@@ -33,6 +35,7 @@ class MainPortraitViewController: BaseViewController {
         FacebookLabel.text = NSLocalizedString("Facebook", comment: "");
         LoginTypeLabel.textColor = UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1.0);
         LoginTypeLabel.text = NSLocalizedString("SelectLoginType", comment: "");
+        backButton.isHidden = !showBackButton
     }
     
     
@@ -64,12 +67,7 @@ class MainPortraitViewController: BaseViewController {
     }
     
     @IBAction func backButtonClick(_ sender: Any) {
-        let vc = self.presentingViewController
-        if(vc is ChangeAccountPortraitViewController){
-            dismiss(animated: true, completion: nil);
-        }else{
-            loginFail()
-        }
+        dismiss(animated: true, completion: nil);
     }
     
 }

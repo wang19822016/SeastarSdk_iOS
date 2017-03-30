@@ -33,7 +33,7 @@ struct UserModel {
                     userId = (json["userId"] as AnyObject? as? Int64) ?? 0
                     userName = (json["username"] as AnyObject? as? String) ?? ""
                     loginType = (json["loginType"] as AnyObject? as? Int) ?? 0
-                    expire = (json["loginType"] as AnyObject? as? Int64) ?? 0
+                    expire = (json["exp"] as AnyObject? as? Int64) ?? 0
                 }
             }
         }
@@ -187,6 +187,9 @@ struct UserModel {
             
             if listTmp.count > 0 {
                 UserDefaults.standard.set(listTmp, forKey: "users")
+                UserDefaults.standard.synchronize()
+            } else {
+                UserDefaults.standard.removeObject(forKey: "users")
                 UserDefaults.standard.synchronize()
             }
         }

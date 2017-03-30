@@ -112,25 +112,24 @@ extension IAPHelper : SKPaymentTransactionObserver {
     // 有可能返回的是之前购买的product，所以这里不能使用purchase传入的productidentifier
     private func complete(transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
-        
         let productId = transaction.payment.productIdentifier
         
         if let receiptURL = Bundle.main.appStoreReceiptURL {
             if let receiptData = try? Data(contentsOf: receiptURL) {
                 let receipt = receiptData.base64EncodedString(options: .endLineWithLineFeed)
                 if let applicationUsername = transaction.payment.applicationUsername {
+                    
                     delegate?.purchasedComplete(true, productId, applicationUsername, transaction.transactionIdentifier!, receipt)
                     return
                 }
             }
         }
         
-        delegate?.purchasedComplete(true, productId, "", "", "")
+        delegate?.purchasedComplete(false, productId, "", "", "")
     }
     
     private func restore(transaction: SKPaymentTransaction) {
         SKPaymentQueue.default().finishTransaction(transaction)
-        
         //if transaction.original != nil {
         //    delegate?.restoreComplete(true)
         //} else {
@@ -139,6 +138,7 @@ extension IAPHelper : SKPaymentTransactionObserver {
     }
     
     private func fail(transaction: SKPaymentTransaction) {
+        print("++++ state: \(transaction.transactionState.rawValue)  payment: \(transaction.payment) error: \(transaction.error)")
         if let transactionError = transaction.error as? NSError {
             if transactionError.code != SKError.paymentCancelled.rawValue {
                 Log("Transaction Error: \(transaction.error?.localizedDescription)")

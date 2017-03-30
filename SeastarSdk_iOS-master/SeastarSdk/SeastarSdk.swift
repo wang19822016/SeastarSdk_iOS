@@ -80,7 +80,7 @@ public class SeastarSdk : NSObject {
                 let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
                 
                 let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
-
+                vc.showBackButton = false;
                 Global.current.rootViewController?.present(vc, animated: true, completion: nil)
             }else{
                 //有账号
@@ -93,7 +93,7 @@ public class SeastarSdk : NSObject {
                 if userModel.count == 0{
                     let storyboardPortrait: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
                     let vcPortrait: MainPortraitViewController = storyboardPortrait.instantiateInitialViewController()! as! MainPortraitViewController
-
+                    vcPortrait.showBackButton = false;
                     Global.current.rootViewController?.present(vcPortrait, animated: true, completion: nil)
                 }else{
                     let storyboardPortrait: UIStoryboard = UIStoryboard(name: "changeAccount_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
