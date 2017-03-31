@@ -65,6 +65,7 @@ public class SeastarSdk : NSObject {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
             hud(hudString: "LoginSuccess", hudView: (Global.current.rootViewController?.view)!)
+            
         }
         Global.current.loginFailure = {()in
             loginFailure();
@@ -102,6 +103,13 @@ public class SeastarSdk : NSObject {
                 }
             }
             }
+    }
+    
+    func checkEmail(){
+        let temp = Int(arc4random()%100)+1
+        if temp < 60{
+            return;
+        }
     }
     
     public func changeAccount(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void)
