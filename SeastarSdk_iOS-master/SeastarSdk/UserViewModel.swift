@@ -100,4 +100,42 @@ class UserViewModel {
         
         MyNetwork.current.get(url, [:], {code, response in}, {})
     }
+    
+    func hasEmail(_ success: @escaping ()->Void, _ failure: @escaping ()->Void) {
+        var user = UserModel()
+        if !user.loadCurrentUser() {
+            success()
+            return
+        }
+        
+        let app = AppModel()
+        
+        MyNetwork.current.get(app.serverUrl + "/api/user", ["Authorization" : "Bearer " + user.token], { code, json in
+            if code == 200 {
+                if let email = json["email"] as? String {
+                    if !email.isEmpty {
+                        success()
+                    } else {
+                        failure()
+                    }
+                } else {
+                    success()
+                }
+            }
+        }, {
+            success()
+        })
+    }
+    
+    func updateEmail(_ email:String) {
+        var user = UserModel()
+        if !user.loadCurrentUser() {
+            return
+        }
+        
+        let app = AppModel()
+        
+        MyNetwork.current.put(app.serverUrl + "/api/user", ["Authorization" : "Bearer " + user.token], ["email" : email], { code, json in
+                    }, {})
+    }
 }
