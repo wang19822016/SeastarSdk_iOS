@@ -65,7 +65,7 @@ public class SeastarSdk : NSObject {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
             hud(hudString: "LoginSuccess", hudView: (Global.current.rootViewController?.view)!)
-            
+            self.checkEmail();
         }
         Global.current.loginFailure = {()in
             loginFailure();
@@ -73,6 +73,7 @@ public class SeastarSdk : NSObject {
         var user = UserModel()
         if user.loadCurrentUser() {
             loginSuccess(Int(user.userId), user.token)
+            checkEmail();
         }else{
             if(Global.current.myOrientation){
             let userModel = UserModel.loadAllUsers();
@@ -109,6 +110,11 @@ public class SeastarSdk : NSObject {
         let temp = Int(arc4random()%100)+1
         if temp < 60{
             return;
+        }
+        UserViewModel.current.hasEmail({ 
+            //成功
+        }) { 
+            //显示绑定邮箱界面
         }
     }
     
