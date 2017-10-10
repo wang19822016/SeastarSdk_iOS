@@ -17,6 +17,8 @@ class ChangeAccountPortraitViewController: BaseViewController{
     @IBOutlet var myView: UIView!
     @IBOutlet var loginBtn: UIButton!
     @IBOutlet var changeBtn: UIButton!
+    @IBOutlet var backGroundImage: UIImageView!
+    
     
     var tableView = UITableView();
     var appear = Bool();
@@ -28,9 +30,11 @@ class ChangeAccountPortraitViewController: BaseViewController{
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         self.loginSuccess(user: currentUserModel);
         currentUserModel.saveAsCurrentUser();
+        BossClient.current.login(userId: String(currentUserModel.userId));
     }
 
     override func initView() {
+        makeBounds(backGroundImage.layer);
         loginBtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         
@@ -99,6 +103,10 @@ class ChangeAccountPortraitViewController: BaseViewController{
         optionsArray.remove(at: sender.tag);
         tableView.reloadData();
         if(optionsArray.count == 0){
+            self.appear = false;
+            self.downButton.transform = CGAffineTransform(rotationAngle: 0.0)
+            self.tableView.removeFromSuperview();
+            
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar_p", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
             let vc: MainPortraitViewController = storyboard.instantiateInitialViewController()! as! MainPortraitViewController
             vc.showBackButton = true;

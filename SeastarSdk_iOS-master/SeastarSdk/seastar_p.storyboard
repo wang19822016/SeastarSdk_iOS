@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1U-8s-bq6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1U-8s-bq6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -201,7 +201,7 @@
                                             <constraint firstAttribute="height" constant="40" id="aDa-0b-4Ng"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tb6-BP-acQ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tb6-BP-acQ" customClass="MyTextField" customModule="SeastarSdk" customModuleProvider="target">
                                         <rect key="frame" x="19" y="101" width="296" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="296" id="7ex-4l-eas"/>
@@ -218,7 +218,7 @@
                                             <constraint firstAttribute="height" constant="36" id="ce7-hJ-YOt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" backgroundImage="buton_p.png"/>
+                                        <state key="normal" backgroundImage="button_p.png"/>
                                         <state key="highlighted" backgroundImage="button_highlighted_p.png"/>
                                         <connections>
                                             <action selector="LoginBtnClick:" destination="nGr-SC-0dp" eventType="touchUpInside" id="y1v-qm-n19"/>
@@ -247,7 +247,7 @@
                                             <action selector="backBtnClick:" destination="nGr-SC-0dp" eventType="touchUpInside" id="Z6b-Am-2RK"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_highlighted_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-rv-vUD">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_highlighted_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-rv-vUD" customClass="MyTextField" customModule="SeastarSdk" customModuleProvider="target">
                                         <rect key="frame" x="19" y="55" width="296" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="dgB-aQ-2EL"/>
@@ -350,7 +350,7 @@
                                             <action selector="backBtnClick:" destination="om8-ye-zYh" eventType="touchUpInside" id="Sfz-SQ-K0P"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_highlighted_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="NCe-Id-Muw">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_highlighted_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="NCe-Id-Muw" customClass="MyTextField" customModule="SeastarSdk" customModuleProvider="target">
                                         <rect key="frame" x="19" y="60" width="296" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="9KM-Ic-3M5"/>
@@ -367,7 +367,7 @@
                                             <constraint firstAttribute="height" constant="36" id="JkH-Nf-I2e"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" backgroundImage="buton_p.png"/>
+                                        <state key="normal" backgroundImage="button_p.png"/>
                                         <state key="highlighted" backgroundImage="button_highlighted_p.png"/>
                                         <connections>
                                             <action selector="passwordGetBackBtnClick:" destination="om8-ye-zYh" eventType="touchUpInside" id="xjf-Ag-GaU"/>
@@ -379,7 +379,7 @@
                                             <constraint firstAttribute="height" constant="44" id="ddp-Gu-R6P"/>
                                             <constraint firstAttribute="width" constant="296" id="zXF-vn-Eey"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -447,7 +447,7 @@
                                             <constraint firstAttribute="height" constant="40" id="kHC-lX-2o3"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_highlighted_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="19R-mI-RYR">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_highlighted_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="19R-mI-RYR" customClass="MyTextField" customModule="SeastarSdk" customModuleProvider="target">
                                         <rect key="frame" x="19" y="59" width="296" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="RYq-wa-p2o"/>
@@ -457,7 +457,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="KWV-p4-nXi">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="KWV-p4-nXi" customClass="MyTextField" customModule="SeastarSdk" customModuleProvider="target">
                                         <rect key="frame" x="19" y="101" width="296" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="vdx-Dt-4L7"/>
@@ -467,7 +467,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-7T-PZc">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="kuang_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="vn6-7T-PZc" customClass="MyTextField" customModule="SeastarSdk" customModuleProvider="target">
                                         <rect key="frame" x="19" y="143" width="296" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="4JW-Cw-dEa"/>
@@ -484,7 +484,7 @@
                                             <constraint firstAttribute="width" constant="296" id="ohx-OU-DmK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" backgroundImage="buton_p.png"/>
+                                        <state key="normal" backgroundImage="button_p.png"/>
                                         <state key="highlighted" backgroundImage="button_highlighted_p.png"/>
                                         <connections>
                                             <action selector="registerBtnClick:" destination="WER-qi-TY4" eventType="touchUpInside" id="f5V-KW-XuW"/>
@@ -547,8 +547,8 @@
     <resources>
         <image name="back_p.png" width="80" height="80"/>
         <image name="background_p.png" width="668" height="452"/>
-        <image name="buton_p.png" width="592" height="72"/>
         <image name="button_highlighted_p.png" width="592" height="72"/>
+        <image name="button_p.png" width="592" height="72"/>
         <image name="facebook_big_p.png" width="120" height="126"/>
         <image name="fenge_p.png" width="570" height="2"/>
         <image name="guest_big_p.png" width="120" height="126"/>

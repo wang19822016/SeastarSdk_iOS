@@ -29,11 +29,20 @@ class ViewController: UIViewController {
     }
 
     @IBAction func changeAccount(_ sender: AnyObject) {
-        SeastarSdk.current.changeAccount(loginSuccess: { (int:Int, string:String) in
-            print("loginSuccess")
-            print(int,string)
-            }) { 
-                print("loginFalse");
+//        SeastarSdk.current.changeAccount(loginSuccess: { (int:Int, string:String) in
+//            print("loginSuccess")
+//            print(int,string)
+//            }) { 
+//                print("loginFalse");
+//        }
+        Facebook.current.getMeInfo(success: { (infoString) in
+            print("success");
+            let jsonData = infoString.data(using: .utf8);
+            let jsonDic = JSONSerialization.jsonObject(with: jsonData, options: .allowFragments);
+            print(infoString);
+            print(jsonDic);
+        }) {
+            print("faile");
         }
     }
     @IBAction func logout(_ sender: AnyObject) {

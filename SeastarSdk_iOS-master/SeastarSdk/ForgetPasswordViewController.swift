@@ -23,9 +23,16 @@ class ForgetPasswordViewController: BaseViewController,UITextFieldDelegate {
     }
     
     @IBAction func passwordGetBackClick(_ sender: AnyObject) {
-        if !(adminTextField.text == ""){
-            UserViewModel.current.findPwd(adminTextField.text!);
-            hud(hudString: "FindSuccess", hudView: view);
+        if seastarCompare(admin: adminTextField.text!) {
+            UserViewModel.current.findPwd(self.adminTextField.text!, {(String)->(Void) in
+                if String == "200"{
+                    hud(hudString: "FindSuccess", hudView: self.view);
+                }else{
+                    hud(hudString: "Findfalse", hudView: self.view);
+                }
+            });
+        }else{
+            hud(hudString: "PleaseEnterTheCorrectAdmin", hudView: self.view);
         }
     }
     

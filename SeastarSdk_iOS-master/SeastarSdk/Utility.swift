@@ -15,7 +15,19 @@ func Log(_ message: String, fileName: String = #file, methodName: String =  #fun
 }
 
 func deviceId() -> String {
-    return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+    if ASIdentifierManager.shared().isAdvertisingTrackingEnabled{
+        return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+    }else{
+        let str = UserDefaults.standard.string(forKey: "uuid")
+        if str != nil{
+            return str!
+        }else{
+        let uuid = UUID().uuidString;
+        UserDefaults.standard.set(uuid, forKey: "uuid");
+        UserDefaults.standard.synchronize();
+        return uuid;
+        }
+    }
 }
 
 func deviceInfo() -> String {
@@ -38,9 +50,61 @@ func hud(hudString :String,hudView:UIView)
         let hud = MBProgressHUD.showAdded(to: hudView, animated: true);
         hud.mode = MBProgressHUDMode.text;
         hud.label.text = NSLocalizedString(hudString, comment: "");
+        hud.label.font = UIFont.systemFont(ofSize: 13);
         hud.label.numberOfLines = 0;
         hud.offset = CGPoint(x: 0.0, y: MBProgressMaxOffset)
-        hud.hide(animated: true, afterDelay: 3.0);
+        hud.hide(animated: true, afterDelay: 2.0);
+    }
+}
+
+func customHud(userModel:UserModel,hudView:UIView){
+    DispatchQueue.main.async {
+        //NSString
+        let font = UIFont.systemFont(ofSize: 13);
+        let welcomeStr = NSLocalizedString("LoginSuccess", comment: "");
+        let noticeStr:NSString = userModel.userName + "," + welcomeStr as NSString
+        let size = CGSize(width: 900, height: 40);
+        let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
+        let strsize = noticeStr.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as?[String:AnyObject], context: nil).size
+        //UIView
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: strsize.width + 60, height: 40));
+        view.center = CGPoint(x: hudView.frame.size.width / 2, y: 40);
+        hudView.addSubview(view);
+        //UIImageView
+        let bundle = Bundle(for: SeastarSdk.classForCoder());
+        let fileStr = bundle.path(forResource: "loginAlert", ofType: "png");
+        let imageView = UIImageView(image: UIImage(named: fileStr!));
+        imageView.frame = view.bounds;
+        view.addSubview(imageView);
+        //HeaderImage
+        var imageStr = "";
+        switch userModel.loginType{
+        case 0:
+            imageStr = "seastar";
+            break;
+        case 1:
+            imageStr = "guest";
+            break;
+        case 4:
+            imageStr = "facebook";
+            break;
+        default:
+            break;
+        }
+        let myBundle = Bundle(for: SeastarSdk.classForCoder());
+        let imagePath = myBundle.path(forResource: imageStr, ofType: "png");
+        let image = UIImage(named:imagePath!);
+        let headerImageView = UIImageView(image: image);
+        headerImageView.frame = CGRect(x: 10, y: 4, width: 32, height: 32);
+        view.addSubview(headerImageView);
+        //UIlabel
+        let label = UILabel(frame: CGRect(x: 46, y: 4, width: strsize.width, height: 32));
+        label.text = noticeStr as String;
+        label.font = font
+        view.addSubview(label);
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            view.removeFromSuperview();
+        })
     }
 }
 
@@ -119,3 +183,12 @@ func b64Decode(_ encodedString: String) -> String? {
 func b64Encode(_ originString: String) -> String? {
     return Data(originString.utf8).base64EncodedString()
 }
+
+var btn = SuspendedButton(type: .custom);
+
+func addSuspendedButton(){
+    btn.frame = CGRect(x: 0, y: 50, width: 50, height: 50);
+    btn.backgroundColor = UIColor.red;
+    Global.current.rootViewController?.view.addSubview(btn);
+}
+

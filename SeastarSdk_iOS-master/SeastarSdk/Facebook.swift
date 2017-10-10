@@ -132,8 +132,7 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
             Log("FB Login has token")
             success(FBSDKAccessToken.current().userID, FBSDKAccessToken.current().tokenString)
         } else {
-            
-            
+            print("11111");
             getReadPermissions(viewController: viewController, success: { () in
                 success(FBSDKAccessToken.current().userID, FBSDKAccessToken.current().tokenString)
                 }, failure: { () in
@@ -243,11 +242,29 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
     }
     
     // 使用 iOS SDK 提供的好友选择工具启动请求对话框
-    func doGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping FBCB) {
+    func doGameRequestWithArray(requestMessage message: String, requestTitle title: String, friendArray:Array<Any> ,caller: @escaping FBCB) {
         let gameRequestContent:FBSDKGameRequestContent = FBSDKGameRequestContent();
         gameRequestContent.message = message
         gameRequestContent.title = title
-        
+        gameRequestContent.recipients = friendArray;
+        let gameRequestDialog:FBSDKGameRequestDialog = FBSDKGameRequestDialog()
+        gameRequestDialog.content = gameRequestContent
+        gameRequestDialog.delegate = self
+        if gameRequestDialog.canShow() {
+            gameRequestDialog.show()
+            
+            gameRequestCaller = caller
+        } else {
+            
+            Log("FB Game Request fail, no permissions")
+            caller(false)
+        }
+    }
+    
+    func doGameRequest(requestMessage message: String, requestTitle title: String,caller: @escaping FBCB) {
+        let gameRequestContent:FBSDKGameRequestContent = FBSDKGameRequestContent();
+        gameRequestContent.message = message
+        gameRequestContent.title = title
         let gameRequestDialog:FBSDKGameRequestDialog = FBSDKGameRequestDialog()
         gameRequestDialog.content = gameRequestContent
         gameRequestDialog.delegate = self
@@ -337,17 +354,13 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         }
     }
     
-    func getMeInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
+    func getMeInfo(success:@escaping (Data)->Void, failure:@escaping ()->Void) {
         if FBSDKAccessToken.current() != nil {
-            let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": ["id", "name", "picture"]])
+            let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name,picture"])
             graphRequest.start { connection, result, error in
-                if let data = result as? Data, JSONSerialization.isValidJSONObject(data) {
-                    let meInfo = String(data: data, encoding: .utf8)
-                    Log("FB get me info: \(meInfo).")
-                    success(meInfo!)
-                } else {
-                    Log("FB get me info fail.")
-                    failure()
+                if((result) != nil){
+                let data = try? JSONSerialization.data(withJSONObject: result!, options: JSONSerialization.WritingOptions.prettyPrinted);
+                success(data!);
                 }
             }
         } else {
@@ -379,6 +392,23 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
             }
         }
     }
+    
+    func getInvitableFriendInfo(height:Int, width:Int, limit:Int, success:@escaping (Data)->Void, failure:@escaping ()->Void) {
+        if FBSDKAccessToken.current() != nil {
+            let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me/invitable_friends",
+                                                                    parameters: ["fields": "id,name,picture", "limit": "50"])
+            graphRequest.start {connection, result, error in
+                print("\(result)");
+                print("\(error)")
+                if((result) != nil){
+                    let data = try? JSONSerialization.data(withJSONObject: result!, options: JSONSerialization.WritingOptions.prettyPrinted);
+                    success(data!);
+                }
+                failure()
+            }
+        }
+    }
+    
     
     func getNextFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         if nextFriendInfoPage == nil {

@@ -13,6 +13,7 @@ class ChangeAccountViewController: BaseViewController{
     @IBOutlet var CenterView: UIView!
     @IBOutlet var UserImage: UIImageView!
     
+    @IBOutlet var backGroundImage: UIImageView!
     @IBOutlet var currentUser: UILabel!
     
     @IBOutlet var downButton: UIButton!
@@ -38,9 +39,11 @@ class ChangeAccountViewController: BaseViewController{
     @IBAction func loginBtnClick(_ sender: AnyObject) {
         self.loginSuccess(user: currentUserModel);
         currentUserModel.saveAsCurrentUser();
+        BossClient.current.login(userId: String(currentUserModel.userId));
     }
     
     override func initView() {
+        makeBounds(backGroundImage.layer);
         loginBtn.setTitle(NSLocalizedString("Login", comment: ""), for: UIControlState.normal);
         loginBtn.setTitleColor(UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1), for: UIControlState.normal);
         let title = NSMutableAttributedString(string: NSLocalizedString("ChangeAccount", comment: ""));
@@ -81,6 +84,7 @@ class ChangeAccountViewController: BaseViewController{
         tableView = UITableView(frame: CGRect(x: myView.frame.origin.x, y: myView.frame.origin.y + myView.frame.size.height, width: myView.frame.size.width, height: 2.5 * myView.frame.size.height));
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.register(CustomTableViewCell.classForCoder(), forCellReuseIdentifier: "Cell");
         tableView.separatorInset = UIEdgeInsets.zero;
         tableView.bounces = false;
     }
@@ -108,6 +112,10 @@ class ChangeAccountViewController: BaseViewController{
         optionsArray.remove(at: sender.tag);
         tableView.reloadData();
         if(optionsArray.count == 0){
+            self.appear = false;
+            self.downButton.transform = CGAffineTransform(rotationAngle: 0.0)
+            self.tableView.removeFromSuperview();
+            
             let storyboard: UIStoryboard = UIStoryboard(name: "seastar", bundle: Bundle(for: SeastarSdk.classForCoder()))//Bundle.main)
             let vc: MainLoginViewController = storyboard.instantiateInitialViewController()! as! MainLoginViewController
             vc.showBackButton = true;
@@ -166,20 +174,17 @@ extension ChangeAccountViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let str = "cell";
-        var cell = tableView.dequeueReusableCell(withIdentifier: str);
-        if(!(cell != nil)){
-            cell = UITableViewCell(style: .default, reuseIdentifier: str);
-        }
-        cell?.textLabel?.text = returnUser(myIndex: indexPath.row);
-        cell?.imageView?.image = returnImage(myIndex: indexPath.row);
+        var cell = CustomTableViewCell();
+        cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell;
+        cell.textLabel?.text = returnUser(myIndex: indexPath.row);
+        cell.imageView?.image = returnImage(myIndex: indexPath.row);
         let button = UIButton(type: .system);
         button.frame = CGRect(x: 224, y: 7, width: 30, height: 30);
         button.setBackgroundImage(returnCancel(), for: .normal);
         button.tag = indexPath.row;
         button.addTarget(self, action: #selector(deleteUser(_:)), for: .touchUpInside);
-        cell?.accessoryView = button;
-        return cell!;
+        cell.accessoryView = button;
+        return cell;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

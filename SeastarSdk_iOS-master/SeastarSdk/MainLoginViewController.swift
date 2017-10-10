@@ -26,6 +26,10 @@ class MainLoginViewController: BaseViewController {
     var showBackButton:Bool = true
     override func initView()
     {
+        print("------------------------");
+        print(backGroundImage.frame);
+        print(backGroundImage.contentScaleFactor);
+        print("------------------------");
         makeBounds(backGroundImage.layer)
         guestLoginLabel.textColor = UIColor(red: 64/255, green: 66/255, blue: 81/255, alpha: 1.0);
         guestLoginLabel.text = NSLocalizedString("Guest", comment: "");
@@ -52,7 +56,6 @@ class MainLoginViewController: BaseViewController {
     
     @IBAction func facebookLogin(_ sender: AnyObject) {
         startCustomView()
-        
         Facebook.current.login(viewController: self, success: { (fbuserId, token) in
             UserViewModel.current.doLoginAndRegistAndLogin(fbuserId, token, LoginType.FACEBOOK.rawValue, { (userModel) in
                 self.stopCustomView();

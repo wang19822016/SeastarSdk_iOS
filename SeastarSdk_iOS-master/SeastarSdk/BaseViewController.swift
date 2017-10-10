@@ -68,7 +68,7 @@ class BaseViewController: UIViewController {
     }
     
     func moveUp(_ frame: CGRect) {
-        let keyboardHeight: CGFloat = 216.0 + 70//+ 35.0 //键盘高度216 键盘上tabbar35
+        let keyboardHeight: CGFloat = 216.0 + 35//+ 35.0 //键盘高度216 键盘上tabbar35
         let keyboardY: CGFloat = self.view.frame.height - keyboardHeight
         let viewDownEdgeY = frame.origin.y + frame.size.height
         let offset = viewDownEdgeY - keyboardY

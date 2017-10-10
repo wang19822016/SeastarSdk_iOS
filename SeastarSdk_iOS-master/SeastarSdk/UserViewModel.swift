@@ -12,6 +12,7 @@ import UIKit
 class UserViewModel {
     
     static let current = UserViewModel()
+    var registerSuccess:Bool = false;
     
     func doRegist(_ username: String, _ password: String, _ email: String, _ type: Int, _ success: @escaping ()->Void, _ failure: @escaping ()->Void) {
         let app = AppModel()
@@ -25,6 +26,7 @@ class UserViewModel {
             if code == 201 {
                 // 注册成功
                 success()
+                self.registerSuccess = true;
             } else {
                 failure()
             }
@@ -46,8 +48,12 @@ class UserViewModel {
                 let user = UserModel(token: (response["access_token"] as? String) ?? "")
                 user.save()
                 user.saveAsCurrentUser()
-
                 success(user)
+                if self.registerSuccess{
+                    self.registerSuccess = false;
+                    BossClient.current.register(userId: String(user.userId));
+                }
+                BossClient.current.login(userId: String(user.userId));
             } else {
                 failure()
             }
@@ -71,9 +77,13 @@ class UserViewModel {
                 user.save()
                 user.saveAsCurrentUser()
                 success(user)
+                BossClient.current.login(userId: String(user.userId));
             } else if code == 404 {
                 self.doRegist(username, password, "", type, {
                     self.doLogin(username, password, type, success, failure)
+                    let user = UserModel(token: (response["access_token"] as? String) ?? "")
+                    BossClient.current.register(userId: String(user.userId));
+                    BossClient.current.login(userId: String(user.userId))
                 }, {
                     failure()
                 })
@@ -92,13 +102,16 @@ class UserViewModel {
         user.removeCurrentUser()
     }
     
-    func findPwd(_ username: String) {
+    func findPwd(_ username: String,_ findSuccess: @escaping (String)->Void) {
         let app = AppModel()
         let signStr = "\(app.appId)\(username)\(app.appKey)"
         let md5Str = md5(string: signStr)
         let url = "\(app.serverUrl)/api/user/pwd?username=\(username)&appId=\(app.appId)&sign=\(md5Str)"
-        
-        MyNetwork.current.get(url, [:], {code, response in}, {})
+        MyNetwork.current.get(url: url, success: { (code) in
+            findSuccess(code)
+        }) { 
+            
+        };
     }
     
     func hasEmail(_ success: @escaping ()->Void, _ failure: @escaping ()->Void) {

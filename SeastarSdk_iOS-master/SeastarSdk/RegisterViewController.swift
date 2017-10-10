@@ -24,28 +24,29 @@ class RegisterViewController: BaseViewController,UITextFieldDelegate {
     @IBOutlet var registerBtn: UIButton!
     
     @IBAction func registerBtnClick(_ sender: AnyObject) {
-        if (seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!) && seastarCompare(email: emailTextField.text!)){
+        if (seastarCompare(admin: adminTextField.text!) && seastarCompare(password: passwordTextField.text!)){
             startCustomView();
-            
-            UserViewModel.current.doRegist(adminTextField.text!, passwordTextField.text!, emailTextField.text!, LoginType.ACCOUNT.rawValue, {
+            var email = "";
+            if emailTextField.text != nil{
+                email = emailTextField.text!;
+            }
+            UserViewModel.current.doRegist(adminTextField.text!, passwordTextField.text!, email, LoginType.ACCOUNT.rawValue, {
                 UserViewModel.current.doLogin(self.adminTextField.text!, self.passwordTextField.text!, LoginType.ACCOUNT.rawValue, { (userModel) in
                     self.stopCustomView();
                     self.loginSuccess(user: userModel);
                 }, {
                     self.stopCustomView();
-                    hud(hudString: "RegisterFasle", hudView: self.view)
+                    hud(hudString: "RegisterFalse", hudView: self.view)
                 })
             }, {
                 self.stopCustomView();
-                hud(hudString: "RegisterFasle", hudView: self.view)
+                hud(hudString: "RegisterFalse", hudView: self.view)
             })
         }else{
             if !seastarCompare(admin: adminTextField.text!){
                 hud(hudString: "PleaseEnterTheCorrectAdmin", hudView: self.view);
-            }else if !seastarCompare(password: passwordTextField.text!){
+            }else {
                 hud(hudString: "PleaseEnterTheCorrectPassword", hudView: self.view);
-            }else{
-                hud(hudString: "PleaseEnterTheCorrectEmail", hudView: self.view);
             }
         }
     }

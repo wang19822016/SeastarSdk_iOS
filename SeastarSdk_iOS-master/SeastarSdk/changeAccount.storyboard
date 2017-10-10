@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WEm-3i-Rd5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WEm-3i-Rd5">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,7 +47,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="hAK-60-FIE"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0Q-gx-WY6">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0Q-gx-WY6">
                                                 <rect key="frame" x="55" y="6" width="166" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -120,7 +120,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="N26-po-QWW" secondAttribute="trailing" constant="18" id="42C-rJ-QyW"/>
                                     <constraint firstItem="aZ0-qs-46y" firstAttribute="leading" secondItem="gWT-eQ-VvV" secondAttribute="leading" constant="30" id="8Px-Ll-pWF"/>
@@ -149,6 +149,7 @@
                     <connections>
                         <outlet property="CenterView" destination="gWT-eQ-VvV" id="nn6-nw-hNi"/>
                         <outlet property="UserImage" destination="VJ5-sp-V65" id="N0Y-Da-0CD"/>
+                        <outlet property="backGroundImage" destination="DQD-6i-iD8" id="hbc-aX-Jc8"/>
                         <outlet property="changeBtn" destination="MJ9-0T-hVZ" id="vkr-KK-4ZV"/>
                         <outlet property="currentUser" destination="m0Q-gx-WY6" id="L9c-6s-Sji"/>
                         <outlet property="downButton" destination="ala-yW-QO9" id="F32-NC-9FZ"/>

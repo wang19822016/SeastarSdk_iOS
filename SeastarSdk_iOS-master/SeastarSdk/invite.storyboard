@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VAx-q2-coZ">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Invite View Controller-->
+        <scene sceneID="0x4-LD-AI3">
+            <objects>
+                <viewController id="VAx-q2-coZ" customClass="InviteViewController" customModule="SeastarSdk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2HS-uB-9ae"/>
+                        <viewControllerLayoutGuide type="bottom" id="iMU-9o-lJw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Bd-fL-Dxq">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pR6-gq-5Tz" userLabel="firstView">
+                                <rect key="frame" x="132" y="35" width="535" height="340"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀請好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6r-kB-BXo">
+                                        <rect key="frame" x="15" y="19" width="72" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="99G-mI-ujN"/>
+                                            <constraint firstAttribute="width" constant="72" id="AWV-W3-bgV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buv-bn-qa4">
+                                        <rect key="frame" x="333" y="20" width="70" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="YqJ-6w-B9O"/>
+                                            <constraint firstAttribute="width" constant="70" id="eba-EC-vaK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="全選" image="invite_unselected.png">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="invite_selected.png"/>
+                                        <connections>
+                                            <action selector="selectAllClick:" destination="VAx-q2-coZ" eventType="touchUpInside" id="eTb-Zc-6yC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKj-eU-188">
+                                        <rect key="frame" x="420" y="15" width="100" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="aoG-uU-3ha"/>
+                                            <constraint firstAttribute="width" constant="100" id="haS-IZ-eFM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="發送邀請" backgroundImage="invite_button.jpg">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendInvite:" destination="VAx-q2-coZ" eventType="touchUpInside" id="eca-P5-wtO"/>
+                                        </connections>
+                                    </button>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eCj-AR-rzc">
+                                        <rect key="frame" x="0.0" y="54" width="535" height="286"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8l6-Ot-P0m">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yuA-x6-kZO">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eCj-AR-rzc" secondAttribute="bottom" id="4i4-PG-92f"/>
+                                    <constraint firstItem="eKj-eU-188" firstAttribute="leading" secondItem="buv-bn-qa4" secondAttribute="trailing" constant="17" id="5wU-ly-ZYO"/>
+                                    <constraint firstItem="eCj-AR-rzc" firstAttribute="leading" secondItem="pR6-gq-5Tz" secondAttribute="leading" id="E9d-HK-gma"/>
+                                    <constraint firstItem="eCj-AR-rzc" firstAttribute="top" secondItem="eKj-eU-188" secondAttribute="bottom" constant="4" id="KEE-tx-miZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="eKj-eU-188" secondAttribute="trailing" constant="15" id="UEA-HV-zaB"/>
+                                    <constraint firstItem="buv-bn-qa4" firstAttribute="top" secondItem="pR6-gq-5Tz" secondAttribute="top" constant="20" id="jP0-ob-VVr"/>
+                                    <constraint firstItem="eKj-eU-188" firstAttribute="top" secondItem="pR6-gq-5Tz" secondAttribute="top" constant="15" id="vUf-t1-Eei"/>
+                                    <constraint firstItem="l6r-kB-BXo" firstAttribute="top" secondItem="pR6-gq-5Tz" secondAttribute="top" constant="19" id="xGf-zK-rRr"/>
+                                    <constraint firstItem="l6r-kB-BXo" firstAttribute="leading" secondItem="pR6-gq-5Tz" secondAttribute="leading" constant="15" id="ysA-gu-CPN"/>
+                                    <constraint firstAttribute="trailing" secondItem="eCj-AR-rzc" secondAttribute="trailing" id="zFY-M5-UzF"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ge-mI-Mrq" userLabel="secondView">
+                                <rect key="frame" x="158" y="600" width="509" height="286"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="戰友綁定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufn-Nh-DOg">
+                                        <rect key="frame" x="15" y="19" width="72" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="好友已經進入遊戲了？ 發送下面的鏈接給他，填寫幾條信息即可與妳綁定" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctg-JJ-mTD">
+                                        <rect key="frame" x="15" y="54" width="340" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="綁定的好友請在遊戲&quot;社交&gt;好友&gt;幕友&quot;中查看，幕友升級後記得到&quot;福利&gt;招募禮包&quot;裏領取獎勵" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGF-dE-4cD">
+                                        <rect key="frame" x="15" y="150" width="320" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9H-fN-JHA">
+                                        <rect key="frame" x="15" y="115" width="118" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="複製到剪貼板" backgroundImage="invite_button.jpg">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="copyButtonClick:" destination="VAx-q2-coZ" eventType="touchUpInside" id="Kec-AH-CjN"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="www.seastar.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSa-Ce-4aK">
+                                        <rect key="frame" x="15" y="93" width="384" height="14"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UhD-Lj-XPL" userLabel="BarView">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="35"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybi-0a-n4V">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="P0j-PG-rya"/>
+                                            <constraint firstAttribute="height" constant="35" id="q06-Li-F8Z"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="invite_back.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backBtnClick:" destination="VAx-q2-coZ" eventType="touchUpInside" id="uc3-bb-9fh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ybi-0a-n4V" firstAttribute="top" secondItem="UhD-Lj-XPL" secondAttribute="top" id="DuJ-S2-ena"/>
+                                    <constraint firstAttribute="height" constant="35" id="Qzz-sW-OXt"/>
+                                    <constraint firstItem="ybi-0a-n4V" firstAttribute="leading" secondItem="UhD-Lj-XPL" secondAttribute="leading" id="pTc-9w-gUr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDA-uX-0p2" userLabel="leftView">
+                                <rect key="frame" x="0.0" y="35" width="130" height="340"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2YB-LB-aHC">
+                                        <rect key="frame" x="40" y="15" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="9RU-CK-cS9"/>
+                                            <constraint firstAttribute="width" constant="50" id="Bbs-aK-A7y"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLJ-0g-vfv">
+                                        <rect key="frame" x="10" y="70" width="110" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="avt-dz-Roh"/>
+                                            <constraint firstAttribute="height" constant="21" id="sMS-WL-snx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1A-IR-zds">
+                                        <rect key="frame" x="20" y="160" width="90" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="5uw-Ly-5yo"/>
+                                            <constraint firstAttribute="height" constant="20" id="ufN-rd-Bau"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title=" 戰友綁定" image="invite_chain-black.png">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="invite_chain-light.png">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="highlighted" image="invite_chain-light.png"/>
+                                        <connections>
+                                            <action selector="blindFriendClick:" destination="VAx-q2-coZ" eventType="touchUpInside" id="xqp-Aw-olN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9n-YP-x2J">
+                                        <rect key="frame" x="20" y="191" width="90" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="neo-Si-72e"/>
+                                            <constraint firstAttribute="height" constant="20" id="qFX-q4-oBs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title=" 遊戲主頁" image="invite_thumbs-o-up-black.png">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="GameWebClick:" destination="VAx-q2-coZ" eventType="touchUpInside" id="CIB-f3-bTM"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享有好禮相贈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2a-60-nSc">
+                                        <rect key="frame" x="15" y="307" width="100" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="EG0-Kx-rXg"/>
+                                            <constraint firstAttribute="height" constant="17" id="eLu-OF-i1I"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EZ-yC-lP9">
+                                        <rect key="frame" x="8" y="264" width="114" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="9Pi-ti-CqN"/>
+                                            <constraint firstAttribute="height" constant="35" id="Tre-WT-EJy"/>
+                                        </constraints>
+                                        <state key="normal" title="     立即分享" backgroundImage="invite_button-facebook.jpg">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="shareNow:" destination="VAx-q2-coZ" eventType="touchUpInside" id="tA7-dA-vuV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbP-Vk-uEz">
+                                        <rect key="frame" x="20" y="129" width="90" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="wmV-7T-ZPQ"/>
+                                            <constraint firstAttribute="width" constant="90" id="y9d-Ep-KMy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title=" 邀請好友" image="invite_address-book-black.png">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="invite_address-book-light.png">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="highlighted" image="invite_address-book-light.png"/>
+                                        <connections>
+                                            <action selector="inviteFriendClick:" destination="VAx-q2-coZ" eventType="touchUpInside" id="N5a-T6-EMZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="m2a-60-nSc" firstAttribute="centerX" secondItem="oDA-uX-0p2" secondAttribute="centerX" id="09f-Et-bow"/>
+                                    <constraint firstItem="VLJ-0g-vfv" firstAttribute="top" secondItem="2YB-LB-aHC" secondAttribute="bottom" constant="5" id="2Ev-aY-GPw"/>
+                                    <constraint firstItem="2YB-LB-aHC" firstAttribute="top" secondItem="oDA-uX-0p2" secondAttribute="top" constant="15" id="4GL-qw-E9v"/>
+                                    <constraint firstItem="VLJ-0g-vfv" firstAttribute="centerX" secondItem="oDA-uX-0p2" secondAttribute="centerX" id="4Go-ve-BiT"/>
+                                    <constraint firstItem="1EZ-yC-lP9" firstAttribute="centerX" secondItem="oDA-uX-0p2" secondAttribute="centerX" id="5Qb-dI-Cj0"/>
+                                    <constraint firstAttribute="bottom" secondItem="m2a-60-nSc" secondAttribute="bottom" constant="16" id="8hN-FO-yJ0"/>
+                                    <constraint firstItem="d9n-YP-x2J" firstAttribute="top" secondItem="i1A-IR-zds" secondAttribute="bottom" constant="11" id="D3n-bT-kxH"/>
+                                    <constraint firstItem="m2a-60-nSc" firstAttribute="top" secondItem="1EZ-yC-lP9" secondAttribute="bottom" constant="8" id="FZ6-lG-7ec"/>
+                                    <constraint firstItem="i1A-IR-zds" firstAttribute="centerY" secondItem="oDA-uX-0p2" secondAttribute="centerY" id="KZg-Vj-fxI"/>
+                                    <constraint firstItem="CbP-Vk-uEz" firstAttribute="centerX" secondItem="oDA-uX-0p2" secondAttribute="centerX" id="Pdk-Vr-I23"/>
+                                    <constraint firstItem="d9n-YP-x2J" firstAttribute="centerX" secondItem="oDA-uX-0p2" secondAttribute="centerX" id="WZi-PZ-L0e"/>
+                                    <constraint firstAttribute="width" constant="130" id="bbr-44-Gbi"/>
+                                    <constraint firstItem="i1A-IR-zds" firstAttribute="top" secondItem="CbP-Vk-uEz" secondAttribute="bottom" constant="11" id="f89-t0-Bq7"/>
+                                    <constraint firstItem="2YB-LB-aHC" firstAttribute="centerX" secondItem="oDA-uX-0p2" secondAttribute="centerX" id="hTp-aC-13s"/>
+                                    <constraint firstItem="i1A-IR-zds" firstAttribute="centerX" secondItem="oDA-uX-0p2" secondAttribute="centerX" id="ndl-Hy-pBA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pR6-gq-5Tz" firstAttribute="top" secondItem="UhD-Lj-XPL" secondAttribute="bottom" id="0fJ-GI-qc4"/>
+                            <constraint firstAttribute="trailing" secondItem="UhD-Lj-XPL" secondAttribute="trailing" id="Ci7-vt-gCk"/>
+                            <constraint firstItem="pR6-gq-5Tz" firstAttribute="leading" secondItem="oDA-uX-0p2" secondAttribute="trailing" constant="2" id="DXx-BB-WBv"/>
+                            <constraint firstAttribute="trailing" secondItem="pR6-gq-5Tz" secondAttribute="trailing" id="KRg-dA-OtR"/>
+                            <constraint firstItem="iMU-9o-lJw" firstAttribute="top" secondItem="pR6-gq-5Tz" secondAttribute="bottom" id="ipA-bq-tef"/>
+                            <constraint firstItem="oDA-uX-0p2" firstAttribute="top" secondItem="UhD-Lj-XPL" secondAttribute="bottom" id="jXL-sp-bip"/>
+                            <constraint firstItem="UhD-Lj-XPL" firstAttribute="leading" secondItem="9Bd-fL-Dxq" secondAttribute="leading" id="ndb-yt-MJC"/>
+                            <constraint firstItem="iMU-9o-lJw" firstAttribute="top" secondItem="oDA-uX-0p2" secondAttribute="bottom" id="ta7-4R-UsC"/>
+                            <constraint firstItem="oDA-uX-0p2" firstAttribute="leading" secondItem="9Bd-fL-Dxq" secondAttribute="leading" id="xL0-8E-SiX"/>
+                            <constraint firstItem="UhD-Lj-XPL" firstAttribute="top" secondItem="9Bd-fL-Dxq" secondAttribute="top" id="xiY-1v-UPL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="UserImage" destination="2YB-LB-aHC" id="unb-FE-cHZ"/>
+                        <outlet property="barView" destination="UhD-Lj-XPL" id="NBA-9R-ihW"/>
+                        <outlet property="blindFriendBtn" destination="i1A-IR-zds" id="jDd-PZ-mkg"/>
+                        <outlet property="firstView" destination="pR6-gq-5Tz" id="Flq-F4-VK2"/>
+                        <outlet property="inviteFriendBtn" destination="CbP-Vk-uEz" id="5dc-tr-c6w"/>
+                        <outlet property="leftView" destination="oDA-uX-0p2" id="tLQ-gM-d0w"/>
+                        <outlet property="myCollectionView" destination="eCj-AR-rzc" id="9dB-fj-Tu6"/>
+                        <outlet property="secondView" destination="8ge-mI-Mrq" id="mKj-5B-1TN"/>
+                        <outlet property="selectedAllButton" destination="buv-bn-qa4" id="XEv-aC-ytX"/>
+                        <outlet property="urlInfoLabel" destination="YSa-Ce-4aK" id="BaH-T1-MwC"/>
+                        <outlet property="userName" destination="VLJ-0g-vfv" id="XUD-5m-oce"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E0V-xu-3lS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-185.75712143928038" y="-106.40000000000001"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="invite_address-book-black.png" width="20" height="20"/>
+        <image name="invite_address-book-light.png" width="20" height="20"/>
+        <image name="invite_back.png" width="64" height="64"/>
+        <image name="invite_button-facebook.jpg" width="408" height="105"/>
+        <image name="invite_button.jpg" width="302" height="105"/>
+        <image name="invite_chain-black.png" width="20" height="20"/>
+        <image name="invite_chain-light.png" width="20" height="20"/>
+        <image name="invite_selected.png" width="24" height="24"/>
+        <image name="invite_thumbs-o-up-black.png" width="20" height="20"/>
+        <image name="invite_unselected.png" width="24" height="24"/>
+    </resources>
+</document>
