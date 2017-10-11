@@ -189,6 +189,7 @@
 		EEE839FD1DC364D3003F8F79 /* kuang_highlighted_p.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE839EE1DC364D3003F8F79 /* kuang_highlighted_p.png */; };
 		EEE839FE1DC364D3003F8F79 /* kuang_p.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE839EF1DC364D3003F8F79 /* kuang_p.png */; };
 		EEE83A031DC364F4003F8F79 /* seastar_p.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */; };
+		EEFC4DA61F8DFF0700B327B0 /* EventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFC4DA51F8DFF0700B327B0 /* EventButton.swift */; };
 		EEFEC6351E01156F00542FF6 /* MyNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFEC6341E01156F00542FF6 /* MyNetwork.swift */; };
 /* End PBXBuildFile section */
 
@@ -408,6 +409,7 @@
 		EEE839EE1DC364D3003F8F79 /* kuang_highlighted_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kuang_highlighted_p.png; sourceTree = "<group>"; };
 		EEE839EF1DC364D3003F8F79 /* kuang_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kuang_p.png; sourceTree = "<group>"; };
 		EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = seastar_p.storyboard; sourceTree = "<group>"; };
+		EEFC4DA51F8DFF0700B327B0 /* EventButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventButton.swift; sourceTree = "<group>"; };
 		EEFEC6341E01156F00542FF6 /* MyNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -518,6 +520,7 @@
 				EEB328C41E9CBE2100029C57 /* CustomCollectionViewCell.swift */,
 				EE3E2AF51DF7B94900A89537 /* VerticalButton.swift */,
 				EE7B6BAD1F7F70D0009C4FD6 /* SuspendedButton.swift */,
+				EEFC4DA51F8DFF0700B327B0 /* EventButton.swift */,
 				104DE73F1DB8B38E00D7F736 /* seastar.storyboard */,
 				EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */,
 				EE8209D61DC0B65D000F6903 /* changeAccount.storyboard */,
@@ -1147,6 +1150,7 @@
 				EE6C41061DE56FE80037DC76 /* SHA2.swift in Sources */,
 				EE6C40D61DE56FE80037DC76 /* BlockMode.swift in Sources */,
 				EE1E490B1F7DF62E00478159 /* RewardedVideo.swift in Sources */,
+				EEFC4DA61F8DFF0700B327B0 /* EventButton.swift in Sources */,
 				EE8209D51DC0A82A000F6903 /* ForgetPasswordViewController.swift in Sources */,
 				EE6C40F11DE56FE80037DC76 /* String+FoundationExtension.swift in Sources */,
 				EE0531F91EBC68710055AC30 /* CustomTableViewCell.swift in Sources */,
@@ -1229,7 +1233,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				NEW_SETTING = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1239,7 +1243,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				NEW_SETTING = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1301,7 +1305,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SeastarSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1371,7 +1375,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = SeastarSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -91,11 +91,13 @@ public class SeastarSdk : NSObject {
             loadRewardedVideoSuccess(loadSuccess);
         })
     }
+        
     public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
             customHud(userModel: userModel, hudView: (Global.current.rootViewController?.view)!)
-            self.checkEmail();
+            addSuspendedBtn();
+            //self.checkEmail();
         }
         Global.current.loginFailure = {()in
             loginFailure();
@@ -153,6 +155,7 @@ public class SeastarSdk : NSObject {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
             customHud(userModel: userModel, hudView: (Global.current.rootViewController?.view)!)
+            addSuspendedBtn();
         }
         Global.current.loginFailure = {()in
             loginFailure();

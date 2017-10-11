@@ -184,11 +184,13 @@ func b64Encode(_ originString: String) -> String? {
     return Data(originString.utf8).base64EncodedString()
 }
 
-var btn = SuspendedButton(type: .custom);
-
-func addSuspendedButton(){
-    btn.frame = CGRect(x: 0, y: 50, width: 50, height: 50);
-    btn.backgroundColor = UIColor.red;
+func addSuspendedBtn(){
+    let btn = SuspendedButton(type: .custom);
+    btn.frame = CGRect(x: -25, y: 50, width: 50, height: 50);
+    btn.setBackgroundImage(UIImage(named:"2"), for: .normal)
+    btn.setBackgroundImage(UIImage(named:"2"), for: .highlighted);
+    btn.alpha = 0.5
     Global.current.rootViewController?.view.addSubview(btn);
 }
+
 
