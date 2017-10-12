@@ -96,7 +96,7 @@ public class SeastarSdk : NSObject {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
             customHud(userModel: userModel, hudView: (Global.current.rootViewController?.view)!)
-            addSuspendedBtn();
+            //addSuspendedBtn();
             //self.checkEmail();
         }
         Global.current.loginFailure = {()in
@@ -155,7 +155,7 @@ public class SeastarSdk : NSObject {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
             customHud(userModel: userModel, hudView: (Global.current.rootViewController?.view)!)
-            addSuspendedBtn();
+            //addSuspendedBtn();
         }
         Global.current.loginFailure = {()in
             loginFailure();

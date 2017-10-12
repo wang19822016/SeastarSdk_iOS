@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9a-iA-x2J">
                                 <rect key="frame" x="145.33333333333337" y="93" width="445.33333333333326" height="228"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hxsn.png" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-GM-aib" userLabel="background">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-GM-aib" userLabel="background">
                                         <rect key="frame" x="0.0" y="0.0" width="445.33333333333326" height="228"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_Horizontal.png" translatesAutoresizingMaskIntoConstraints="NO" id="SS0-5h-STi">
@@ -558,7 +558,6 @@
         <image name="facebook_big.png" width="120" height="126"/>
         <image name="fenge.png" width="570" height="2"/>
         <image name="guest_big.png" width="120" height="126"/>
-        <image name="hxsn.png" width="890" height="456"/>
         <image name="kuang.png" width="549" height="83"/>
         <image name="kuang_highlighted.png" width="549" height="83"/>
         <image name="logo.png" width="194" height="285"/>

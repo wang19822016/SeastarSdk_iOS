@@ -4,6 +4,7 @@
 * FBSDKCoreKit.framework
 * FBSDKShareKit.framework
 * FBSDKLoginKit.framework
+* AppsFlyerLib.framework
 
 # 2. target中的Embedded Binaries:
 添加如下framework:
@@ -39,6 +40,8 @@
         * Key: ServerUrl, Type: String, Value: https://52.77.192.179
     * 添加Key: AppsFlyerID, Type: String, Value: appsflyer的id
     * 添加Key: AppsFlyerKey, Type: String, Value: appsflyer的key
+    * 添加Key: GocpaAppId, Type: String, Value: Gocpa的AppId
+    * 添加Key: GocpaAdvertiserId, Type: String, Value: Gocpa的AdvertiserId
 * URL Types:<br/>
     添加一项，identifier: None, Icon: None, Role: Editor, URL Schemes: fb + fb分配的appid
 
@@ -65,8 +68,9 @@
     "YouHaveBeenBanned" = "You Have Been Banned";
     "AccountAlreadyExists" = "Account Already Exist";
     "LoginSuccess" = "Sign in Success";
-    "RegsiterFalse" = "Regsiter False";
+    "RegisterFalse" = "Regsiter False";
     "FindSuccess" = "Retrieve Success";
+    "Findfalse" = "Findfalse";
     "FindPassword" = "Retrieve Password";
     "NoticeLabel" = "Password will send to mailbox. If you have any questions, please send email to vrseastar@vrseastar.com";
     "SelectLoginType" = "Sign in With";
@@ -80,31 +84,32 @@
 *  选中Localizable.strings (Chinese (Traditional)), 粘贴如下内容:<br/>
     ```Objective-C
 
-    "Guest" = "Guest";
-    "Seastar" = "海星";
+    "Guest" = "遊客";
+    "Seastar" = "海星帳號";
     "Facebook" = "Facebook";
     "Login" = "登入";
     "Forget" = "忘記密碼";
-    "Register" = "註冊賬號";
+    "Register" = "註冊帳號";
     "LoginFalse" = "登入失敗";
-    "PleaseEnterTheCorrectAdmin" = "请输入6-10用户名字母开头";
-    "PleaseEnterTheCorrectPassword" = "请输入8-16密码";
+    "PleaseEnterTheCorrectAdmin" = "請輸入字母開頭，由數字和字母組成的6至16位帳號";
+    "PleaseEnterTheCorrectPassword" = "請輸入數字和字母組成的8至16位密碼";
     "PleaseEnterTheCorrectEmail" = "请输入正确的邮箱格式";
-    "AccountOrPasswordError" = "帐号或密码错误";
-    "AccountDoesNotExist" = "帐号不存在";
-    "YouHaveBeenBanned" = "您已经被封号";
-    "AccountAlreadyExists" = "帐号已经被注册";
-    "LoginSuccess" = "登入成功";
-    "RegsiterFalse" = "註冊失敗";
-    "FindSuccess" = "找回成功";
+    "AccountOrPasswordError" = "賬號或密码错误";
+    "AccountDoesNotExist" = "該賬號不存在";
+    "YouHaveBeenBanned" = "該賬號已被禁用";
+    "AccountAlreadyExists" = "該賬號已被佔用";
+    "LoginSuccess" = "歡迎回來!";
+    "RegisterFalse" = "帳號已被佔用，請重新輸入";
+    "FindSuccess" = "找回成功，請到綁定信箱查看密碼";
+    "Findfalse" = "該帳號未綁定信箱";
     "FindPassword" = "密碼找回";
-    "NoticeLabel" = "密碼將被發送到該賬戶綁定的信箱,如有疑問請聯繫客服信箱:vrseastar@vrseastar.com";
+    "NoticeLabel" = "若遺忘帳號密碼，請聯絡客服信箱：cs.jjsg.cs@gmail.com";
     "SelectLoginType" = "請選擇登入方式";
-    "PleaseInputAccount" = "請輸入賬號";
+    "PleaseInputAccount" = "請輸入帳號";
     "PleaseInputPassword" = "請輸入密碼";
-    "PleaseInputSeastarAccount" = "請輸入海星賬號";
+    "PleaseInputSeastarAccount" = "請輸入海星帳號";
     "PleaseInputEmail(Option)" = "請輸入信箱(可選)";
-    "ChangeAccount" = "切換賬號";
+    "ChangeAccount" = "切換帳號";
 
     ```
 
@@ -131,7 +136,13 @@
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
 [[SeastarSdk current]application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
+-(void)applicationDidEnterBackground:(UIApplication *)application{
+[[SeastarSdk current]applicationDidEnterBackground:application];
+}
 
+-(void)applicationWillEnterForeground:(UIApplication *)application{
+[[SeastarSdk current]applicationWillEnterForeground:application];
+}
 ```
 
 # 7. 登录:

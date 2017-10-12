@@ -187,8 +187,8 @@ func b64Encode(_ originString: String) -> String? {
 func addSuspendedBtn(){
     let btn = SuspendedButton(type: .custom);
     btn.frame = CGRect(x: -25, y: 50, width: 50, height: 50);
-    btn.setBackgroundImage(UIImage(named:"2"), for: .normal)
-    btn.setBackgroundImage(UIImage(named:"2"), for: .highlighted);
+    btn.setBackgroundImage(UIImage(named:"suspended"), for: .normal)
+    btn.setBackgroundImage(UIImage(named:"suspended_highlighted"), for: .highlighted);
     btn.alpha = 0.5
     Global.current.rootViewController?.view.addSubview(btn);
 }
