@@ -161,7 +161,7 @@ struct UserModel {
     static func clearExpire() {
         let now = Date()
         let timeInterval:TimeInterval = now.timeIntervalSince1970
-        let timeStamp = Int64(timeInterval) + 7 * 24 * 60 * 60
+        let timeStamp = Int64(timeInterval) + Int64(7 * 24 * 60 * 60)
         
         var currentUserId: Int64 = 0
         if let currentUser = UserDefaults.standard.dictionary(forKey: "current_user") {

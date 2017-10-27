@@ -61,14 +61,14 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         let title = NSMutableAttributedString(string: NSLocalizedString("Forget", comment: ""));
         let titleRange = NSRange(location: 0,length: title.length);
         let num = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
-        title.addAttribute(NSUnderlineStyleAttributeName, value: num, range: titleRange);
+        title.addAttribute(NSAttributedStringKey.underlineStyle, value: num, range: titleRange);
         forgetPasswordBtn.setAttributedTitle(title, for: UIControlState.normal);
         forgetPasswordBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
         
         let title1 = NSMutableAttributedString(string:NSLocalizedString("Register", comment: ""));
         let titleRange1 = NSRange(location: 0,length: title1.length);
         let num1 = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
-        title1.addAttribute(NSUnderlineStyleAttributeName, value: num1, range: titleRange1);
+        title1.addAttribute(NSAttributedStringKey.underlineStyle, value: num1, range: titleRange1);
         registerBtn.setAttributedTitle(title1, for: UIControlState.normal);
         registerBtn.setTitleColor(UIColor(red: 58/255, green: 140/255, blue: 224/255, alpha: 1), for: UIControlState.normal);
     }

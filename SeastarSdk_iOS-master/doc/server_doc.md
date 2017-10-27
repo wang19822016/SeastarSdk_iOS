@@ -22,6 +22,6 @@
         "sign": "签名"
     }
 # 4:签名规则：
-    md5(order + "|" + appId + "|" + userId + "|" + gameRoleId + "|" + serverId + "|" + channelType + "|" + productId + "|" + "1" + "|" + currency + "|" + "0" + "|" + sandbox + "|" + cparam + "|" + virtualCoin + "|" + giveVirtualCoin + "|" + appSecret)
+    md5(order + "|" + appId + "|" + userId + "|" + gameRoleId + "|" + serverId + "|" + channelType + "|" + productId + "|" + "1" + "|" + money + "|" + currency + "|" + "0" + "|" + sandbox + "|" + cparam + "|" + virtualCoin + "|" + giveVirtualCoin + "|" + appSecret)
 # 5:响应:
     处理成功返回本次流水号，失败返回fail

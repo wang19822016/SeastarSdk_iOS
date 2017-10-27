@@ -49,7 +49,7 @@ class ChangeAccountViewController: BaseViewController{
         let title = NSMutableAttributedString(string: NSLocalizedString("ChangeAccount", comment: ""));
         let titleRange = NSRange(location: 0,length: title.length);
         let num = NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue);
-        title.addAttribute(NSUnderlineStyleAttributeName, value: num, range: titleRange);
+        title.addAttribute(NSAttributedStringKey.underlineStyle, value: num, range: titleRange);
         changeBtn.setAttributedTitle(title, for: UIControlState.normal);
         changeBtn.setTitleColor(UIColor(red: 107/255, green: 112/255, blue: 118/255, alpha: 1), for: UIControlState.normal);
         initMyView();
@@ -100,7 +100,7 @@ class ChangeAccountViewController: BaseViewController{
         }
     }
     
-    func deleteUser(_ sender: UIButton) {
+    @objc func deleteUser(_ sender: UIButton) {
         let userModel = (optionsArray[sender.tag] as! (String,String,UserModel)).2
         userModel.remove();
         var currentModel = UserModel();

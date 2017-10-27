@@ -13,7 +13,7 @@ class RewardedVideo: NSObject {
     
     typealias ShowVideo = (Bool)->Void
     var showSuccess: ShowVideo? = nil
-    
+
     static let current = RewardedVideo();
     var rewardedVideoAd = FBRewardedVideoAd()
     var placementID:String?

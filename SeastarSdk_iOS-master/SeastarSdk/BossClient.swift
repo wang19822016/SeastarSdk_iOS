@@ -101,7 +101,7 @@ class BossClient:NSObject{
         
     }
     
-    func postData(){
+    @objc func postData(){
         DispatchQueue.global().async {
             print(Thread.current);
             self.online();

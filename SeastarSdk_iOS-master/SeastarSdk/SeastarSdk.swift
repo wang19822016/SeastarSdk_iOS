@@ -13,7 +13,7 @@ import UIKit
 import AppsFlyerLib
 
 public class SeastarSdk : NSObject {
-    public static let current = SeastarSdk()
+    @objc public static let current = SeastarSdk()
     
     //var viewController: UIViewController? = nil
     
@@ -21,7 +21,7 @@ public class SeastarSdk : NSObject {
     
     private var options: [UserModel] = []
     
-    public func initialize(viewController: UIViewController, landscape:Bool) {
+    @objc public func initialize(viewController: UIViewController, landscape:Bool) {
         PurchaseViewModel.current.initialize()
         Global.current.rootViewController = viewController
         Global.current.myOrientation = landscape;
@@ -31,7 +31,7 @@ public class SeastarSdk : NSObject {
     var GocpaExist:Bool?
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    @objc public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         Facebook.current.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         let content = Bundle.main.path(forResource: "Info", ofType: "plist");
@@ -59,40 +59,40 @@ public class SeastarSdk : NSObject {
     }
     
     // 需要切换到Facebook应用或者Safari的应调用下面方法
-    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any){
+    @objc public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any){
         
         Facebook.current.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     // 需要fb纪录应用激活事件的调用下面的方法
-    public func applicationDidBecomeActive(_ application: UIApplication) {
+    @objc public func applicationDidBecomeActive(_ application: UIApplication) {
         Facebook.current.applicationDidBecomeActive(application)
         AppsFlyerTracker.shared().trackAppLaunch()
     }
     //程序进入后台
-    public func applicationDidEnterBackground(_ application: UIApplication){
+    @objc public func applicationDidEnterBackground(_ application: UIApplication){
         BossClient.current.lockTimer();
     }
     //程序进入前台
-    public func applicationWillEnterForeground(_ application: UIApplication){
+    @objc public func applicationWillEnterForeground(_ application: UIApplication){
         BossClient.current.unlockTimer();
     }
     //统计卸载
-    public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    @objc public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         AppsFlyerTracker.shared().registerUninstall(deviceToken);
     }
     
     // 掉单重处理
-    public func checkLeakPurchase() {
+    @objc public func checkLeakPurchase() {
         PurchaseViewModel.current.checkLeakPurchase()
     }
-    public func loadRewardedVideoAd(loadRewardedVideoSuccess:@escaping(Bool)->Void){
+    @objc public func loadRewardedVideoAd(loadRewardedVideoSuccess:@escaping(Bool)->Void){
         RewardedVideo.current.loadRewardedVideo(loadSuccess: {(loadSuccess:Bool) in
             loadRewardedVideoSuccess(loadSuccess);
         })
     }
         
-    public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
+    @objc public func login(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void) {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
             customHud(userModel: userModel, hudView: (Global.current.rootViewController?.view)!)
@@ -150,7 +150,7 @@ public class SeastarSdk : NSObject {
         }
     }
     
-    public func changeAccount(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void)
+    @objc public func changeAccount(loginSuccess:@escaping (Int, String)->Void, loginFailure:@escaping ()->Void)
     {
         Global.current.loginSuccess = {(userModel:UserModel) in
             loginSuccess(Int(userModel.userId), userModel.token)
@@ -172,11 +172,11 @@ public class SeastarSdk : NSObject {
         }
     }
     
-    public func logout() {
+    @objc public func logout() {
         UserViewModel.current.doLogout()
     }
     
-    public func purchase(productId: String, roleId: String, serverId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
+    @objc public func purchase(productId: String, roleId: String, serverId: String, extra: String, paySuccess: @escaping (String, String)->Void, payFailure: @escaping (String)->Void) {
         PurchaseViewModel.current.doPurchase(productId: productId, roleId: roleId, serverId: serverId, extra: extra, purchaseSuccess: {
             order, productIdentifier in
             paySuccess(order, productIdentifier)
@@ -187,7 +187,7 @@ public class SeastarSdk : NSObject {
         })
     }
     
-    public func showFacebookSocialDialog(bindUrl:String, mainPageUrl:String, shareUrl:String,shareImageUrl:String, shareTitle:String,shareDescription:String,inviteSuccess:@escaping(Bool)->Void){
+    @objc public func showFacebookSocialDialog(bindUrl:String, mainPageUrl:String, shareUrl:String,shareImageUrl:String, shareTitle:String,shareDescription:String,inviteSuccess:@escaping(Bool)->Void){
         Global.current.shareSuccess = {(myBool)->Void in
             inviteSuccess(myBool)
         }
@@ -203,21 +203,21 @@ public class SeastarSdk : NSObject {
     }
         
     //统计相关
-    public func trackLogin(){
+    @objc public func trackLogin(){
         AppsFlyerTracker.shared().trackEvent(AFEventLogin, withValues: nil);
         if GocpaExist == true{
         track?.reportEvent("Login");
         }
     }
     
-    public func trackRegistration(){
+    @objc public func trackRegistration(){
         AppsFlyerTracker.shared().trackEvent(AFEventCompleteRegistration, withValues: nil);
         if GocpaExist == true{
         track?.reportEvent("Register");
         }
     }
     
-    public func trackPurchase(sku:String,skuType:String,price:Float,currency:String){
+    @objc public func trackPurchase(sku:String,skuType:String,price:Float,currency:String){
         let purchaseDic:[String:Any] = [AFEventParamContentId:sku,
                                         AFEventParamContentType : skuType,
                                         AFEventParamRevenue: price,
@@ -230,14 +230,14 @@ public class SeastarSdk : NSObject {
         }
     }
     
-    public func trackLevelAchieved(level:String,score:String){
+    @objc public func trackLevelAchieved(level:String,score:String){
         let levelDic:[String:Any] = [AFEventParamLevel:level,
                                      AFEventParamScore :score
         ]
         AppsFlyerTracker.shared().trackEvent(AFEventLevelAchieved, withValues: levelDic)
     }
     
-    public func trackCustomEvent(customStr:String,customDic:Dictionary<String, Any>){
+    @objc public func trackCustomEvent(customStr:String,customDic:Dictionary<String, Any>){
         AppsFlyerTracker.shared().trackEvent(customStr, withValues: customDic);
         if GocpaExist == true{
         track?.reportEvent(customStr);
@@ -246,41 +246,41 @@ public class SeastarSdk : NSObject {
     
     //Facebook相关
     
-    public func shareFb(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
+    @objc public func shareFb(viewController controller: UIViewController, contentURL url: String, contentTitle title: String,
                         imageURL image: String, contentDescription description: String, caller:@escaping (Bool)->Void) {
         
         Facebook.current.share(viewController: controller, contentURL: url, contentTitle: title, imageURL: image, contentDescription: description, caller:caller);
     }
     
-    public func shareFb(viewController controller: UIViewController, imageURL url: String, imageCaption caption: String, caller: @escaping (Bool)->Void) {
+    @objc public func shareFb(viewController controller: UIViewController, imageURL url: String, imageCaption caption: String, caller: @escaping (Bool)->Void) {
         Facebook.current.share(viewController: controller, imageURL: url, imageCaption: caption, caller: caller);
     }
     
-    public func doFbGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping (Bool)->Void) {
+    @objc public func doFbGameRequest(requestMessage message: String, requestTitle title: String, caller: @escaping (Bool)->Void) {
         Facebook.current.doGameRequest(requestMessage: message, requestTitle: title, caller: caller);
     }
     
-    public func deleteFbGameRequest() {
+    @objc public func deleteFbGameRequest() {
         Facebook.current.deleteGameRequest();
     }
     
-    public func doFbAppInvite(viewController controller: UIViewController, appLinkURL linkURL:String, appInvitePreviewImageURL imageURL: String,caller:@escaping (Bool)->Void) {
+    @objc public func doFbAppInvite(viewController controller: UIViewController, appLinkURL linkURL:String, appInvitePreviewImageURL imageURL: String,caller:@escaping (Bool)->Void) {
         Facebook.current.doAppInvite(viewController: controller, appLinkURL: linkURL, appInvitePreviewImageURL: imageURL, caller: caller);
     }
     
-    public func getFbMeInfo(success:@escaping (Data)->Void, failure:@escaping ()->Void){
+    @objc public func getFbMeInfo(success:@escaping (Data)->Void, failure:@escaping ()->Void){
         Facebook.current.getMeInfo(success: success, failure: failure);
     }
     
-    public func getFbFriendInfo(height:Int, width:Int, limit:Int, success:@escaping (String)->Void, failure:@escaping ()->Void) {
+    @objc public func getFbFriendInfo(height:Int, width:Int, limit:Int, success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getFriendInfo(height: height, width: width, limit: limit, success: success, failure: failure);
     }
     
-    public func getNextFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
+    @objc public func getNextFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getNextFriendInfo(success: success, failure: failure);
     }
     
-    public func getPrevFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
+    @objc public func getPrevFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getPrevFriendInfo(success: success, failure: failure);
     }
     

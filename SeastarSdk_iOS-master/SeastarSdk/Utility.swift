@@ -64,8 +64,8 @@ func customHud(userModel:UserModel,hudView:UIView){
         let welcomeStr = NSLocalizedString("LoginSuccess", comment: "");
         let noticeStr:NSString = userModel.userName + "," + welcomeStr as NSString
         let size = CGSize(width: 900, height: 40);
-        let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
-        let strsize = noticeStr.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as?[String:AnyObject], context: nil).size
+        let dic = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
+        let strsize = noticeStr.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as?[NSAttributedStringKey:AnyObject], context: nil).size
         //UIView
         let view = UIView(frame: CGRect(x: 0, y: 0, width: strsize.width + 60, height: 40));
         view.center = CGPoint(x: hudView.frame.size.width / 2, y: 40);

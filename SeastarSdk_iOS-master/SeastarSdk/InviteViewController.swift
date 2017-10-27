@@ -235,7 +235,7 @@ extension InviteViewController:UICollectionViewDelegate,UICollectionViewDataSour
         return UIImage(named:initBundleImage(ImageStr: "invite_"))!;
     }
     
-    func btnClick(sender:UIButton){
+    @objc func btnClick(sender:UIButton){
         if sender.isSelected{
             selectedArray[sender.tag] = false;
             for i in 0 ..< inviteArray.count{

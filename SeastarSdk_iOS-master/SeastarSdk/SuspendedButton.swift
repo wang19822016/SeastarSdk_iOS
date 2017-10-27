@@ -49,43 +49,43 @@ class SuspendedButton: UIButton {
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        if BtnEnabled{
-            super.touchesEnded(touches, with: event);
-            if exist {
-                alertView.removeFromSuperview();
-                exist = false;
-                alpha = 0.5;
-            }else{
-                addAlertView();
-                exist = true;
-                alpha = 1.0;
-            }
-        }else{
-            super.touchesEnded(touches, with: event);
-            let touch = ((touches as NSSet).anyObject() as AnyObject)
-            if touch.tapCount == 0{
-                if self.frame.origin.x >= self.kScreenWidth / 2{
-                    _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: {_ in
-                        UIView.animate(withDuration: 0.8, animations: {
-                            self.frame.origin.x = self.kScreenWidth - 25;
-                        })
-                        _ = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: {_ in
-                            self.alpha = 0.5;
-                        })
-                    })
-                }else{
-                    _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: {_ in
-                        UIView.animate(withDuration: 0.8, animations: {
-                            self.frame.origin.x = -25;
-                        })
-                        _ = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: {_ in
-                            self.alpha = 0.5;
-                        })
-                    })
-                }
-            }
-        }
+//
+//        if BtnEnabled{
+//            super.touchesEnded(touches, with: event);
+//            if exist {
+//                alertView.removeFromSuperview();
+//                exist = false;
+//                alpha = 0.5;
+//            }else{
+//                addAlertView();
+//                exist = true;
+//                alpha = 1.0;
+//            }
+//        }else{
+//            super.touchesEnded(touches, with: event);
+//            let touch = ((touches as NSSet).anyObject() as AnyObject)
+//            if touch.tapCount == 0{
+//                if self.frame.origin.x >= self.kScreenWidth / 2{
+//                    _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: {_ in
+//                        UIView.animate(withDuration: 0.8, animations: {
+//                            self.frame.origin.x = self.kScreenWidth - 25;
+//                        })
+//                        _ = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: {_ in
+//                            self.alpha = 0.5;
+//                        })
+//                    })
+//                }else{
+//                    _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: {_ in
+//                        UIView.animate(withDuration: 0.8, animations: {
+//                            self.frame.origin.x = -25;
+//                        })
+//                        _ = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: {_ in
+//                            self.alpha = 0.5;
+//                        })
+//                    })
+//                }
+//            }
+//        }
     }
     
     func addAlertView(){
