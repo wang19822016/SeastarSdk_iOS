@@ -279,7 +279,7 @@ public class SeastarSdk : NSObject {
     @objc public func getNextFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getNextFriendInfo(success: success, failure: failure);
     }
-    
+
     @objc public func getPrevFbFriendInfo(success:@escaping (String)->Void, failure:@escaping ()->Void) {
         Facebook.current.getPrevFriendInfo(success: success, failure: failure);
     }

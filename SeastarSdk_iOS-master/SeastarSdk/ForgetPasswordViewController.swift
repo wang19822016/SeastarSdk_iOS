@@ -24,8 +24,9 @@ class ForgetPasswordViewController: BaseViewController,UITextFieldDelegate {
     
     @IBAction func passwordGetBackClick(_ sender: AnyObject) {
         if seastarCompare(admin: adminTextField.text!) {
-            UserViewModel.current.findPwd(self.adminTextField.text!, {(String)->(Void) in
-                if String == "200"{
+            UserViewModel.current.findPwd(self.adminTextField.text!, {(int)->(Void) in
+                print(int)
+                if int == 200{
                     hud(hudString: "FindSuccess", hudView: self.view);
                 }else{
                     hud(hudString: "Findfalse", hudView: self.view);

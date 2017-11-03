@@ -32,7 +32,7 @@ class ForgetPortraitViewController: BaseViewController,UITextFieldDelegate {
     @IBAction func passwordGetBackBtnClick(_ sender: AnyObject) {
         if seastarCompare(admin: adminTextField.text!) {
             UserViewModel.current.findPwd(self.adminTextField.text!, {(String)->(Void) in
-                if String == "200"{
+                if String == 200{
                     hud(hudString: "FindSuccess", hudView: self.view);
                 }else{
                     hud(hudString: "Findfalse", hudView: self.view);

@@ -398,8 +398,8 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
             let graphRequest: FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me/invitable_friends",
                                                                     parameters: ["fields": "id,name,picture", "limit": "50"])
             graphRequest.start {connection, result, error in
-                print("\(result)");
-                print("\(error)")
+//                print("\(result)");
+//                print("\(error)")
                 if((result) != nil){
                     let data = try? JSONSerialization.data(withJSONObject: result!, options: JSONSerialization.WritingOptions.prettyPrinted);
                     success(data!);
@@ -414,22 +414,22 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         if nextFriendInfoPage == nil {
             failure()
         } else {
-            MyNetwork.current.get(url: nextFriendInfoPage!, success: { result in
+            MyNetwork.current.getString(url: nextFriendInfoPage!, success: { result in
                 
                 if let json = try? JSONSerialization.jsonObject(with: result.data(using: .utf8)!, options: .allowFragments),
                     let rootDict = json as? [String : Any] {
-                        success(result)
-                        
-                        if let paging = rootDict["paging"] as? [String : String] {
-                            self.nextFriendInfoPage = paging["next"]
-                            self.prevFriendInfoPage = paging["previous"]
-                        }
-                        
-                        return
+                    success(result)
+                    
+                    if let paging = rootDict["paging"] as? [String : String] {
+                        self.nextFriendInfoPage = paging["next"]
+                        self.prevFriendInfoPage = paging["previous"]
+                    }
+                    
+                    return
                 }
                 failure()
-                }, failure: { () in
-                    failure()
+            }, failure: { () in
+                failure()
             })
         }
     }
@@ -438,22 +438,22 @@ class Facebook : NSObject, FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate,
         if prevFriendInfoPage == nil {
             failure()
         } else {
-            MyNetwork.current.get(url: prevFriendInfoPage!, success: { result in
+            MyNetwork.current.getString(url: prevFriendInfoPage!, success: { result in
                 if let json = try? JSONSerialization.jsonObject(with: result.data(using: .utf8)!, options: .allowFragments),
                     let rootDict = json as? [String : Any] {
-                        success(result)
-                        
-                        if let paging = rootDict["paging"] as? [String : String] {
-                            self.nextFriendInfoPage = paging["next"]
-                            self.prevFriendInfoPage = paging["previous"]
-                        }
-                        
-                        return
+                    success(result)
+                    
+                    if let paging = rootDict["paging"] as? [String : String] {
+                        self.nextFriendInfoPage = paging["next"]
+                        self.prevFriendInfoPage = paging["previous"]
                     }
+                    
+                    return
+                }
                 
                 failure()
-                }, failure: { () in
-                    failure()
+            }, failure: { () in
+                failure()
             })
         }
     }

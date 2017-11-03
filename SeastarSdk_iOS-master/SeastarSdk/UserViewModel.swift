@@ -27,7 +27,10 @@ class UserViewModel {
                 // 注册成功
                 success()
                 self.registerSuccess = true;
-            } else {
+            }else if code == 409{
+                hud(hudString: "AccountAlreadyExists", hudView: (Global.current.rootViewController?.view!)!)
+                    failure()
+            }else {
                 failure()
             }
         }, {
@@ -102,13 +105,16 @@ class UserViewModel {
         user.removeCurrentUser()
     }
     
-    func findPwd(_ username: String,_ findSuccess: @escaping (String)->Void) {
+    func findPwd(_ username: String,_ findSuccess: @escaping (Int)->Void) {
+        print("findPwd")
         let app = AppModel()
         let signStr = "\(app.appId)\(username)\(app.appKey)"
         let md5Str = md5(string: signStr)
         let url = "\(app.serverUrl)/api/user/pwd?username=\(username)&appId=\(app.appId)&sign=\(md5Str)"
         MyNetwork.current.get(url: url, success: { (code) in
             findSuccess(code)
+            print(code);
+            print("MyNetwork.get")
         }) { 
             
         };

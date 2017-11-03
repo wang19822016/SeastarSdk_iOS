@@ -157,7 +157,37 @@ class MyNetwork: NSObject {
         task.resume()
     }
     
-    func get(url: String, success: @escaping (String) -> Void, failure: @escaping () -> Void) {
+    func get(url: String, success: @escaping (Int) -> Void, failure: @escaping () -> Void) {
+        print("get");
+        var request: URLRequest = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
+        request.httpMethod = "GET"
+        
+        let task:URLSessionDataTask = session.dataTask(with: request) {
+            (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if let response = response as? HTTPURLResponse {
+                if let data = data {
+                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                    if (json as? [String : Any]) != nil {
+                        DispatchQueue.main.async {
+                            success(response.statusCode)
+                        }
+                        return
+                    }
+                }
+                DispatchQueue.main.async {
+                    success(response.statusCode)
+                }
+            }else{
+                DispatchQueue.main.async {
+                    failure();
+                }
+                
+            }
+        }
+        task.resume()
+    }
+    
+    func getString(url:String,success:@escaping (String) -> Void,failure:@escaping() -> Void){
         var request: URLRequest = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: TIME_OUT)
         request.httpMethod = "GET"
         
@@ -167,18 +197,18 @@ class MyNetwork: NSObject {
             if let rawData = data {
                 if let rawResult = String(data: rawData, encoding: String.Encoding.utf8) {
                     DispatchQueue.main.async {
-                    success(rawResult)
+                        success(rawResult)
                     }
                 } else {
                     Log("Http response is not String. please check url: \(url)")
                     DispatchQueue.main.async {
-                    failure()
+                        failure()
                     }
                 }
             } else {
                 Log("Open url failed: \(error!), please check url: \(url)")
                 DispatchQueue.main.async {
-                failure()
+                    failure()
                 }
             }
         }
