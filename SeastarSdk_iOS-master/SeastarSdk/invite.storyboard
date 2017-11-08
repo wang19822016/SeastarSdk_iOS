@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VAx-q2-coZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VAx-q2-coZ">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="width" constant="100" id="haS-IZ-eFM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="發送邀請" backgroundImage="invite_button.jpg">
+                                        <state key="normal" title="發送邀請" backgroundImage="invite_button.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -235,7 +235,7 @@
                                             <constraint firstAttribute="width" constant="114" id="9Pi-ti-CqN"/>
                                             <constraint firstAttribute="height" constant="35" id="Tre-WT-EJy"/>
                                         </constraints>
-                                        <state key="normal" title="     立即分享" backgroundImage="invite_button-facebook.jpg">
+                                        <state key="normal" title="     立即分享" backgroundImage="invite_button-facebook.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -318,8 +318,9 @@
         <image name="invite_address-book-black.png" width="20" height="20"/>
         <image name="invite_address-book-light.png" width="20" height="20"/>
         <image name="invite_back.png" width="64" height="64"/>
-        <image name="invite_button-facebook.jpg" width="408" height="105"/>
+        <image name="invite_button-facebook.png" width="408" height="105"/>
         <image name="invite_button.jpg" width="302" height="105"/>
+        <image name="invite_button.png" width="302" height="105"/>
         <image name="invite_chain-black.png" width="20" height="20"/>
         <image name="invite_chain-light.png" width="20" height="20"/>
         <image name="invite_selected.png" width="24" height="24"/>

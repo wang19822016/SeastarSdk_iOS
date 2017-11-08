@@ -159,8 +159,6 @@
 		EECFD0B21E976BC100A8C23D /* invite_address-book-black.png in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0A51E976BC100A8C23D /* invite_address-book-black.png */; };
 		EECFD0B31E976BC100A8C23D /* invite_arraw.png in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0A61E976BC100A8C23D /* invite_arraw.png */; };
 		EECFD0B41E976BC100A8C23D /* invite_back.png in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0A71E976BC100A8C23D /* invite_back.png */; };
-		EECFD0B51E976BC100A8C23D /* invite_button-facebook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0A81E976BC100A8C23D /* invite_button-facebook.jpg */; };
-		EECFD0B61E976BC100A8C23D /* invite_button.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0A91E976BC100A8C23D /* invite_button.jpg */; };
 		EECFD0B71E976BC100A8C23D /* invite_chain-black.png in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0AA1E976BC100A8C23D /* invite_chain-black.png */; };
 		EECFD0B81E976BC100A8C23D /* invite_chain-light.png in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0AB1E976BC100A8C23D /* invite_chain-light.png */; };
 		EECFD0B91E976BC100A8C23D /* invite_Facebook Messenger-black.png in Resources */ = {isa = PBXBuildFile; fileRef = EECFD0AC1E976BC100A8C23D /* invite_Facebook Messenger-black.png */; };
@@ -190,6 +188,8 @@
 		EEE839FD1DC364D3003F8F79 /* kuang_highlighted_p.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE839EE1DC364D3003F8F79 /* kuang_highlighted_p.png */; };
 		EEE839FE1DC364D3003F8F79 /* kuang_p.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE839EF1DC364D3003F8F79 /* kuang_p.png */; };
 		EEE83A031DC364F4003F8F79 /* seastar_p.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */; };
+		EEEAA37D1FB2A4FE00094C7D /* invite_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EEEAA37B1FB2A4FE00094C7D /* invite_button.png */; };
+		EEEAA37E1FB2A4FE00094C7D /* invite_button-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = EEEAA37C1FB2A4FE00094C7D /* invite_button-facebook.png */; };
 		EEEBB1C81FA9B4A300388682 /* button_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EEEBB1C71FA9B4A300388682 /* button_highlighted.png */; };
 		EEFC4DA61F8DFF0700B327B0 /* EventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFC4DA51F8DFF0700B327B0 /* EventButton.swift */; };
 		EEFC4DA91F8E005D00B327B0 /* suspended.png in Resources */ = {isa = PBXBuildFile; fileRef = EEFC4DA71F8E005D00B327B0 /* suspended.png */; };
@@ -383,8 +383,6 @@
 		EECFD0A51E976BC100A8C23D /* invite_address-book-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite_address-book-black.png"; sourceTree = "<group>"; };
 		EECFD0A61E976BC100A8C23D /* invite_arraw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invite_arraw.png; sourceTree = "<group>"; };
 		EECFD0A71E976BC100A8C23D /* invite_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invite_back.png; sourceTree = "<group>"; };
-		EECFD0A81E976BC100A8C23D /* invite_button-facebook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "invite_button-facebook.jpg"; sourceTree = "<group>"; };
-		EECFD0A91E976BC100A8C23D /* invite_button.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = invite_button.jpg; sourceTree = "<group>"; };
 		EECFD0AA1E976BC100A8C23D /* invite_chain-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite_chain-black.png"; sourceTree = "<group>"; };
 		EECFD0AB1E976BC100A8C23D /* invite_chain-light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite_chain-light.png"; sourceTree = "<group>"; };
 		EECFD0AC1E976BC100A8C23D /* invite_Facebook Messenger-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite_Facebook Messenger-black.png"; sourceTree = "<group>"; };
@@ -414,6 +412,8 @@
 		EEE839EE1DC364D3003F8F79 /* kuang_highlighted_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kuang_highlighted_p.png; sourceTree = "<group>"; };
 		EEE839EF1DC364D3003F8F79 /* kuang_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kuang_p.png; sourceTree = "<group>"; };
 		EEE83A021DC364F4003F8F79 /* seastar_p.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = seastar_p.storyboard; sourceTree = "<group>"; };
+		EEEAA37B1FB2A4FE00094C7D /* invite_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invite_button.png; sourceTree = "<group>"; };
+		EEEAA37C1FB2A4FE00094C7D /* invite_button-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite_button-facebook.png"; sourceTree = "<group>"; };
 		EEEBB1C71FA9B4A300388682 /* button_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_highlighted.png; sourceTree = "<group>"; };
 		EEFC4DA51F8DFF0700B327B0 /* EventButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventButton.swift; sourceTree = "<group>"; };
 		EEFC4DA71F8E005D00B327B0 /* suspended.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suspended.png; sourceTree = "<group>"; };
@@ -792,6 +792,8 @@
 		EECFD0A21E976BC100A8C23D /* invite */ = {
 			isa = PBXGroup;
 			children = (
+				EEEAA37C1FB2A4FE00094C7D /* invite_button-facebook.png */,
+				EEEAA37B1FB2A4FE00094C7D /* invite_button.png */,
 				EEE80C021EC19E9500AF50F7 /* invite_unselected.png */,
 				EEE80C031EC19E9500AF50F7 /* invite_selected.png */,
 				EECFD0A31E976BC100A8C23D /* invite_address-book-light.png */,
@@ -799,8 +801,6 @@
 				EECFD0A51E976BC100A8C23D /* invite_address-book-black.png */,
 				EECFD0A61E976BC100A8C23D /* invite_arraw.png */,
 				EECFD0A71E976BC100A8C23D /* invite_back.png */,
-				EECFD0A81E976BC100A8C23D /* invite_button-facebook.jpg */,
-				EECFD0A91E976BC100A8C23D /* invite_button.jpg */,
 				EECFD0AA1E976BC100A8C23D /* invite_chain-black.png */,
 				EECFD0AB1E976BC100A8C23D /* invite_chain-light.png */,
 				EECFD0AC1E976BC100A8C23D /* invite_Facebook Messenger-black.png */,
@@ -1022,9 +1022,9 @@
 				EE6F1B2F1EBB31E9009A3F2D /* guest_big.png in Resources */,
 				EE748A491E658EBF0033689D /* seastar_big.png in Resources */,
 				EEE839FD1DC364D3003F8F79 /* kuang_highlighted_p.png in Resources */,
-				EECFD0B61E976BC100A8C23D /* invite_button.jpg in Resources */,
 				EEEBB1C81FA9B4A300388682 /* button_highlighted.png in Resources */,
 				EEFC4DAA1F8E005D00B327B0 /* suspended_highlighted.png in Resources */,
+				EEEAA37E1FB2A4FE00094C7D /* invite_button-facebook.png in Resources */,
 				EEE839B11DC36035003F8F79 /* cancel.png in Resources */,
 				EEE839BC1DC36035003F8F79 /* notice.png in Resources */,
 				EEE839F51DC364D3003F8F79 /* button_highlighted_p.png in Resources */,
@@ -1035,7 +1035,6 @@
 				104DE7401DB8B38E00D7F736 /* seastar.storyboard in Resources */,
 				EEE839FE1DC364D3003F8F79 /* kuang_p.png in Resources */,
 				EEE83A031DC364F4003F8F79 /* seastar_p.storyboard in Resources */,
-				EECFD0B51E976BC100A8C23D /* invite_button-facebook.jpg in Resources */,
 				EE0531E01EBC5AC10055AC30 /* facebook.png in Resources */,
 				EEE839B51DC36035003F8F79 /* fenge.png in Resources */,
 				EE6F1B2D1EBB31E9009A3F2D /* facebook_big.png in Resources */,
@@ -1044,6 +1043,7 @@
 				EEE839F81DC364D3003F8F79 /* facebook_big_p.png in Resources */,
 				EE0531E51EBC5B670055AC30 /* seastar.png in Resources */,
 				EECFD0B71E976BC100A8C23D /* invite_chain-black.png in Resources */,
+				EEEAA37D1FB2A4FE00094C7D /* invite_button.png in Resources */,
 				EE0531F31EBC67EC0055AC30 /* background.png in Resources */,
 				EECFD0B01E976BC100A8C23D /* invite_address-book-light.png in Resources */,
 				EE0532071EBC6C310055AC30 /* jjsg.png in Resources */,
