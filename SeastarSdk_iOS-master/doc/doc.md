@@ -254,9 +254,14 @@
 [[SeastarSdk current]getNextFbFriendInfoWithSuccess:^(NSString * _Nonnull str) {} failure:^{}];
 
 // 获取上一批好友信息
-void getPrevFbFriendInfo(final OnActionTwoFinishListener listener)
-
-// 获得个人信息
 [[SeastarSdk current]getPrevFbFriendInfoWithSuccess:^(NSString * _Nonnull str) {} failure:^{}];
 
+// 获得个人信息
+[[SeastarSdk current]getFbMeInfoWithSuccess:^(NSString * _Nonnull str) {NSLog(@"%@", str);} failure:^{}];
+
+```
+# 14. facebook广告变现接口
+```
+[[SeastarSdk current]loadRewardedVideoAdWithLoadRewardedVideoSuccess:^(BOOL success) {
+}];
 ```
